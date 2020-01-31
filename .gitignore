@@ -1,0 +1,77 @@
+Last login: Fri Jan 31 22:38:49 on ttys000
+Om:Boxeh omdhanwant$ cd ..
+Om:.Trash omdhanwant$ ls
+Boxeh				Orignial.xlsx			Products_Import_Sample.xlsx
+Om:.Trash omdhanwant$ cd
+Om:~ omdhanwant$ cd T
+Task Timer/          Tracko-Task-Tracker/ 
+Om:~ omdhanwant$ cd T
+Task Timer/          Tracko-Task-Tracker/ 
+Om:~ omdhanwant$ cd Tracko-Task-Tracker/
+Om:Tracko-Task-Tracker omdhanwant$ ls -al
+total 1056
+drwxr-xr-x   25 omdhanwant  staff     800 Jan 30 21:53 .
+drwxr-xr-x+  55 omdhanwant  staff    1760 Jan 31 22:40 ..
+drwxr-xr-x   17 omdhanwant  staff     544 Jan 31 22:54 .git
+-rw-r--r--    1 omdhanwant  staff     398 Jan 20 18:17 .gitignore
+-rw-r--r--    1 omdhanwant  staff     165 Jan 20 18:10 README.md
+drwxr-xr-x   17 omdhanwant  staff     544 Jan 20 17:42 android
+-rw-r--r--    1 omdhanwant  staff    5260 Jan 17 09:00 angular.json
+-rw-r--r--    1 omdhanwant  staff     430 Jan 17 09:00 browserslist
+-rw-r--r--    1 omdhanwant  staff     468 Jan 20 18:27 capacitor.config.json
+-rw-r--r--    1 omdhanwant  staff    7727 Jan 20 17:22 config.xml
+drwxr-xr-x    5 omdhanwant  staff     160 Jan 19 12:05 e2e
+-rw-r--r--    1 omdhanwant  staff     108 Jan 20 17:21 ionic.config.json
+-rw-r--r--    1 omdhanwant  staff     981 Jan 17 09:00 karma.conf.js
+drwxr-xr-x  834 omdhanwant  staff   26688 Jan 30 21:53 node_modules
+-rw-r--r--    1 omdhanwant  staff  476485 Jan 30 21:53 package-lock.json
+-rw-r--r--    1 omdhanwant  staff    2653 Jan 30 21:53 package.json
+drwxr-xr-x    3 omdhanwant  staff      96 Jan 20 17:21 platforms
+drwxr-xr-x   11 omdhanwant  staff     352 Jan 20 17:21 plugins
+drwxr-xr-x    7 omdhanwant  staff     224 Jan 20 17:21 resources
+drwxr-xr-x   12 omdhanwant  staff     384 Jan 19 12:05 src
+-rw-r--r--    1 omdhanwant  staff     210 Jan 17 09:00 tsconfig.app.json
+-rw-r--r--    1 omdhanwant  staff     606 Jan 29 22:37 tsconfig.json
+-rw-r--r--    1 omdhanwant  staff     295 Jan 17 09:00 tsconfig.spec.json
+-rw-r--r--    1 omdhanwant  staff    1847 Jan 17 09:00 tslint.json
+drwxr-xr-x  415 root        staff   13280 Jan 20 18:37 www
+Om:Tracko-Task-Tracker omdhanwant$ vi .gitignore 
+
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
+
+*~
+*.sw[mnpcod]
+.tmp
+*.tmp
+*.tmp.*
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+UserInterfaceState.xcuserstate
+$RECYCLE.BIN/
+
+*.log
+log.txt
+npm-debug.log*
+
+/.idea
+/.ionic
+/.sass-cache
+/.sourcemaps
+/.versions
+/.vscode
+/coverage
+/dist
+/node_modules
+/platforms
+/plugins
+/www
+/android
+~                                                                                                                          
+~                                                                                                                          
+~                                                                                                                          
+~                                                                                                                          
+".gitignore" 32L, 398C
+
