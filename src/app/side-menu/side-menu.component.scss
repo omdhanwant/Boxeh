@@ -1,0 +1,11 @@
+// .active {
+//     --border-left: 8px solid #a0c643;
+// }
+
+.active-item {
+    border-left: 8px solid var(--ion-color-primary);
+}
+
+ion-item {
+    --color: #7f7f7f;
+}

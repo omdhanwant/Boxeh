@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" id="menu-toggle-button">
+      <ion-menu-button></ion-menu-button>
+    </ion-button>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form #form="ngForm" (ngSubmit)="register(form)">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-md="12" size-lg="6" offset-lg="3">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title text-center>
+                - Register -
+              </ion-card-title>
+            </ion-card-header>
+    
+            <ion-card-content>
+              <ion-item>
+                <ion-label position="floating">Username</ion-label>
+                <ion-input name='username' ngModel type="text"></ion-input>
+              </ion-item>
+              
+              <ion-item>
+                <ion-label position="floating">Email Address</ion-label>
+                <ion-input name='password' ngModel type="text"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="floating">Password</ion-label>
+                <ion-input name='password' ngModel type="text"></ion-input>
+              </ion-item>
+    
+              <div text-center>
+                <ion-button color='primary' size="samll" type="submit" [disabled]="form.invalid"  margin-top>
+                  Register
+                </ion-button>
+              </div>
+
+              <div text-center>
+                Your Personal data will be used to support your experience throughout this application,
+                to manage access to your account, and for other purposes described in our privacy policy.
+                  </div>
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+  
+    </ion-grid>
+  </form>
+  
+</ion-content>
