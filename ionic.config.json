@@ -1,5 +1,7 @@
 {
   "name": "Boxeh",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
