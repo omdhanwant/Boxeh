@@ -28,9 +28,13 @@ export class SideMenuComponent {
     });
    }
 
-  // openFirst() {
-  //   this.menu.enable(true, 'first');
-  //   this.menu.open('first');
-  // }
+  openFirst() {
+    this.menu.enable(true, 'first');
+    this.menu.open('first');
+  }
+
+  closeMenu() {
+   this.menu.close();
+  }
 
 }
