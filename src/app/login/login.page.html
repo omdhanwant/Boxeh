@@ -1,13 +1,23 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-button slot="start" id="menu-toggle-button">
       <ion-menu-button></ion-menu-button>
     </ion-button>
     <ion-title>Login</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" id="menu-toggle-button">
+      <ion-menu-button></ion-menu-button>
+    </ion-button>
+    <ion-title class="logo">
+     <img alt="logo" height="40"   src="../../assets/icon/favicon.png" > 
+    </ion-title>
+ </ion-toolbar>
+ </ion-header>
 
-<ion-content padding>
+<ion-content>
   <form #form="ngForm" (ngSubmit)="login(form)">
     <ion-grid>
       <ion-row>
