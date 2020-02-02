@@ -20,10 +20,10 @@
       </ion-list>
     </ion-menu-toggle>
 
-    <ion-item button *ngIf="page.isDropDown" [routerLink]="page.url" routerLinkActive="active-item current"
-    routerDirection="root" detail='false'>
-      <ion-icon slot="end" name='arrow-forward' *ngIf='!page.open' (click)='page.open = !page.open'></ion-icon>
-      <ion-icon slot="end" name='arrow-down' *ngIf='page.open' (click)='page.open = !page.open'></ion-icon>
+     <!-- for dropdowns -->
+    <ion-item button *ngIf="page.isDropDown" (click)='page.open = !page.open'>
+      <ion-icon slot="end" name='arrow-forward' *ngIf='!page.open'></ion-icon>
+      <ion-icon slot="end" name='arrow-down' *ngIf='page.open'></ion-icon>
       <ion-icon [name]='page.icon' slot="start"></ion-icon>
       <ion-label>
         {{page.pageName}}

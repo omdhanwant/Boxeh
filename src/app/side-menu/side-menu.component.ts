@@ -25,23 +25,34 @@ export class SideMenuComponent {
   {
     pageName: 'My Account',
     url: '/my-account',
+    icon: 'contact',
+    isDropDown: false
+  },
+  {
+    pageName: 'About',
     open: false,
-    icon: '',
+    icon: 'paper',
     isDropDown: true,
     children : [
       {
-        pageName: 'Profile',
-        url: '/my-account/profile',
-        icon: 'contact'
+        pageName: 'About Boxeh',
+        url: '/about-boxeh',
+        icon: ''
       },
       {
-        pageName: 'Previous Orders',
-        url: '/my-account/previous-orders',
-        icon: 'card'
+        pageName: 'Our Story',
+        url: '/our-story',
+        icon: ''
       },
 
     ]
-  }
+  },
+  {
+    pageName: 'Contact Us',
+    url: '/contact-us',
+    icon: 'call',
+    isDropDown: false
+  },
 ];
 
   constructor(private menu: MenuController) {
