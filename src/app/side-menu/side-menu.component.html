@@ -7,13 +7,42 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
-    <ion-menu-toggle>
+   
+   <div *ngFor='let page of pages'>
+
+    <ion-menu-toggle *ngIf='!page.isDropDown'>
       <ion-list>
-        <ion-item *ngFor='let page of pages' [routerLink]="page.url" routerLinkActive="active-item current"
+        <ion-item [routerLink]="page.url" routerLinkActive="active-item current"
          routerDirection="root">
-          {{page.pageName}}
+         <ion-icon [name]='page.icon' slot="start"></ion-icon>
+          <ion-label>{{page.pageName}}</ion-label>
         </ion-item>
       </ion-list>
     </ion-menu-toggle>
+
+    <ion-item button *ngIf="page.isDropDown" [routerLink]="page.url" routerLinkActive="active-item current"
+    routerDirection="root" detail='false'>
+      <ion-icon slot="end" name='arrow-forward' *ngIf='!page.open' (click)='page.open = !page.open'></ion-icon>
+      <ion-icon slot="end" name='arrow-down' *ngIf='page.open' (click)='page.open = !page.open'></ion-icon>
+      <ion-icon [name]='page.icon' slot="start"></ion-icon>
+      <ion-label>
+        {{page.pageName}}
+      </ion-label>
+    </ion-item>
+
+    <ion-list *ngIf='page.open'>
+      <ion-menu-toggle>
+        <ion-item *ngFor='let sub of page.children' [routerLink]="sub.url" 
+        routerLinkActive="active-item current" routerDirection="root">
+        <ion-icon [name]='sub.icon' slot="start"></ion-icon>
+         <ion-label>
+           {{sub.pageName}}
+          </ion-label>
+       </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+
+   </div>
+    
   </ion-content>
 </ion-menu>

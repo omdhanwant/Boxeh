@@ -3,7 +3,8 @@
 // }
 
 .active-item {
-    border-left: 8px solid var(--ion-color-primary);
+    border-left: 4px solid var(--ion-color-primary);
+    background: #e9ecdf;
 }
 
 ion-item {
@@ -12,4 +13,8 @@ ion-item {
 
 img {
     cursor: pointer;
+}
+
+ion-list {
+    padding: 0;
 }

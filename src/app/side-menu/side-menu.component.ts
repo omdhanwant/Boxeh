@@ -12,15 +12,35 @@ export class SideMenuComponent {
   pages = [
     {
       pageName: 'Home',
-      url: '/home'
+      url: '/home',
+      icon: 'home',
+      isDropDown: false
     },
     {
       pageName: 'Login/ Register',
-      url: '/login'
+      url: '/login',
+      icon: 'log-in',
+      isDropDown: false
   },
   {
     pageName: 'My Account',
-    url: '/my-account'
+    url: '/my-account',
+    open: false,
+    icon: '',
+    isDropDown: true,
+    children : [
+      {
+        pageName: 'Profile',
+        url: '/my-account/profile',
+        icon: 'contact'
+      },
+      {
+        pageName: 'Previous Orders',
+        url: '/my-account/previous-orders',
+        icon: 'card'
+      },
+
+    ]
   }
 ];
 
