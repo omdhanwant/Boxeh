@@ -11,7 +11,7 @@
    <div *ngFor='let page of pages'>
 
     <ion-menu-toggle *ngIf='!page.isDropDown'>
-      <ion-list>
+      <ion-list lines="none">
         <ion-item [routerLink]="page.url" routerLinkActive="active-item current"
          routerDirection="root">
          <ion-icon [name]='page.icon' slot="start"></ion-icon>
@@ -21,7 +21,7 @@
     </ion-menu-toggle>
 
      <!-- for dropdowns -->
-    <ion-item button *ngIf="page.isDropDown" (click)='page.open = !page.open'>
+    <ion-item lines="none" button *ngIf="page.isDropDown" (click)='page.open = !page.open'>
       <ion-icon slot="end" name='arrow-forward' *ngIf='!page.open'></ion-icon>
       <ion-icon slot="end" name='arrow-down' *ngIf='page.open'></ion-icon>
       <ion-icon [name]='page.icon' slot="start"></ion-icon>
@@ -30,9 +30,9 @@
       </ion-label>
     </ion-item>
 
-    <ion-list *ngIf='page.open'>
+    <ion-list lines="none" *ngIf='page.open'>
       <ion-menu-toggle>
-        <ion-item *ngFor='let sub of page.children' [routerLink]="sub.url" 
+        <ion-item class='sub-items' *ngFor='let sub of page.children' [routerLink]="sub.url" 
         routerLinkActive="active-item current" routerDirection="root">
         <ion-icon [name]='sub.icon' slot="start"></ion-icon>
          <ion-label>

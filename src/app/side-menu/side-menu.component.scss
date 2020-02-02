@@ -1,5 +1,7 @@
 .active-item {
-    border-left: 4px solid var(--ion-color-primary);
+    // border-left: 4px solid var(--ion-color-primary);
+    --background: var(--ion-color-primary);
+    --color: white;
 }
 
 ion-item {
@@ -12,4 +14,9 @@ img {
 
 ion-list {
     padding: 0;
+}
+
+.sub-items {
+    font-size: small;
+    padding-left: 20px;
 }
