@@ -16,16 +16,15 @@ export class SideMenuComponent {
     },
     {
       pageName: 'Login/ Register',
-    url: '/login'
-  }];
+      url: '/login'
+  },
+  {
+    pageName: 'My Account',
+    url: '/my-account'
+  }
+];
 
-  selectedPath = '';
-
-  constructor(private menu: MenuController, private router: Router) {
-    this.router.events.subscribe((event: RouterEvent) => {
-      this.selectedPath = event.url;
-      console.log(this.selectedPath);
-    });
+  constructor(private menu: MenuController) {
    }
 
   openFirst() {
