@@ -403,3 +403,21 @@ padding: 20px 20px;
   background: #fff;
 }
 
+.my-auto{
+  margin-top: auto;
+margin-bottom: auto;
+}
+.mx-auto{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rounded-circle{
+border-radius: 50%;
+}
+.shadow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+.w-250{
+  width: 250px
+}

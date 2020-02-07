@@ -5,6 +5,88 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
+  <div class="bg-contact">
+  <form onsubmit="processForm(event)"  class="form-positon">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="floating">First Name <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+      </ion-item>
 
+      <ion-item>
+        <ion-label position="floating">Last Name <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Telephone Number<ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="number" oninput="handleFirstNameValue(event)"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Email <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Address </ion-label>
+        <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">City </ion-label>
+        <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Title</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <!-- <ion-item>
+        <ion-label position="floating">Address</ion-label>
+        <ion-input placeholder="Address Line 1"></ion-input>
+        <ion-input placeholder="Address Line 2"></ion-input>
+        <ion-input placeholder="City"></ion-input>
+        <ion-input placeholder="State"></ion-input>
+        <ion-input placeholder="Zip Code"></ion-input>
+      </ion-item> -->
+
+      <ion-item>
+        <ion-label position="floating">Notes</ion-label>
+        <ion-textarea rows="4"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" class="ion-no-margin">submit</ion-button>
+    </div>
+<ion-grid>
+  <ion-row>
+    <ion-col size-md-6 class="page-contact">
+
+        <div class="contacts">
+            <div class="single">
+                <i class="fas fa-map-marker-alt fa-2x"></i>
+<h5 class="text-primary">Address</h5>
+                <p class="font-light"> Amman - Jordan.</p>
+            </div>
+            <div class="single">
+                <i class="fas fa-envelope-open fa-2x"></i>
+<h5 class="text-primary">Email Address</h5>
+                <p class="font-light"><a href="mailto:info@boxeh.com">info@boxeh.com</a></p>
+            </div>
+            <div class="single">
+                <i class="fas fa-phone fa-2x"></i>
+<h5 class="text-primary">Phone Number</h5>
+                <p class="font-light mb-0"><a href="tel:+123456789">+123456789</a></p>
+                <p class="font-light"><a href="tel:+0987654321">+0987654321</a></p>
+            </div>
+        </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+  </form>
+</div>
 </ion-content>
+
+

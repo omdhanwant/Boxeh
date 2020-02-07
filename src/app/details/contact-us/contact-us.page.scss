@@ -1,0 +1,53 @@
+.bg-contact{
+    padding: 0px 20px 10px 20px;
+    background: url("../../../assets/backgroung-login.png");
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+.form-positon{
+    position: relative;
+    top: 30px;
+}
+
+.page-contact .contacts {
+    margin-top: 30px;
+}
+.page-contact .contacts .single {
+    position: relative;
+    text-align: center;
+    border: 2px solid #91c11e;
+    padding: 40px 0 10px;
+    margin-bottom: 40px;
+    background-color: #ebebeb;
+}
+.page-contact .contacts .single p {
+    font-weight: 200;
+}
+.page-contact .contacts .single a {
+    font-family: "dax-light", "Helvetica", sans-serif !important;
+    font-weight: 200;
+}
+p a {
+    color: #5f6062;
+    text-decoration: none;
+    background-color: transparent;
+}
+.page-contact .contacts .single i {
+    position: absolute;
+    top: -25px;
+    right: 50%;
+    transform: translateX(50%);
+    border: 3px solid;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    line-height: 42px;
+    font-size: 30px;
+    background: #ebebeb;
+    transition: all 0.3s ease-in-out;
+    color: #91c11e;
+}
