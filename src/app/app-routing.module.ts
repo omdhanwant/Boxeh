@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './shared-module/shared-services/auth-gaurd';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,10 +16,6 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
-  },
-  {
-    path: 'my-account',
-    loadChildren: () => import('./my-account/my-account.module').then( m => m.MyAccountPageModule)
   },
   {
     path: 'about-boxeh',
@@ -44,9 +41,17 @@ const routes: Routes = [
     path: 'our-collaborators',
     loadChildren: () => import('./details/our-collaborators/our-collaborators.module').then( m => m.OurCollaboratorsPageModule)
   },
+
+  // Auth Urls
+  {
+    path: 'my-account',
+    loadChildren: () => import('./my-account/my-account.module').then( m => m.MyAccountPageModule),
+    canActivate: [AuthGuard]
+  },
   {
     path: 'boxeh-plans',
-    loadChildren: () => import('./boxeh-plans/boxeh-plans.module').then( m => m.BoxehPlansPageModule)
+    loadChildren: () => import('./boxeh-plans/boxeh-plans.module').then( m => m.BoxehPlansPageModule),
+    canActivate: [AuthGuard]
   },
 ];
 

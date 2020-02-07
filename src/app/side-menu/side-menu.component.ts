@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  MenuController } from '@ionic/angular';
 import { RouterEvent, Router } from '@angular/router';
+import { AuthService } from '../shared-module/shared-services/auth.service';
 
 @Component({
   selector: 'app-side-menu',
@@ -9,75 +10,77 @@ import { RouterEvent, Router } from '@angular/router';
 })
 export class SideMenuComponent {
 
-  pages = [
-    {
-      pageName: 'Home',
-      url: '/home',
-      icon: 'home',
-      isDropDown: false,
-      isDisabled: false
+  pages = [];
+
+  constructor(private menu: MenuController, private auth: AuthService) {
+    const isLoggedIn = this.auth.currentUserValue ? true : false;
+    this.pages = [
+      {
+        pageName: 'Home',
+        url: '/home',
+        icon: 'home',
+        isDropDown: false,
+        isDisabled: false
+      },
+      {
+        pageName: 'Boxeh Plans',
+        url: '/boxeh-plans',
+        icon: '',
+        isDropDown: false,
+        isDisabled: !isLoggedIn
     },
     {
-      pageName: 'Boxeh Plans',
-      url: '/boxeh-plans',
-      icon: '',
-      isDropDown: false,
-      isDisabled: false
-  },
-  {
-    pageName: 'About',
-    open: false,
-    icon: 'paper',
-    isDropDown: true,
-    isDisabled: false,
-    children : [
-      {
-        pageName: 'About Boxeh',
-        url: '/about-boxeh',
-        icon: ''
-      },
-      {
-        pageName: 'Our Story',
-        url: '/our-story',
-        icon: ''
-      },
-      {
-        pageName: 'Our Suppliers',
-        url: '/our-suppliers',
-        icon: ''
-      },
-      {
-        pageName: 'Our Collaborators',
-        url: '/our-collaborators',
-        icon: ''
-      }
+      pageName: 'About',
+      open: false,
+      icon: 'paper',
+      isDropDown: true,
+      isDisabled: false,
+      children : [
+        {
+          pageName: 'About Boxeh',
+          url: '/about-boxeh',
+          icon: ''
+        },
+        {
+          pageName: 'Our Story',
+          url: '/our-story',
+          icon: ''
+        },
+        {
+          pageName: 'Our Suppliers',
+          url: '/our-suppliers',
+          icon: ''
+        },
+        {
+          pageName: 'Our Collaborators',
+          url: '/our-collaborators',
+          icon: ''
+        }
 
-    ]
-  },
+      ]
+    },
+      {
+        pageName: 'Login/ Register',
+        url: '/login',
+        icon: 'log-in',
+        isDropDown: false,
+        isDisabled: isLoggedIn
+    },
     {
-      pageName: 'Login/ Register',
-      url: '/login',
-      icon: 'log-in',
+      pageName: 'My Account',
+      url: '/my-account',
+      icon: 'contact',
+      isDropDown: false,
+      isDisabled: !isLoggedIn
+    },
+    {
+      pageName: 'Contact Us',
+      url: '/contact-us',
+      icon: 'call',
       isDropDown: false,
       isDisabled: false
-  },
-  {
-    pageName: 'My Account',
-    url: '/my-account',
-    icon: 'contact',
-    isDropDown: false,
-    isDisabled: false
-  },
-  {
-    pageName: 'Contact Us',
-    url: '/contact-us',
-    icon: 'call',
-    isDropDown: false,
-    isDisabled: false
-  },
-];
-
-  constructor(private menu: MenuController) {
+    }
+  ];
    }
 
   openFirst() {

@@ -9,13 +9,16 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SideMenuComponent } from './side-menu/side-menu.component';
+import { SharedModule } from './shared-module/shared-module.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-  SideMenuComponent],
+  SideMenuComponent
+],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule , SharedModule],
   providers: [
     StatusBar,
     SplashScreen,
