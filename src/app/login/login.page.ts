@@ -21,9 +21,9 @@ export class LoginPage {
       fd.append('email', username);
       fd.append('password', password);
       this.auth.login(fd).subscribe(response => {
-        console.log(response);
         form.reset();
         this.route.navigate(['/home']);
+        this.presentAlert('Successfully logged in!');
       }, error => {
         this.presentAlert('Something went wrong!');
         throw error;

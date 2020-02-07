@@ -26,9 +26,10 @@ export class AuthService {
   }
 
   login(fd: FormData) {
-      return this.http.post<any>(`${environment.hostUrl}/boxeh/api/${environment.version}/login`, fd)
+      return this.http.post(`${environment.hostUrl}/boxeh/api/${environment.version}/login`, fd)
           .pipe(map((response: LoginResponse) => {
               this.currentUserSubject.next(response.success.token);
+              console.log(this.currentUserValue);
               return response;
           }));
   }

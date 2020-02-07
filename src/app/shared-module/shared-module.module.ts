@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './shared-services/auth.service';
 import { AuthGuard } from './shared-services/auth-gaurd';
+import { httpInterceptorProviders } from './shared-services/http-interceptors';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { AuthGuard } from './shared-services/auth-gaurd';
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthGuard,
+    httpInterceptorProviders
   ]
 })
 export class SharedModule { }
