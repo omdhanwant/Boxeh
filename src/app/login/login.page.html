@@ -1,11 +1,4 @@
-<!-- <ion-header>
-  <ion-toolbar>
-    <ion-button slot="start" id="menu-toggle-button">
-      <ion-menu-button></ion-menu-button>
-    </ion-button>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header> -->
+
 <ion-header>
   <ion-toolbar>
     <ion-menu-button color='primary' slot="start"></ion-menu-button>
@@ -14,16 +7,17 @@
     </ion-title>
  </ion-toolbar>
  </ion-header>
-
+<ion-grid class="bg-login">
 <ion-content>
-  <form #form="ngForm" (ngSubmit)="login(form)">
+  <form #form="ngForm" (ngSubmit)="login(form)" class="bg-login">
     <ion-grid>
       <ion-row>
         <ion-col size-md="12" size-lg="6" offset-lg="3">
           <ion-card>
             <ion-card-header>
               <ion-card-title text-center>
-                - Login -
+                <!-- - Login - -->
+                <img src="../../assets/icon/icon.png" class="icon-logo">
               </ion-card-title>
             </ion-card-header>
     
@@ -38,7 +32,7 @@
                 <ion-input name='password' ngModel type="text"></ion-input>
               </ion-item>
     
-              <div text-center>
+              <div text-center class="pb-15px pt-1">
                 <ion-button color='primary' size="samll" type="submit" [disabled]="form.invalid"  margin-top>
                   Login
                 </ion-button>
@@ -58,3 +52,4 @@
   </form>
   
 </ion-content>
+</ion-grid>

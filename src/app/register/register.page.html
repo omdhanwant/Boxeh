@@ -8,14 +8,14 @@
 </ion-header>
 
 <ion-content>
-  <form #form="ngForm" (ngSubmit)="register(form)">
+  <form #form="ngForm" (ngSubmit)="register(form)"  class="bg-login">
     <ion-grid>
       <ion-row>
         <ion-col size-md="12" size-lg="6" offset-lg="3">
           <ion-card>
             <ion-card-header>
               <ion-card-title text-center>
-                - Register -
+                <img src="../../assets/icon/icon.png" class="icon-logo">
               </ion-card-title>
             </ion-card-header>
     
@@ -35,7 +35,7 @@
                 <ion-input name='password' ngModel type="text"></ion-input>
               </ion-item>
     
-              <div text-center>
+              <div text-center class="pb-15px pt-1">
                 <ion-button color='primary' size="samll" type="submit" [disabled]="form.invalid"  margin-top>
                   Register
                 </ion-button>

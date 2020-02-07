@@ -25,6 +25,9 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+body {
+  font-family: "dax-light", "Helvetica", sans-serif !important;
+}
 #menu-toggle-button {
   margin-left: 10px;
   padding-left: 10px;
@@ -393,3 +396,10 @@ padding: 20px 20px;
 .mr-5{
   margin-right: 3rem!important;
 }
+.pb-15px{
+  padding-bottom: 15px;
+}
+.bg-white{
+  background: #fff;
+}
+
