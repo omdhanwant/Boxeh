@@ -59,6 +59,26 @@ export class SideMenuComponent {
 
       ]
     },
+    {
+      pageName: 'Boxeh Chefs',
+      open: false,
+      icon: '',
+      isDropDown: true,
+      isDisabled: false,
+      children : [
+        {
+          pageName: 'Boxeh Chefs',
+          url: '/boxeh-chefs',
+          icon: 'man'
+        },
+        {
+          pageName: 'Join Us',
+          url: '/join-us',
+          icon: 'people'
+        }
+
+      ]
+    },
       {
         pageName: 'Login/ Register',
         url: '/login',

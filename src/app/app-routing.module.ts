@@ -34,6 +34,10 @@ const routes: Routes = [
     loadChildren: () => import('./details/join-us/join-us.module').then( m => m.JoinUsPageModule)
   },
   {
+    path: 'boxeh-chefs',
+    loadChildren: () => import('./details/boxeh-chefs/boxeh-chefs.module').then( m => m.BoxehChefsPageModule)
+  },
+  {
     path: 'our-suppliers',
     loadChildren: () => import('./details/our-suppliers/our-suppliers.module').then( m => m.OurSuppliersPageModule)
   },
