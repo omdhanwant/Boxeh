@@ -22,20 +22,32 @@ const routes: Routes = [
   },
   {
     path: 'about-boxeh',
-    loadChildren: () => import('./testimonial/about-boxeh/about-boxeh.module').then( m => m.AboutBoxehPageModule)
+    loadChildren: () => import('./details/about-boxeh/about-boxeh.module').then( m => m.AboutBoxehPageModule)
   },
   {
     path: 'our-story',
-    loadChildren: () => import('./testimonial/our-story/our-story.module').then( m => m.OurStoryPageModule)
+    loadChildren: () => import('./details/our-story/our-story.module').then( m => m.OurStoryPageModule)
   },
   {
     path: 'contact-us',
-    loadChildren: () => import('./testimonial/contact-us/contact-us.module').then( m => m.ContactUsPageModule)
+    loadChildren: () => import('./details/contact-us/contact-us.module').then( m => m.ContactUsPageModule)
   },
   {
     path: 'join-us',
-    loadChildren: () => import('./testimonial/join-us/join-us.module').then( m => m.JoinUsPageModule)
-  }
+    loadChildren: () => import('./details/join-us/join-us.module').then( m => m.JoinUsPageModule)
+  },
+  {
+    path: 'our-suppliers',
+    loadChildren: () => import('./details/our-suppliers/our-suppliers.module').then( m => m.OurSuppliersPageModule)
+  },
+  {
+    path: 'our-collaborators',
+    loadChildren: () => import('./details/our-collaborators/our-collaborators.module').then( m => m.OurCollaboratorsPageModule)
+  },
+  {
+    path: 'boxeh-plans',
+    loadChildren: () => import('./boxeh-plans/boxeh-plans.module').then( m => m.BoxehPlansPageModule)
+  },
 ];
 
 @NgModule({

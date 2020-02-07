@@ -14,25 +14,22 @@ export class SideMenuComponent {
       pageName: 'Home',
       url: '/home',
       icon: 'home',
-      isDropDown: false
+      isDropDown: false,
+      isDisabled: false
     },
     {
-      pageName: 'Login/ Register',
-      url: '/login',
-      icon: 'log-in',
-      isDropDown: false
-  },
-  {
-    pageName: 'My Account',
-    url: '/my-account',
-    icon: 'contact',
-    isDropDown: false
+      pageName: 'Boxeh Plans',
+      url: '/boxeh-plans',
+      icon: '',
+      isDropDown: false,
+      isDisabled: false
   },
   {
     pageName: 'About',
     open: false,
     icon: 'paper',
     isDropDown: true,
+    isDisabled: false,
     children : [
       {
         pageName: 'About Boxeh',
@@ -44,14 +41,39 @@ export class SideMenuComponent {
         url: '/our-story',
         icon: ''
       },
+      {
+        pageName: 'Our Suppliers',
+        url: '/our-suppliers',
+        icon: ''
+      },
+      {
+        pageName: 'Our Collaborators',
+        url: '/our-collaborators',
+        icon: ''
+      }
 
     ]
+  },
+    {
+      pageName: 'Login/ Register',
+      url: '/login',
+      icon: 'log-in',
+      isDropDown: false,
+      isDisabled: false
+  },
+  {
+    pageName: 'My Account',
+    url: '/my-account',
+    icon: 'contact',
+    isDropDown: false,
+    isDisabled: false
   },
   {
     pageName: 'Contact Us',
     url: '/contact-us',
     icon: 'call',
-    isDropDown: false
+    isDropDown: false,
+    isDisabled: false
   },
 ];
 
