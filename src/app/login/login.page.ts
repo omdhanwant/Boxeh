@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../shared-module/shared-services/auth.service';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginPage {
 
-  constructor(private auth: AuthService , private route: Router , public alertController: AlertController) { }
+  constructor(private auth: AuthService , private nav: NavController , public alertController: AlertController) { }
 
   login(form: NgForm) {
     if (form.valid) {
@@ -22,7 +22,7 @@ export class LoginPage {
       fd.append('password', password);
       this.auth.login(fd).subscribe(response => {
         form.reset();
-        this.route.navigate(['/home']);
+        this.nav.navigateRoot(['/home']);
         this.presentAlert('Successfully logged in!');
       }, error => {
         this.presentAlert('Something went wrong!');

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {  MenuController } from '@ionic/angular';
-import { RouterEvent, Router } from '@angular/router';
 import { AuthService } from '../shared-module/shared-services/auth.service';
 
 @Component({
@@ -8,107 +7,141 @@ import { AuthService } from '../shared-module/shared-services/auth.service';
   templateUrl: './side-menu.component.html',
   styleUrls: ['./side-menu.component.scss'],
 })
-export class SideMenuComponent {
+export class SideMenuComponent implements OnInit {
 
   pages = [];
 
-  constructor(private menu: MenuController, private auth: AuthService) {
-    const isLoggedIn = this.auth.currentUserValue ? true : false;
-    this.pages = [
-      {
-        pageName: 'Home',
-        url: '/home',
-        icon: 'home',
-        isDropDown: false,
-        isDisabled: false
-      },
-      {
-        pageName: 'Boxeh Plans',
-        url: '/boxeh-plans',
-        icon: '',
-        isDropDown: false,
-        isDisabled: !isLoggedIn
-    },
-    {
-      pageName: 'About',
-      open: false,
-      icon: 'paper',
-      isDropDown: true,
-      isDisabled: false,
-      children : [
-        {
-          pageName: 'About Boxeh',
-          url: '/about-boxeh',
-          icon: ''
-        },
-        {
-          pageName: 'Our Story',
-          url: '/our-story',
-          icon: ''
-        },
-        {
-          pageName: 'Our Suppliers',
-          url: '/our-suppliers',
-          icon: ''
-        },
-        {
-          pageName: 'Our Collaborators',
-          url: '/our-collaborators',
-          icon: ''
-        }
+isLoggedIn: boolean;
 
-      ]
-    },
-    {
-      pageName: 'Boxeh Chefs',
-      open: false,
-      icon: '',
-      isDropDown: true,
-      isDisabled: false,
-      children : [
-        {
-          pageName: 'Boxeh Chefs',
-          url: '/boxeh-chefs',
-          icon: 'man'
-        },
-        {
-          pageName: 'Join Us',
-          url: '/join-us',
-          icon: 'people'
-        }
+constructor(private menu: MenuController, private auth: AuthService) {
+  }
 
-      ]
-    },
-      {
-        pageName: 'Login/ Register',
-        url: '/login',
-        icon: 'log-in',
-        isDropDown: false,
-        isDisabled: isLoggedIn
-    },
+ngOnInit() {
+   this.auth.currentUser.subscribe(user => {
+      if (user) {
+        this.isLoggedIn = true;
+        console.log(user);
+      } else {
+        this.isLoggedIn = false;
+      }
+
+
+      this.pages = [
     {
-      pageName: 'My Account',
-      url: '/my-account',
-      icon: 'contact',
-      isDropDown: false,
-      isDisabled: !isLoggedIn
-    },
-    {
-      pageName: 'Contact Us',
-      url: '/contact-us',
-      icon: 'call',
+      pageName: 'Home',
+      url: '/home',
+      icon: 'home',
       isDropDown: false,
       isDisabled: false
-    }
-  ];
-   }
+    },
+    {
+      pageName: 'Boxeh Plans',
+      url: '/boxeh-plans',
+      icon: '',
+      isDropDown: false,
+      isDisabled: !this.isLoggedIn
+  },
+  {
+    pageName: 'About',
+    open: false,
+    icon: 'paper',
+    isDropDown: true,
+    isDisabled: false,
+    children : [
+      {
+        pageName: 'About Boxeh',
+        url: '/about-boxeh',
+        icon: ''
+      },
+      {
+        pageName: 'Our Story',
+        url: '/our-story',
+        icon: ''
+      },
+      {
+        pageName: 'Our Suppliers',
+        url: '/our-suppliers',
+        icon: ''
+      },
+      {
+        pageName: 'Our Collaborators',
+        url: '/our-collaborators',
+        icon: ''
+      }
 
-  openFirst() {
+    ]
+  },
+  {
+    pageName: 'On The Menu',
+    open: false,
+    icon: '',
+    isDropDown: true,
+    isDisabled: false,
+    children : [
+      {
+        pageName: 'Weekly Recipes',
+        url: '/weekly-recipes',
+        icon: ''
+      },
+      {
+        pageName: 'Recipe Library',
+        url: '/recipe-library',
+        icon: ''
+      }
+    ]
+  },
+  {
+    pageName: 'Boxeh Chefs',
+    open: false,
+    icon: '',
+    isDropDown: true,
+    isDisabled: false,
+    children : [
+      {
+        pageName: 'Boxeh Chefs',
+        url: '/boxeh-chefs',
+        icon: 'man'
+      },
+      {
+        pageName: 'Join Us',
+        url: '/join-us',
+        icon: 'people'
+      }
+
+    ]
+  },
+    {
+      pageName: 'Login/ Register',
+      url: '/login',
+      icon: 'log-in',
+      isDropDown: false,
+      isDisabled: this.isLoggedIn
+  },
+  {
+    pageName: 'My Account',
+    url: '/my-account',
+    icon: 'contact',
+    isDropDown: false,
+    isDisabled: !this.isLoggedIn
+  },
+  {
+    pageName: 'Contact Us',
+    url: '/contact-us',
+    icon: 'call',
+    isDropDown: false,
+    isDisabled: false
+  }
+];
+    });
+   console.log('called in menu');
+  }
+
+openFirst() {
     this.menu.enable(true, 'first');
     this.menu.open('first');
   }
 
-  closeMenu() {
+closeMenu() {
    this.menu.close();
   }
 

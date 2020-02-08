@@ -57,6 +57,18 @@ const routes: Routes = [
     loadChildren: () => import('./boxeh-plans/boxeh-plans.module').then( m => m.BoxehPlansPageModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'weekly-recipes',
+    loadChildren: () => import('./on-the-menu/weekly-recipes/weekly-recipes.module').then( m => m.WeeklyRecipesPageModule)
+  },
+  {
+    path: 'recipe-library',
+    loadChildren: () => import('./on-the-menu/recipe-library/recipe-library.module').then( m => m.RecipeLibraryPageModule)
+  },
+  // {
+  //   path: 'side-nav',
+  //   loadChildren: () => import('./side-nav/side-nav.module').then( m => m.SideNavPageModule)
+  // },
 ];
 
 @NgModule({

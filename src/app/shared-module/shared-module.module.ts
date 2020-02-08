@@ -8,12 +8,13 @@ import { AuthGuard } from './shared-services/auth-gaurd';
 import { httpInterceptorProviders } from './shared-services/http-interceptors';
 
 
+
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     AuthService,
