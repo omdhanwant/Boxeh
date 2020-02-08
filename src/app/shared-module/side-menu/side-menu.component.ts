@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  MenuController } from '@ionic/angular';
-import { AuthService } from '../shared-module/shared-services/auth.service';
+import { AuthService } from '../shared-services/auth.service';
 
 @Component({
   selector: 'app-side-menu',
@@ -20,7 +20,6 @@ ngOnInit() {
    this.auth.currentUser.subscribe(user => {
       if (user) {
         this.isLoggedIn = true;
-        console.log(user);
       } else {
         this.isLoggedIn = false;
       }
@@ -130,10 +129,9 @@ ngOnInit() {
     icon: 'call',
     isDropDown: false,
     isDisabled: false
-  }
+  },
 ];
     });
-   console.log('called in menu');
   }
 
 openFirst() {
@@ -143,6 +141,10 @@ openFirst() {
 
 closeMenu() {
    this.menu.close();
+  }
+
+  logout() {
+    this.auth.logout();
   }
 
 }

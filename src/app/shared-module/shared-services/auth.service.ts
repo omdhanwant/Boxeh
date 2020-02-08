@@ -14,31 +14,24 @@ interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private currentUserSubject: BehaviorSubject<any>;
-  public currentUser: Observable<string> = null;
+
+  private currentUserSubject: BehaviorSubject<string> = new BehaviorSubject(this.getLoggedInUser());
+  public currentUser: Observable<string> = this.currentUserSubject.asObservable();
 
   constructor(private http: HttpClient, private storage: Storage ) {
-    this.currentUserSubject  = new BehaviorSubject<any>(this.getLoggedInUser());
-    this.currentUser = this.currentUserSubject.asObservable();
-      // this.getLoggedInUser().then(user => {
-      //   if (user) {
-      //     this.currentUserSubject  = new BehaviorSubject<any>(user);
-      //   } else {
-      //     this.currentUserSubject  = new BehaviorSubject<any>(null);
-      //   }
-      //   this.currentUser = this.currentUserSubject.asObservable();
-      // });
-
   }
 
   public get currentUserValue(): string {
       return this.currentUserSubject.value;
   }
 
+  public set currentUserValue(user) {
+       this.currentUserSubject.next(user);
+}
+
   login(fd: FormData) {
       return this.http.post(`${environment.hostUrl}/boxeh/api/${environment.version}/login`, fd)
           .pipe(map((response: LoginResponse) => {
-              // this.storage.set('token', response.success.token);
               sessionStorage.setItem('token', response.success.token);
               this.currentUserSubject.next(response.success.token);
               return response;
@@ -51,10 +44,11 @@ export class AuthService {
 
   logout() {
       this.currentUserSubject.next(null);
+      sessionStorage.setItem('token' , '');
   }
 
   getLoggedInUser() {
   //  return this.storage.get('token') as Promise<string>;
-    return sessionStorage.getItem('token');
+    return sessionStorage.getItem('token') ? sessionStorage.getItem('token') : '';
 }
 }

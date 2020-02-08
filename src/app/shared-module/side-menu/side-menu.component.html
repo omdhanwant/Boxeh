@@ -43,6 +43,18 @@
     </ion-list>
 
    </div>
+   
+    <div>
+      <ion-menu-toggle>
+        <ion-list lines="none">
+          <ion-item (click)="logout()" >
+            <ion-icon name="log-out" slot="start"></ion-icon>
+            <ion-label>Logout</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-menu-toggle>
+    </div>
+  
     
   </ion-content>
 </ion-menu>
