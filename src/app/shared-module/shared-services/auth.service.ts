@@ -4,7 +4,10 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
+import { User } from '../models/User';
 
+const USER = 'User';
+const TOKEN = 'Token';
 interface LoginResponse {
   success: {
     token: string
@@ -15,13 +18,18 @@ interface LoginResponse {
 })
 export class AuthService {
 
-  private currentUserSubject: BehaviorSubject<string> = new BehaviorSubject(this.getLoggedInUser());
-  public currentUser: Observable<string> = this.currentUserSubject.asObservable();
+  private currentUserSubject: BehaviorSubject<User> = new BehaviorSubject(JSON.parse(this.getLoggedInUser()));
+  private token: BehaviorSubject<string> = new BehaviorSubject(this.getToken());
+  public currentUser: Observable<User> = this.currentUserSubject.asObservable();
 
   constructor(private http: HttpClient, private storage: Storage ) {
   }
 
-  public get currentUserValue(): string {
+  public get credential(): string {
+    return this.token.value;
+}
+
+  public get currentUserValue(): User {
       return this.currentUserSubject.value;
   }
 
@@ -40,23 +48,39 @@ registerUser(fd: FormData) {
   login(fd: FormData) {
       return this.http.post(`${environment.hostUrl}/boxeh/api/${environment.version}/login`, fd)
           .pipe(map((response: LoginResponse) => {
-              sessionStorage.setItem('token', response.success.token);
-              this.currentUserSubject.next(response.success.token);
+              sessionStorage.setItem(TOKEN, response.success.token);
+              this.token.next(response.success.token);
               return response;
           }));
   }
 
+  getUser() {
+    return this.http.get(`${environment.hostUrl}/boxeh/api/${environment.version}/getUser`).pipe(
+      map((response: {success: User}) => {
+        sessionStorage.setItem(USER, JSON.stringify(response.success));
+        this.currentUserSubject.next(response.success);
+      })
+    );
+  }
+
   isAuthenticated(): boolean {
-    return this.currentUserValue ? true : false;
+    return this.token ? true : false;
   }
 
   logout() {
+      this.token.next(null);
       this.currentUserSubject.next(null);
-      sessionStorage.setItem('token' , '');
+      sessionStorage.setItem(TOKEN , '');
+      sessionStorage.setItem(USER , '');
   }
 
   getLoggedInUser() {
   //  return this.storage.get('token') as Promise<string>;
-    return sessionStorage.getItem('token') ? sessionStorage.getItem('token') : '';
+    return sessionStorage.getItem(USER) ? sessionStorage.getItem(USER) : null;
+}
+
+getToken() {
+  //  return this.storage.get('token') as Promise<string>;
+    return sessionStorage.getItem(TOKEN) ? sessionStorage.getItem(TOKEN) : '';
 }
 }

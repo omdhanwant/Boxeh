@@ -12,7 +12,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const authReq = req.clone({
 
       setHeaders: {
-        Authorization: `Bearer ${this.auth.currentUserValue}`,
+        Authorization: `Bearer ${this.auth.credential}`,
         Accept: 'application/json'
       }
     });

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {  MenuController } from '@ionic/angular';
 import { AuthService } from '../shared-services/auth.service';
+import { User } from '../models/User';
+import { AlertService } from '../shared-services/alert-service';
+import { Utils } from '../utils/constants';
 
 @Component({
   selector: 'app-side-menu',
@@ -10,17 +13,20 @@ import { AuthService } from '../shared-services/auth.service';
 export class SideMenuComponent implements OnInit {
 
   pages = [];
+  user: User;
 
-isLoggedIn: boolean;
+  isLoggedIn: boolean;
 
-constructor(private menu: MenuController, private auth: AuthService) {
+constructor(private menu: MenuController, private auth: AuthService, private alertService: AlertService) {
   }
 
 ngOnInit() {
    this.auth.currentUser.subscribe(user => {
       if (user) {
+        this.user = user;
         this.isLoggedIn = true;
       } else {
+        this.user = null;
         this.isLoggedIn = false;
       }
 
@@ -145,7 +151,7 @@ closeMenu() {
 
   logout() {
     this.auth.logout();
-    
+    this.alertService.presentAlert(Utils.SUCCESS , 'Successfully logged out!' , [Utils.OK]);
   }
 
 }

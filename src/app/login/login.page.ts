@@ -24,8 +24,11 @@ export class LoginPage {
       fd.append('password', password);
       this.auth.login(fd).subscribe(response => {
         form.reset();
-        this.nav.navigateRoot(['/home']);
-        this.alertService.presentAlert(Utils.SUCCESS, 'Successfully logged in!', [Utils.OK]);
+
+        this.auth.getUser().subscribe(user => {
+          this.nav.navigateRoot(['/home']);
+          this.alertService.presentAlert(Utils.SUCCESS, 'Successfully logged in!', [Utils.OK]);
+        });
 
       }, error => {
         this.alertService.presentAlert(Utils.ERROR, 'Username or password is not valid', [Utils.OK]);
