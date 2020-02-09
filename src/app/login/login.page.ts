@@ -16,6 +16,7 @@ export class LoginPage {
   constructor(private auth: AuthService , private nav: NavController , public alertService: AlertService) { }
 
   login(form: NgForm) {
+    this.alertService.presentLoading('Please Wait...');
     if (form.valid) {
       const username = form.control.get('username').value;
       const password = form.control.get('password').value;
@@ -26,6 +27,7 @@ export class LoginPage {
         form.reset();
 
         this.auth.getUser().subscribe(user => {
+          this.alertService.dismissLoading();
           this.nav.navigateRoot(['/home']);
           this.alertService.presentAlert(Utils.SUCCESS, 'Successfully logged in!', [Utils.OK]);
         });

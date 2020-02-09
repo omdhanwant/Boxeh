@@ -5,7 +5,7 @@
       <ion-title *ngIf='user'>
         <ion-chip>
           <ion-avatar>
-            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+            <img src="../../../assets/icon/user.png">
           </ion-avatar>
           <ion-label>Welcome {{user.name}}!</ion-label>
         </ion-chip>
@@ -34,8 +34,8 @@
 
      <!-- for dropdowns -->
     <ion-item  lines="none" button *ngIf="page.isDropDown && !page.isDisabled" (click)='page.open = !page.open'>
-      <ion-icon slot="end" name='arrow-forward' *ngIf='!page.open'></ion-icon>
-      <ion-icon slot="end" name='arrow-down' *ngIf='page.open'></ion-icon>
+      <ion-icon slot="end" name='caret-forward' *ngIf='!page.open'></ion-icon>
+      <ion-icon slot="end" name='caret-down' *ngIf='page.open'></ion-icon>
       <ion-icon [name]='page.icon' slot="start"></ion-icon>
       <ion-label>
         {{page.pageName}}
