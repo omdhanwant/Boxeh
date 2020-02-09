@@ -74,8 +74,8 @@ registerUser(fd: FormData) {
   logout() {
       this.token.next(null);
       this.currentUserSubject.next(null);
-      sessionStorage.setItem(TOKEN , '');
-      sessionStorage.setItem(USER , '');
+      this.storage.set(TOKEN, '');
+      this.storage.set(USER , '');
   }
 
   getLoggedInUser() {
