@@ -10,6 +10,7 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { IonicModule } from '@ionic/angular';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
+import { AlertService } from './shared-services/alert-service';
 
 
 
@@ -25,7 +26,7 @@ import { RouterModule } from '@angular/router';
     FormsModule,
   ],
   providers: [
-    
+    AlertService,
     httpInterceptorProviders
   ],
   exports: [

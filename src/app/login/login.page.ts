@@ -3,6 +3,8 @@ import { AuthService } from '../shared-module/shared-services/auth.service';
 import { Router } from '@angular/router';
 import { AlertController, NavController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
+import { AlertService } from '../shared-module/shared-services/alert-service';
+import { Utils } from '../shared-module/utils/constants';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,7 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginPage {
 
-  constructor(private auth: AuthService , private nav: NavController , public alertController: AlertController) { }
+  constructor(private auth: AuthService , private nav: NavController , public alertService: AlertService) { }
 
   login(form: NgForm) {
     if (form.valid) {
@@ -23,26 +25,15 @@ export class LoginPage {
       this.auth.login(fd).subscribe(response => {
         form.reset();
         this.nav.navigateRoot(['/home']);
-        this.presentAlert('Successfully logged in!');
+        this.alertService.presentAlert(Utils.SUCCESS, 'Successfully logged in!', [Utils.OK]);
+
       }, error => {
-        this.presentAlert('Something went wrong!');
+        this.alertService.presentAlert(Utils.ERROR, 'Username or password is not valid', [Utils.OK]);
         throw error;
       });
     } else {
-      this.presentAlert('Enter valid username and password!');
+      this.alertService.presentAlert(Utils.ERROR, 'Enter valid username and password!', [Utils.OK]);
     }
-  }
-
-
-  async presentAlert(alertMessage) {
-    const alert = await this.alertController.create({
-      header: 'Login Error',
-      subHeader: '',
-      message: alertMessage,
-      buttons: ['OK']
-    });
-
-    await alert.present();
   }
 
 }

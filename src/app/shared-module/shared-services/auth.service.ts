@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, retry } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
@@ -27,6 +27,14 @@ export class AuthService {
 
   public set currentUserValue(user) {
        this.currentUserSubject.next(user);
+}
+
+
+registerUser(fd: FormData) {
+  return this.http.post(`${environment.hostUrl}/boxeh/api/${environment.version}/register`, fd)
+  .pipe(map((response: LoginResponse) => {
+      return response;
+  }));
 }
 
   login(fd: FormData) {

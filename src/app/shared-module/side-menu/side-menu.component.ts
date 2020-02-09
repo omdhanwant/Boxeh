@@ -145,6 +145,7 @@ closeMenu() {
 
   logout() {
     this.auth.logout();
+    
   }
 
 }

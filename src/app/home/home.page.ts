@@ -9,15 +9,8 @@ import { AlertController } from '@ionic/angular';
 })
 export class HomePage {
 
-  constructor(private auth: AuthService) {}
+  constructor() {}
 
-  ionViewWillEnter() {
-    // this.auth.currentUser.subscribe(user => {
-    //   if (user) {
-    //     this.presentAlert('User is logged in!');
-    //     console.log(user);
-    //   }
-    // });
-    console.log(this.auth.isAuthenticated());
-  }
+  // ionViewWillEnter() {
+  // }
 }

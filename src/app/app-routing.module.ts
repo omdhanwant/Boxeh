@@ -65,10 +65,6 @@ const routes: Routes = [
     path: 'recipe-library',
     loadChildren: () => import('./on-the-menu/recipe-library/recipe-library.module').then( m => m.RecipeLibraryPageModule)
   },
-  // {
-  //   path: 'side-nav',
-  //   loadChildren: () => import('./side-nav/side-nav.module').then( m => m.SideNavPageModule)
-  // },
 ];
 
 @NgModule({

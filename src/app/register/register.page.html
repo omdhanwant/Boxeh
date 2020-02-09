@@ -21,22 +21,27 @@
     
             <ion-card-content>
               <ion-item>
-                <ion-label position="floating">Username</ion-label>
-                <ion-input name='username' ngModel type="text"></ion-input>
+                <ion-label position="floating">Name</ion-label>
+                <ion-input name='name' ngModel type="text" required></ion-input>
               </ion-item>
               
               <ion-item>
                 <ion-label position="floating">Email Address</ion-label>
-                <ion-input name='password' ngModel type="text"></ion-input>
+                <ion-input name='email' ngModel type="text" required></ion-input>
               </ion-item>
 
               <ion-item>
                 <ion-label position="floating">Password</ion-label>
-                <ion-input name='password' ngModel type="text"></ion-input>
+                <ion-input name='password' ngModel type="text" required></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="floating">Confirm Password</ion-label>
+                <ion-input name='c_password' ngModel type="text" required></ion-input>
               </ion-item>
     
               <div text-center class="pb-15px pt-1">
-                <ion-button color='primary' size="samll" type="submit" [disabled]="form.invalid"  margin-top>
+                <ion-button color='primary' size="samll" type="submit"  margin-top>
                   Register
                 </ion-button>
               </div>
