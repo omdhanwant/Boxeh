@@ -18,11 +18,13 @@ interface LoginResponse {
 })
 export class AuthService {
 
-  private currentUserSubject: BehaviorSubject<User> = new BehaviorSubject(JSON.parse(this.getLoggedInUser()));
-  private token: BehaviorSubject<string> = new BehaviorSubject(this.getToken());
+  private currentUserSubject: BehaviorSubject<User> = new BehaviorSubject(null);
+  private token: BehaviorSubject<string> = new BehaviorSubject(null);
   public currentUser: Observable<User> = this.currentUserSubject.asObservable();
 
   constructor(private http: HttpClient, private storage: Storage ) {
+      this.getLoggedInUser().then(user => this.currentUserSubject.next(JSON.parse(user)) );
+      this.getToken().then(token => this.token.next(token) );
   }
 
   public get credential(): string {
@@ -48,7 +50,8 @@ registerUser(fd: FormData) {
   login(fd: FormData) {
       return this.http.post(`${environment.hostUrl}/boxeh/api/${environment.version}/login`, fd)
           .pipe(map((response: LoginResponse) => {
-              sessionStorage.setItem(TOKEN, response.success.token);
+              // sessionStorage.setItem(TOKEN, loginResponse.success.token);
+              this.storage.set(TOKEN, response.success.token);
               this.token.next(response.success.token);
               return response;
           }));
@@ -57,7 +60,8 @@ registerUser(fd: FormData) {
   getUser() {
     return this.http.get(`${environment.hostUrl}/boxeh/api/${environment.version}/getUser`).pipe(
       map((response: {success: User}) => {
-        sessionStorage.setItem(USER, JSON.stringify(response.success));
+        // sessionStorage.setItem(USER, JSON.stringify(response.success));
+        this.storage.set(USER, JSON.stringify(response.success));
         this.currentUserSubject.next(response.success);
       })
     );
@@ -75,12 +79,12 @@ registerUser(fd: FormData) {
   }
 
   getLoggedInUser() {
-  //  return this.storage.get('token') as Promise<string>;
-    return sessionStorage.getItem(USER) ? sessionStorage.getItem(USER) : null;
+   return this.storage.get(USER) as Promise<string>;
+    // return sessionStorage.getItem(USER) ? sessionStorage.getItem(USER) : null;
 }
 
 getToken() {
-  //  return this.storage.get('token') as Promise<string>;
-    return sessionStorage.getItem(TOKEN) ? sessionStorage.getItem(TOKEN) : '';
+   return this.storage.get(TOKEN) as Promise<string>;
+    // return sessionStorage.getItem(TOKEN) ? sessionStorage.getItem(TOKEN) : '';
 }
 }

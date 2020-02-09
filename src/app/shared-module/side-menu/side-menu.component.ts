@@ -1,27 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {  MenuController } from '@ionic/angular';
 import { AuthService } from '../shared-services/auth.service';
 import { User } from '../models/User';
 import { AlertService } from '../shared-services/alert-service';
 import { Utils } from '../utils/constants';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-side-menu',
   templateUrl: './side-menu.component.html',
   styleUrls: ['./side-menu.component.scss'],
 })
-export class SideMenuComponent implements OnInit {
+export class SideMenuComponent implements OnInit , OnDestroy{
 
   pages = [];
   user: User;
 
   isLoggedIn: boolean;
+  userSubscription: Subscription;
 
 constructor(private menu: MenuController, private auth: AuthService, private alertService: AlertService) {
   }
 
 ngOnInit() {
-   this.auth.currentUser.subscribe(user => {
+  this.userSubscription =  this.auth.currentUser.subscribe(user => {
       if (user) {
         this.user = user;
         this.isLoggedIn = true;
@@ -138,7 +140,11 @@ ngOnInit() {
   },
 ];
     });
-  }
+}
+
+ngOnDestroy() {
+  this.userSubscription.unsubscribe();
+}
 
 openFirst() {
     this.menu.enable(true, 'first');
