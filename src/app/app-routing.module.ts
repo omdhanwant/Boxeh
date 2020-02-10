@@ -65,6 +65,10 @@ const routes: Routes = [
     path: 'recipe-library',
     loadChildren: () => import('./on-the-menu/recipe-library/recipe-library.module').then( m => m.RecipeLibraryPageModule)
   },
+  {
+    path: 'boxeh-way',
+    loadChildren: () => import('./boxeh-way/boxeh-way.module').then( m => m.BoxehWayPageModule)
+  },
 ];
 
 @NgModule({

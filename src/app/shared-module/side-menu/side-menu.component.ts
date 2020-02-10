@@ -49,6 +49,13 @@ ngOnInit() {
       isDisabled: !this.isLoggedIn
   },
   {
+    pageName: 'The Boxeh Way',
+    url: '/boxeh-way',
+    icon: '',
+    isDropDown: false,
+    isDisabled: false
+},
+  {
     pageName: 'About',
     open: false,
     icon: 'paper',
@@ -60,11 +67,11 @@ ngOnInit() {
         url: '/about-boxeh',
         icon: ''
       },
-      {
-        pageName: 'Our Story',
-        url: '/our-story',
-        icon: ''
-      },
+      // {
+      //   pageName: 'Our Story',
+      //   url: '/our-story',
+      //   icon: ''
+      // },
       {
         pageName: 'Our Suppliers',
         url: '/our-suppliers',
