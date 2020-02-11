@@ -422,5 +422,19 @@ border-radius: 50%;
   width: 250px
 }
 .text-primary {
-  color: #91c11e !important;
+  color: #91c11e;
+  
+}
+.btn-primay{
+  background-color: #91c11e;
+  border-color: #91c11e;
+  color: #fff;
+  font-weight: 500;
+}
+
+.btn-lg{
+  padding: 0.5rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
 }
