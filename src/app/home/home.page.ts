@@ -8,9 +8,12 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
+  segment = 'friends'
   constructor() {}
 
   // ionViewWillEnter() {
   // }
+  segmentChanged(ev: any) {
+    console.log('Segment changed', ev);
+  }
 }

@@ -29,7 +29,7 @@
 
         </div>
       </div>
-      
+
     </ion-slide>
   </ion-slides>
   <ion-grid class="section-bg-1 div-ptb">
@@ -131,8 +131,46 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-grid class="section-bg-4 div-ptb">
+    <ion-row>
+      <ion-col size="12" class="pt-4">
+        <h3 text-center> Discover What’s Cooking </h3>
+        <p class="text-center">check out menu for 09 Feb - 15 Feb
+        </p>
+      </ion-col>
+      <ion-col size="12" text-center class="pt-1 pb-4">
+        <ion-segment  [(ngModel)]="segment" (ionChange)="segmentChanged($event)">
+          <ion-segment-button value="friends">
+            <ion-label>01 Apr - 13 Apr</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="enemies">
+            <ion-label>14 Apr - 20 Apr</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+        <div [ngSwitch]="segment">
+          <ion-card *ngSwitchCase="'friends'">
+            <ion-card-header>
+              User Info
+            </ion-card-header>
+            <ion-card-content>
+              Your user info content here
+            </ion-card-content>
+          </ion-card>
+        
+          <ion-card *ngSwitchCase="'enemies'">
+            <ion-card-header>
+              Card Info
+            </ion-card-header>
+            <ion-card-content>
+              Your card info content here
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-grid class="section-bg-3 div-ptb">
-    <ion-row >
+    <ion-row>
       <ion-col size="12" class="pt-4">
         <h3 text-center> Whisk Your Cooking Dilemmas Away </h3>
         <p class="text-center">Try Boxeh with no commitment whatsoever.
