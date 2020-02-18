@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  hostUrl: 'https://yadoniaaccounts.com',
+  hostUrl: 'https://cors-anywhere.herokuapp.com/https://yadoniaaccounts.com',
   // hostUrl: 'https://boxeh.net',
   // version: 'v1'
 };
