@@ -4,6 +4,8 @@ import { AuthService } from '../shared-module/shared-services/auth.service';
 import { AlertController, NavController } from '@ionic/angular';
 import { AlertService } from '../shared-module/shared-services/alert-service';
 import { Utils } from '../shared-module/utils/constants';
+import { LoginResponse } from '../shared-module/models/LoginResponse';
+import { Error } from '../shared-module/models/Error';
 
 @Component({
   selector: 'app-register',
@@ -19,29 +21,22 @@ export class RegisterPage implements OnInit {
 
   register(form: NgForm) {
     if (form.valid) {
-      const name = form.control.get('name').value;
-      const email = form.control.get('email').value;
-      const password = form.control.get('password').value;
-      const cPassword = form.control.get('c_password').value;
-
-      const fd = new FormData();
-      fd.append('name', name);
-      fd.append('email', email);
-      fd.append('password', password);
-      fd.append('c_password', cPassword);
-
-      this.auth.registerUser(fd).subscribe(response => {
-        form.reset();
-        this.nav.navigateBack(['/login']);
-        this.alertService.presentAlert(Utils.SUCCESS, 'Successfully registered!', [Utils.OK]);
-      }, error => {
-        if (error.status === 500) {
-          this.alertService.presentAlert(Utils.ERROR , 'User already registered!', [Utils.OK]);
+      // console.log(form.value);
+      this.auth.registerUser(form.value).subscribe((response: LoginResponse) => {
+        if (response.code === 200) {
+          form.reset();
+          this.nav.navigateBack(['/login']);
+          this.alertService.presentAlert(Utils.SUCCESS, response.message, [Utils.OK]);
         } else {
-          this.alertService.presentAlert(Utils.ERROR , 'Something went wrong!', [Utils.OK]);
+          this.alertService.presentAlert(Utils.ERROR, response.message, [Utils.OK]);
         }
-        throw error.message;
-      });
+
+      }
+      // , (error: Error) => {
+      //     this.alertService.presentAlert(Utils.ERROR , error.message, [Utils.OK]);
+      //     throw error.message;
+      // }
+      );
     } else {
       this.alertService.presentAlert(Utils.ERROR , 'Enter valid details!', ['OK']);
     }

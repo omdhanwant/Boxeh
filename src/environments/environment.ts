@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  hostUrl: 'http://vitsolutions24x7.com',
-  version: 'v1'
+  hostUrl: 'https://yadoniaaccounts.com',
+  // version: 'v1'
 };
 
 /*

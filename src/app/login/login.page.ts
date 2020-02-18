@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../shared-module/shared-services/auth.service';
-import { Router } from '@angular/router';
-import { AlertController, NavController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
 import { AlertService } from '../shared-module/shared-services/alert-service';
 import { Utils } from '../shared-module/utils/constants';
+import { Error } from '../shared-module/models/Error';
+import { LoginResponse } from '../shared-module/models/LoginResponse';
 
 @Component({
   selector: 'app-login',
@@ -18,31 +19,39 @@ export class LoginPage {
   login(form: NgForm) {
     this.alertService.presentLoading('Please Wait...');
     if (form.valid) {
-      const username = form.control.get('username').value;
-      const password = form.control.get('password').value;
-      const fd = new FormData();
-      fd.append('email', username);
-      fd.append('password', password);
+      // const username = form.control.get('username').value;
+      // const password = form.control.get('password').value;
+      // const fd = new FormData();
+      // fd.append('email', username);
+      // fd.append('password', password);
 
-      this.auth.login(fd).subscribe(response => {
-
-        this.auth.getUser().subscribe(user => {
-          form.reset();
-          this.alertService.dismissLoading();
-          this.nav.navigateRoot(['/home']);
-          this.alertService.presentAlert(Utils.SUCCESS, 'Successfully logged in!', [Utils.OK]);
-
-        }, error => {
-          this.alertService.dismissLoading();
-          this.alertService.presentAlert(Utils.ERROR, 'Unable to fetch User', [Utils.OK]);
-          throw error;
-        });
-
-      }, error => {
+      console.log(form.value);
+      this.auth.login(form.value).subscribe((response: LoginResponse) => {
+      if (response.code === 200) {
+        form.reset();
         this.alertService.dismissLoading();
-        this.alertService.presentAlert(Utils.ERROR, 'Username or password is not valid', [Utils.OK]);
-        throw error;
-      });
+        this.nav.navigateRoot(['/home']);
+        this.alertService.presentAlert(Utils.SUCCESS, response.message, [Utils.OK]);
+      } else {
+        this.alertService.dismissLoading();
+        this.alertService.presentAlert(Utils.ERROR, response.message, [Utils.OK]);
+      }
+
+
+
+        // }, error => {
+        //   this.alertService.dismissLoading();
+        //   this.alertService.presentAlert(Utils.ERROR, 'Unable to fetch User', [Utils.OK]);
+        //   throw error;
+        // });
+
+      }
+      // , (error: Error) => {
+      //   this.alertService.dismissLoading();
+      //   this.alertService.presentAlert(Utils.ERROR, error.message, [Utils.OK]);
+      //   throw error;
+      // }
+      );
 
     } else {
       this.alertService.dismissLoading();
