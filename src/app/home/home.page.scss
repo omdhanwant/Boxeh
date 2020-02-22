@@ -59,8 +59,9 @@
 }
 
 .section-bg-4{
-    height: 300px;
-    background-image: url(../../assets/banners/home-banner-bg2.png);
+    // height: 300px;
+    // background-image: url(../../assets/banners/home-banner-bg2.png);
+    background: #91c136;
     width: 100%;
     background-position: top;
     background-size: cover;
@@ -71,4 +72,8 @@
     color: #fff !important;
     background: grey !important;
     border: 0px solid grey;
+}
+
+ion-segment-button{
+    color: #fff !important;
 }
