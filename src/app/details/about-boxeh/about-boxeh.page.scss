@@ -8,14 +8,14 @@
     background-position: center;
   }
 .img-hero-banner{
-    background: url("../../../assets/banners/herobanner.jpg");
+    // background: url("../../../assets/banners/herobanner.jpg");
     background-size: cover;
     background-origin: content-box;
     background-repeat: no-repeat;
     background-position: top;
 }
  .page-hero-banner {
-    width: 300px;background: #ffffff82;margin-left: auto;margin-right: auto;
+    // width: 300px;background: #ffffff82;margin-left: auto;margin-right: auto;
 }
 .text-primary {
     color: #91c11e !important;
@@ -37,4 +37,7 @@ hr{
     background-origin: content-box;
     background-repeat: no-repeat;
     background-position: top;
+}
+.hydrated{
+    padding: 0 !important;
 }
