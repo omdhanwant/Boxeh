@@ -64,7 +64,7 @@ ngOnInit() {
     children : [
       {
         pageName: 'About Boxeh',
-        url: '/about-boxeh',
+        url: '/our-story',
         icon: ''
       },
       // {

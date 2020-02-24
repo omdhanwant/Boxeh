@@ -55,12 +55,7 @@ registerUser(userCredentials) {
                   return response;
           }));
   }
-  ourStory() {
-    return this.http.get(`${environment.hostUrl}/boxeh/apis/page-our_story.php`)
-        .pipe(map((response: any) => {
-                return response;
-        }));
-}
+
   // getUser() {
   //   return this.http.get(`${environment.hostUrl}/boxeh/api/${environment.version}/getUser`).pipe(
   //     map((response: {success: User}) => {

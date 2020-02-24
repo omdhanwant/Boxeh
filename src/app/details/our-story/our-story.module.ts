@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { OurStoryPageRoutingModule } from './our-story-routing.module';
 
 import { OurStoryPage } from './our-story.page';
+import { Service } from './service.service';
 
 @NgModule({
   imports: [
@@ -15,6 +16,9 @@ import { OurStoryPage } from './our-story.page';
     IonicModule,
     OurStoryPageRoutingModule
   ],
-  declarations: [OurStoryPage]
+  declarations: [OurStoryPage],
+  providers: [
+    Service
+  ]
 })
 export class OurStoryPageModule {}
