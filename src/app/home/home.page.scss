@@ -5,7 +5,7 @@
     background-image: url(../../assets/banners/Home-Page-Header-Sized.jpg);
     width: 100%;
     background-position: top;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     position: relative;
 }
@@ -18,11 +18,11 @@
     vertical-align: middle;
 }
 .section-bg-1{
-    background: #d5d6d224;
+    background: #fff;
 }
 .section-bg-1 h4{
-    color: #535450;
-    font-weight: 800
+    font-weight: 700;
+    font-size: 24px;
 }
 .height-img{
     max-height: 45px !important;
@@ -61,7 +61,8 @@
 .section-bg-4{
     // height: 300px;
     // background-image: url(../../assets/banners/home-banner-bg2.png);
-    background: #91c136;
+    // background: #91c136;
+    background: url("../../assets/backgroung-login.png");
     width: 100%;
     background-position: top;
     background-size: cover;
@@ -75,5 +76,10 @@
 }
 
 ion-segment-button{
-    color: #fff !important;
+    color: #808080 !important;
+}
+.box-plus-icon{
+    font-size: 25px;
+    font-weight: 600;
+    color: #91c11e;
 }
