@@ -13,11 +13,13 @@ export class OurStoryPage implements OnInit {
   constructor(private service: Service, private alertService: AlertService) { }
 
   ngOnInit() {
+    this.alertService.presentLoading('Please Wait...');
     this.service.getOurStory().subscribe(ourStoryResponse => {
-      if (ourStoryResponse.code === 200 ) {
+      if (ourStoryResponse.code === 200) {
         this.ourStory = ourStoryResponse;
+        this.alertService.dismissLoading();
       } else {
-        this.alertService.presentAlert(Utils.ERROR , ourStoryResponse.message , [Utils.OK]);
+        this.alertService.presentAlert(Utils.ERROR, ourStoryResponse.message, [Utils.OK]);
       }
     });
 

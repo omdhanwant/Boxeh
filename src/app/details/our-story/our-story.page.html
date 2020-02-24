@@ -7,7 +7,7 @@
 <ion-content>
   <ion-grid class="bg-login pt-0 pl-0 pr-0">
     <ion-row class="img-hero-banner"
-      style="background-size: cover; background-origin: content-box; background-repeat: no-repeat; background-position: top; height:200px;"
+      class="main-banner"
       [style.background]="'url(' + ourStory?.data.page_head.bg_cover + ')'">
       <ion-col text-center>
         <div class="d-block text-center page-hero-banner">
@@ -35,7 +35,8 @@
             </div>
 
             <div style="background: #515151 !important; color: #fff; padding:40px 0;">
-              <h4><span style=" color: #fff;" [style.background]="'url(' + ourStory?.data.section1[0].background + ')'">{{ourStory?.data.section1[0].title}}…</span></h4>
+              <h4><span style=" color: #fff;" >{{ourStory?.data.section1[0].title}}…</span></h4>
+              <!-- <h4><span style=" color: #fff;" [style.background]="'url(' + ourStory?.data.section1[0].background + ')'">{{ourStory?.data.section1[0].title}}…</span></h4> -->
               <!-- <p style="width: 73%; text-align: center; position: relative; left: 12%; top: 11%; font-size: 12px; color: #fff;">Our founder Sahar was pursuing her MBA in the United Kingdom and was hooked on meal kit delivery
                 services that allowed her to create wholesome meals at home while saving hours on grocery shopping and
                 meal prep. That's when she found herself falling in love with cooking in a whole new way.</p>
@@ -43,7 +44,8 @@
                 her to build Boxeh to enable people to cook great meals at home without all the extra work.</p>
               <p style="width: 73%; text-align: center; position: relative; left: 12%; top: 11%; font-size: 12px; color: #fff;">In her own words, Sahar believes " the only thing that beats a delicious home-cooked meal is one that
                 is prepared conveniently."</p> -->
-                <p [innerHTML]='ourStory?.data.section1[0].content'></p>
+                
+                <p [innerHTML]='ourStory?.data.section1[0].content'  style="width: 73%; text-align: center; position: relative; left: 12%; top: 11%; font-size: 12px; color: #fff;"></p>
             </div>
 
             <div style="padding:10px 40px;">
@@ -71,14 +73,14 @@
     </ion-row>
     <ion-row class="footer-bottom-img mb-5 pt-3">
       <ion-col size="12">
-        <div class="d-block pb-5 pt-5 text-center" [style.background]="'url(' + ourStory?.data.subscribe_section.subscription_background + ')'" style=" padding: 40px 0; height: 464px; background-position: center center !important; background-repeat: no-repeat !important; background-size: cover !important;">
+        <div class="d-block pb-5 pt-5 text-center" [style.background]="'url(' + ourStory?.data.subscribe_section.subscription_background + ')'" class="footer-bg">
          <div style="width: 500px; max-width: 90%; display: block; margin: 25px auto; position: relative; top: 30%;">
             <h1 class="grey" style="margin-top: 20px; font-size: 26px; color: #343434; line-height: 1.2; width: 80%; margin: 0 auto; text-align: center; padding-bottom: 1.2rem; text-transform: capitalize;"> {{ourStory?.data.subscribe_section.subscription_main_text}}</h1>
             <!-- <p class="grey font-light font-15"> Start planning your greatest meals.</p> -->
             <!-- <ion-button color='primary' size="samll" type="submit"  margin-top>
               Choose Your Boxeh
             </ion-button> -->
-            <button class="btn btn-primay btn-lg" style="font-size: 16px; font-weight: 400; padding-left: 30px; padding-right: 30px; color: #fff; border-radius: 15px;line-height: 1.6rem;">{{ourStory?.data.subscribe_section.subscription_button_text}}</button>
+            <button class="btn btn-primay btn-lg" style="font-size: 16px; display: block; margin: 0 auto; font-weight: 400; padding-left: 30px; padding-right: 30px; color: #fff; border-radius: 15px;line-height: 1.6rem;">{{ourStory?.data.subscribe_section.subscription_button_text}}</button>
           </div>
         </div>
       </ion-col>

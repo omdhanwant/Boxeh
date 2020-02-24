@@ -7,15 +7,26 @@
     background-repeat: no-repeat;
     background-position: center;
   }
+  .main-banner{
+    background-size: cover !important;
+    background-origin: content-box !important;
+    background-repeat: no-repeat !important;
+    background-position: top !important;
+    height: 200px;
+
+  }
+  .footer-bg{
+    padding: 40px 0; height: 464px; background-position: center center !important; background-repeat: no-repeat !important; background-size: cover !important;
+  }
 .img-hero-banner{
-    // background: url("../../../assets/banners//our-story-banner.jpg");
+    // background: url("../../../assets/banners/herobanner.jpg");
     background-size: cover;
     background-origin: content-box;
     background-repeat: no-repeat;
     background-position: top;
 }
  .page-hero-banner {
-    width: 300px;background: #ffffff82;margin-left: auto;margin-right: auto;
+    // width: 300px;background: #ffffff82;margin-left: auto;margin-right: auto;
 }
 .text-primary {
     color: #91c11e !important;
@@ -32,9 +43,12 @@ hr{
     font-size: 15px;
 }
 .footer-bottom-img{
-    // background: url("../../../assets/banners/aboutus-bottom-bg.png");
+    background: url("../../../assets/banners/aboutus-bottom-bg.png");
     background-size: cover;
     background-origin: content-box;
     background-repeat: no-repeat;
     background-position: top;
+}
+.hydrated{
+    padding: 0 !important;
 }
