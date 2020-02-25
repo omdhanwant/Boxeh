@@ -15,6 +15,7 @@ export class Service {
     return this.http.get(`${environment.hostUrl}/boxeh/apis/page-our_story.php`)
       .pipe(
         map((response: OurStory) => {
+          console.log(response);
           return response;
         }));
   }
