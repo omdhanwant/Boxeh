@@ -12,7 +12,8 @@ export class Service {
 
 
   getOurStory() {
-    return this.http.get(`${environment.hostUrl}/boxeh/apis/page-our_story.php`)
+    const time = new Date();
+    return this.http.get(`${environment.hostUrl}/boxeh/apis/page-our_story.php?type=` + time.getTime())
       .pipe(
         map((response: OurStory) => {
           console.log(response);

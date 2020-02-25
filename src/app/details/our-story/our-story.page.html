@@ -4,7 +4,15 @@
     <ion-title>{{ourStory?.data.page_head.page_title}}</ion-title>
   </ion-toolbar>
 </ion-header>
+
+
+
 <ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-grid class="bg-login pt-0 pl-0 pr-0">
     <ion-row class="img-hero-banner"
       class="main-banner"

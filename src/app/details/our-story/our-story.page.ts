@@ -11,34 +11,41 @@ import { Subscription } from 'rxjs';
 })
 export class OurStoryPage implements OnInit {
   ourStory: OurStory = null;
-  subs: Subscription
+  subs: Subscription;
   constructor(private service: Service, private alertService: AlertService) { }
 
   ngOnInit() {
-
-
   }
 
-
-
   ionViewWillEnter() {
-    this.ourStory = null;
+    this.alertService.presentLoading('Please wait...');
   }
 
   ionViewDidEnter() {
-    this.ourStory = null;
-    // this.alertService.presentLoading('Please Wait...');
-
     this.subs = this.service.getOurStory().subscribe(ourStoryResponse => {
       if (ourStoryResponse.code === 200) {
 
         this.ourStory = ourStoryResponse;
-        // this.alertService.dismissLoading();
+        this.alertService.dismissLoading();
       } else {
         this.alertService.presentAlert(Utils.ERROR, ourStoryResponse.message, [Utils.OK]);
       }
     });
   }
+
+  refresh(event) {
+    this.alertService.presentLoading('Please wait...');
+    this.subs = this.service.getOurStory().subscribe(ourStoryResponse => {
+      if (ourStoryResponse.code === 200) {
+        event.target.complete();
+        this.ourStory = ourStoryResponse;
+        this.alertService.dismissLoading();
+      } else {
+        this.alertService.presentAlert(Utils.ERROR, ourStoryResponse.message, [Utils.OK]);
+      }
+    });
+  }
+
 
   ionViewWillLeave() {
     this.subs.unsubscribe();
