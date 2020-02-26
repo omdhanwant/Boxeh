@@ -63,7 +63,7 @@ ngOnInit() {
     isDisabled: false,
     children : [
       {
-        pageName: 'About Boxeh',
+        pageName: 'Our Story',
         url: '/our-story',
         icon: ''
       },
