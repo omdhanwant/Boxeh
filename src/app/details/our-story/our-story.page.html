@@ -16,7 +16,8 @@
   <ion-grid class="bg-login pt-0 pl-0 pr-0">
     <ion-row class="img-hero-banner"
       class="main-banner"
-      [style.background]="'url(' + ourStory?.data.page_head.bg_cover + ')'">
+      [style.background-image]="getBackground(ourStory?.data.page_head.bg_cover)">
+      <!-- [style.background]="'url(' + ourStory?.data.page_head.bg_cover + ')'" -->
       <ion-col text-center>
         <div class="d-block text-center page-hero-banner">
           <h4
@@ -29,7 +30,7 @@
       <ion-col size="12" class="">
         <div>
           <h4 class="text-primary" style="text-align: center; font-size: 33px; margin-bottom: 3%; padding-top: 3%;">
-            About Boxeh</h4>
+            Our Story</h4>
           <div class="page-content" style="text-align: center;">
             <div class="page-content" style="text-align: center;padding: 10px;" [innerHTML]='ourStory?.data.page_head.page_content'>
               <!-- <p class="intro-content">It's all about making it easier for people to cook &amp; enjoy great meals at
