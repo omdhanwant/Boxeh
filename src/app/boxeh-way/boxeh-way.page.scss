@@ -9,10 +9,12 @@
   }
 .img-hero-banner{
     background: url("../../assets/banners/Boxeh-Plans-Header-1.jpg");
+    height: 230px;
+    width: 100%;
     background-size: cover;
-    background-origin: content-box;
     background-repeat: no-repeat;
-    background-position: top;
+    background-origin: border-box;
+    background-position: top
 }
  .page-hero-banner {
     width: 300px;background: #ffffff82;margin-left: auto;margin-right: auto;
