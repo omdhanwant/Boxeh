@@ -33,6 +33,7 @@ export class OurStoryPage implements OnInit {
         this.alertService.dismissLoading();
       } else {
         this.alertService.presentAlert(Utils.ERROR, ourStoryResponse.message, [Utils.OK]);
+        this.alertService.dismissLoading();
       }
     });
   }
@@ -46,6 +47,7 @@ export class OurStoryPage implements OnInit {
         this.alertService.dismissLoading();
       } else {
         this.alertService.presentAlert(Utils.ERROR, ourStoryResponse.message, [Utils.OK]);
+        this.alertService.dismissLoading();
       }
     });
   }
