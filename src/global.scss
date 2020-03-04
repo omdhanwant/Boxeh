@@ -47,9 +47,10 @@
 }
 
 
-body {
+body, section, div, ul, li, a, p {
   font-family: "Dax Light", "Helvetica", sans-serif !important;
   line-height: 1.5;
+  font-size: 12px;
 }
 #menu-toggle-button {
   margin-left: 10px;
@@ -59,7 +60,9 @@ body{
 
   color: #343434;
 }
-
+h4{
+  font-family: "Dax Bold", "Helvetica", sans-serif;
+}
 p{
   font-family: "Dax Light", "Helvetica", sans-serif !important;
   font-size: 12px; padding-bottom: 10px;text-transform: capitalize;color: #343434;
@@ -91,6 +94,7 @@ p{
   color: white;
   text-decoration: none;
   margin-top: 10px;
+  font-family: "Dax Light", "Helvetica", sans-serif ;
 }
 .w-100 {
   width: 100%;
@@ -464,7 +468,7 @@ border-radius: 50%;
   border-color: #91c11e;
   color: #fff;
   font-weight: 500;
-  
+  font-family: "Dax Light", "Helvetica", sans-serif ;
 }
 
 .btn-lg{
@@ -472,6 +476,7 @@ border-radius: 50%;
   border-radius: 20px;
   line-height: 1.2;
   font-size: 14px;
+  font-family: "Dax Light", "Helvetica", sans-serif ;
 }
 .fs-20{
   font-size: 18px!important;
