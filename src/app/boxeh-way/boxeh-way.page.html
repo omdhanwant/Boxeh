@@ -8,7 +8,7 @@
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-grid class="bg-login pt-0 pl-0 pr-0">
+  <ion-grid class="pt-0 pl-0 pr-0">
     <ion-row class="img-hero-banner" [style.background-image]="authService.getBackground(boxehWhy?.data.page_head[0].bg_cover)">
       <ion-col text-center>
         <div class="d-block text-center ">
@@ -21,22 +21,22 @@
     <ion-row>
       <!-- section 1 -->
       <ion-col size="12" class="pl-4 pr-4">
-        <div class="bg-white pr-3 mb-5 mt-5">
-          <h2 class="text-primary">{{boxehWhy?.data.section_how_it_works[0].title}}</h2>
+        <div class="bg-white pl-3 pr-3 mb-5 mt-5">
+          <h2 class="text-primary fw-600">{{boxehWhy?.data.section_how_it_works[0].title}}</h2>
           
-          <div class="page-content">
-            <p class="intro-content">
+          <div class="page-content text-secondary fs-14">
+            <p class="intro-content ">
               {{boxehWhy?.data.section_how_it_works[0].sub_title}} </p>
             
-            <i class="fas fa-plus-circle" style="color: #91c11e; float: left; font-size: 30px; margin-top: -4px; margin-right: 5px;" (click)="toggleSection1()"></i><h6 class="text-primary" (click)="toggleSection1()">{{boxehWhy?.data.section_how_it_works[0].toggle_button_text}}</h6>
+            <i class="fas fa-plus-circle" style="color: #91c11e; float: left; font-size: 30px; margin-top: -4px; margin-right: 5px;" (click)="toggleSection1()"></i><h6 class="text-primary fw-400" (click)="toggleSection1()">{{boxehWhy?.data.section_how_it_works[0].toggle_button_text}}</h6>
           </div>
         </div>
       </ion-col>
       <ion-col *ngIf="toggle1 == true" style="background-color: #e8f3d8; color: #212529;" text-center padding>
         <span style="padding:0; text-align: center;" *ngFor="let data of boxehWhy?.data.section_how_it_works[0].toggle_repeater">
           <p><img [src]="data.icon" width="100"></p>
-          <p>{{data.title}}</p>  
-          <p>{{data.subtitle}}</p>
+          <p class="fs-16">{{data.title}}</p>  
+          <p class="fs-16" >{{data.subtitle}}</p>
           <br><br>
         </span>
       </ion-col>
@@ -44,14 +44,14 @@
 
       <!-- section 2 -->
       <ion-col size="12" class="pl-4 pr-4 mb-5 mt-5">
-        <div class="bg-white pr-3">
-          <h2 class="text-primary">{{boxehWhy?.data.section_how_it_works[1].title}}</h2>
+        <div class="bg-white pl-3 pr-3">
+          <h2 class="text-primary fw-600">{{boxehWhy?.data.section_how_it_works[1].title}}</h2>
           
           <div class="page-content">
             <p class="intro-content">
               {{boxehWhy?.data.section_how_it_works[1].sub_title}} </p>
             
-            <i class="fas fa-plus-circle" style="color: #91c11e; float: left; font-size: 30px; margin-top: -4px; margin-right: 5px;" (click)="toggleSection2()"></i><h6 class="text-primary" (click)="toggleSection2()">{{boxehWhy?.data.section_how_it_works[1].toggle_button_text}}</h6>
+            <i class="fas fa-plus-circle" style="color: #91c11e; float: left; font-size: 30px; margin-top: -4px; margin-right: 5px;" (click)="toggleSection2()"></i><h6 class="text-primary fw-400" (click)="toggleSection2()">{{boxehWhy?.data.section_how_it_works[1].toggle_button_text}}</h6>
           </div>
         </div>
       </ion-col>
@@ -59,30 +59,30 @@
       <ion-col  *ngIf="toggle2" style="background-color: #e8f3d8; color: #212529;" text-center padding>
         <span style="padding:0; text-align: center;" *ngFor="let data of boxehWhy?.data.section_how_it_works[1].toggle_repeater">
           <p><img [src]="data.icon" width="100"></p>
-          <p>{{data.title}}</p>  
-          <p>{{data.subtitle}}</p>
+          <p class="fs-16">{{data.title}}</p>  
+          <p class="fs-16">{{data.subtitle}}</p>
           <br><br>
         </span>
       </ion-col>
 
       <!-- section 3 -->
       <ion-col size="12" class="pl-4 pr-4 mb-5 mt-5">
-        <div class="bg-white pr-3">
-          <h2 class="text-primary">{{boxehWhy?.data.section_how_it_works[2].title}}</h2>
+        <div class="bg-white pl-3 pr-3">
+          <h2 class="text-primary fw-600">{{boxehWhy?.data.section_how_it_works[2].title}}</h2>
           
           <div class="page-content">
-            <p class="intro-content">
+            <p class="intro-content ">
               {{boxehWhy?.data.section_how_it_works[2].sub_title}} </p>
             
-            <i class="fas fa-plus-circle" style="color: #91c11e; float: left; font-size: 30px; margin-top: -4px; margin-right: 5px;" (click)="toggleSection3()"></i><h6 (click)="toggleSection3()" class="text-primary">{{boxehWhy?.data.section_how_it_works[2].toggle_button_text}}</h6>
+            <i class="fas fa-plus-circle" style="color: #91c11e; float: left; font-size: 30px; margin-top: -4px; margin-right: 5px;" (click)="toggleSection3()"></i><h6 (click)="toggleSection3()" class="text-primary fw-400">{{boxehWhy?.data.section_how_it_works[2].toggle_button_text}}</h6>
           </div>
         </div>
       </ion-col>
       <ion-col *ngIf="toggle3" style="background-color: #e8f3d8; color: #212529;" text-center padding>
         <span style="padding:0; text-align: center;" *ngFor="let data of boxehWhy?.data.section_how_it_works[2].toggle_repeater">
           <p><img [src]="data.icon" width="100"></p>
-          <p>{{data.title}}</p>  
-          <p>{{data.subtitle}}</p>
+          <p class="fs-16">{{data.title}}</p>  
+          <p class="fs-16">{{data.subtitle}}</p>
           <br><br>
         </span>
       </ion-col>
@@ -93,7 +93,7 @@
     <ion-row  class="footer-bottom-img" [style.background-image]="authService.getBackground(boxehWhy?.data.section_subscribe.section_background)">
       <ion-col size="12" style="padding: 84px 0; height: 400px;">
         <div class="d-block pb-5 pt-5 text-center">
-          <h1 class="grey">{{boxehWhy?.data.section_subscribe.title}}</h1>
+          <h1 class="grey" style="color: #343434;font-weight: 600;width: 300px;text-align: center;margin: auto;font-size: 30px;">{{boxehWhy?.data.section_subscribe.title}}</h1>
           <ion-button color='primary' size="samll" type="submit" margin-top style="border-radius: 15px; box-shadow: none; border: none;">
             {{boxehWhy?.data.section_subscribe.button_text}}
           </ion-button>
