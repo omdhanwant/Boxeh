@@ -476,6 +476,7 @@ border-radius: 50%;
   border-radius: 20px;
   line-height: 1.2;
   font-size: 14px;
+  font-weight: 900;
   font-family: "Dax Light", "Helvetica", sans-serif ;
 }
 .fs-20{
@@ -497,4 +498,19 @@ border-radius: 50%;
   font-size: 16px;
   padding: 10px 38px;
   border-radius: 12px;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "dax", "Helvetica", sans-serif !important;
+  font-weight: 100;
+}
+.boxes-heading{
+  text-align: center;
+   font-size: 33px; 
+   margin-bottom: 3%; 
+   padding-top: 3%; 
+   text-align: center;
+   font-size: 33px;
+   margin-bottom: 3%;
+   padding-top: 3%;
+   font-weight: 600;
 }

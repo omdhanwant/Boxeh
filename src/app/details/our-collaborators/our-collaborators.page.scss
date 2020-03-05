@@ -38,3 +38,11 @@ hr{
     background-repeat: no-repeat;
     background-position: top;
 }
+
+.main-banner{
+    background-size: cover !important;
+    background-origin: content-box !important;
+    background-repeat: no-repeat !important;
+    background-position: top !important;
+    height: 200px;
+}
