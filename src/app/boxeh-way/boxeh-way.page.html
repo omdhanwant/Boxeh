@@ -9,7 +9,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-grid class="bg-login pt-0 pl-0 pr-0">
-    <ion-row class="img-hero-banner" [style.background-image]="getBackground(boxehWhy?.data.page_head[0].bg_cover)">
+    <ion-row class="img-hero-banner" [style.background-image]="authService.getBackground(boxehWhy?.data.page_head[0].bg_cover)">
       <ion-col text-center>
         <div class="d-block text-center ">
           <h4 class="fw-700 mt-4 pt-5 text-primary" text-center="">{{boxehWhy?.data.page_head[0].title}}</h4>
@@ -90,7 +90,7 @@
 
 
     </ion-row>
-    <ion-row  class="footer-bottom-img" [style.background-image]="getBackground(boxehWhy?.data.section_subscribe.section_background)">
+    <ion-row  class="footer-bottom-img" [style.background-image]="authService.getBackground(boxehWhy?.data.section_subscribe.section_background)">
       <ion-col size="12" style="padding: 84px 0; height: 400px;">
         <div class="d-block pb-5 pt-5 text-center">
           <h1 class="grey">{{boxehWhy?.data.section_subscribe.title}}</h1>

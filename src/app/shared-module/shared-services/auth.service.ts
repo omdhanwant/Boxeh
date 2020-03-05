@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { User } from '../models/User';
 import { LoginResponse } from '../models/LoginResponse';
+import { DomSanitizer } from '@angular/platform-browser';
 
 const USER = 'User';
 const TOKEN = 'Token';
@@ -19,7 +20,7 @@ export class AuthService {
   // private token: BehaviorSubject<string> = new BehaviorSubject(null);
   public currentUser: Observable<User> = this.currentUserSubject.asObservable();
 
-  constructor(private http: HttpClient, private storage: Storage ) {
+  constructor(private http: HttpClient, private storage: Storage , private _sanitizer: DomSanitizer) {
       this.getLoggedInUser().then(user => this.currentUserSubject.next(user ? JSON.parse(user) : ''));
       // this.getToken().then(token => this.token.next(token) );
   }
@@ -80,6 +81,10 @@ registerUser(userCredentials) {
   getLoggedInUser() {
    return this.storage.get(USER) as Promise<string>;
     // return sessionStorage.getItem(USER) ? sessionStorage.getItem(USER) : null;
+}
+
+getBackground(image) {
+  return this._sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0), rgba(16, 16, 23, 0.5)), url(${image})`);
 }
 
 // getToken() {

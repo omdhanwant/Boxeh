@@ -6,9 +6,12 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-slides>
     <ion-slide>
-      <div class="home-banner">
+      <div class="home-banner" [style.background-image]="authService.getBackground(data?.data.page_head.bg_cover)">
         <div class="banner-info">
           <div class="page-hero pd-lr-15">
             <h4 style="font-weight: 600;">
@@ -30,9 +33,18 @@
         <h4 class="text-center mb-2 text-primary">Menu for 02 Feb - 08 Feb</h4>
       </ion-col>
 
-      <ion-col size="12">
+      <ion-col size="12" *ngFor='let product of data?.data.products'>
         <ion-card class="mb-4">
-          <img src="../../assets/Boxeh-Plans-1.jpg" />
+          <img src="assets/Boxeh-Plans-1.jpg" />
+          <ion-card-header text-primary>
+            <ion-card-title >{{product.name}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content [innerHtml] = 'product.description'>
+            <!-- Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836. -->
+          </ion-card-content>
+        </ion-card>
+        <!-- <ion-card class="mb-4">
+          <img src="assets/Boxeh-Plans-1.jpg" />
           <ion-card-header text-primary>
             <ion-card-title >Signature Boxeh</ion-card-title>
           </ion-card-header>
@@ -41,23 +53,14 @@
           </ion-card-content>
         </ion-card>
         <ion-card class="mb-4">
-          <img src="../../assets/Boxeh-Plans-1.jpg" />
+          <img src="assets/Boxeh-Plans-1.jpg" />
           <ion-card-header text-primary>
             <ion-card-title >Signature Boxeh</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
           </ion-card-content>
-        </ion-card>
-        <ion-card class="mb-4">
-          <img src="../../assets/Boxeh-Plans-1.jpg" />
-          <ion-card-header text-primary>
-            <ion-card-title >Signature Boxeh</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the Wisconsin Territory in 1836.
-          </ion-card-content>
-        </ion-card>
+        </ion-card> -->
       </ion-col>
     </ion-row>
   </ion-grid>

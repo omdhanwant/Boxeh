@@ -4,6 +4,7 @@ import { AlertService } from 'src/app/shared-module/shared-services/alert-servic
 import { Utils } from 'src/app/shared-module/utils/constants';
 import { Subscription } from 'rxjs';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { AuthService } from '../shared-module/shared-services/auth.service';
 
 @Component({
   selector: 'app-boxeh-way',
@@ -16,7 +17,7 @@ export class BoxehWayPage implements OnInit {
   toggle1:boolean;
   toggle2:boolean;
   toggle3:boolean;
-  constructor(private service: Service, private alertService: AlertService, private _sanitizer: DomSanitizer) { }
+  constructor(private service: Service, private alertService: AlertService, public authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -25,9 +26,9 @@ export class BoxehWayPage implements OnInit {
     this.alertService.presentLoading('Please wait...');
   }
 
-  getBackground(image) {
-      return this._sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0), rgba(16, 16, 23, 0.5)), url(${image})`);
-  }
+  // getBackground(image) {
+  //     return this._sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0), rgba(16, 16, 23, 0.5)), url(${image})`);
+  // }
   ionViewDidEnter() {
     this.subs = this.service.getBoxehWhy().subscribe(boxehWhyResponse => {
       if (boxehWhyResponse.code === 200) {
