@@ -84,7 +84,7 @@ registerUser(userCredentials) {
 }
 
 getBackground(image) {
-  return this._sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0), rgba(16, 16, 23, 0.5)), url(${image})`);
+  return this._sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0), rgba(16, 16, 23, 0)),url(${image})`);
 }
 
 // getToken() {
