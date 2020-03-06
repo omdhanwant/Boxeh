@@ -17,26 +17,35 @@ export class BoxehPlansPage implements OnInit {
 
 
   ionViewWillEnter() {
-    this.alertService.presentLoading('Please wait...');
+    if (!this.service.BoxehPlanDataState) {
+      this.alertService.presentLoading('Please wait...');
+    }
   }
 
   ngOnInit() {
   }
 
   initData(event?) {
-    this.subscription = this.service.getBoxehPlans().subscribe(boxehPlans => {
-      if (boxehPlans.code === 200) {
+    if (this.service.BoxehPlanDataState) {
 
-        if(event) {
-          event.target.complete();
+      this.data = this.service.BoxehPlanDataState;
+
+    } else  {
+
+      this.subscription = this.service.getBoxehPlans().subscribe(boxehPlans => {
+        if (boxehPlans.code === 200) {
+  
+          if(event) {
+            event.target.complete();
+          }
+          this.data = boxehPlans;
+          this.alertService.dismissLoading();
+        } else {
+          this.alertService.presentAlert(Utils.ERROR, boxehPlans.message, [Utils.OK]);
+          this.alertService.dismissLoading();
         }
-        this.data = boxehPlans;
-        this.alertService.dismissLoading();
-      } else {
-        this.alertService.presentAlert(Utils.ERROR, boxehPlans.message, [Utils.OK]);
-        this.alertService.dismissLoading();
-      }
-    });
+      });
+    }
   }
 
   ionViewDidEnter() {
@@ -44,6 +53,7 @@ export class BoxehPlansPage implements OnInit {
   }
 
   refresh(event) {
+    this.service.refreshState();
     this.alertService.presentLoading('Please wait...');
     this.initData(event);
   }

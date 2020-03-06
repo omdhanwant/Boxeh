@@ -13,7 +13,11 @@ export class HomeService {
   constructor(private http: HttpClient) { }
 
   get HomeDataState() {
-    return this.homeDataState;
+    return this.homeDataState.value;
+  }
+
+  refreshState() {
+    this.homeDataState.next(null);
   }
 
   getHomeData() {

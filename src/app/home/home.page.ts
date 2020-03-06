@@ -19,7 +19,7 @@ export class HomePage {
   constructor(private service: HomeService, private alertService: AlertService, public authService: AuthService) {}
 
   ionViewWillEnter() {
-    if (!this.service.HomeDataState.value) {
+    if (!this.service.HomeDataState) {
       this.alertService.presentLoading('Please wait...');
     }
     
@@ -29,8 +29,10 @@ export class HomePage {
   }
 
   initData(event?) {
-    if (this.service.HomeDataState.value) {
-      this.homeData = this.service.HomeDataState.value;
+    if (this.service.HomeDataState) {
+      
+      this.homeData = this.service.HomeDataState;
+
     } else  {
       
       this.subscription = this.service.getHomeData().subscribe(home => {
@@ -57,7 +59,7 @@ export class HomePage {
   }
 
   refresh(event) {
-    this.service.HomeDataState.next(null); // refresh state
+    this.service.refreshState(); // refresh state
     this.alertService.presentLoading('Please wait...');
     this.initData(event);
   }
