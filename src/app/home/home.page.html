@@ -164,12 +164,18 @@
                   
                   <ng-container *ngFor='let recipes of recipeContent.recipes'>
                   <ion-card *ngSwitchCase="recipeContent.id">
-                    <ion-card-header>
+                    <ion-card-header class="text-left">
                       {{recipes.title}}
                     </ion-card-header>
-                    <ion-card-content>
+                    <span *ngFor="let item of recipes.recipes"><img [src]="item.thumbnail"></span>
+                    <ion-chip *ngFor="let item of recipes.category" outline>
+                      <ion-label color="success">{{item.name}}</ion-label>
+                    </ion-chip>
+                    <ion-card-content class="text-left">
                       {{recipes.content}}
                     </ion-card-content>
+                    <hr style="height: 1px; border-top: 2px dashed #91c11e; padding: 0; margin: 0;">
+                    <p style="display: block; width: 100px; border-right: 1px solid #91c11e; padding: 12px; margin: 0;">{{recipes.recipe_cooking_time}}</p>
                   </ion-card>
                 </ng-container>
                 </ng-container>
