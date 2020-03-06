@@ -18,13 +18,13 @@
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-slides style="padding-bottom: 15px;">
+  <ion-slides class="TwoPx-border">
     <ion-slide>
       <div class="home-banner" [style.background-image]="authService.getBackground(homeData?.data.page_head.bg_cover)">
         <div class="banner-info">
           <h2 class="page-hero pd-lr-15 fs-20"> <b>{{homeData?.data.page_head.title}} </b></h2>
           <div class="pd-lr-15">
-            <p class="font-light" [innerHTML]='homeData?.data.page_head.sub_title'></p>
+            <p class="font-light" [innerHTML]='homeData?.data.page_head.sub_title' style="padding-bottom:0;"></p>
             <!-- <a href="#" class="btn btn-home"> Lettuce Begin</a> -->
             <button class="btn btn-primay btn-lg">{{homeData?.data.page_head.button_text}}</button>
           </div>

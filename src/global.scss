@@ -500,7 +500,7 @@ border-radius: 50%;
   border-radius: 12px;
 }
 h1, h2, h3, h4, h5, h6 {
-  font-family: "dax", "Helvetica", sans-serif !important;
+  font-family: "Dax Regular", "Helvetica", sans-serif !important;
   font-weight: 100;
 }
 .boxes-heading{
@@ -516,4 +516,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 .text-secondary {
   color: #5f6062 !important;
+}
+
+.TwoPx-border{
+  border-top: 2px dashed #91c11e;
+  border-bottom: 2px dashed #91c11e;
+  background-color: #fff;
 }
