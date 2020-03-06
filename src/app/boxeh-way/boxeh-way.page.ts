@@ -23,37 +23,44 @@ export class BoxehWayPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.alertService.presentLoading('Please wait...');
+    if (!this.service.BoxehWayDataState) {
+      this.alertService.presentLoading('Please wait...');
+    }
   }
 
-  // getBackground(image) {
-  //     return this._sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0), rgba(16, 16, 23, 0.5)), url(${image})`);
-  // }
-  ionViewDidEnter() {
-    this.subs = this.service.getBoxehWhy().subscribe(boxehWhyResponse => {
-      if (boxehWhyResponse.code === 200) {
 
-        this.boxehWhy = boxehWhyResponse;
-        this.alertService.dismissLoading();
-      } else {
-        this.alertService.presentAlert(Utils.ERROR, boxehWhyResponse.message, [Utils.OK]);
-        this.alertService.dismissLoading();
-      }
-    });
+  initData(event?) {
+    if (this.service.BoxehWayDataState) {
+
+      this.boxehWhy = this.service.BoxehWayDataState;
+
+    } else  {
+
+      this.subs = this.service.getBoxehWhy().subscribe(boxehWay => {
+        if (boxehWay.code === 200) {
+  
+          if(event) {
+            event.target.complete();
+          }
+          this.boxehWhy = boxehWay;
+          this.alertService.dismissLoading();
+        } else {
+          this.alertService.presentAlert(Utils.ERROR, boxehWay.message, [Utils.OK]);
+          this.alertService.dismissLoading();
+        }
+      });
+    }
+  }
+
+
+  ionViewDidEnter() {
+      this.initData()
   }
 
   refresh(event) {
+    this.service.refreshState();
     this.alertService.presentLoading('Please wait...');
-    this.subs = this.service.getBoxehWhy().subscribe(boxehWhyResponse => {
-      if (boxehWhyResponse.code === 200) {
-        event.target.complete();
-        this.boxehWhy = boxehWhyResponse;
-        this.alertService.dismissLoading();
-      } else {
-        this.alertService.presentAlert(Utils.ERROR, boxehWhyResponse.message, [Utils.OK]);
-        this.alertService.dismissLoading();
-      }
-    });
+    this.initData(event);
   }
 
 
