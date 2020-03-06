@@ -1,37 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <!-- <ion-button slot="start" id="menu-toggle-button" style="z-index: 9999;"> -->
     <ion-menu-button color='primary' slot="start"></ion-menu-button>
-    <!-- </ion-button> -->
-    <!-- <ion-title>
-      Boxeh
-    </ion-title> -->
     <ion-title class="logo home-logo">
-      <!-- Boxeh -->
       <img alt="logo" height="40" src="../../assets/icon/favicon.png">
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <!-- <img alt="logo" src="../../assets/banners/Home-Page-Header-Sized.jpg" >  -->
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-slides class="TwoPx-border">
     <ion-slide>
       <div class="home-banner" [style.background-image]="authService.getBackground(homeData?.data.page_head.bg_cover)">
-        <div class="banner-info">
+        <div class="banner-info" style="top: 100px;">
           <h2 class="page-hero pd-lr-15 fs-20"> <b>{{homeData?.data.page_head.title}} </b></h2>
           <div class="pd-lr-15">
             <p class="font-light" [innerHTML]='homeData?.data.page_head.sub_title' style="padding-bottom:0;"></p>
-            <!-- <a href="#" class="btn btn-home"> Lettuce Begin</a> -->
             <button class="btn btn-primay btn-lg">{{homeData?.data.page_head.button_text}}</button>
           </div>
-
         </div>
       </div>
-
     </ion-slide>
   </ion-slides>
   <ion-grid class="section-bg-1 div-ptb">
@@ -47,32 +36,11 @@
           <p class="fs-14" text-center> {{feature.feature_title}} </p>
         </div>
       </ion-col>
-      <!-- <ion-col size="6" text-center class="box-border">
-        <div class="div-ptb">
-          <img src="../../assets/home/g_2.png" class="height-img">
-          <p class="fs-14" text-center> Skip the grocery shopping </p>
-        </div>
-      </ion-col>
-      <ion-col size="6" text-center class="box-border border-right-0 border-top-0">
-        <div class="div-ptb">
-          <img src="../../assets/home/g_3.png" class="height-img">
-          <p class="fs-14" text-center> Have fun in the Kitchen </p>
-        </div>
-      </ion-col>
-      <ion-col size="6" text-center class="box-border  border-top-0">
-        <div class="div-ptb">
-          <img src="../../assets/home/g_4.png" class="height-img">
-          <p class="fs-14" text-center> Enjoy a flexible subscription</p>
-        </div>
-      </ion-col> -->
       <ion-col size="12" text-center class="pt-4 pb-4">
-        <!-- <a href="#" class="btn btn-primay"></a> -->
         <button class="btn btn-primay btn-lg">{{homeData?.data.section_how_it_works.button_text}}</button>
       </ion-col>
-
     </ion-row>
   </ion-grid>
-
   <ion-grid class="div-ptb">
     <ion-row>
       <ion-col size="12">
@@ -83,56 +51,14 @@
           <ul class="list-unstyled">
             <li class="font-light li-font-color mb-3" *ngFor='let advantage of homeData?.data.section_choose_plan.advantages'>
               <span class="box-plus-icon">+</span> &nbsp;{{advantage}}</li>
-            <!-- <li class="font-light li-font-color mb-3">
-               <span class="box-plus-icon">+</span> &nbsp;Ice packs and storage instructions to keep your ingredients fresh </li>
-            <li class="font-light li-font-color mb-3">
-               <span class="box-plus-icon">+</span> &nbsp;Online access to foolproof recipes designed by local chefs </li>
-            <li class="font-light li-font-color mb-3">
-               <span class="box-plus-icon">+</span> &nbsp;Everything you need to create amazing meals in your kitchen </li> -->
           </ul>
         </div>
       </ion-col>
       <ion-col size="12" text-center class="pt-4 pb-4">
-        <!-- <a href="#" class="btn btn-home">Customize Your Boxeh</a> -->
         <button class="btn btn-primay btn-lg">{{homeData?.data.section_choose_plan.button_text}}</button>
       </ion-col>
-
     </ion-row>
   </ion-grid>
-
-  <!-- <ion-grid class="section-bg-2 div-ptb">
-    <ion-row>
-      <ion-col size="12">
-        <h4 text-center> Discover What’s Cooking </h4>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="4">
-        <img src="../../assets/home/gellaey1.jpeg" class="w-100">
-      </ion-col>
-      <ion-col size="4">
-        <img src="../../assets/home/gellaey2.jpeg" class="w-100">
-      </ion-col>
-      <ion-col size="4">
-        <img src="../../assets/home/gellaey3.jpeg" class="w-100">
-      </ion-col>
-      <ion-col size="4">
-        <img src="../../assets/home/gellaey4.jpeg" class="w-100">
-      </ion-col>
-      <ion-col size="4">
-        <img src="../../assets/home/gellaey5.jpeg" class="w-100">
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="12">
-        <p class="text-center"> Simple &amp; delish recipes each week </p>
-      </ion-col>
-      <ion-col size="12" text-center class="pt-1 pb-4">
-        <button class="btn btn-primay btn-lg">Browse our Menu</button>
-      </ion-col>
-    </ion-row>
-  </ion-grid> -->
-  
   <ion-grid class="section-bg-4 div-ptb">
     <ion-row>
       <ion-col size="12">
@@ -140,28 +66,28 @@
         <p class="text-center">check out menu for 09 Feb - 15 Feb
         </p>
       </ion-col>
-      <ion-col size="12" text-center class="pt-1 pb-4">
+      <ion-col size="12" text-center class="pt-1 pb-2">
         <ion-segment  [(ngModel)]="segment" (ionChange)="segmentChanged($event)">
           <ion-segment-button [value]="work.id" *ngFor='let work of homeData?.data.section_week_recipes.weeks_to_show'>
             <ion-label>{{work.name}}</ion-label>
           </ion-segment-button>
-          <!-- <ion-segment-button value="enemies">
-            <ion-label>14 Apr - 20 Apr</ion-label>
-          </ion-segment-button> -->
         </ion-segment>
-        <br>
+      </ion-col>
+      <ion-col size="12" text-center class="pt-1 pb-2">
         <div [ngSwitch]="segment">
           <ng-container *ngFor='let content of homeData?.data.section_week_recipes.single_recipe_content'>
-
             <ng-container *ngSwitchCase="content.tab_pane" >
               <ion-segment  [(ngModel)]="recipeSegment" (ionChange)="recipeSegmentChanged($event)">
-                <ion-segment-button [value]="recipeSegment[0].id" *ngFor='let recipeSegment of content.tablist'>
-                  <ion-label style="font-size: 11px;">{{recipeSegment[0].title}}</ion-label>
-                </ion-segment-button>
+                <ion-row class="child-segement">
+                  <ion-col size="6" text-center class="pt-1 pb-2"  *ngFor='let recipeSegment of content.tablist'>
+                    <ion-segment-button [value]="recipeSegment[0].id" style="background: #e1e1;">
+                      <ion-label style="font-size: 11px;">{{recipeSegment[0].title}}</ion-label>
+                    </ion-segment-button>
+                  </ion-col>
+                </ion-row>
               </ion-segment>
               <div [ngSwitch]="recipeSegment">
                 <ng-container *ngFor='let recipeContent of content.tab_content'>
-                  
                   <ng-container *ngFor='let recipes of recipeContent.recipes'>
                   <ion-card *ngSwitchCase="recipeContent.id">
                     <ion-card-header class="text-left">
@@ -178,12 +104,9 @@
                     <p style="display: block; width: 100px; border-right: 1px dashed #91c11e; padding: 12px; margin: 0;">{{recipes.recipe_cooking_time}}</p>
                   </ion-card>
                 </ng-container>
-                </ng-container>
-       
-            
+                </ng-container>      
               </div>
             </ng-container>
-         
           </ng-container>
         </div>
       </ion-col>
@@ -197,7 +120,6 @@
         </p>
       </ion-col>
       <ion-col size="12" text-center class="pt-1 pb-4">
-        <!-- <a href="#" class="btn btn-home">Pick Your Boxeh </a> -->
         <button routerLink='/boxeh-plans' class="btn btn-primay btn-lg">{{homeData?.data.section_subscribe.button_text}}</button>
       </ion-col>
     </ion-row>
