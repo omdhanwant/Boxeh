@@ -1,0 +1,89 @@
+
+.home-banner{
+    height: 16rem;
+    width: 100%;
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.banner-info h2{
+    font-family: "Dax Regular", "Helvetica", sans-serif;
+}
+.section-bg-3 h1{
+    font-family: "Dax Regular", "Helvetica", sans-serif; 
+    font-size: 32px; 
+}
+.pd-lr-15{
+    padding: 0 15px;
+}
+
+.h3-mgn{
+    margin-top: 0px;
+    vertical-align: middle;
+}
+
+.h-3{
+    font-family: "Dax Bold", "Helvetica", sans-serif;
+}
+.section-bg-1{
+    background: #fff;
+}
+.section-bg-1 h4{
+    font-size: 32px;
+}
+.height-img{
+    max-height: 45px !important;
+    width: 45px;
+}
+.div-ptb{
+    padding: 15px 10px;
+    text-align: center;
+}
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+.li-font-color{
+    font-size: 16px;
+    font-weight: 400;
+    color: #5b5e5f;
+}
+.section-bg-2{
+    background-image: url(../../../assets/home/background-2.png);
+    width: 100%;
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.section-bg-3{
+    width: 100%;
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.section-bg-4{
+    background: url("../../../assets/backgroung-login.png");
+    width: 100%;
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.segment-button-checked {
+    color: #fff !important;
+    background: grey !important;
+    border: 0px solid grey;
+}
+
+ion-segment-button{
+    color: #808080 !important;
+}
+.box-plus-icon{
+    font-size: 25px;
+    font-weight: 600;
+    color: #91c11e;
+}

@@ -1,10 +1,120 @@
+
 <ion-header>
   <ion-toolbar>
     <ion-menu-button color='primary' slot="start"></ion-menu-button>
-    <ion-title>Weekly Recipes</ion-title>
+    <ion-title class="logo home-logo">
+      <img alt="logo" height="40" src="../../assets/icon/favicon.png">
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-slides class="TwoPx-border">
+    <ion-slide>
+      <div class="home-banner" [style.background-image]="authService.getBackground(homeData?.data.page_head.bg_cover)">
+        <div class="banner-info">
+          <h2 class="page-hero pd-lr-15 fs-20"> <b>{{homeData?.data.page_head.title}} </b></h2>
+          <div class="pd-lr-15">
+            <p class="font-light" [innerHTML]='homeData?.data.page_head.sub_title' style="padding-bottom:0;"></p>
+            <button class="btn btn-primay btn-lg">{{homeData?.data.page_head.button_text}}</button>
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+  </ion-slides>
+  <ion-grid class="section-bg-1 div-ptb">
+    <ion-row>
+      <ion-col size="12">
+        <h4 text-center class="h3-mgn text-primary pb-3"> {{homeData?.data.section_how_it_works.title}}</h4>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" text-center class="box-border border-right-0" *ngFor='let feature of homeData?.data.section_how_it_works.features'>
+        <div class="div-ptb">
+          <img [src]="feature.feature_image" class="height-img" style="width: 40px;">
+          <p class="fs-14" text-center> {{feature.feature_title}} </p>
+        </div>
+      </ion-col>
+      <ion-col size="12" text-center class="pt-4 pb-4">
+        <!-- <a href="#" class="btn btn-primay"></a> -->
+        <button class="btn btn-primay btn-lg">{{homeData?.data.section_how_it_works.button_text}}</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="div-ptb">
+    <ion-row>
+      <ion-col size="12">
+        <h4 text-center class="text-primary"> {{homeData?.data.section_choose_plan.title}}</h4>
+      </ion-col>
+      <ion-col size="12">
+        <div style="padding: 0px 20px; text-align: left;" [style.background-image]="authService.getBackground(homeData?.data.section_choose_plan.section_background)">
+          <ul class="list-unstyled">
+            <li class="font-light li-font-color mb-3" *ngFor='let advantage of homeData?.data.section_choose_plan.advantages'>
+              <span class="box-plus-icon">+</span> &nbsp;{{advantage}}</li>
+          </ul>
+        </div>
+      </ion-col>
+      <ion-col size="12" text-center class="pt-4 pb-4">
+        <button class="btn btn-primay btn-lg">{{homeData?.data.section_choose_plan.button_text}}</button>
+      </ion-col>
 
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="section-bg-4 div-ptb">
+    <ion-row>
+      <ion-col size="12">
+        <h3 text-center class="text-primary h-3"> {{homeData?.data.section_week_recipes.sub_title}} </h3>
+        <p class="text-center">check out menu for 09 Feb - 15 Feb
+        </p>
+      </ion-col>
+      <ion-col size="12" text-center class="pt-1 pb-4">
+        <ion-segment  [(ngModel)]="segment" (ionChange)="segmentChanged($event)">
+          <ion-segment-button [value]="work.id" *ngFor='let work of homeData?.data.section_week_recipes.weeks_to_show'>
+            <ion-label>{{work.name}}</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+        <div [ngSwitch]="segment">
+          <ng-container *ngFor='let content of homeData?.data.section_week_recipes.single_recipe_content'>
+            <ng-container *ngSwitchCase="content.tab_pane" >
+              <ion-segment  [(ngModel)]="recipeSegment" (ionChange)="recipeSegmentChanged($event)">
+                <ion-segment-button [value]="recipeSegment[0].id" *ngFor='let recipeSegment of content.tablist'>
+                  <ion-label >{{recipeSegment[0].title}}</ion-label>
+                </ion-segment-button>
+              </ion-segment>
+              <div [ngSwitch]="recipeSegment">
+                <ng-container *ngFor='let recipeContent of content.tab_content'>
+                  <ng-container *ngFor='let recipes of recipeContent.recipes'>
+                  <ion-card *ngSwitchCase="recipeContent.id">
+                    <ion-card-header>
+                      {{recipes.title}}
+                    </ion-card-header>
+                    <ion-card-content>
+                      {{recipes.content}}
+                    </ion-card-content>
+                  </ion-card>
+                </ng-container>
+                </ng-container>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="section-bg-3 div-ptb" [style.background-image]="authService.getBackground(homeData?.data.section_subscribe.section_background)">
+    <ion-row>
+      <ion-col size="12" class="pt-4">
+        <h1 text-center class="fw-600"> {{homeData?.data.section_subscribe.title}} </h1>
+        <p class="text-center" class="fs-16" style="font-size: 16px; padding: 10px 18px; color:#000;" [innerHTML]='homeData?.data.section_subscribe.sub_title'>
+        </p>
+      </ion-col>
+      <ion-col size="12" text-center class="pt-1 pb-4">
+        <button routerLink='/boxeh-plans' class="btn btn-primay btn-lg">{{homeData?.data.section_subscribe.button_text}}</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
