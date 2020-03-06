@@ -149,16 +149,16 @@
             <ion-label>14 Apr - 20 Apr</ion-label>
           </ion-segment-button> -->
         </ion-segment>
+        <br>
         <div [ngSwitch]="segment">
           <ng-container *ngFor='let content of homeData?.data.section_week_recipes.single_recipe_content'>
 
             <ng-container *ngSwitchCase="content.tab_pane" >
               <ion-segment  [(ngModel)]="recipeSegment" (ionChange)="recipeSegmentChanged($event)">
                 <ion-segment-button [value]="recipeSegment[0].id" *ngFor='let recipeSegment of content.tablist'>
-                  <ion-label >{{recipeSegment[0].title}}</ion-label>
+                  <ion-label style="font-size: 11px;">{{recipeSegment[0].title}}</ion-label>
                 </ion-segment-button>
               </ion-segment>
-              
               <div [ngSwitch]="recipeSegment">
                 <ng-container *ngFor='let recipeContent of content.tab_content'>
                   
