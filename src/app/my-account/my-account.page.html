@@ -6,7 +6,172 @@
 </ion-header>
 
 <ion-content>
-<ion-button routerLink='/my-account/profile'>Profile</ion-button>
-<ion-button routerLink='/my-account/previous-orders'>Previous Orders</ion-button>
-<ion-button routerLink='/my-account/change-password'>Change Password</ion-button>
+<ion-grid class="pl-2 pr-2">
+  <ion-row>
+    <ion-col size="12">
+      <div class="entry-header">
+        <h1 class="entry-title">My account</h1>
+      </div>
+    </ion-col>
+    <ion-col size="12">
+      <div class="w-100">
+        <div class="list-group">
+          <li class="li-font-size list-group-item list-group-item-action">Dashboard</li>
+          <li class="li-font-size list-group-item list-group-item-action">Orders</li>
+          <li class="li-font-size list-group-item list-group-item-action">Downloads</li>
+          <li class="li-font-size list-group-item list-group-item-action">Addresses</li>
+          <li class="li-font-size list-group-item list-group-item-action">Account details</li>
+          <li class="li-font-size list-group-item list-group-item-action">Logout</li>
+          <li class="li-font-size list-group-item list-group-item-action">
+            <!-- Dashboard -->
+            <!-- <div>
+              <p class="fs-14">Hello <strong>yogi</strong> (not <strong>yogi</strong>? <strong><a class="fs-14" href="#">Log out</a></strong>)</p>
+              <p class="fs-14">From your account dashboard you can view your
+                <strong> <a class="fs-14" href="#">recent orders</a></strong>, manage your <strong><a class="fs-14" href="#">shipping and billing addresses</a></strong>, and <strong><a class="fs-14" href="#">edit your password and account details</a></strong>.</p>
+            </div> -->
+
+            <!-- Orders -->
+            <!-- <div class="order-info">
+              <ion-icon name="checkmark-circle-outline" class="ok-icon"></ion-icon>  <a class="btn btn-outline-primary text-decoration" href="#"> Go shop		</a>
+              No order has been made yet.
+
+              <div class="mt-4 mb-4 text-center">
+                <a href="#" class="stickybtn btn-border btn-primary btn-lg font-light text-decoration-0">
+                  Order Now</a>
+              </div>
+            </div> -->
+
+            <!-- Download -->
+            <!-- <div class="order-info">
+              <ion-row>
+                <ion-col size="2">
+                  <i class="fa fa-arrow-alt-circle-down ok-icon" ></i> 
+                </ion-col>
+                <ion-col size="10">
+                  Go Boxeh Plans <br>
+                  No downloads available yet.	
+                </ion-col>
+              </ion-row>
+            </div> -->
+
+
+
+            <!-- Address tab -->
+
+            <!-- <div class="order-info">
+              <ion-row>
+                <ion-col size="12">
+              <p class="li-font-size mb-0">The following addresses will be used on the checkout page by default.</p>
+              <h3 class="mt-0 fw-500">Shipping &amp; Billing Details</h3>
+              <strong> <a href="#" class="fs-16 text-decoration-0">Edit</a> </strong>
+              <p class="li-font-size mb-0">You have not set up this type of address yet.</p>
+
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col size="6">
+              <p class="mb-0 form-label"> First Name <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+              <input type="text" class="input-text"   placeholder=""  autocomplete="off">
+            </ion-col>
+            <ion-col  size="6">
+              <p class="mb-0 form-label"> Last Name <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+              <input type="text" class="input-text"   placeholder=""  autocomplete="off">
+            </ion-col>
+            <ion-col  size="12">
+              <p class="mb-0 form-label"> Company Name (Optional)</p>
+              <input type="text" class="input-text"   placeholder=""  autocomplete="off">
+            </ion-col>
+            <ion-col  size="12">
+              <p class="mb-0 form-label">Country <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+              <input type="text" class="input-text"   placeholder="Country"  autocomplete="off">
+            </ion-col>
+            <ion-col  size="12">
+              <p class="mb-0 form-label"> Street address <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+              <input type="text" class="input-text mb-2"   placeholder="House number and street name"  autocomplete="off" >
+              <input type="text" class="input-text"   placeholder="Apartment, suite, unit etc. (optional)"  autocomplete="off">
+            </ion-col>
+            <ion-col  size="12">
+              <p class="mb-0 form-label">Town / City <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+              <input type="text" class="input-text"   placeholder="Country"  autocomplete="off">
+            </ion-col>
+            <ion-col  size="12">
+              <p class="mb-0 form-label">State / County <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+              <input type="text" class="input-text"   placeholder=""  autocomplete="off">
+            </ion-col>
+            <ion-col  size="12">
+              <p class="mb-0 form-label"> Postcode / ZIP  <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+              <input type="text" class="input-text"   placeholder=""  autocomplete="off">
+            </ion-col>
+            <ion-col  size="12">
+              <p class="mb-0 form-label">Phone <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+              <input type="text" class="input-text"   placeholder=""  autocomplete="off">
+            </ion-col>
+            <ion-col  size="12" >
+              <p class="mb-0 form-label"> Email Address <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+              <input type="password" class="input-text"   placeholder=""  autocomplete="off">
+            </ion-col>
+
+            <ion-col size="12" class="text-center mt-3 mb-3">
+              <a href="#" class="stickybtn btn-border btn-primary btn-lg font-light text-decoration-0">
+                Save Address</a>
+            </ion-col>
+          </ion-row>
+          
+            </div> -->
+          <!-- Account Details -->
+          <div class="order-info">
+          <ion-row>
+            <ion-col size="6">
+              <p class="mb-0 form-label"> First Name <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+              <input type="text" class="input-text"   placeholder=""  autocomplete="off">
+            </ion-col>
+            <ion-col  size="6">
+              <p class="mb-0 form-label"> Last Name <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+              <input type="text" class="input-text"   placeholder=""  autocomplete="off">
+            </ion-col>
+            <ion-col  size="12">
+              <p class="mb-0 form-label"> User Name <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+              <input type="text" class="input-text"   placeholder=""  autocomplete="off">
+              <p class="mt-0 mb-0">This will be how your name will be displayed in the account section and in reviews</p>
+            </ion-col>
+            <ion-col  size="12">
+              <p class="mb-0 form-label">Email Address <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+              <input type="text" class="input-text"   placeholder=""  autocomplete="off">
+            </ion-col>
+           
+             <p class="fs-16 mb-0 ml-1 pb-0">Password change</p>
+           
+            <ion-col  size="12">
+              <p class="mb-0 form-label">Current password (leave blank to leave unchanged) </p>
+              <input type="password" class="input-text"   placeholder=""  autocomplete="off">
+            </ion-col>
+            <ion-col  size="12">
+              <p class="mb-0 form-label">New password (leave blank to leave unchanged) </p>
+              <input type="password" class="input-text"   placeholder=""  autocomplete="off">
+            </ion-col>
+            <ion-col  size="12">
+              <p class="mb-0 form-label">Confirm new password </p>
+              <input type="password" class="input-text"   placeholder=""  autocomplete="off">
+            </ion-col>
+            
+           
+
+            <ion-col size="12" class="text-center mt-3 mb-3">
+              <a href="#" class="stickybtn btn-border btn-primary btn-lg font-light text-decoration-0">
+                Save Changes</a>
+            </ion-col>
+          </ion-row>
+           
+         
+            </div>
+
+
+
+          </li>
+    </div>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 </ion-content>

@@ -99,3 +99,14 @@ ion-segment-button{
     background: #ccc;
     border: 0px solid #ccc;
 }
+
+.my-grid-border .box-border:first-child{
+    border-right: unset!important;
+    border-bottom: unset!important;
+}
+.my-grid-border .box-border:nth-child(2){
+    border-bottom: unset!important;
+}
+.my-grid-border .box-border:nth-child(3){
+    border-right: unset!important;
+}
