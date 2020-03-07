@@ -7,42 +7,42 @@
 
 <ion-content fullscreen>
   <div class="bg-contact">
-  <form onsubmit="processForm(event)"  class="form-positon">
+  <form #form="ngForm" (ngSubmit)="contactForm(form)" class="form-positon">
     <ion-list lines="full" class="ion-no-margin ion-no-padding">
       <ion-item>
         <ion-label position="floating">First Name <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text" oninput="handleFirstNameValue(event)"></ion-input>
+        <ion-input required type="text" name='first-name' ngModel></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Last Name <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+        <ion-input required type="text" name='last-name' ngModel></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Telephone Number<ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="number" oninput="handleFirstNameValue(event)"></ion-input>
+        <ion-input required type="text" name='phone-no' ngModel ></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Email <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+        <ion-input required type="text" name='email' ngModel></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Address </ion-label>
-        <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+        <ion-input required type="text" name='address-1' ngModel></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">City </ion-label>
-        <ion-input required type="text" oninput="handleLastNameValue(event)"></ion-input>
+        <ion-input required type="text" name='city' ngModel></ion-input>
       </ion-item>
       
-      <ion-item>
+      <!-- <ion-item>
         <ion-label position="floating">Title</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
+        <ion-input type="text" name='city' ngModel></ion-input>
+      </ion-item> -->
       <ion-item>
-        <ion-label position="floating">Notes</ion-label>
-        <ion-textarea rows="4"></ion-textarea>
+        <ion-label position="floating">Comments</ion-label>
+        <ion-textarea rows="2" type="text" name='comment' ngModel></ion-textarea>
       </ion-item>
     </ion-list>
 

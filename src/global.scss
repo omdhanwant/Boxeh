@@ -523,3 +523,13 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 2px dashed #91c11e;
   background-color: #fff;
 }
+
+.segement-label{
+  word-break: unset;
+  white-space: normal;
+  padding: 0 12px;
+  margin: 5px;
+  font-size: 10px;
+  line-height: 13px;
+  text-align: center;
+}
