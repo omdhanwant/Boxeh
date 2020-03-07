@@ -1,5 +1,5 @@
+import { Contact } from './contact.service';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../shared-module/shared-services/auth.service';
 import { NavController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
 import { AlertService } from '../../shared-module/shared-services/alert-service';
@@ -7,6 +7,12 @@ import { Utils } from '../../shared-module/utils/constants';
 import { Error } from '../../shared-module/models/Error';
 import { LoginResponse } from '../../shared-module/models/LoginResponse';
 import { Router, ActivatedRoute } from '@angular/router';
+
+interface ContactResponse {
+  into: string,
+  status: string,
+  message: string
+}
 
 @Component({
   selector: 'app-contact-us',
@@ -16,7 +22,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ContactUsPage implements OnInit {
 
   constructor(
-    private auth: AuthService,
+    private contact: Contact,
     private nav: NavController,
     private route: ActivatedRoute,
     public alertService: AlertService) {
@@ -27,28 +33,42 @@ export class ContactUsPage implements OnInit {
   }
 
   contactForm(form: NgForm) {
-    console.log(form);
-    // this.alertService.presentLoading('Please Wait...');
-    // if (form.valid) {
+    this.alertService.presentLoading('Please Wait...');
+    if (form.valid) {
+      const fistname = form.control.get('first-name').value;
+      const lastname = form.control.get('last-name').value;
+      const phone = form.control.get('phone-no').value;
+      const email = form.control.get('email').value;
+      const address = form.control.get('address-1').value;
+      const city = form.control.get('city').value;
+      const comment = form.control.get('comment').value;
 
-    //   this.auth.login(form.value).subscribe((response: LoginResponse) => {
-    //     if (response.code === 200) {
-    //       form.reset();
-    //       this.alertService.dismissLoading();
-    //       this.alertService.presentAlert(Utils.SUCCESS, response.message, [Utils.OK]);
-    //       const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/'
-    //       this.nav.navigateRoot([returnUrl]);
-    //     } else {
-    //       this.alertService.dismissLoading();
-    //       this.alertService.presentAlert(Utils.ERROR, response.message, [Utils.OK]);
-    //     }
-    //   }
-    //   );
+      const fd = new FormData();
+      fd.append('first-name', fistname);
+      fd.append('last-name', lastname);
+      fd.append('phone-no', phone);
+      fd.append('email', email);
+      fd.append('address-1', address);
+      fd.append('city', city);
+      fd.append('comment', comment);
+      this.contact.submitForm(fd).subscribe((response: ContactResponse) => {
+        if (response.status === 'mail_sent') {
+          form.reset();
+          this.alertService.dismissLoading();
+          this.alertService.presentAlert(Utils.SUCCESS, response.message, [Utils.OK]);
+          const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/'
+          this.nav.navigateRoot([returnUrl]);
+        } else {
+          this.alertService.dismissLoading();
+          this.alertService.presentAlert(Utils.ERROR, response.message, [Utils.OK]);
+        }
+      }
+      );
 
-    // } else {
-    //   this.alertService.dismissLoading();
-    //   this.alertService.presentAlert(Utils.ERROR, 'Enter valid username and password!', [Utils.OK]);
-    // }
+    } else {
+      this.alertService.dismissLoading();
+      this.alertService.presentAlert(Utils.ERROR, 'Enter valid username and password!', [Utils.OK]);
+    }
   }
 
 
