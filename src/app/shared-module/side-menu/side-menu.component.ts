@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {  MenuController } from '@ionic/angular';
+import {  MenuController, NavController } from '@ionic/angular';
 import { AuthService } from '../shared-services/auth.service';
 import { User } from '../models/User';
 import { AlertService } from '../shared-services/alert-service';
@@ -19,7 +19,7 @@ export class SideMenuComponent implements OnInit , OnDestroy{
   isLoggedIn: boolean;
   userSubscription: Subscription;
 
-constructor(private menu: MenuController, private auth: AuthService, private alertService: AlertService) {
+constructor(private menu: MenuController, private auth: AuthService, private alertService: AlertService, private nav: NavController) {
   }
 
 ngOnInit() {
@@ -165,6 +165,7 @@ closeMenu() {
   logout() {
     this.auth.logout();
     this.alertService.presentAlert(Utils.SUCCESS , 'Successfully logged out!' , [Utils.OK]);
+    this.nav.navigateBack('/home');
   }
 
 }
