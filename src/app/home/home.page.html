@@ -69,7 +69,7 @@
       <ion-col size="12" text-center class="pt-1 pb-2">
         <ion-segment  [(ngModel)]="segment" (ionChange)="segmentChanged($event)">
           <ion-segment-button [value]="work.id" *ngFor='let work of homeData?.data.section_week_recipes.weeks_to_show'>
-            <ion-label>{{work.name}}</ion-label>
+            <ion-label class="segement-label">{{work.name}}</ion-label>
           </ion-segment-button>
         </ion-segment>
       </ion-col>
@@ -81,7 +81,7 @@
                 <ion-row class="child-segement">
                   <ion-col size="6" text-center class="pt-1 pb-2"  *ngFor='let recipeSegment of content.tablist'>
                     <ion-segment-button [value]="recipeSegment[0].id" style="background: #e1e1;">
-                      <ion-label style="font-size: 11px;">{{recipeSegment[0].title}}</ion-label>
+                      <ion-label class="segement-label" style="font-size: 11px;">{{recipeSegment[0].title}}</ion-label>
                     </ion-segment-button>
                   </ion-col>
                 </ion-row>
