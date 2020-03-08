@@ -25,7 +25,7 @@ export class WeeklyRecipesPage implements OnInit { homeData: Home = null;
   }
 
   initData(event?) {
-    this.subscription = this.service.getHomeData().subscribe(home => {
+    this.subscription = this.service.getHomeData(this.authService.LANGUAGE).subscribe(home => {
       if (home.code === 200) {
 
         if(event) {
