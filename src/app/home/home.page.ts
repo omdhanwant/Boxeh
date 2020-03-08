@@ -20,11 +20,9 @@ export class HomePage {
   constructor(private service: HomeService, private alertService: AlertService, public authService: AuthService) {}
 
   ionViewWillEnter() {
-    // if (!this.service.HomeDataState || (this.authService.LANGUAGE !== this.authService.currentLanguage)) {
-    //   this.alertService.presentLoading('Please wait...');
-    // }
-    this.alertService.presentLoading('Please wait...');
-    
+    if (!this.service.HomeDataState) {
+      this.alertService.presentLoading('Please wait...');
+    }
   }
 
 
