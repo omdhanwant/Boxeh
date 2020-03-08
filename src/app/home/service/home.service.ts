@@ -20,9 +20,9 @@ export class HomeService {
     this.homeDataState.next(null);
   }
 
-  getHomeData() {
+  getHomeData(language) {
     const time = new Date();
-    return this.http.get(`${environment.hostUrl}/boxeh/apis/page-home.php?type=` + time.getTime())
+    return this.http.get(`${environment.hostUrl}/boxeh/apis/page-home.php?lang=${language}&type=` + time.getTime())
       .pipe(
         map((response: Home) => {
           this.homeDataState.next(response);
