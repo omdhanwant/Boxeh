@@ -40,7 +40,7 @@ export class OurCollaboratorsPage implements OnInit {
 
   refresh(event) {
     this.alertService.presentLoading('Please wait...');
-    this.subs = this.service.getOurCollaborators().subscribe(OurCollaboratorsResponse => {
+    this.subs = this.service.getCollborators().subscribe(OurCollaboratorsResponse => {
       if (OurCollaboratorsResponse.code === 200) {
         event.target.complete();
         this.OurCollaborators = OurCollaboratorsResponse;
