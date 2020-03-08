@@ -24,13 +24,13 @@
     </ion-slide>
   </ion-slides>
   <ion-grid class="section-bg-1 div-ptb">
-    <ion-row>
+    <ion-row >
       <ion-col size="12">
         <h4 text-center class="h3-mgn text-primary pb-3"> {{homeData?.data.section_how_it_works.title}}</h4>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col size="6" text-center class="box-border border-right-0" *ngFor='let feature of homeData?.data.section_how_it_works.features'>
+    <ion-row class="my-grid-border">
+      <ion-col size="6" text-center class="box-border" *ngFor='let feature of homeData?.data.section_how_it_works.features'>
         <div class="div-ptb">
           <img [src]="feature.feature_image" class="height-img" style="width: 40px;">
           <p class="fs-14" text-center> {{feature.feature_title}} </p>
@@ -67,19 +67,19 @@
         </p>
       </ion-col>
       <ion-col size="12" text-center class="pt-1 pb-2">
-        <ion-segment  [(ngModel)]="segment" (ionChange)="segmentChanged($event)">
+        <ion-segment  [(ngModel)]="segment" (ionChange)="segmentChanged($event)" >
           <ion-segment-button [value]="work.id" *ngFor='let work of homeData?.data.section_week_recipes.weeks_to_show'>
             <ion-label>{{work.name}}</ion-label>
           </ion-segment-button>
         </ion-segment>
       </ion-col>
-      <ion-col size="12" text-center class="pt-1 pb-2">
+      <ion-col size="12" text-center class="pt-1 pb-2" style="margin-left: -9px;">
         <div [ngSwitch]="segment">
           <ng-container *ngFor='let content of homeData?.data.section_week_recipes.single_recipe_content'>
             <ng-container *ngSwitchCase="content.tab_pane" >
               <ion-segment  [(ngModel)]="recipeSegment" (ionChange)="recipeSegmentChanged($event)">
                 <ion-row class="child-segement">
-                  <ion-col size="3" text-center class="pt-1 pb-2"  *ngFor='let recipeSegment of content.tablist'>
+                  <ion-col size="4" text-center class="pt-1 pb-2"  *ngFor='let recipeSegment of content.tablist'>
                     <ion-segment-button [value]="recipeSegment[0].id" style="background: #e1e1;">
                       <ion-label class="segement-label" style="font-size: 11px;">{{recipeSegment[0].title}}</ion-label>
                     </ion-segment-button>

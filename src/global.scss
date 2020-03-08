@@ -533,3 +533,29 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 13px;
   text-align: center;
 }
+.text-white{
+  color: #fff;
+}
+
+.text-secondary {
+  color: #5f6062 !important;
+}
+.font-weight-bold {
+  font-weight: 700 !important;
+}
+.fs-2rem{
+  font-size: 2rem;
+}
+.text-decoration-0{
+  text-decoration: unset;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #a0c643;
+  border-color: #a0c643;
+}
+.stickybtn{
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+}
