@@ -33,8 +33,8 @@ export class ContactUsPage implements OnInit {
   }
 
   contactForm(form: NgForm) {
-    this.alertService.presentLoading('Please Wait...');
     if (form.valid) {
+      this.alertService.presentLoading('Please Wait...');
       const fistname = form.control.get('first-name').value;
       const lastname = form.control.get('last-name').value;
       const phone = form.control.get('phone-no').value;
@@ -67,7 +67,7 @@ export class ContactUsPage implements OnInit {
 
     } else {
       this.alertService.dismissLoading();
-      this.alertService.presentAlert(Utils.ERROR, 'Enter valid username and password!', [Utils.OK]);
+      this.alertService.presentAlert(Utils.ERROR, 'Enter valid information!', [Utils.OK]);
     }
   }
 

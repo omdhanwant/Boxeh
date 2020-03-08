@@ -18,7 +18,8 @@ export class Contact {
   constructor(private http: HttpClient) { }
 
   submitForm(credentials) {
-    return this.http.post(`http://boxeh.net/boxeh/wp-json/contact-form-7/v1/contact-forms/229/feedback`, credentials)
+    // return this.http.post(`http://boxeh.net/boxeh/wp-json/contact-form-7/v1/contact-forms/229/feedback`, credentials)
+    return this.http.post(`${environment.hostUrl}/boxeh/wp-json/contact-form-7/v1/contact-forms/229/feedback`, credentials)
       .pipe(map((response: ContactResponse) => {
         return response;
       }));
