@@ -30,6 +30,10 @@ const routes: Routes = [
     loadChildren: () => import('./details/contact-us/contact-us.module').then( m => m.ContactUsPageModule)
   },
   {
+  path: 'contact-us',
+  loadChildren: () => import('./details/contact-us/contact-us.module').then( m => m.ContactUsPageModule)
+},
+  {
     path: 'join-us',
     loadChildren: () => import('./details/join-us/join-us.module').then( m => m.JoinUsPageModule)
   },
@@ -68,6 +72,10 @@ const routes: Routes = [
   {
     path: 'boxeh-way',
     loadChildren: () => import('./boxeh-way/boxeh-way.module').then( m => m.BoxehWayPageModule)
+  },
+  {
+    path: 'cart',
+    loadChildren: () => import('./cart/cart.module').then( m => m.CartPageModule)
   },
 ];
 

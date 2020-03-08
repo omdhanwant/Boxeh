@@ -145,6 +145,13 @@ ngOnInit() {
     isDropDown: false,
     isDisabled: false
   },
+  {
+    pageName: 'Cart',
+    url: '/cart',
+    icon: 'cart-outline',
+    isDropDown: false,
+    isDisabled: false
+  },
 ];
     });
 }
