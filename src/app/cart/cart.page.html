@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="stepper">
+    <div class="pb-14">
+      <ion-checkbox color="primary" class="vertical-middle"></ion-checkbox> 1. Pick Your Boxeh
+    </div>
+    <div class="pb-14">
+      <ion-checkbox color="primary" class="vertical-middle"></ion-checkbox> 2. Select Your Recipes
+    </div>
+    <div class="pb-14">
+      <ion-checkbox color="primary" class="vertical-middle"></ion-checkbox> 3. Confirm Your Order
+    </div>
+    <div class="pb-14">
+      <ion-checkbox color="primary" class="vertical-middle"></ion-checkbox> 4. Checkout & Delivery
+    </div>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card class="mb-4">
+          <img src="http://boxeh.net/boxeh/wp-content/uploads/2019/07/Boxeh-Plans-3.jpg" />
+          <ion-card-header text-primary>
+            <ion-card-title>
+              <h1 class="title-text">Veggie Boxeh</h1>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p class="fs-16">Simple, comforting and flavorsome, our Veggie Boxeh is filled with seasonal vegetables,
+              legumes, whole grains, and cheese varieties that will fill and satisfy every vegetarian appetite.</p>
+            <p class="fs-16">Please select the number of recipes you want to cook this week and the number of servings
+              you need. We’ll deliver everything in one Boxeh. The prices shown below is per serving.</p>
+          </ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-label>Recipes per week</ion-label>
+              <ion-select placeholder="">
+                <ion-select-option value="2">2</ion-select-option>
+                <ion-select-option value="3">3</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <ion-list>
+            <ion-item>
+              <ion-label>Servings per recipe</ion-label>
+              <ion-select placeholder="">
+                <ion-select-option value="3">3</ion-select-option>
+                <ion-select-option value="4">4</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <p class="price fs-16 fw-600">JOD9.00 total price</p>
+        </ion-card>
+        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

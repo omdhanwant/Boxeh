@@ -13,6 +13,7 @@ import { AuthService } from '../shared-module/shared-services/auth.service';
 export class HomePage {
   homeData: Home = null;
   subscription: Subscription;
+  langSubscription: Subscription;
   segment
   recipeSegment
 
@@ -22,41 +23,57 @@ export class HomePage {
     if (!this.service.HomeDataState) {
       this.alertService.presentLoading('Please wait...');
     }
-    
   }
+
 
   ngOnInit() {
   }
 
   initData(event?) {
-    if (this.service.HomeDataState) {
-      
-      this.homeData = this.service.HomeDataState;
 
-    } else  {
-      
-      this.subscription = this.service.getHomeData().subscribe(home => {
-        if (home.code === 200) {
+    this.langSubscription =  this.authService.$currentLanguage.subscribe(languageState => {
+
+      if (this.authService.LANGUAGE !== languageState) {
+
+        this.alertService.presentLoading('Please wait...');
+        this.service.refreshState();
   
-          if(event) {
-            event.target.complete();
+      } 
+      
+      
+      if (this.service.HomeDataState) {
+        
+        this.homeData = this.service.HomeDataState;
+  
+      } else  {
+
+        
+        this.subscription = this.service.getHomeData(languageState).subscribe(home => {
+          if (home.code === 200) {
+    
+            if(event) {
+              event.target.complete();
+            }
+            this.homeData = home;
+            this.segment = this.homeData.data.section_week_recipes.single_recipe_content[0].tab_pane
+            this.recipeSegment = this.homeData.data.section_week_recipes.single_recipe_content[0].tablist[0][0].id
+            this.alertService.dismissLoading();
+          } else {
+            this.alertService.presentAlert(Utils.ERROR, home.message, [Utils.OK]);
+            this.alertService.dismissLoading();
           }
-          this.homeData = home;
-          this.segment = this.homeData.data.section_week_recipes.single_recipe_content[0].tab_pane
-          this.recipeSegment = this.homeData.data.section_week_recipes.single_recipe_content[0].tablist[0][0].id
-          this.alertService.dismissLoading();
-        } else {
-          this.alertService.presentAlert(Utils.ERROR, home.message, [Utils.OK]);
-          this.alertService.dismissLoading();
-        }
-      });
-    }
+        });
+      }
+    })
+
+
 
   }
 
   ionViewDidEnter() {
     this.initData();
   }
+
 
   refresh(event) {
     this.service.refreshState(); // refresh state
@@ -79,5 +96,10 @@ export class HomePage {
   recipeSegmentChanged(event) {
     // console.log('Segment changed', event);
     
+  }
+
+  ionViewDidLeave(){
+    this.langSubscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }

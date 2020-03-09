@@ -15,10 +15,12 @@ const TOKEN = 'Token';
   providedIn: 'root'
 })
 export class AuthService {
-
+  public LANGUAGE = 'un';
   private currentUserSubject: BehaviorSubject<User> = new BehaviorSubject(null);
+  private languageState: BehaviorSubject<string> = new BehaviorSubject('un');
   // private token: BehaviorSubject<string> = new BehaviorSubject(null);
   public currentUser: Observable<User> = this.currentUserSubject.asObservable();
+  public $currentLanguage: Observable<string> = this.languageState.asObservable();
 
   constructor(private http: HttpClient, private storage: Storage , private _sanitizer: DomSanitizer) {
       this.getLoggedInUser().then(user => this.currentUserSubject.next(user ? JSON.parse(user) : ''));
@@ -35,6 +37,15 @@ export class AuthService {
 
   public set currentUserValue(user) {
        this.currentUserSubject.next(user);
+}
+
+public set currentLanguage(language) {
+  this.LANGUAGE = this.languageState.value;
+  this.languageState.next(language);
+}
+
+public get currentLanguage(): string {
+  return this.languageState.value;
 }
 
 

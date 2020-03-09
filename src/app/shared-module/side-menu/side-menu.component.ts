@@ -145,9 +145,21 @@ ngOnInit() {
     isDropDown: false,
     isDisabled: false
   },
+  {
+    pageName: 'Cart',
+    url: '/cart',
+    icon: 'cart-outline',
+    isDropDown: false,
+    isDisabled: false
+  },
 ];
     });
 }
+
+customActionSheetOptions: any = {
+  // header: 'Colors',
+  subHeader: 'Select your language'
+};
 
 ngOnDestroy() {
   this.userSubscription.unsubscribe();
@@ -157,6 +169,12 @@ openFirst() {
     this.menu.enable(true, 'first');
     this.menu.open('first');
   }
+
+// language change detection
+languageChange($event) {
+  this.auth.currentLanguage = $event.target.value;
+  // this.nav.navigateForward('/home');
+}
 
 closeMenu() {
    this.menu.close();
