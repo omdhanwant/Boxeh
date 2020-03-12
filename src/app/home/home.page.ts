@@ -48,7 +48,7 @@ export class HomePage {
       } else  {
 
         
-        this.subscription = this.service.getHomeData(languageState).subscribe(home => {
+        this.subscription = this.service.getHomeData2(languageState).subscribe(home => {
           if (home.code === 200) {
     
             if(event) {
