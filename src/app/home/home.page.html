@@ -83,7 +83,7 @@
               <ion-segment  [(ngModel)]="recipeSegment" (ionChange)="recipeSegmentChanged($event)">
                 <ion-row class="child-segement">
                   <ion-col size="3" text-center class="pt-1 pb-2"  *ngFor='let recipeSegment of content.tablist'>
-                    <ion-segment-button [value]="recipeSegment[0].id" style="background: #e1e1;">
+                    <ion-segment-button [value]="recipeSegment[0].id">
                       <ion-label class="segement-label" style="font-size: 10px;">{{recipeSegment[0].title}}</ion-label>
                     </ion-segment-button>
                   </ion-col>

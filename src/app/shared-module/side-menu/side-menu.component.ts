@@ -56,7 +56,7 @@ ngOnInit() {
     isDisabled: false
 },
   {
-    pageName: 'About',
+    pageName: 'About Boxeh',
     open: false,
     icon: 'paper',
     isDropDown: true,

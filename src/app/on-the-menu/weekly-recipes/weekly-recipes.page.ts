@@ -10,7 +10,8 @@ import { Utils } from 'src/app/shared-module/utils/constants';
   templateUrl: './weekly-recipes.page.html',
   styleUrls: ['./weekly-recipes.page.scss'],
 })
-export class WeeklyRecipesPage implements OnInit { homeData: Home = null;
+export class WeeklyRecipesPage implements OnInit { 
+  weeklyReceipeData: Weekly = null;
   subscription: Subscription;
   segment
   recipeSegment
@@ -25,15 +26,15 @@ export class WeeklyRecipesPage implements OnInit { homeData: Home = null;
   }
 
   initData(event?) {
-    this.subscription = this.service.getHomeData(this.authService.LANGUAGE).subscribe(home => {
+    this.subscription = this.service.getWeeklyReceipe(this.authService.LANGUAGE).subscribe(home => {
       if (home.code === 200) {
 
         if(event) {
           event.target.complete();
         }
-        this.homeData = home;
-        this.segment = this.homeData.data.section_week_recipes.single_recipe_content[0].tab_pane
-        this.recipeSegment = this.homeData.data.section_week_recipes.single_recipe_content[0].tablist[0][0].id
+        this.weeklyReceipeData = home;
+        this.segment = this.weeklyReceipeData.data.section_week_recipes.single_recipe_content[0].tab_pane
+        this.recipeSegment = this.weeklyReceipeData.data.section_week_recipes.single_recipe_content[0].tablist[0][0].id
         this.alertService.dismissLoading();
       } else {
         this.alertService.presentAlert(Utils.ERROR, home.message, [Utils.OK]);
@@ -55,10 +56,10 @@ export class WeeklyRecipesPage implements OnInit { homeData: Home = null;
  
   segmentChanged(ev: any) {
     console.log('Segment changed', ev);
-   const index =  this.homeData.data.section_week_recipes.weeks_to_show.findIndex(weeks => weeks.name === ev.target.innerText);
-    // this.segment = this.homeData.data.section_week_recipes.single_recipe_content[0].tab_pane
+   const index =  this.weeklyReceipeData.data.section_week_recipes.weeks_to_show.findIndex(weeks => weeks.name === ev.target.innerText);
+    // this.segment = this.weeklyReceipeData.data.section_week_recipes.single_recipe_content[0].tab_pane
     if(index !== -1) {
-      this.recipeSegment = this.homeData.data.section_week_recipes.single_recipe_content[index].tablist[0][0].id
+      this.recipeSegment = this.weeklyReceipeData.data.section_week_recipes.single_recipe_content[index].tablist[0][0].id
     }
     
   }

@@ -14,10 +14,11 @@ export class HomePage {
   homeData: Home = null;
   subscription: Subscription;
   langSubscription: Subscription;
-  segment
-  recipeSegment
+  segment;
+  recipeSegment;
 
-  constructor(private service: HomeService, private alertService: AlertService, public authService: AuthService) {}
+  constructor(private service: HomeService, private alertService: AlertService, public authService: AuthService) {
+  }
 
   ionViewWillEnter() {
     if (!this.service.HomeDataState) {
