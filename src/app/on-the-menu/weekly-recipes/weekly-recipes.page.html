@@ -1,4 +1,3 @@
-
 <ion-header>
   <ion-toolbar>
     <ion-menu-button color='primary' slot="start"></ion-menu-button>
@@ -15,7 +14,8 @@
   <ion-slides>
     <ion-slide>
       <!-- <div class="home-banner" style="background-image: url(http://boxeh.net/boxeh/wp-content/uploads/2019/12/Weekly-Header-Sized.jpg);"> -->
-      <div class="home-banner"  [style.background-image]="authService.getBackground(weeklyReceipeData?.data.page_head.bg_cover)">
+      <div class="home-banner"
+        [style.background-image]="authService.getBackground(weeklyReceipeData?.data.page_head.bg_cover)">
         <div class="banner-info">
           <h1 class="page-hero pd-lr-15 fs-20 h1-title">{{weeklyReceipeData?.data.page_head.title}}</h1>
           <div class="pd-lr-15">
@@ -29,47 +29,49 @@
 
   <ion-grid class="section-bg-4 div-ptb">
     <ion-row>
-      <ion-col size="12">
-        <h3 text-center class="text-primary h-3"> {{weeklyReceipeData?.data.section_week_recipes.sub_title}} </h3>
-        <p class="text-center">check out menu for 09 Feb - 15 Feb
-        </p>
-      </ion-col>
-      <ion-col size="12" text-center class="pt-1 pb-4">
-        <ion-segment  [(ngModel)]="segment" (ionChange)="segmentChanged($event)">
+      <!-- parent segements -->
+      <ion-col size="12" text-center class="pt-1 pb-2">
+        <ion-segment  [(ngModel)]="segment" (ionChange)="segmentChanged($event)" >
           <ion-segment-button [value]="work.id" *ngFor='let work of weeklyReceipeData?.data.section_week_recipes.weeks_to_show'>
-            <ion-label style="font-size: 11px;">{{work.name}}</ion-label>
+            <ion-label>{{work.name}}</ion-label>
           </ion-segment-button>
         </ion-segment>
-        <br>
+      </ion-col>
+
+      <!-- child segements -->
+      <ion-col size="12" text-center class="pt-1 pb-2" style="margin-left: -5px;">
         <div [ngSwitch]="segment">
           <ng-container *ngFor='let content of weeklyReceipeData?.data.section_week_recipes.single_recipe_content'>
-            <ng-container *ngSwitchCase="content.tab_pane" >
-              
-                <!-- <ion-segment-button [value]="recipeSegment[0].id" *ngFor='let recipeSegment of content.tablist'>
-                  <ion-label >{{recipeSegment[0].title}}</ion-label>
-                </ion-segment-button> -->
-
-                <ion-row>
-                  <ion-segment  [(ngModel)]="recipeSegment" (ionChange)="recipeSegmentChanged($event)">
-                    <ion-col *ngFor='let recipeSegment of content.tablist' size="6">
-                      <ion-segment-button [value]="recipeSegment[0].id">
-                        <ion-label >{{recipeSegment[0].title}}</ion-label>
-                      </ion-segment-button>
-                    </ion-col>
-                  </ion-segment>
+            <ng-container *ngSwitchCase="content.tab_pane">
+              <ion-segment [(ngModel)]="recipeSegment" (ionChange)="recipeSegmentChanged($event)">
+                <ion-row class="child-segement">
+                  <ion-col size="3" text-center class="pt-1 pb-2" *ngFor='let recipeSegment of content.tablist'>
+                    <ion-segment-button [value]="recipeSegment[0].id">
+                      <ion-label class="segement-label" style="font-size: 10px;">{{recipeSegment[0].title}}</ion-label>
+                    </ion-segment-button>
+                  </ion-col>
                 </ion-row>
+              </ion-segment>
               <div [ngSwitch]="recipeSegment">
                 <ng-container *ngFor='let recipeContent of content.tab_content'>
                   <ng-container *ngFor='let recipes of recipeContent.recipes'>
-                  <ion-card *ngSwitchCase="recipeContent.id">
-                    <ion-card-header>
-                      {{recipes.title}}
-                    </ion-card-header>
-                    <ion-card-content>
-                      {{recipes.content}}
-                    </ion-card-content>
-                  </ion-card>
-                </ng-container>
+                    <ion-card *ngSwitchCase="recipeContent.id">
+                      <ion-card-header class="text-left">
+                        {{recipes.title}}
+                      </ion-card-header>
+                      <span *ngFor="let item of recipes.recipes"><img [src]="item.thumbnail"></span>
+                      <ion-chip *ngFor="let item of recipes.category" outline>
+                        <ion-label color="success">{{item.name}}</ion-label>
+                      </ion-chip>
+                      <ion-card-content class="text-left">
+                        {{recipes.content}}
+                      </ion-card-content>
+                      <hr style="height: 1px; border-top: 2px dashed #91c11e; padding: 0; margin: 0;">
+                      <p
+                        style="display: block; width: 100px; border-right: 1px dashed #91c11e; padding: 12px; margin: 0;">
+                        {{recipes.recipe_cooking_time}}</p>
+                    </ion-card>
+                  </ng-container>
                 </ng-container>
               </div>
             </ng-container>
@@ -78,15 +80,11 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-grid class="section-bg-3 div-ptb" [style.background-image]="authService.getBackground(weeklyReceipeData?.data.section_subscribe.section_background)">
+  <ion-grid class="section-bg-3 div-ptb">
     <ion-row>
-      <ion-col size="12" class="pt-4">
-        <h1 text-center class="fw-600"> {{weeklyReceipeData?.data.section_subscribe.title}} </h1>
-        <p class="text-center" class="fs-16" style="font-size: 16px; padding: 10px 18px; color:#000;" [innerHTML]='weeklyReceipeData?.data.section_subscribe.sub_title'>
-        </p>
-      </ion-col>
       <ion-col size="12" text-center class="pt-1 pb-4">
-        <button routerLink='/boxeh-plans' class="btn btn-primay btn-lg">{{weeklyReceipeData?.data.section_subscribe.button_text}}</button>
+        <button routerLink='/boxeh-plans'
+          class="btn btn-primay btn-lg" style="padding: 0.5rem 1rem; font-size: 1.25rem; line-height: 1.5;">{{weeklyReceipeData?.data.section_footer.text}}</button>
       </ion-col>
     </ion-row>
   </ion-grid>
