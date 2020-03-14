@@ -39,6 +39,10 @@ export class AuthService {
        this.currentUserSubject.next(user);
 }
 
+public get currentLanguageValue() {
+  return this.languageState.value;
+}
+
 public set currentLanguage(language) {
   this.LANGUAGE = this.languageState.value;
   this.languageState.next(language);

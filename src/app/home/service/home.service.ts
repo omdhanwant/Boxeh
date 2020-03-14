@@ -11,6 +11,7 @@ import { User } from 'src/app/shared-module/models/User';
 export class HomeService {
   private homeDataState: BehaviorSubject<Home> = new BehaviorSubject(null);
   private weeklyReceipeDataState: BehaviorSubject<Weekly> = new BehaviorSubject(null);
+  public currentPageLanguage: string = ''
   constructor(private http: HttpClient) { }
 
   get HomeDataState() {
@@ -26,15 +27,15 @@ export class HomeService {
     this.homeDataState.next(null);
   }
 
-  getHomeData(language) {
-    const time = new Date();
-    return this.http.get(`${environment.hostUrl}/boxeh/apis/page-home.php?lang=${language}&type=` + time.getTime())
-      .pipe(
-        map((response: Home) => {
-          this.homeDataState.next(response);
-          return response;
-        }));
-  }
+  // getHomeData(language) {
+  //   const time = new Date();
+  //   return this.http.get(`${environment.hostUrl}/boxeh/apis/page-home.php?lang=${language}&type=` + time.getTime())
+  //     .pipe(
+  //       map((response: Home) => {
+  //         this.homeDataState.next(response);
+  //         return response;
+  //       }));
+  // }
 
 
   getHomeData2(language) {
