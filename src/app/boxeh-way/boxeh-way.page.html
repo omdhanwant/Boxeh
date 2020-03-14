@@ -36,7 +36,7 @@
         <span style="padding:0; text-align: center; color: #212529;" *ngFor="let data of boxehWhy?.data.section_how_it_works[0].toggle_repeater">
           <p><img [src]="data.icon" width="100"></p>
           <p class="fs-16">{{data.title}}</p>  
-          <p class="fs-16" style="padding: 0 30px;">{{data.subtitle}}</p>
+          <p class="fs-16 fw-600" style="padding: 0 30px;">{{data.subtitle}}</p>
           <br><br>
         </span>
       </ion-col>
@@ -60,7 +60,7 @@
         <span style="padding:0; text-align: center;color: #212529;" *ngFor="let data of boxehWhy?.data.section_how_it_works[1].toggle_repeater">
           <p><img [src]="data.icon" width="100"></p>
           <p class="fs-16">{{data.title}}</p>  
-          <p class="fs-16" style="padding: 0 30px;">{{data.subtitle}}</p>
+          <p class="fs-16 fw-600" style="padding: 0 30px;">{{data.subtitle}}</p>
           <br><br>
         </span>
       </ion-col>
@@ -82,7 +82,7 @@
         <span style="padding:0; text-align: center;color: #212529;" *ngFor="let data of boxehWhy?.data.section_how_it_works[2].toggle_repeater">
           <p><img [src]="data.icon" width="100"></p>
           <p class="fs-16">{{data.title}}</p>  
-          <p class="fs-16" style="padding: 0 30px;">{{data.subtitle}}</p>
+          <p class="fs-16 fw-600" style="padding: 0 30px;">{{data.subtitle}}</p>
           <br><br>
         </span>
       </ion-col>
@@ -94,7 +94,7 @@
       <ion-col size="12" style="padding: 145px 0; height: 400px;">
         <div class="d-block text-center">
           <h1 class="grey" style="color: #343434;font-weight: 600;width: 300px;text-align: center;margin: auto;font-size: 30px;">{{boxehWhy?.data.section_subscribe.title}}</h1>
-          <ion-button color='primary' size="samll" type="submit" style="border-radius: 15px; box-shadow: none; border: none; text-transform: capitalize;" margin-top >
+          <ion-button color='primary' size="samll" type="submit" class="mt-4" style="border-radius: 15px; box-shadow: none; border: none; text-transform: capitalize;" margin-top >
             {{boxehWhy?.data.section_subscribe.button_text}}
           </ion-button>
         </div>

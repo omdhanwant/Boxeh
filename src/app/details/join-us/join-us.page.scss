@@ -68,6 +68,8 @@ hr{
 }
 .paragraph-text-size{
     font-size: 1rem;
+    font-weight: 600;
+    color: #212529!important;
 }
 
 
@@ -104,4 +106,9 @@ hr{
     font-size: 7px;
     position: relative;
     top: -4px;
+}
+.input-text{
+    color: #495057;
+    background-color: #ebebeb;
+    border: 2px solid #91c11e;
 }
