@@ -21,7 +21,9 @@ export class OurCollaboratorsPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.alertService.presentLoading('Please wait...');
+    if (!this.service.CollaboratorsDataState) {
+      this.alertService.presentLoading('Please wait...');
+    }
   }
 
   getBackground(image) {

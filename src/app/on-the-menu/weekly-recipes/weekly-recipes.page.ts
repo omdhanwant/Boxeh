@@ -13,34 +13,51 @@ import { Utils } from 'src/app/shared-module/utils/constants';
 export class WeeklyRecipesPage implements OnInit { 
   weeklyReceipeData: Weekly = null;
   subscription: Subscription;
+  langSubscription: Subscription;
   segment
   recipeSegment
 
   constructor(private service: HomeService, private alertService: AlertService, public authService: AuthService) {}
 
   ionViewWillEnter() {
-    this.alertService.presentLoading('Please wait...');
+    if (!this.service.WeeklyReceipeDataState) {
+      this.alertService.presentLoading('Please wait...');
+    }
   }
 
   ngOnInit() {
   }
 
   initData(event?) {
-    this.subscription = this.service.getWeeklyReceipe(this.authService.LANGUAGE).subscribe(home => {
-      if (home.code === 200) {
+    this.langSubscription =  this.authService.$currentLanguage.subscribe(languageState => {
 
-        if(event) {
-          event.target.complete();
-        }
-        this.weeklyReceipeData = home;
-        this.segment = this.weeklyReceipeData.data.section_week_recipes.single_recipe_content[0].tab_pane
-        this.recipeSegment = this.weeklyReceipeData.data.section_week_recipes.single_recipe_content[0].tablist[0][0].id
-        this.alertService.dismissLoading();
-      } else {
-        this.alertService.presentAlert(Utils.ERROR, home.message, [Utils.OK]);
-        this.alertService.dismissLoading();
+      if (this.authService.LANGUAGE !== languageState) {
+        this.alertService.presentLoading('Please wait...');
+        this.service.refreshState();
+      } 
+      
+      if (this.service.WeeklyReceipeDataState) {
+        this.weeklyReceipeData = this.service.WeeklyReceipeDataState;
+      } else  {
+        this.subscription = this.service.getWeeklyReceipe(this.authService.LANGUAGE).subscribe(home => {
+          if (home.code === 200) {
+    
+            if(event) {
+              event.target.complete();
+            }
+            this.weeklyReceipeData = home;
+            this.segment = this.weeklyReceipeData.data.section_week_recipes.single_recipe_content[0].tab_pane
+            this.recipeSegment = this.weeklyReceipeData.data.section_week_recipes.single_recipe_content[0].tablist[0][0].id
+            this.alertService.dismissLoading();
+          } else {
+            this.alertService.presentAlert(Utils.ERROR, home.message, [Utils.OK]);
+            this.alertService.dismissLoading();
+          }
+        });
       }
-    });
+    })
+
+   
   }
 
   ionViewDidEnter() {
@@ -48,6 +65,7 @@ export class WeeklyRecipesPage implements OnInit {
   }
 
   refresh(event) {
+    this.service.refreshState(); // refresh state
     this.alertService.presentLoading('Please wait...');
     this.initData(event);
   }
@@ -66,6 +84,10 @@ export class WeeklyRecipesPage implements OnInit {
 
   recipeSegmentChanged(event) {
     console.log('Segment changed', event);
-    
+  }
+  
+  ionViewDidLeave(){
+    this.langSubscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }
