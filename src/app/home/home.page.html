@@ -10,7 +10,7 @@
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-slides class="TwoPx-border">
+  <ion-slides>
     <ion-slide>
       <div class="home-banner" [style.background-image]="authService.getBackground(homeData?.data.page_head.bg_cover)">
         <div class="banner-info" style="top: 100px;">

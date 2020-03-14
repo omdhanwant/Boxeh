@@ -55,7 +55,7 @@
               <div [ngSwitch]="recipeSegment">
                 <ng-container *ngFor='let recipeContent of content.tab_content'>
                   <ng-container *ngFor='let recipes of recipeContent.recipes'>
-                    <ion-card *ngSwitchCase="recipeContent.id">
+                    <!-- <ion-card *ngSwitchCase="recipeContent.id">
                       <ion-card-header class="text-left">
                         {{recipes.title}}
                       </ion-card-header>
@@ -70,7 +70,31 @@
                       <p
                         style="display: block; width: 100px; border-right: 1px dashed #91c11e; padding: 12px; margin: 0;">
                         {{recipes.recipe_cooking_time}}</p>
-                    </ion-card>
+                    </ion-card> -->
+
+
+                    <div class="single-item  align-content-stretch" style="display: flex">
+                      <div class="card">
+                        <div *ngFor="let item of recipes.recipes">
+                          <img class="card-img-top" [src]="item.thumbnail">
+                          </div>
+                        <div class="card-body p-2">
+                          <span *ngFor="let item of recipes.category">
+                            <span class="badge badge-primary font-light small">
+                              {{item.name}}
+                            </span>
+                          </span>
+                          <h5 class="card-title mt-2"></h5>
+                          <p class="card-text font-light font-14">
+                            {{recipes.content}}
+                          </p>
+                        </div>
+                        <div class="card-footer">
+                          <span class="cook-time text-secondary font-weight-bold">{{recipes.recipe_cooking_time}}</span>
+                          <span class="extra font-14 font-light"></span>
+                        </div>
+                      </div>
+                    </div>
                   </ng-container>
                 </ng-container>
               </div>
@@ -80,12 +104,18 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-grid class="section-bg-3 div-ptb">
+  <!-- <ion-grid class="section-bg-3 div-ptb">
     <ion-row>
       <ion-col size="12" text-center class="pt-1 pb-4">
         <button routerLink='/boxeh-plans'
           class="btn btn-primay btn-lg" style="padding: 0.5rem 1rem; font-size: 1.25rem; line-height: 1.5;">{{weeklyReceipeData?.data.section_footer.text}}</button>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
+  <div style="position: fixed;bottom: 0;left: 0;right: 0;">
+  <div class="text text-center text-secondary joinUsButton">
+        <button routerLink='/boxeh-plans'
+        class="btn btn-primay btn-lg stickybtn" style="padding: 0.5rem 1rem; font-size: 1.25rem; line-height: 1.5;">{{weeklyReceipeData?.data.section_footer.text}}</button>
+</div>
+</div>
 </ion-content>
