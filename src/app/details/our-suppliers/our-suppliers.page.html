@@ -6,33 +6,16 @@
 </ion-header>
 <ion-content>
   <ion-grid class="pt-0 pl-0 pr-0">
-    <ion-row class="img-hero-banner">
+    <ion-row class="img-hero-banner" [style.background-image]="authService.getBackground(supplierData?.data.page_head.bg_cover)">
       <ion-col text-center></ion-col>
     </ion-row>
     <ion-row>
       <ion-col size="12" class="pl-4 pr-4">
-        <!-- <div class="bg-white pl-3 pr-3 border-1">
-          <h4 class="text-primary">About Suppliers</h4>
-          <hr>
-          <div class="page-content">
-            <p class="intro-content">At Boxeh, we don’t compromise on quality. We thoughtfully source the best seasonal ingredients from trusted local suppliers and importers. Learn more about our suppliers by exploring their profiles and products below.</p>
-<hr>
-<h4><span style="color: #91c11e;">Moo Premium Foods</span></h4>
-<img src="../../../assets/suppliers/moo_dairy.jpg">
-<h5>http://www.moopremiumfoods.com.au/</h5>
-<p>As a proudly Australian family owned company, Moo Premium Foods are passionate about letting their dedication to quality shine through in our delicious range of dairy products. Find their delicious greek yoghurt lending its creamy texture to curries, Middle Eastern Mezze plates and indulgent soups.</p>
-<hr>
-<h4><span style="color: #91c11e;">Meredith Dairy</span></h4>
-<img src="../../../assets/suppliers/meredith.jpg">
-<h5>http://meredithdairy.com/</h5>
-<p>Meredith Dairy is an on-farm family run enterprise, milking sheep and goats year-round to make specialty cheeses and yoghurts. Their mission is to provide high quality, excellent sheep and goat milk products, made in a socially and environmentally responsible business; from milk produced according to leading standards of environmental management and animal husbandry. HelloFresh loves working with this Australian brand who have artisan production methods and environmental sustainability at the core of their business.</p>
-        </div>
-        </div> -->
         <article class="simple-card">
-          <h1 class="text-primary supplier-main-title our-heading">Our Suppliers</h1>
+          <h1 class="text-primary supplier-main-title our-heading">{{supplierData?.data.page_head.page_title}}</h1>
           <div class="page-content">
-              <p class="intro-content">
-                At Boxeh, we don’t compromise on quality. We thoughtfully source the best seasonal ingredients from trusted local suppliers and importers. Learn more about our suppliers by exploring their profiles and products below.
+              <p class="intro-content" style="color: #212529; font-weight: 900;">
+                {{supplierData?.data.page_head.page_content}}
               </p>
           </div>
       </article>
@@ -42,44 +25,26 @@
     <div style="background: none; border-bottom: 2px dotted #91c11e;"></div>
 
     <ion-row class="bg-white">
-      <ion-col size="12" class="pb-3">
-          <ion-card>
-            <img src="http://boxeh.net/boxeh/wp-content/uploads/2019/03/moo_dairy.jpg" class="p-20px" />
+      <ion-col size="12" class="pb-3" *ngFor="let item of supplierData?.data.suppliers">
+          <ion-card style="border: none; box-shadow: none;">
+            <img [src]="item.supplier_image" class="p-20px" />
             <ion-card-header class="pt-0">
               <!-- <ion-card-subtitle>Destination</ion-card-subtitle> -->
-              <ion-card-title>Moo Premium Foods</ion-card-title>
+              <ion-card-title style="color: #212529; font-weight: 900; text-align: center;">{{item.supplier_name}}</ion-card-title>
             </ion-card-header>
             <ion-card-content>
-              <p>As a proudly Australian family owned company, Moo Premium Foods are passionate about letting their dedication to quality shine through in our delicious range of dairy products. Find their delicious greek yoghurt lending its creamy texture to curries, Middle Eastern Mezze plates and indulgent soups.</p>
-              <p class="fs-16"><a href="http://www.moopremiumfoods.com.au/">http://www.moopremiumfoods.com.au/</a></p>
+              <p class="linkp" [innerHTML]='item.supplier_details'></p>
             </ion-card-content>
           </ion-card>
       </ion-col>
-      <ion-col size="12" class="pb-3">
-        <ion-card>
-          <img src="http://boxeh.net/boxeh/wp-content/uploads/2019/03/image002.jpg" class="p-20px"/>
-          <ion-card-header class="pt-0">
-            <ion-card-title>
-              Meredith Dairy
-            </ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p>
-              Meredith Dairy is an on-farm family run enterprise, milking sheep and goats year-round to make specialty cheeses and yoghurts. Their mission is to provide high quality, excellent sheep and goat milk products, made in a socially and environmentally responsible business; from milk produced according to leading standards of environmental management and animal husbandry. HelloFresh loves working with this Australian brand who have artisan production methods and environmental sustainability at the core of their business.
-            </p>
-            <p class="fs-16"><a href="">http://meredithdairy.com/</a></p>
-
-          </ion-card-content>
-        </ion-card>
-    </ion-col>
     </ion-row>
     
 
 
     <ion-row class="pb-4 pt-1">
       <ion-col size="12" class="text-center">
-        <p class="pb-2 fs-18 mt-0 mb-0">more info </p> 
-        <button class="btn btn-primay btn-lg fs-18" routerLink="/contact-us">Contact Us</button>
+        <p class="pb-2 fs-18 mt-0 mb-0" [innerHTML]='supplierData?.data.page_bottom.title'> </p> 
+        <button class="btn btn-primay" style="background-color: #a0c643; border: 2px solid #a0c643; color: #fff !important; font-size: 16px; padding: 8px 38px; border-radius: 12px; font-weight: 900;" routerLink="/contact-us">{{supplierData?.data.page_bottom.linktext}}</button>
       </ion-col>
     </ion-row>
   </ion-grid>
