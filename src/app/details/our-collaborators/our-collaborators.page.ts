@@ -4,6 +4,7 @@ import { AlertService } from 'src/app/shared-module/shared-services/alert-servic
 import { Utils } from 'src/app/shared-module/utils/constants';
 import { Subscription } from 'rxjs';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { AuthService } from '../../shared-module/shared-services/auth.service';
 
 @Component({
   selector: 'app-our-collaborators',
@@ -12,8 +13,9 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browse
 })
 export class OurCollaboratorsPage implements OnInit {
   OurCollaborators: OurCollaborators = null;
-  subs: Subscription;
-  constructor(private service: Service, private alertService: AlertService, private _sanitizer: DomSanitizer) { }
+  subscription: Subscription;
+  langSubscription: Subscription;
+  constructor(private service: Service, private authService: AuthService, private alertService: AlertService, private _sanitizer: DomSanitizer) { }
 
   ngOnInit() {
   }
@@ -25,35 +27,46 @@ export class OurCollaboratorsPage implements OnInit {
   getBackground(image) {
       return this._sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0), rgba(16, 16, 23, 0.5)), url(${image})`);
   }
-  ionViewDidEnter() {
-    this.subs = this.service.getCollborators().subscribe(OurCollaboratorsResponse => {
-      if (OurCollaboratorsResponse.code === 200) {
+  
+  initData(event?) {
+    this.langSubscription =  this.authService.$currentLanguage.subscribe(languageState => {
 
-        this.OurCollaborators = OurCollaboratorsResponse;
-        this.alertService.dismissLoading();
-      } else {
-        this.alertService.presentAlert(Utils.ERROR, OurCollaboratorsResponse.message, [Utils.OK]);
-        this.alertService.dismissLoading();
+      if (this.authService.LANGUAGE !== languageState) {
+        this.alertService.presentLoading('Please wait...');
+        this.service.refreshState();
+      } 
+      if (this.service.CollaboratorsDataState) {
+        this.OurCollaborators = this.service.CollaboratorsDataState;
+      } else  {
+        this.subscription = this.service.getCollborators(this.authService.LANGUAGE).subscribe(responseData => {
+          if (responseData.code === 200) {
+    
+            if(event) {
+              event.target.complete();
+            }
+            this.OurCollaborators = responseData;
+            this.alertService.dismissLoading();
+          } else {
+            this.alertService.presentAlert(Utils.ERROR, responseData.message, [Utils.OK]);
+            this.alertService.dismissLoading();
+          }
+        });
       }
-    });
+
+    })
+  }
+  ionViewDidEnter() {
+    this.initData();
   }
 
   refresh(event) {
+    this.service.refreshState(); // refresh state
     this.alertService.presentLoading('Please wait...');
-    this.subs = this.service.getCollborators().subscribe(OurCollaboratorsResponse => {
-      if (OurCollaboratorsResponse.code === 200) {
-        event.target.complete();
-        this.OurCollaborators = OurCollaboratorsResponse;
-        this.alertService.dismissLoading();
-      } else {
-        this.alertService.presentAlert(Utils.ERROR, OurCollaboratorsResponse.message, [Utils.OK]);
-        this.alertService.dismissLoading();
-      }
-    });
+    this.initData(event);
   }
 
-
   ionViewWillLeave() {
-    this.subs.unsubscribe();
+    this.langSubscription.unsubscribe();
+    this.subscription.unsubscribe();
   }
 }

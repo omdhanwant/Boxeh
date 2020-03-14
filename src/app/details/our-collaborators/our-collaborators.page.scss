@@ -8,11 +8,12 @@
     background-position: center;
   }
 .img-hero-banner{
-    background: url("../../../assets/banners/collaborators.jpg");
+    // background: url("../../../assets/banners/collaborators.jpg");
     background-size: cover;
     background-origin: content-box;
     background-repeat: no-repeat;
     background-position: top;
+    height: 200px;
 }
  .page-hero-banner {
     width: 300px;background: #ffffff82;margin-left: auto;margin-right: auto;
@@ -45,4 +46,12 @@ hr{
     background-repeat: no-repeat !important;
     background-position: top !important;
     height: 200px;
+}
+
+.p_span{
+    font-weight: 900;
+}
+
+.p_span span{
+    color: #91c11e !important;
 }
