@@ -84,3 +84,10 @@ p a {
     background-position: center;
     height: 200px;
 }
+
+select option{
+    font-size: 14px;
+}
+select:focus{
+    outline:unset;
+}
