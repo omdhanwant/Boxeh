@@ -55,7 +55,7 @@ export class HomePage {
               event.target.complete();
             }
             this.homeData = home;
-            this.segment = this.homeData.data.section_week_recipes.single_recipe_content[0].tab_pane
+            this.segment = this.homeData.data.section_week_recipes.single_recipe_content[0 + 1].tab_pane
             this.recipeSegment = this.homeData.data.section_week_recipes.single_recipe_content[0].tablist[0][0].id
             this.dismissLoader();
           } else {
