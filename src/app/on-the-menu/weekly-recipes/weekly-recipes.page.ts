@@ -19,27 +19,28 @@ export class WeeklyRecipesPage implements OnInit {
 
   constructor(private service: HomeService, private alertService: AlertService, public authService: AuthService) {}
 
-  ionViewWillEnter() {
-    if (!this.service.WeeklyReceipeDataState) {
-      this.alertService.presentLoading('Please wait...');
-    }
-  }
+  // ionViewWillEnter() {
+  //   if (!this.service.WeeklyReceipeDataState) {
+  //     this.alertService.presentLoading('Please wait...');
+  //   }
+  // }
 
   ngOnInit() {
   }
 
   initData(event?) {
     this.langSubscription =  this.authService.$currentLanguage.subscribe(languageState => {
-
-      if (this.authService.LANGUAGE !== languageState) {
+      
+      if (this.service.currentPageLanguage !== languageState) {
+        this.service.currentPageLanguage = languageState
         this.alertService.presentLoading('Please wait...');
         this.service.refreshState();
+  
       } 
-      
       if (this.service.WeeklyReceipeDataState) {
         this.weeklyReceipeData = this.service.WeeklyReceipeDataState;
       } else  {
-        this.subscription = this.service.getWeeklyReceipe(this.authService.LANGUAGE).subscribe(home => {
+        this.subscription = this.service.getWeeklyReceipe(languageState).subscribe(home => {
           if (home.code === 200) {
     
             if(event) {
@@ -48,10 +49,10 @@ export class WeeklyRecipesPage implements OnInit {
             this.weeklyReceipeData = home;
             this.segment = this.weeklyReceipeData.data.section_week_recipes.single_recipe_content[0 + 1].tab_pane
             this.recipeSegment = this.weeklyReceipeData.data.section_week_recipes.single_recipe_content[0].tablist[0][0].id
-            this.alertService.dismissLoading();
+            this.dismissLoader();
           } else {
             this.alertService.presentAlert(Utils.ERROR, home.message, [Utils.OK]);
-            this.alertService.dismissLoading();
+            this.dismissLoader();
           }
         });
       }
@@ -60,17 +61,23 @@ export class WeeklyRecipesPage implements OnInit {
    
   }
 
+  dismissLoader() {
+    setTimeout(() => {
+      this.alertService.dismissLoading();
+    }, 100); 
+  }
+
+
   ionViewDidEnter() {
     this.initData();
   }
+
 
   refresh(event) {
     this.service.refreshState(); // refresh state
     this.alertService.presentLoading('Please wait...');
     this.initData(event);
   }
-
-  
  
   segmentChanged(ev: any) {
     console.log('Segment changed', ev);
@@ -87,7 +94,7 @@ export class WeeklyRecipesPage implements OnInit {
   }
   
   ionViewDidLeave(){
-    this.langSubscription.unsubscribe();
-    this.subscription.unsubscribe();
-  }
+    if (this.langSubscription) this.langSubscription.unsubscribe();
+    if (this.subscription) this.subscription.unsubscribe();
+   }
 }

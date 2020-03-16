@@ -49,7 +49,7 @@ export class OurSuppliersPage implements OnInit {
         this.supplierData = this.service.SupplierDataState;
   
       } else  {
-        this.subscription = this.service.getSupplier(this.authService.LANGUAGE).subscribe(home => {
+        this.subscription = this.service.getSupplier(languageState).subscribe(home => {
           if (home.code === 200) {
     
             if(event) {
