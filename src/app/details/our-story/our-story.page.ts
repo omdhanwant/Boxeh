@@ -4,6 +4,7 @@ import { AlertService } from 'src/app/shared-module/shared-services/alert-servic
 import { Utils } from 'src/app/shared-module/utils/constants';
 import { Subscription } from 'rxjs';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { AuthService } from 'src/app/shared-module/shared-services/auth.service';
 
 @Component({
   selector: 'app-our-story',
@@ -12,49 +13,76 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browse
 })
 export class OurStoryPage implements OnInit {
   ourStory: OurStory = null;
-  subs: Subscription;
-  constructor(private service: Service, private alertService: AlertService, private _sanitizer: DomSanitizer) { }
+  subscription: Subscription;
+  langSubscription: Subscription;
+  segment;
+  recipeSegment;
+
+  constructor(private service: Service, private alertService: AlertService, public authService: AuthService,  private _sanitizer: DomSanitizer) { }
 
   ngOnInit() {
   }
 
-  ionViewWillEnter() {
-    this.alertService.presentLoading('Please wait...');
-  }
-
   getBackground(image) {
-      return this._sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0), rgba(16, 16, 23, 0.5)), url(${image})`);
-  }
-  ionViewDidEnter() {
-    this.subs = this.service.getOurStory().subscribe(ourStoryResponse => {
-      if (ourStoryResponse.code === 200) {
+    return this._sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0), rgba(16, 16, 23, 0.5)), url(${image})`);
+}
+  initData(event?) {
 
-        this.ourStory = ourStoryResponse;
-        this.alertService.dismissLoading();
-      } else {
-        this.alertService.presentAlert(Utils.ERROR, ourStoryResponse.message, [Utils.OK]);
-        this.alertService.dismissLoading();
+    this.langSubscription =  this.authService.$currentLanguage.subscribe(languageState => {
+
+      if (this.service.currentPageLanguage !== languageState) {
+        this.service.currentPageLanguage = languageState
+        this.alertService.presentLoading('Please wait...');
+        this.service.refreshState();
+  
+      } 
+      
+      
+      if (this.service.OursStoryDataState) {
+        
+        this.ourStory = this.service.OursStoryDataState;
+  
+      } else  {
+
+        this.subscription = this.service.getOurStory(languageState).subscribe(home => {
+          if (home.code === 200) {
+    
+            if(event) {
+              event.target.complete();
+            }
+            this.ourStory = home;
+            this.dismissLoader();
+          } else {
+            this.alertService.presentAlert(Utils.ERROR, home.message, [Utils.OK]);
+            this.dismissLoader();
+          }
+        });
       }
-    });
+    })
+
+
+
   }
+
+  dismissLoader() {
+    setTimeout(() => {
+      this.alertService.dismissLoading();
+    }, 100); 
+  }
+
+  ionViewDidEnter() {
+    this.initData();
+  }
+
 
   refresh(event) {
+    this.service.refreshState(); // refresh state
     this.alertService.presentLoading('Please wait...');
-    this.subs = this.service.getOurStory().subscribe(ourStoryResponse => {
-      if (ourStoryResponse.code === 200) {
-        event.target.complete();
-        this.ourStory = ourStoryResponse;
-        this.alertService.dismissLoading();
-      } else {
-        this.alertService.presentAlert(Utils.ERROR, ourStoryResponse.message, [Utils.OK]);
-        this.alertService.dismissLoading();
-      }
-    });
+    this.initData(event);
   }
 
-
-  ionViewWillLeave() {
-    this.subs.unsubscribe();
+  ionViewDidLeave(){
+   if (this.langSubscription) this.langSubscription.unsubscribe();
+   if (this.subscription) this.subscription.unsubscribe();
   }
-
 }

@@ -13,7 +13,8 @@ import { AuthService } from '../shared-module/shared-services/auth.service';
 })
 export class BoxehWayPage implements OnInit {
   boxehWhy: BoxehWhy = null;
-  subs: Subscription;
+  subscription: Subscription;
+  langSubscription: Subscription;
   toggle1:boolean;
   toggle2:boolean;
   toggle3:boolean;
@@ -22,50 +23,58 @@ export class BoxehWayPage implements OnInit {
   ngOnInit() {
   }
 
-  ionViewWillEnter() {
-    if (!this.service.BoxehWayDataState) {
-      this.alertService.presentLoading('Please wait...');
-    }
-  }
-
-
   initData(event?) {
-    if (this.service.BoxehWayDataState) {
+      this.langSubscription =  this.authService.$currentLanguage.subscribe(languageState => {
 
-      this.boxehWhy = this.service.BoxehWayDataState;
+        if (this.service.currentPageLanguage !== languageState) {
+          this.service.currentPageLanguage = languageState
+          this.alertService.presentLoading('Please wait...');
+          this.service.refreshState();
+    
+        } 
+        
+      if (this.service.BoxehWayDataState) {
 
-    } else  {
+        this.boxehWhy = this.service.BoxehWayDataState;
 
-      this.subs = this.service.getBoxehWhy().subscribe(boxehWay => {
-        if (boxehWay.code === 200) {
-  
-          if(event) {
-            event.target.complete();
+      } else  {
+        this.subscription = this.service.getBoxehWhy(languageState).subscribe(boxehWay => {
+          if (boxehWay.code === 200) {
+    
+            if(event) {
+              event.target.complete();
+            }
+            this.boxehWhy = boxehWay;
+            this.dismissLoader();
+          } else {
+            this.alertService.presentAlert(Utils.ERROR, boxehWay.message, [Utils.OK]);
+            this.dismissLoader();
           }
-          this.boxehWhy = boxehWay;
-          this.alertService.dismissLoading();
-        } else {
-          this.alertService.presentAlert(Utils.ERROR, boxehWay.message, [Utils.OK]);
-          this.alertService.dismissLoading();
-        }
-      });
-    }
+        });
+      }
+    })
   }
 
+  dismissLoader() {
+    setTimeout(() => {
+      this.alertService.dismissLoading();
+    }, 100); 
+  }
 
   ionViewDidEnter() {
-      this.initData()
+    this.initData();
   }
 
+
   refresh(event) {
-    this.service.refreshState();
+    this.service.refreshState(); // refresh state
     this.alertService.presentLoading('Please wait...');
     this.initData(event);
   }
 
-
-  ionViewWillLeave() {
-    this.subs.unsubscribe();
+  ionViewDidLeave(){
+   if (this.langSubscription) this.langSubscription.unsubscribe();
+   if (this.subscription) this.subscription.unsubscribe();
   }
 
   toggleSection1(){

@@ -9,6 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class Service {
   private boxehWayDataState: BehaviorSubject<BoxehWhy> = new BehaviorSubject(null);
+  public currentPageLanguage: string = ''
   constructor(private http: HttpClient) { }
 
   get BoxehWayDataState() {
@@ -20,12 +21,23 @@ export class Service {
   }
 
 
-  getBoxehWhy() {
+  // getBoxehWhy() {
+  //   const time = new Date();
+  //   return this.http.get(`${environment.hostUrl}/boxeh/apis/page-the_boxeh_way.php?type=` + time.getTime())
+  //     .pipe(
+  //       map((response: BoxehWhy) => {
+  //         this.boxehWayDataState.next(response)
+  //         return response;
+  //       }));
+  // }
+
+  getBoxehWhy(language) {
+    const data = {lang: language};
     const time = new Date();
-    return this.http.get(`${environment.hostUrl}/boxeh/apis/page-the_boxeh_way.php?type=` + time.getTime())
+    return this.http.post(`${environment.hostUrl}/boxeh/apis/page-the_boxeh_way.php?type=` + time.getTime(), data)
       .pipe(
         map((response: BoxehWhy) => {
-          this.boxehWayDataState.next(response)
+          this.boxehWayDataState.next(response);
           return response;
         }));
   }
