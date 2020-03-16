@@ -20,11 +20,11 @@ export class OurCollaboratorsPage implements OnInit {
   ngOnInit() {
   }
 
-  ionViewWillEnter() {
-    if (!this.service.CollaboratorsDataState) {
-      this.alertService.presentLoading('Please wait...');
-    }
-  }
+  // ionViewWillEnter() {
+  //   if (!this.service.CollaboratorsDataState) {
+  //     this.alertService.presentLoading('Please wait...');
+  //   }
+  // }
 
   getBackground(image) {
       return this._sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0), rgba(16, 16, 23, 0.5)), url(${image})`);
@@ -47,7 +47,7 @@ export class OurCollaboratorsPage implements OnInit {
       if (this.service.CollaboratorsDataState) {
         this.OurCollaborators = this.service.CollaboratorsDataState;
       } else  {
-        this.subscription = this.service.getCollborators(this.authService.LANGUAGE).subscribe(responseData => {
+        this.subscription = this.service.getCollborators(languageState).subscribe(responseData => {
           if (responseData.code === 200) {
     
             if(event) {
