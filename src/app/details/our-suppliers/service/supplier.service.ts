@@ -10,6 +10,7 @@ import { User } from 'src/app/shared-module/models/User';
 })
 export class SupplierService {
   private supplierDataState: BehaviorSubject<Supplier> = new BehaviorSubject(null);
+  public currentPageLanguage: string = ''
   constructor(private http: HttpClient) { }
 
 

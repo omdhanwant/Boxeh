@@ -19,11 +19,11 @@ export class OurSuppliersPage implements OnInit {
 
   constructor(private service: SupplierService, private alertService: AlertService, public authService: AuthService) {}
 
-  ionViewWillEnter() {
-    if (!this.service.SupplierDataState) {
-      this.alertService.presentLoading('Please wait...');
-    }
-  }
+  // ionViewWillEnter() {
+  //   if (!this.service.SupplierDataState) {
+  //     this.alertService.presentLoading('Please wait...');
+  //   }
+  // }
 
 
   ngOnInit() {
@@ -33,9 +33,15 @@ export class OurSuppliersPage implements OnInit {
 
     this.langSubscription =  this.authService.$currentLanguage.subscribe(languageState => {
 
-      if (this.authService.LANGUAGE !== languageState) {
+      // if (this.authService.LANGUAGE !== languageState) {
+      //   this.alertService.presentLoading('Please wait...');
+      //   this.service.refreshState();
+      // } 
+      if (this.service.currentPageLanguage !== languageState) {
+        this.service.currentPageLanguage = languageState
         this.alertService.presentLoading('Please wait...');
         this.service.refreshState();
+  
       } 
       
       if (this.service.SupplierDataState) {
@@ -50,17 +56,22 @@ export class OurSuppliersPage implements OnInit {
               event.target.complete();
             }
             this.supplierData = home;
-            this.alertService.dismissLoading();
+            // this.alertService.dismissLoading();
+            this.dismissLoader();
           } else {
             this.alertService.presentAlert(Utils.ERROR, home.message, [Utils.OK]);
-            this.alertService.dismissLoading();
+            // this.alertService.dismissLoading();
+            this.dismissLoader();
           }
         });
       }
     })
+  }
 
-
-
+  dismissLoader() {
+    setTimeout(() => {
+      this.alertService.dismissLoading();
+    }, 100); 
   }
 
   ionViewDidEnter() {
@@ -73,9 +84,10 @@ export class OurSuppliersPage implements OnInit {
     this.initData(event);
   }
 
+ 
   ionViewDidLeave(){
-    this.langSubscription.unsubscribe();
-    this.subscription.unsubscribe();
-  }
+    if (this.langSubscription) this.langSubscription.unsubscribe();
+    if (this.subscription) this.subscription.unsubscribe();
+   }
 
 }

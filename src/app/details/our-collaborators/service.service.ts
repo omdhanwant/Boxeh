@@ -11,6 +11,7 @@ import { User } from 'src/app/shared-module/models/User';
 export class Service {
 
   private collaboratorsDataState: BehaviorSubject<OurCollaborators> = new BehaviorSubject(null);
+  public currentPageLanguage: string = ''
   constructor(private http: HttpClient) { }
 
 

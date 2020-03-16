@@ -33,10 +33,17 @@ export class OurCollaboratorsPage implements OnInit {
   initData(event?) {
     this.langSubscription =  this.authService.$currentLanguage.subscribe(languageState => {
 
-      if (this.authService.LANGUAGE !== languageState) {
+      // if (this.authService.LANGUAGE !== languageState) {
+      //   this.alertService.presentLoading('Please wait...');
+      //   this.service.refreshState();
+      // } 
+      if (this.service.currentPageLanguage !== languageState) {
+        this.service.currentPageLanguage = languageState
         this.alertService.presentLoading('Please wait...');
         this.service.refreshState();
+  
       } 
+
       if (this.service.CollaboratorsDataState) {
         this.OurCollaborators = this.service.CollaboratorsDataState;
       } else  {
@@ -47,28 +54,36 @@ export class OurCollaboratorsPage implements OnInit {
               event.target.complete();
             }
             this.OurCollaborators = responseData;
-            this.alertService.dismissLoading();
+            this.dismissLoader();
           } else {
             this.alertService.presentAlert(Utils.ERROR, responseData.message, [Utils.OK]);
-            this.alertService.dismissLoading();
+            this.dismissLoader();
           }
         });
       }
 
     })
   }
+
+  dismissLoader() {
+    setTimeout(() => {
+      this.alertService.dismissLoading();
+    }, 100); 
+  }
+
   ionViewDidEnter() {
     this.initData();
   }
+
 
   refresh(event) {
     this.service.refreshState(); // refresh state
     this.alertService.presentLoading('Please wait...');
     this.initData(event);
   }
-
-  ionViewWillLeave() {
-    this.langSubscription.unsubscribe();
-    this.subscription.unsubscribe();
-  }
+  
+  ionViewDidLeave(){
+    if (this.langSubscription) this.langSubscription.unsubscribe();
+    if (this.subscription) this.subscription.unsubscribe();
+   }
 }
