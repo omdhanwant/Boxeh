@@ -1,15 +1,150 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Service } from './service.service';
+import { AlertService } from 'src/app/shared-module/shared-services/alert-service';
+import { Utils } from 'src/app/shared-module/utils/constants';
+import { Subscription } from 'rxjs';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { AuthService } from '../../shared-module/shared-services/auth.service';
+import { NgForm } from '@angular/forms';
+import { NavController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+interface JoinUsResponse {
+  into: string,
+  status: string,
+  message: string,
+  invalidFields: [
+      {
+          into: string,
+          message: string,
+          idref: string,
+      }
+  ]
+}
 @Component({
   selector: 'app-join-us',
   templateUrl: './join-us.page.html',
   styleUrls: ['./join-us.page.scss'],
 })
 export class JoinUsPage implements OnInit {
-
-  constructor() { }
+  JoinUs: JoinUs = null;
+  countryCode:any;
+  subscription: Subscription;
+  langSubscription: Subscription;
+  file: any;
+  constructor(
+    private service: Service, 
+    private authService: AuthService, 
+    private alertService: AlertService, 
+    private _sanitizer: DomSanitizer,
+    private nav: NavController,
+    private route: ActivatedRoute,
+    ) { }
 
   ngOnInit() {
+  }
+
+  getBackground(image) {
+      return this._sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0), rgba(16, 16, 23, 0.5)), url(${image})`);
+  }
+  
+  initData(event?) {
+    this.langSubscription =  this.authService.$currentLanguage.subscribe(languageState => {
+      if (this.service.currentPageLanguage !== languageState) {
+        this.service.currentPageLanguage = languageState
+        this.alertService.presentLoading('Please wait...');
+        this.service.refreshState();
+  
+      } 
+
+      if (this.service.JoinUsDataState) {
+        this.JoinUs = this.service.JoinUsDataState;
+      } else  {
+        this.subscription = this.service.getJoinUs(languageState).subscribe(responseData => {
+          if (responseData.code === 200) {
+    
+            if(event) {
+              event.target.complete();
+            }
+            this.JoinUs = responseData;
+            this.dismissLoader();
+          } else {
+            this.alertService.presentAlert(Utils.ERROR, responseData.message, [Utils.OK]);
+            this.dismissLoader();
+          }
+        });
+      }
+
+    })
+  }
+
+  dismissLoader() {
+    setTimeout(() => {
+      this.alertService.dismissLoading();
+    }, 100); 
+  }
+
+  ionViewDidEnter() {
+    this.initData();
+  }
+
+
+  refresh(event) {
+    this.service.refreshState();
+    this.alertService.presentLoading('Please wait...');
+    this.initData(event);
+  }
+  
+  ionViewDidLeave(){
+    if (this.langSubscription) this.langSubscription.unsubscribe();
+    if (this.subscription) this.subscription.unsubscribe();
+   }
+
+   //file upload
+   fileChange(event: any) {
+    // const filesList: FileList = event.target.files;
+    const filesList = event.target.files[0]
+    this.file = filesList;
+    console.log("fileChange() -> filesList", filesList);
+  }
+
+   joinUsForm(form: NgForm) {
+     console.log(form);
+    if (form.valid) {
+      this.alertService.presentLoading('Please Wait...');
+      const fistname = form.control.get('first-name').value;
+      const lastname = form.control.get('last-name').value;
+      const phone = form.control.get('phone-no').value;
+      const email = form.control.get('email').value;
+      const address = form.control.get('address-1').value;
+      const city = form.control.get('city').value;
+      
+
+      const fd = new FormData();
+      fd.append('first-name', fistname);
+      fd.append('last-name', lastname);
+      fd.append('phone-no', this.countryCode+phone);
+      fd.append('email', email);
+      fd.append('address-1', address);
+      fd.append('city', city);
+      fd.append('cv', this.file);
+      this.service.submitForm(fd).subscribe((response: JoinUsResponse) => {
+        if (response.status === 'mail_sent') {
+          form.reset();
+          this.alertService.dismissLoading();
+          this.alertService.presentAlert(Utils.SUCCESS, response.message, [Utils.OK]);
+          const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/'
+          this.nav.navigateRoot([returnUrl]);
+        } else {
+          this.alertService.dismissLoading();
+          this.alertService.presentAlert(Utils.ERROR, response.message, [Utils.OK]);
+        }
+      }
+      );
+
+    } else {
+      this.alertService.dismissLoading();
+      this.alertService.presentAlert(Utils.ERROR, 'Enter valid information!', [Utils.OK]);
+    }
   }
 
 }
