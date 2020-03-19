@@ -63,12 +63,27 @@ p a {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    // color: #495057;
-    background-color: #fff;
     background-clip: padding-box;
-    // border: 1px solid #ced4da;
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+textarea{
+    background-color: #ebebeb;
+    border: 2px solid #91c11e;
+}
+textarea:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #c7ea75;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(145, 193, 30, 0.25);
+}
+.input-text:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #c7ea75;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(145, 193, 30, 0.25);
 }
 .form-label{
     color: #495057;
