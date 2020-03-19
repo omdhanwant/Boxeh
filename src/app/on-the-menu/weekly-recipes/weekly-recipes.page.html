@@ -73,7 +73,7 @@
                     </ion-card> -->
 
 
-                    <div class="single-item  align-content-stretch" style="display: flex">
+                    <div class="single-item  align-content-stretch" style="display: flex" routerLink='/weekly-recipes/recipe-blog' [queryParams]="{id: recipes.id}">
                       <div class="card">
                         <div *ngFor="let item of recipes.recipes">
                           <img class="card-img-top" [src]="item.thumbnail">

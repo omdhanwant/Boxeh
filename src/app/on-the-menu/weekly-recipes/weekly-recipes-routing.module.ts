@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: WeeklyRecipesPage
+  },
+  {
+    path: 'recipe-blog',
+    loadChildren: () => import('./recipe-blog/recipe-blog.module').then( m => m.RecipeBlogPageModule)
   }
 ];
 
