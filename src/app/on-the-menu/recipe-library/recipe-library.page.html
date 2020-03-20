@@ -7,11 +7,11 @@
 
 <ion-content>
   <ion-grid class="pt-0 pl-0 pr-0">
-    <ion-row class="img-hero-banner" style="height: 200px;">
+    <ion-row class="img-hero-banner" [style.background-image]='authService.getBackground(RecipeLibrary?.data.page_head.bg_cover)'>
       <ion-col text-center>
         <div  class="d-block  text-center text-primary" style="position: absolute;bottom: 0px;left: 0;right: 0;">
-          <h4  class="fs-18 fw-600">Designed to Spark Your Love for Cooking</h4>
-      <p class="fw-600 text-white">Restaurant-inspired recipes they won’t believe you made at home.</p>
+          <h4  class="fs-18 fw-600">{{RecipeLibrary?.data.page_head.title}}</h4>
+      <p class="fw-600 text-white">{{RecipeLibrary?.data.page_head.sub_title}}</p>
       </div>
       </ion-col>
     </ion-row>
@@ -30,70 +30,20 @@
           </ion-row>
           <div>
             <br>
-            <div class="single-item mb-4 align-content-stretch" style="display: flex">
+            <div class="single-item mb-4 align-content-stretch" style="display: flex" *ngFor="let item of RecipeLibrary?.data.secion_recipes.recipes_list">
               <div class="card">
-                <a href="http://boxeh.net/boxeh/blog/recipe/rigatoni-in-spicy-tomato-and-salmon-sauce/"><img
-                    class="card-img-top" src="http://boxeh.net/boxeh/wp-content/uploads/2020/01/2019_12_26_1773.jpg"
-                    alt="Rigatoni in Spicy Tomato and Salmon Sauce"></a>
+                <a href="#"><img
+                    class="card-img-top" [src]="item.thumbnail_url"
+                    alt="{{item.title}}"></a>
                 <div class="card-body p-2">
-                  <a href="http://boxeh.net/boxeh/blog/recipe-category/one-pot-wonders/"><span
-                      class="badge badge-primary font-light small">One-Pot Wonders</span></a>
-                  <a href="http://boxeh.net/boxeh/blog/recipe-category/seafood/"><span
-                      class="badge badge-primary font-light small">SeaFood</span></a>
-                  <a href="http://boxeh.net/boxeh/blog/recipe-category/spicy/"><span
-                      class="badge badge-primary font-light small">spicy</span></a>
+                  <a href="#" *ngFor="let data of item.categories"><span
+                      class="badge badge-primary font-light small">{{data.name}}</span></a>
                   <h5 class="card-title mt-2"><a
-                      href="http://boxeh.net/boxeh/blog/recipe/rigatoni-in-spicy-tomato-and-salmon-sauce/">Rigatoni in Spicy
-                      Tomato and Salmon Sauce</a></h5>
-                  <p class="card-text font-light font-14">From the traditional Italian cuisine, we present you with this
-                    international recipe that is distinguished by its spicy tomato sauce,</p>
+                      href="#">{{item.title}}</a></h5>
+                  <p class="card-text font-light font-14" [innerHTML]='item.content'></p>
                 </div>
                 <div class="card-footer">
-                  <span class="cook-time text-secondary font-weight-bold">23 Min</span>
-                  <span class="extra font-14 font-light"></span>
-                </div>
-              </div>
-            </div>
-            <div class="single-item mb-4 align-content-stretch" style="display: flex">
-              <div class="card">
-                <a href="http://boxeh.net/boxeh/blog/recipe/asparagus-pea-and-mint-risotto/"><img class="card-img-top"
-                    src="http://boxeh.net/boxeh/wp-content/uploads/2020/01/2019_12_24_1702.jpg"
-                    alt="Asparagus, pea and mint risotto"></a>
-                <div class="card-body p-2">
-                  <a href="http://boxeh.net/boxeh/blog/recipe-category/hearty-vegetarian/"><span
-                      class="badge badge-primary font-light small">Hearty Vegetarian</span></a>
-                  <a href="http://boxeh.net/boxeh/blog/recipe-category/one-pot-wonders/"><span
-                      class="badge badge-primary font-light small">One-Pot Wonders</span></a>
-                  <h5 class="card-title mt-2"><a
-                      href="http://boxeh.net/boxeh/blog/recipe/asparagus-pea-and-mint-risotto/">Asparagus, pea and mint
-                      risotto</a></h5>
-                  <p class="card-text font-light font-14">This asparagus, pea and mint risotto is gorgeously green, simple
-                    and delicious. The delicate flavor of fresh asparagus and peas</p>
-                </div>
-                <div class="card-footer">
-                  <span class="cook-time text-secondary font-weight-bold">24 Min</span>
-                  <span class="extra font-14 font-light"></span>
-                </div>
-              </div>
-            </div>
-            <div class="single-item mb-4 align-content-stretch" style="display: flex">
-              <div class="card">
-                <a href="http://boxeh.net/boxeh/blog/recipe/creamy-mash-with-tomato-soup/"><img class="card-img-top"
-                    src="http://boxeh.net/boxeh/wp-content/uploads/2020/01/2019_12_19_1316.jpg"
-                    alt="Creamy Mash Tomato Soup"></a>
-                <div class="card-body p-2">
-                  <a href="http://boxeh.net/boxeh/blog/recipe-category/hearty-vegetarian/"><span
-                      class="badge badge-primary font-light small">Hearty Vegetarian</span></a>
-                  <a href="http://boxeh.net/boxeh/blog/recipe-category/spicy/"><span
-                      class="badge badge-primary font-light small">spicy</span></a>
-                  <h5 class="card-title mt-2"><a
-                      href="http://boxeh.net/boxeh/blog/recipe/creamy-mash-with-tomato-soup/">Creamy Mash Tomato Soup</a>
-                  </h5>
-                  <p class="card-text font-light font-14">Velvety, creamy and rich in spicy flavours. This soup is as
-                    filling as it is nutritious, delicious and very simple</p>
-                </div>
-                <div class="card-footer">
-                  <span class="cook-time text-secondary font-weight-bold">20 Min</span>
+                  <span class="cook-time text-secondary font-weight-bold">{{item.recipe_cooking_time}}</span>
                   <span class="extra font-14 font-light"></span>
                 </div>
               </div>
@@ -104,7 +54,7 @@
     </ion-row>
     </ion-grid>
     <div class="text text-center text-secondary joinUsButton">
-      <a href="#" class="stickybtn  btn-primary btn-lg font-light text-decoration-0">
+      <a routerLink='/boxeh-plans' class="stickybtn  btn-primary btn-lg font-light text-decoration-0">
           Order Now</a>
   </div>
 </ion-content>
