@@ -13,10 +13,12 @@ import { SideMenuComponent } from './shared-module/side-menu/side-menu.component
 import { IonicStorageModule } from '@ionic/storage';
 import { AuthService } from './shared-module/shared-services/auth.service';
 import { AuthGuard } from './shared-module/shared-services/auth-gaurd';
+import { FilterPipeSearch } from './directives/filterPipeSearch';
 
 @NgModule({
   declarations: [
     AppComponent,
+    // FilterPipeSearch
 ],
   entryComponents: [],
   imports: [
@@ -27,6 +29,7 @@ import { AuthGuard } from './shared-module/shared-services/auth-gaurd';
     IonicStorageModule.forRoot(),
   ],
   providers: [
+    // FilterPipeSearch,
     AuthService,
     AuthGuard,
     StatusBar,

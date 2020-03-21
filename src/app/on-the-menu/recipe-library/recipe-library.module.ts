@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { RecipeLibraryPageRoutingModule } from './recipe-library-routing.module';
 
 import { RecipeLibraryPage } from './recipe-library.page';
+import { FilterPipeSearch } from 'src/app/directives/filterPipeSearch';
 
 @NgModule({
   imports: [
@@ -15,6 +16,11 @@ import { RecipeLibraryPage } from './recipe-library.page';
     IonicModule,
     RecipeLibraryPageRoutingModule
   ],
-  declarations: [RecipeLibraryPage]
+  declarations: [RecipeLibraryPage
+    , FilterPipeSearch
+  ],
+  providers: [
+    FilterPipeSearch
+  ]
 })
 export class RecipeLibraryPageModule {}

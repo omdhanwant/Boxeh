@@ -18,13 +18,6 @@ export class WeeklyRecipesPage implements OnInit {
   recipeSegment
 
   constructor(private service: HomeService, private alertService: AlertService, public authService: AuthService) {}
-
-  // ionViewWillEnter() {
-  //   if (!this.service.WeeklyReceipeDataState) {
-  //     this.alertService.presentLoading('Please wait...');
-  //   }
-  // }
-
   ngOnInit() {
   }
 

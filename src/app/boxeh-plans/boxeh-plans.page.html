@@ -47,7 +47,7 @@
         <h4 class="text-center mb-2 sectionweek-recipes">Menu for 08 Mar - 14 Mar</h4>
       </ion-col>
 
-      <ion-col size="12" *ngFor='let product of data?.data.products'>
+      <ion-col size="12" >
         <!-- <ion-card class="mb-4">
           <img src="assets/Boxeh-Plans-1.jpg" />
           <ion-card-header text-primary>
@@ -57,7 +57,7 @@
           </ion-card-content>
         </ion-card> -->
 
-        <div class="single-item align-content-stretch" style="display: flex" *ngFor='let product of data?.data.products'>
+        <div class="single-item align-content-stretch" style="display: flex" *ngFor='let product of data?.data.products' routerLink='/boxeh-plans/product-details' [queryParams]='{id: product.id}'>
           <div class="card">
             <a href="#">
               <img class="card-img-top" src="assets/Boxeh-Plans-1.jpg">

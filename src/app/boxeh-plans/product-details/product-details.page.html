@@ -1,7 +1,10 @@
 <ion-header>
   <ion-toolbar>
     <ion-menu-button color='primary' slot="start"></ion-menu-button>
-    <ion-title>Product Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button color="primary" text="Back"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{productData?.data.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 

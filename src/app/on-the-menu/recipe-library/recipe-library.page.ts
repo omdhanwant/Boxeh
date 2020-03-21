@@ -15,7 +15,8 @@ export class RecipeLibraryPage implements OnInit {
   RecipeLibrary: RecipeLibrary = null;
   subscription: Subscription;
   langSubscription: Subscription;
-  constructor(private service: Service, private authService: AuthService, private alertService: AlertService, private _sanitizer: DomSanitizer) { }
+  searchString: string
+  constructor(private service: Service, public authService: AuthService, private alertService: AlertService, private _sanitizer: DomSanitizer) { }
 
   ngOnInit() {
   }

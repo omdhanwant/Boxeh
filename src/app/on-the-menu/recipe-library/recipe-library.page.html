@@ -23,14 +23,14 @@
               <div class="bg-white  pt-2 ">
                 <h1 class="text-primary text-center fw-600 mb-4 fs-2rem mb-4"> Browse our recipes</h1>
               <div class="page-content text-center">
-                <input class="search-border" id="searchFilter" placeholder="Search" type="text" >
+                <input class="search-border" [(ngModel)]="searchString" id="searchFilter" placeholder="Search" type="text" >
               </div>
               </div>
             </ion-col>
           </ion-row>
           <div>
             <br>
-            <div class="single-item mb-4 align-content-stretch" style="display: flex" *ngFor="let item of RecipeLibrary?.data.secion_recipes.recipes_list">
+            <div class="single-item mb-4 align-content-stretch" style="display: flex" *ngFor="let item of RecipeLibrary?.data.secion_recipes.recipes_list | appFilterSearch :'title': searchString;">
               <div class="card">
                 <a href="#"><img
                     class="card-img-top" [src]="item.thumbnail_url"
