@@ -1,0 +1,241 @@
+.recipes{
+    padding:0.8rem
+}
+nav{
+    display: block;
+}
+
+.stepper {
+    background-color: #e8f3d8;
+    margin-top: -3px;
+    padding: 10px;
+    font-size: 13px;
+    margin-bottom: 40px;
+    font-weight: 900;
+}
+
+.stepper__list {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.stepper__list__item--done {
+    color: #178A00 !important;
+    transition: all 0.1s;
+}
+.stepper__list__item--done {
+    svg{
+        color: #178A00 !important;
+        transition: all 0.1s;
+    }
+    span{
+        font-size: 13px !important;
+    }
+}
+
+.stepper__list__item--done span {
+    color: #178A00 !important;
+    transition: all 0.1s;
+    font-size: 13px !important;
+}
+
+
+.stepper__list__item {
+    padding: 3px 5px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    span{
+        font-size: 13px !important;
+    }
+}
+.stepper__list__icon {
+    height: 40px;
+    width: 40px;
+    margin: 0 10px 0 0;
+}
+
+svg {
+    overflow: hidden;
+    vertical-align: middle;
+}
+.stepper__list__title {
+    margin: 1px 0 0;
+}
+
+// product page
+.summary {
+    float: none;
+    width: 100%;
+}
+
+.woocommerce-product-details__short-description p{
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    font-size: 1rem;    
+    font-weight: 900;
+}
+
+div.product form.cart {
+    margin-bottom: 2em !important;
+}
+
+.variations {
+    margin-bottom: 1em !important;
+    border: 0 !important;
+    width: 100% !important;
+    font-size: 16px;
+    font-weight: 900;
+}
+
+ .variations td.label {
+    padding-right: 1em!important;
+}
+
+.variations td, div.product form.cart .variations th {
+    border: 0!important;
+    vertical-align: top!important;
+    line-height: 2em!important;
+}
+
+.variations table td {
+    padding-left: 0 !important;
+}
+
+.variations .variations label {
+    font-weight: 700 !important;
+}
+.variations select {
+    max-width: 100% !important;
+    min-width: 75% !important;
+    display: inline-block !important;
+    margin-right: 1em !important;
+}
+
+
+.variations select {
+    height: calc(2.25rem + 2px) !important;;
+    display: block !important;;
+    width: 100% !important;;
+    padding: 0.375rem 0.75rem !important;;
+    font-size: 1rem !important;;
+    line-height: 1.5 !important;;
+    color: #495057 !important;;
+    background-color: #fff !important;;
+    background-clip: padding-box !important;;
+    border: 1px solid #ced4da !important;;
+    border-radius: 0.25rem !important;;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;;
+}
+
+.variations span.price {
+    color: #77a464 !important;
+    font-size: 1.25em !important; 
+}
+
+.single-item {
+    padding: 25px;
+    outline: none;
+}
+
+.recipes .card{
+    position: relative;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ebebeb;
+    background-clip: border-box;
+    border: 1px solid #7a7a7a;
+    border-radius: 12px;
+    padding: 7px;
+}
+
+.recipes .card-img-top{
+    width: 100%;
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+    border-radius: 23px !important;
+}
+
+.recipes .card-body{
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+    padding: 0.5rem !important;
+}
+
+.recipes .single-item .badge {
+    font-weight: 600;
+}
+
+.recipes .card .badge-primary {
+    padding: 4px;
+    padding-right: 12px;
+    padding-left: 13px;
+    font-size: 12px;
+    border-radius: 9px;
+    margin: 2px;
+    padding-top: 5px;
+}
+
+.badge-primary{
+    color: #212529;
+    background-color: #91c11e;
+}
+
+.badge-primary{
+    color: #fff !important;
+}
+
+.recipes .single-item .card-text {
+    font-size: 14px;
+}
+
+.recipes .card-text[_ngcontent-rsi-c3]:last-child {
+    margin-bottom: 0;
+}
+
+.recipes .single-item .card-footer{
+    background-color: #ebebeb;
+    padding: 0px 15px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: flex;
+    margin-bottom: -15px;
+    border: none;
+    border-radius: 0px;
+    border-bottom: none;
+    width: 100%;
+    position: relative;
+    left: 0%;
+    height: 34px;
+    top: -2.5%;
+    vertical-align: middle;
+    border-top: 1px solid #7a7a7a;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.recipes .single-item .card-footer .cook-time{
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
+    display: inline-block;
+    padding-right: 7px;
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+    top: 6px;
+}
+
+.recipes .single-item .card-footer .extra{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 10px;
+    border-left: 1px solid #7a7a7a;
+}
