@@ -50,7 +50,7 @@
       <ion-col size="12">
         <div style="padding: 0px 20px; text-align: left;" [style.background-image]="authService.getBackground(homeData?.data.section_choose_plan.section_background)">
           <ul class="list-unstyled">
-            <li class="font-light li-font-color mb-3" *ngFor='let advantage of homeData?.data.section_choose_plan.advantages'>
+            <li class="font-light li-font-color mb-3" style="font-size: 14px; font-weight: 900; color: #212529;" *ngFor='let advantage of homeData?.data.section_choose_plan.advantages'>
               <span class="box-plus-icon">+</span> &nbsp;  <span>{{advantage}}</span>
             </li>
           </ul>
