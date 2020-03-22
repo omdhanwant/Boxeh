@@ -30,7 +30,7 @@
           </ion-row>
           <div>
             <br>
-            <div class="single-item mb-4 align-content-stretch" style="display: flex" *ngFor="let item of RecipeLibrary?.data.secion_recipes.recipes_list | appFilterSearch :'title': searchString;">
+            <div class="single-item mb-4 align-content-stretch" style="display: flex" *ngFor="let item of RecipeLibrary?.data.secion_recipes.recipes_list | appFilterSearch :'title': searchString;" routerLink='/weekly-recipes/recipe-blog' [queryParams]="{id: item.id}">
               <div class="card">
                 <a href="#"><img
                     class="card-img-top" [src]="item.thumbnail_url"
