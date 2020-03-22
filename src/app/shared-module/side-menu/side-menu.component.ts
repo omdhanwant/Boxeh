@@ -46,7 +46,8 @@ ngOnInit() {
       url: '/boxeh-plans',
       icon: '',
       isDropDown: false,
-      isDisabled: !this.isLoggedIn
+      isDisabled: false,
+      // isDisabled: !this.isLoggedIn
   },
   {
     pageName: 'The Boxeh Way',
@@ -105,7 +106,7 @@ ngOnInit() {
     ]
   },
   {
-    pageName: 'Boxeh Chefs',
+    pageName: 'Our Chefs',
     open: false,
     icon: '',
     isDropDown: true,

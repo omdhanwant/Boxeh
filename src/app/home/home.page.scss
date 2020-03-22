@@ -123,3 +123,108 @@ ion-segment-button{
     color: #91c11e;
     font-weight: 600;
 }
+
+.single-item {
+    padding: 25px;
+    outline: none;
+}
+
+.single-item .card{
+    position: relative;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ebebeb;
+    background-clip: border-box;
+    border: 1px solid #7a7a7a;
+    border-radius: 12px;
+    padding: 7px;
+}
+
+.single-item .card-img-top{
+    width: 100%;
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+    border-radius: 23px !important;
+}
+
+.single-item .card-body{
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+    padding: 0.5rem !important;
+    text-align: left;
+}
+
+ .single-item .badge {
+    font-weight: 600;
+}
+
+.single-item .card .badge-primary {
+    padding: 4px;
+    padding-right: 12px;
+    padding-left: 13px;
+    font-size: 12px;
+    border-radius: 9px;
+    margin: 2px;
+    padding-top: 5px;
+}
+
+.badge-primary{
+    color: #212529;
+    background-color: #91c11e;
+}
+
+.badge-primary{
+    color: #fff !important;
+}
+
+ .single-item .card-text {
+    font-size: 14px;
+}
+
+.single-item .card-text[_ngcontent-rsi-c3]:last-child {
+    margin-bottom: 0;
+}
+
+ .single-item .card-footer{
+    background-color: #ebebeb;
+    padding: 0px 15px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: flex;
+    margin-bottom: -15px;
+    border: none;
+    border-radius: 0px;
+    border-bottom: none;
+    width: 100%;
+    position: relative;
+    left: 0%;
+    height: 34px;
+    top: -2.5%;
+    vertical-align: middle;
+    border-top: 1px solid #7a7a7a;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+ .single-item .card-footer .cook-time{
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
+    display: inline-block;
+    padding-right: 7px;
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+    top: 6px;
+}
+
+ .single-item .card-footer .extra{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 10px;
+    border-left: 1px solid #7a7a7a;
+}

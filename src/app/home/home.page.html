@@ -50,8 +50,8 @@
       <ion-col size="12">
         <div style="padding: 0px 20px; text-align: left;" [style.background-image]="authService.getBackground(homeData?.data.section_choose_plan.section_background)">
           <ul class="list-unstyled">
-            <li class="font-light li-font-color mb-3" style="font-size: 14px; font-weight: 900; color: #212529;" *ngFor='let advantage of homeData?.data.section_choose_plan.advantages'>
-              <span class="box-plus-icon">+</span> &nbsp;  <span>{{advantage}}</span>
+            <li class="font-light li-font-color mb-3" style="font-size: 14px; line-height: 20px; font-weight: 900; color: #212529;" *ngFor='let advantage of homeData?.data.section_choose_plan.advantages'>
+              <span class="box-plus-icon">+</span> &nbsp;  <span style="font-size: 14px; font-weight: 900; color: #212529;">{{advantage}}</span>
             </li>
           </ul>
         </div>
@@ -92,7 +92,7 @@
               <div [ngSwitch]="recipeSegment">
                 <ng-container *ngFor='let recipeContent of content.tab_content'>
                   <ng-container *ngFor='let recipes of recipeContent.recipes'>
-                  <ion-card *ngSwitchCase="recipeContent.id">
+                  <!-- <ion-card *ngSwitchCase="recipeContent.id">
                     <ion-card-header class="text-left">
                       {{recipes.title}}
                     </ion-card-header>
@@ -105,7 +105,26 @@
                     </ion-card-content>
                     <hr style="height: 1px; border-top: 2px dashed #91c11e; padding: 0; margin: 0;">
                     <p style="display: block; width: 100px; border-right: 1px dashed #91c11e; padding: 12px; margin: 0;">{{recipes.recipe_cooking_time}}</p>
-                  </ion-card>
+                  </ion-card> -->
+
+                  <div class="single-item  align-content-stretch" *ngSwitchCase="recipeContent.id"
+                    style="display: flex" tabindex="0">
+                    <div class="card">
+                      <div *ngFor="let item of recipes.recipes"><img class="card-img-top"
+                        [src]="item.thumbnail"></div>
+                      <div class="card-body p-2">
+                        <span  *ngFor="let item1 of recipes.category">
+                          <span class="badge badge-primary font-light small">
+                              {{item1.name}} </span>
+                        </span>
+                        <h5 class="card-title mt-2" style="font-size: 16px; color: #91c11e; font-weight: 900;">{{recipes.title}}</h5>
+                        <p class="card-text font-light font-14" [innerHTML]="recipes.content"></p>
+                      </div>
+                      <div class="card-footer"><span class="cook-time text-secondary font-weight-bold">{{recipes.recipe_cooking_time}}</span><span
+                          class="extra font-14 font-light"></span></div>
+                    </div>
+                  </div>
+
                 </ng-container>
                 
                 </ng-container>   
@@ -122,8 +141,8 @@
   </ion-grid>
   <ion-grid class="section-bg-3 div-ptb" [style.background-image]="authService.getBackground(homeData?.data.section_subscribe.section_background)">
     <ion-row>
-      <ion-col size="12" class="pt-4">
-        <h1 text-center class="fw-600"> {{homeData?.data.section_subscribe.title}} </h1>
+      <ion-col size="12" class="pt-4" style="padding: 4px;">
+        <h1 text-center class="fw-600" style="font-size: 30px;"> {{homeData?.data.section_subscribe.title}} </h1>
         <p class="text-center" class="fs-16" style="font-size: 16px; padding: 10px 18px; color:#000;" [innerHTML]='homeData?.data.section_subscribe.sub_title'>
         </p>
       </ion-col>
