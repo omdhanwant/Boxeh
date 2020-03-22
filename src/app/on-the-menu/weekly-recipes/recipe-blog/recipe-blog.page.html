@@ -4,12 +4,82 @@
     <ion-buttons slot="end">
       <ion-back-button color="primary" text="Back"></ion-back-button>
     </ion-buttons>
-    
+
     <ion-title>{{recipeData?.data.title}}</ion-title>
 
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  
+  <div class="container">
+    <div class="recipe__container">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <img [src]="recipeData?.data.the_post_thumbnail_url" alt="recipe-image">
+          </ion-col>
+
+          <ion-col size="12">
+            <h4 class="text-primary hk-m-0">{{recipeData?.data.title}}</h4>
+
+            <div class="categories">
+              <a *ngFor="let category of recipeData?.data.category">
+                <span class="badge badge-primary font-light font-15">{{category.name}}</span>
+              </a>
+
+            </div>
+
+            <div class="more-info d-flex justify-content-between align-items-center mb-3">
+              <div class="author d-flex">
+                <a class="small">
+                  <img [src]="recipeData?.data.author_avatar_url" class="author-img rounded-circle img-thumbnail"
+                    alt="boxehteam">
+                  <span class="author__name">{{recipeData?.data.author_display_name}}</span> </a>
+              </div>
+
+              <div>
+                <span class="badge badge-primary">{{recipeData?.data.recipe_cooking_time}}</span>
+              </div>
+            </div>
+
+            <p class="intro-content" [innerHTML]="recipeData?.data.the_content"></p>
+
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div class="ingredients border-light">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+              <h4 class="text-primary text-center">Ingredients</h4>
+
+              <div class="ingredients">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col [size]="3" *ngFor="let ingrediant of recipeData?.data.ingredients_data.recipe_ingredients">
+                      <div class="single-ingredient">
+                        <img [src]="ingrediant.ingredient_Image" class="ingredient-img rounded-circle img-thumbnail text-center" alt="ingrediant"
+                          title="Shrimp">
+                        <p class="mb-0">{{ingrediant.ingredient_Title}}</p>
+                      </div>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+                
+              </div>
+            
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+  <div style="position: fixed;bottom: 0;left: 0;right: 0;">
+    <div class="text text-center text-secondary joinUsButton">
+          <button routerLink='/boxeh-plans'
+          class="btn btn-primay btn-lg stickybtn" style="padding: 0.5rem 1rem; font-size: 1.25rem; line-height: 1.5;">Order Now</button>
+  </div>
+  </div>
 </ion-content>

@@ -1,0 +1,107 @@
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.recipe__container {
+    border: 1px solid #ddd;
+    background: #fff;
+    margin: 20px auto;
+}
+
+.recipe__container .more-info {
+    margin-top: 1.9rem !important;
+}
+
+.recipe__container .author-img {
+    width: 40px;
+    height: 40px;
+}
+
+.categories {
+    margin-top: 0.8rem !important;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    margin-right: 2px;
+    font-weight: 700;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.badge-primary {
+    color: #fff;
+    background-color: #91c11e;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+.justify-content-between {
+    justify-content: space-between !important;
+}
+.d-flex {
+    display: flex !important;
+}
+
+.small {
+    font-size: 80%;
+    font-weight: 400;
+}
+
+.img-thumbnail {
+    padding: 0.25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    max-width: 100%;
+    height: auto;
+}
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+.author__name {
+    position: relative;
+    top: -17px;
+    margin-left: 5px;
+    color: #000;
+}
+
+.ingredients {
+    background-color: #fff;
+    padding: 2%;
+}
+.border-light {
+    border: 1px solid #dddddd !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.ingredients .single-ingredient {
+    text-align: center;
+}
+
+.ingredients .single-ingredient .ingredient-img {
+    display: block;
+    margin: 10px auto;
+    width: 100px;
+}   
+
+.joinUsButton {
+    position: sticky;
+    bottom: 0;
+    background-color: #fff;
+    padding: 20px;
+}
