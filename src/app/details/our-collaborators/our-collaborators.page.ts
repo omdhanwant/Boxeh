@@ -15,7 +15,7 @@ export class OurCollaboratorsPage implements OnInit {
   OurCollaborators: OurCollaborators = null;
   subscription: Subscription;
   langSubscription: Subscription;
-  constructor(private service: Service, private authService: AuthService, private alertService: AlertService, private _sanitizer: DomSanitizer) { }
+  constructor(private service: Service, public authService: AuthService, private alertService: AlertService, private _sanitizer: DomSanitizer) { }
 
   ngOnInit() {
   }

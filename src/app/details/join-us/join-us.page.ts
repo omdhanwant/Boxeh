@@ -33,7 +33,7 @@ export class JoinUsPage implements OnInit {
   file: any;
   constructor(
     private service: Service, 
-    private authService: AuthService, 
+    public authService: AuthService, 
     private alertService: AlertService, 
     private _sanitizer: DomSanitizer,
     private nav: NavController,
