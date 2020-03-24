@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { OurSuppliersPageRoutingModule } from './our-suppliers-routing.module';
 
 import { OurSuppliersPage } from './our-suppliers.page';
+import { NgxLoadingModule } from 'ngx-loading'
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    OurSuppliersPageRoutingModule
+    OurSuppliersPageRoutingModule,
+    NgxLoadingModule
   ],
   declarations: [OurSuppliersPage]
 })

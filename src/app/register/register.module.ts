@@ -8,11 +8,13 @@ import { RegisterPageRoutingModule } from './register-routing.module';
 
 import { RegisterPage } from './register.page';
 import { SharedModule } from '../shared-module/shared-module.module';
+import { NgxLoadingModule } from 'ngx-loading'
 
 @NgModule({
   imports: [
     RegisterPageRoutingModule,
-    SharedModule
+    SharedModule,
+    NgxLoadingModule
   ],
   declarations: [RegisterPage]
 })

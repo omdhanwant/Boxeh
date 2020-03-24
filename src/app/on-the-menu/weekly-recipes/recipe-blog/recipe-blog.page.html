@@ -1,3 +1,4 @@
+<ngx-loading [show]="loading"></ngx-loading>
 <ion-header>
   <ion-toolbar>
     <ion-menu-button color="primary" slot="start"></ion-menu-button>
@@ -10,7 +11,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="recipeData">
+<ion-content *ngIf="!loading">
   <div class="container">
     <div class="recipe__container">
       <ion-grid>

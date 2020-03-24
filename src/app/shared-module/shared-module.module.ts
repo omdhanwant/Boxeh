@@ -10,7 +10,6 @@ import { RouterModule } from '@angular/router';
 import { AlertService } from './shared-services/alert-service';
 
 
-
 @NgModule({
   declarations: [
     SideMenuComponent,
@@ -31,7 +30,7 @@ import { AlertService } from './shared-services/alert-service';
     IonicModule,
     SideMenuComponent,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class SharedModule { }

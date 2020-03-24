@@ -16,6 +16,7 @@ export class RecipeLibraryPage implements OnInit {
   subscription: Subscription;
   langSubscription: Subscription;
   searchString: string
+  loading = false;
   constructor(private service: Service, public authService: AuthService, private alertService: AlertService, private _sanitizer: DomSanitizer) { }
 
   ngOnInit() {
@@ -34,7 +35,8 @@ export class RecipeLibraryPage implements OnInit {
       // } 
       if (this.service.currentPageLanguage !== languageState) {
         this.service.currentPageLanguage = languageState
-        this.alertService.presentLoading('Please wait...');
+        // this.alertService.presentLoading('Please wait...');
+        this.loading = true;
         this.service.refreshState();
   
       } 
@@ -61,9 +63,10 @@ export class RecipeLibraryPage implements OnInit {
   }
 
   dismissLoader() {
-    setTimeout(() => {
-      this.alertService.dismissLoading();
-    }, 100); 
+    this.loading = false;
+    // setTimeout(() => {
+    //   this.alertService.dismissLoading();
+    // }, 100); 
   }
 
   ionViewDidEnter() {
@@ -73,7 +76,8 @@ export class RecipeLibraryPage implements OnInit {
 
   refresh(event) {
     this.service.refreshState(); // refresh state
-    this.alertService.presentLoading('Please wait...');
+    // this.alertService.presentLoading('Please wait...');
+    this.loading = true;
     this.initData(event);
   }
   

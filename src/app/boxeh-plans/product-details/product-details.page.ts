@@ -20,7 +20,7 @@ export class ProductDetailsPage{
   subscription: Subscription;
   langSubscription: Subscription;
   param: Params;
-
+  loading = false;
   constructor(private service: BoxehPlansServiceService, private alertService: AlertService
     , public authService: AuthService, private activatedRoute: ActivatedRoute) {
 
@@ -28,7 +28,7 @@ export class ProductDetailsPage{
   }
  
    ionViewWillEnter() {
-      this.alertService.presentLoading('Please wait...');
+      this.loading = true;
   }
 
   ionViewDidEnter() {
@@ -59,16 +59,17 @@ export class ProductDetailsPage{
   }
 
   dismissLoader() {
-   setTimeout(() => {
-      this.alertService.dismissLoading();
-    }, 100); 
+  //  setTimeout(() => {
+  //     this.alertService.dismissLoading();
+  //   }, 100); 
+  this.loading = false;
   }
 
  
 
 
   refresh(event) {
-    this.alertService.presentLoading('Please wait...');
+    this.loading = true;
     this.initData(event);
   }
 

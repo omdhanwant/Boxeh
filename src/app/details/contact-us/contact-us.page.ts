@@ -20,7 +20,7 @@ interface ContactResponse {
   styleUrls: ['./contact-us.page.scss'],
 })
 export class ContactUsPage implements OnInit {
-
+  loading = false;
   constructor(
     private contact: Contact,
     private nav: NavController,
@@ -51,15 +51,19 @@ export class ContactUsPage implements OnInit {
       fd.append('address-1', address);
       fd.append('city', city);
       fd.append('comment', comment);
+
+      this.loading = true;
       this.contact.submitForm(fd).subscribe((response: ContactResponse) => {
         if (response.status === 'mail_sent') {
           form.reset();
-          this.alertService.dismissLoading();
+          // this.alertService.dismissLoading();
+          this.loading = false;
           this.alertService.presentAlert(Utils.SUCCESS, response.message, [Utils.OK]);
           const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/'
           this.nav.navigateRoot([returnUrl]);
         } else {
-          this.alertService.dismissLoading();
+          // this.alertService.dismissLoading();
+          this.loading = false;
           this.alertService.presentAlert(Utils.ERROR, response.message, [Utils.OK]);
         }
       }

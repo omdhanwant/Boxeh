@@ -15,7 +15,7 @@ export interface Product
                 slug: string;
             }[]
         ,
-        images: [],
+        images: any[],
         attributes:
             {
                 id: number;

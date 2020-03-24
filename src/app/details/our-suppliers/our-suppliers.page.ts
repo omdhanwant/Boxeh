@@ -16,12 +16,13 @@ export class OurSuppliersPage implements OnInit {
   langSubscription: Subscription;
   segment
   recipeSegment
+  loading = false;
 
   constructor(private service: SupplierService, private alertService: AlertService, public authService: AuthService) {}
 
   // ionViewWillEnter() {
   //   if (!this.service.SupplierDataState) {
-  //     this.alertService.presentLoading('Please wait...');
+  //     this.loading = true;
   //   }
   // }
 
@@ -34,12 +35,12 @@ export class OurSuppliersPage implements OnInit {
     this.langSubscription =  this.authService.$currentLanguage.subscribe(languageState => {
 
       // if (this.authService.LANGUAGE !== languageState) {
-      //   this.alertService.presentLoading('Please wait...');
+      //   this.loading = true;
       //   this.service.refreshState();
       // } 
       if (this.service.currentPageLanguage !== languageState) {
         this.service.currentPageLanguage = languageState
-        this.alertService.presentLoading('Please wait...');
+        this.loading = true;
         this.service.refreshState();
   
       } 
@@ -69,9 +70,10 @@ export class OurSuppliersPage implements OnInit {
   }
 
   dismissLoader() {
-    setTimeout(() => {
-      this.alertService.dismissLoading();
-    }, 100); 
+    this.loading = false;
+    // setTimeout(() => {
+    //   this.alertService.dismissLoading();
+    // }, 100); 
   }
 
   ionViewDidEnter() {
@@ -80,7 +82,7 @@ export class OurSuppliersPage implements OnInit {
 
   refresh(event) {
     this.service.refreshState(); // refresh state
-    this.alertService.presentLoading('Please wait...');
+    this.loading = true;
     this.initData(event);
   }
 

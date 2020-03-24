@@ -1,3 +1,4 @@
+<ngx-loading [show]="loading"></ngx-loading>
 <ion-header>
   <ion-toolbar>
     <ion-menu-button color='primary' slot="start"></ion-menu-button>
@@ -5,7 +6,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="!loading">
   <ion-grid class="pt-0 pl-0 pr-0">
     <ion-row class="img-hero-banner" [style.background-image]='authService.getBackground(RecipeLibrary?.data.page_head.bg_cover)'>
       <ion-col text-center>

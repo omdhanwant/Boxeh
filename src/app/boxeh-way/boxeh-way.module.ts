@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { BoxehWayPageRoutingModule } from './boxeh-way-routing.module';
 
 import { BoxehWayPage } from './boxeh-way.page';
+import { NgxLoadingModule } from 'ngx-loading'
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BoxehWayPageRoutingModule
+    BoxehWayPageRoutingModule,
+    NgxLoadingModule
   ],
   declarations: [BoxehWayPage]
 })

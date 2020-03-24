@@ -13,12 +13,13 @@ import { AuthService } from '../shared-module/shared-services/auth.service';
 export class BoxehPlansPage implements OnInit {
   data: BoxehPlans = null;
   subscription : Subscription;
+  loading = false;
   constructor(private service : BoxehPlansServiceService,private alertService: AlertService, public authService: AuthService) { }
 
 
   ionViewWillEnter() {
     if (!this.service.BoxehPlanDataState) {
-      this.alertService.presentLoading('Please wait...');
+      this.loading = true;
     }
   }
 
@@ -39,10 +40,10 @@ export class BoxehPlansPage implements OnInit {
             event.target.complete();
           }
           this.data = boxehPlans;
-          this.alertService.dismissLoading();
+          this.loading = false;
         } else {
           this.alertService.presentAlert(Utils.ERROR, boxehPlans.message, [Utils.OK]);
-          this.alertService.dismissLoading();
+          this.loading = false;
         }
       });
     }
@@ -54,7 +55,7 @@ export class BoxehPlansPage implements OnInit {
 
   refresh(event) {
     this.service.refreshState();
-    this.alertService.presentLoading('Please wait...');
+    this.loading = true;
     this.initData(event);
   }
 

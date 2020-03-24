@@ -31,6 +31,7 @@ export class JoinUsPage implements OnInit {
   subscription: Subscription;
   langSubscription: Subscription;
   file: any;
+  loading = false;
   constructor(
     private service: Service, 
     public authService: AuthService, 
@@ -51,7 +52,7 @@ export class JoinUsPage implements OnInit {
     this.langSubscription =  this.authService.$currentLanguage.subscribe(languageState => {
       if (this.service.currentPageLanguage !== languageState) {
         this.service.currentPageLanguage = languageState
-        this.alertService.presentLoading('Please wait...');
+        this.loading = true;
         this.service.refreshState();
   
       } 
@@ -78,9 +79,10 @@ export class JoinUsPage implements OnInit {
   }
 
   dismissLoader() {
-    setTimeout(() => {
-      this.alertService.dismissLoading();
-    }, 100); 
+    // setTimeout(() => {
+    //   this.alertService.dismissLoading();
+    // }, 100); 
+    this.loading = false;
   }
 
   ionViewDidEnter() {
@@ -90,7 +92,7 @@ export class JoinUsPage implements OnInit {
 
   refresh(event) {
     this.service.refreshState();
-    this.alertService.presentLoading('Please wait...');
+    this.loading = true;
     this.initData(event);
   }
   
@@ -110,7 +112,7 @@ export class JoinUsPage implements OnInit {
    joinUsForm(form: NgForm) {
      console.log(form);
     if (form.valid) {
-      this.alertService.presentLoading('Please Wait...');
+      this.loading = true;
       const fistname = form.control.get('first-name').value;
       const lastname = form.control.get('last-name').value;
       const phone = form.control.get('phone-no').value;

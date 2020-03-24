@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { OurCollaboratorsPageRoutingModule } from './our-collaborators-routing.module';
 
 import { OurCollaboratorsPage } from './our-collaborators.page';
+import { NgxLoadingModule } from 'ngx-loading'
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    OurCollaboratorsPageRoutingModule
+    OurCollaboratorsPageRoutingModule,
+    NgxLoadingModule
   ],
   declarations: [OurCollaboratorsPage]
 })

@@ -20,6 +20,7 @@ export class RecipeBlogPage {
   segment;
   recipeSegment;
   param: Params;
+  loading = false;
 
   constructor(private service: RecipesService, private alertService: AlertService
     , public authService: AuthService, private activatedRoute: ActivatedRoute) {
@@ -28,7 +29,8 @@ export class RecipeBlogPage {
   }
  
    ionViewWillEnter() {
-      this.alertService.presentLoading('Please wait...');
+      // this.alertService.presentLoading('Please wait...');
+      this.loading = true;
   }
 
   ionViewDidEnter() {
@@ -40,10 +42,10 @@ export class RecipeBlogPage {
 
     console.log(this.param.id);    
     this.langSubscription =  this.authService.$currentLanguage.subscribe(languageState => {
-
+        this.loading = true;
         this.subscription = this.service.getReceipe(languageState, this.param.id).subscribe(recipe => {
           if (recipe.code === 200) {
-    
+            
             if(event) {
               event.target.complete();
             }
@@ -59,16 +61,15 @@ export class RecipeBlogPage {
   }
 
   dismissLoader() {
-   setTimeout(() => {
-      this.alertService.dismissLoading();
-    }, 100); 
+    this.loading = false;
   }
 
  
 
 
   refresh(event) {
-    this.alertService.presentLoading('Please wait...');
+    // this.alertService.presentLoading('Please wait...');
+    this.loading = true;
     this.initData(event);
   }
 

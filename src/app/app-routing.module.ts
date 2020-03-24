@@ -59,7 +59,7 @@ const routes: Routes = [
   {
     path: 'boxeh-plans',
     loadChildren: () => import('./boxeh-plans/boxeh-plans.module').then( m => m.BoxehPlansPageModule),
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'weekly-recipes',

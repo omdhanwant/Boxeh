@@ -8,13 +8,15 @@ import { RecipeLibraryPageRoutingModule } from './recipe-library-routing.module'
 
 import { RecipeLibraryPage } from './recipe-library.page';
 import { FilterPipeSearch } from 'src/app/directives/filterPipeSearch';
+import { NgxLoadingModule } from 'ngx-loading'
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RecipeLibraryPageRoutingModule
+    RecipeLibraryPageRoutingModule,
+    NgxLoadingModule
   ],
   declarations: [RecipeLibraryPage
     , FilterPipeSearch

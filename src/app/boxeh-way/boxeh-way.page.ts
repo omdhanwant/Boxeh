@@ -18,6 +18,7 @@ export class BoxehWayPage implements OnInit {
   toggle1:boolean;
   toggle2:boolean;
   toggle3:boolean;
+  loading = false;
   constructor(private service: Service, private alertService: AlertService, public authService: AuthService) { }
 
   ngOnInit() {
@@ -28,7 +29,7 @@ export class BoxehWayPage implements OnInit {
 
         if (this.service.currentPageLanguage !== languageState) {
           this.service.currentPageLanguage = languageState
-          this.alertService.presentLoading('Please wait...');
+          this.loading = true;
           this.service.refreshState();
     
         } 
@@ -56,9 +57,10 @@ export class BoxehWayPage implements OnInit {
   }
 
   dismissLoader() {
-    setTimeout(() => {
-      this.alertService.dismissLoading();
-    }, 100); 
+    // setTimeout(() => {
+    //   this.alertService.dismissLoading();
+    // }, 100); 
+    this.loading = false;
   }
 
   ionViewDidEnter() {
@@ -68,7 +70,7 @@ export class BoxehWayPage implements OnInit {
 
   refresh(event) {
     this.service.refreshState(); // refresh state
-    this.alertService.presentLoading('Please wait...');
+    this.loading = true;
     this.initData(event);
   }
 

@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { RecipeBlogPageRoutingModule } from './recipe-blog-routing.module';
 
 import { RecipeBlogPage } from './recipe-blog.page';
+import { NgxLoadingModule } from 'ngx-loading';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RecipeBlogPageRoutingModule
+    RecipeBlogPageRoutingModule,
+    NgxLoadingModule
   ],
   declarations: [RecipeBlogPage]
 })

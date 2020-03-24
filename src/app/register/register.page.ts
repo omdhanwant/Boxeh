@@ -13,21 +13,24 @@ import { Error } from '../shared-module/models/Error';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-
+  loading = false;
   constructor(private auth: AuthService, private alertService: AlertService, private nav: NavController) { }
 
   ngOnInit() {
   }
 
   register(form: NgForm) {
+    this.loading = true;
     if (form.valid) {
       // console.log(form.value);
       this.auth.registerUser(form.value).subscribe((response: LoginResponse) => {
         if (response.code === 200) {
+          this.loading = false;
           form.reset();
           this.nav.navigateBack(['/login']);
           this.alertService.presentAlert(Utils.SUCCESS, response.message, [Utils.OK]);
         } else {
+          this.loading = false;
           this.alertService.presentAlert(Utils.ERROR, response.message, [Utils.OK]);
         }
 
@@ -38,6 +41,7 @@ export class RegisterPage implements OnInit {
       // }
       );
     } else {
+      this.loading = false;
       this.alertService.presentAlert(Utils.ERROR , 'Enter valid details!', ['OK']);
     }
   }

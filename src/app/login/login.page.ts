@@ -14,25 +14,28 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
-
+  loading = false;
   constructor(private auth: AuthService , private nav: NavController ,private route: ActivatedRoute, public alertService: AlertService) { }
 
   login(form: NgForm) {
-    this.alertService.presentLoading('Please Wait...');
+    // this.alertService.presentLoading('Please Wait...');
+    this.loading = true;
     if (form.valid) {
 
       this.auth.login(form.value).subscribe((response: LoginResponse) => {
       if (response.code === 200) {
 
         form.reset();
-        this.alertService.dismissLoading();
+        // this.alertService.dismissLoading();
+        this.loading = false;
         this.alertService.presentAlert(Utils.SUCCESS, response.message, [Utils.OK]);
         const returnUrl =  this.route.snapshot.queryParamMap.get('returnUrl') || '/'
         this.nav.navigateRoot([returnUrl]);
         
       } else {
 
-        this.alertService.dismissLoading();
+        // this.alertService.dismissLoading();
+        this.loading = false;
         this.alertService.presentAlert(Utils.ERROR, response.message, [Utils.OK]);
 
       }
@@ -54,7 +57,8 @@ export class LoginPage {
       );
 
     } else {
-      this.alertService.dismissLoading();
+      // this.alertService.dismissLoading();
+      this.loading = false;
       this.alertService.presentAlert(Utils.ERROR, 'Enter valid username and password!', [Utils.OK]);
     }
   }

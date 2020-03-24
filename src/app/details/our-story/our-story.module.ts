@@ -8,13 +8,15 @@ import { OurStoryPageRoutingModule } from './our-story-routing.module';
 
 import { OurStoryPage } from './our-story.page';
 import { Service } from './service.service';
+import { NgxLoadingModule } from 'ngx-loading'
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    OurStoryPageRoutingModule
+    OurStoryPageRoutingModule,
+    NgxLoadingModule
   ],
   declarations: [OurStoryPage],
   providers: [

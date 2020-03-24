@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 import { SharedModule } from '../shared-module/shared-module.module';
+import { NgxLoadingModule } from 'ngx-loading'
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { SharedModule } from '../shared-module/shared-module.module';
       }
     ]),
     SharedModule,
+    NgxLoadingModule
   ],
   declarations: [HomePage]
 })

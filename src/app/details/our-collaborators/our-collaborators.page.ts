@@ -15,6 +15,7 @@ export class OurCollaboratorsPage implements OnInit {
   OurCollaborators: OurCollaborators = null;
   subscription: Subscription;
   langSubscription: Subscription;
+  loading = false;
   constructor(private service: Service, public authService: AuthService, private alertService: AlertService, private _sanitizer: DomSanitizer) { }
 
   ngOnInit() {
@@ -22,7 +23,7 @@ export class OurCollaboratorsPage implements OnInit {
 
   // ionViewWillEnter() {
   //   if (!this.service.CollaboratorsDataState) {
-  //     this.alertService.presentLoading('Please wait...');
+  //     this.loading = true;
   //   }
   // }
 
@@ -34,12 +35,12 @@ export class OurCollaboratorsPage implements OnInit {
     this.langSubscription =  this.authService.$currentLanguage.subscribe(languageState => {
 
       // if (this.authService.LANGUAGE !== languageState) {
-      //   this.alertService.presentLoading('Please wait...');
+      //   this.loading = true;
       //   this.service.refreshState();
       // } 
       if (this.service.currentPageLanguage !== languageState) {
         this.service.currentPageLanguage = languageState
-        this.alertService.presentLoading('Please wait...');
+        this.loading = true;
         this.service.refreshState();
   
       } 
@@ -66,9 +67,10 @@ export class OurCollaboratorsPage implements OnInit {
   }
 
   dismissLoader() {
-    setTimeout(() => {
-      this.alertService.dismissLoading();
-    }, 100); 
+    // setTimeout(() => {
+    //   this.alertService.dismissLoading();
+    // }, 100); 
+    this.loading = false;
   }
 
   ionViewDidEnter() {
@@ -78,7 +80,7 @@ export class OurCollaboratorsPage implements OnInit {
 
   refresh(event) {
     this.service.refreshState(); // refresh state
-    this.alertService.presentLoading('Please wait...');
+    this.loading = true;
     this.initData(event);
   }
   

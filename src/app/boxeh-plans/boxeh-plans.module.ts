@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { BoxehPlansPageRoutingModule } from './boxeh-plans-routing.module';
 
 import { BoxehPlansPage } from './boxeh-plans.page';
+import { NgxLoadingModule } from 'ngx-loading'
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BoxehPlansPageRoutingModule
+    BoxehPlansPageRoutingModule,
+    NgxLoadingModule
   ],
   declarations: [BoxehPlansPage]
 })

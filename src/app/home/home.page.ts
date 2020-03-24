@@ -16,6 +16,7 @@ export class HomePage {
   langSubscription: Subscription;
   segment;
   recipeSegment;
+  loading = false;
 
   constructor(private service: HomeService, private alertService: AlertService, public authService: AuthService) {
   }
@@ -36,7 +37,8 @@ export class HomePage {
 
       if (this.service.currentPageLanguage !== languageState) {
         this.service.currentPageLanguage = languageState
-        this.alertService.presentLoading('Please wait...');
+        // this.alertService.presentLoading('Please wait...');
+        this.loading = true;
         this.service.refreshState();
   
       } 
@@ -71,9 +73,10 @@ export class HomePage {
   }
 
   dismissLoader() {
-    setTimeout(() => {
-      this.alertService.dismissLoading();
-    }, 100); 
+    this.loading = false;
+    // setTimeout(() => {
+    //   this.alertService.dismissLoading();
+    // }, 100); 
   }
 
   ionViewDidEnter() {
@@ -83,7 +86,8 @@ export class HomePage {
 
   refresh(event) {
     this.service.refreshState(); // refresh state
-    this.alertService.presentLoading('Please wait...');
+    // this.alertService.presentLoading('Please wait...');
+    this.loading = true;
     this.initData(event);
   }
 

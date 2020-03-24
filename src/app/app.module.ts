@@ -9,11 +9,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared-module/shared-module.module';
-import { SideMenuComponent } from './shared-module/side-menu/side-menu.component';
 import { IonicStorageModule } from '@ionic/storage';
 import { AuthService } from './shared-module/shared-services/auth.service';
 import { AuthGuard } from './shared-module/shared-services/auth-gaurd';
-import { FilterPipeSearch } from './directives/filterPipeSearch';
+
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 
 @NgModule({
   declarations: [
@@ -27,6 +27,12 @@ import { FilterPipeSearch } from './directives/filterPipeSearch';
     AppRoutingModule ,
     SharedModule,
     IonicStorageModule.forRoot(),
+    NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.circle,
+      fullScreenBackdrop: true,
+      primaryColour: '#a0c643',
+      backdropBackgroundColour: 'rgba(172, 166, 166, 0.2)'
+    })
   ],
   providers: [
     // FilterPipeSearch,
