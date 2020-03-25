@@ -94,10 +94,11 @@
     <ion-row  class="footer-bottom-img" [style.background-image]="authService.getBackground(boxehWhy?.data.section_subscribe.section_background)">
       <ion-col size="12" style="padding: 145px 0; height: 400px;">
         <div class="d-block text-center">
-          <h1 class="grey" style="color: #343434;font-weight: 600;width: 300px;text-align: center;margin: auto;font-size: 30px;">{{boxehWhy?.data.section_subscribe.title}}</h1>
-          <ion-button color='primary' size="samll" type="submit" class="mt-4" style="border-radius: 15px; box-shadow: none; border: none; text-transform: capitalize;" margin-top >
+          <h1 class="grey" style="color: #343434;font-weight: 600;width: 300px; text-align: center;margin: auto;font-size: 30px;margin-bottom: 23px;">{{boxehWhy?.data.section_subscribe.title}}</h1>
+          <!-- <ion-button color='primary' size="samll" type="submit" class="mt-4" style="border-radius: 15px; box-shadow: none; border: none; text-transform: capitalize;" margin-top >
             {{boxehWhy?.data.section_subscribe.button_text}}
-          </ion-button>
+          </ion-button> -->
+          <a routerLink="/boxeh-plans" style="font-size: 16px; font-weight: 400; padding: 13px 29px; color: #fff; border-radius: 15px;background-color: #a0c643; border-color: #a0c643;line-height: 1.5;" class="btn btn-primary btn-lg font-light">{{boxehWhy?.data.section_subscribe.button_text}}</a>
         </div>
       </ion-col>
     </ion-row>
