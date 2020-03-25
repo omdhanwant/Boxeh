@@ -4,6 +4,7 @@ import { BoxehPlansServiceService } from './service/boxeh-plans-service.service'
 import { Subscription } from 'rxjs';
 import { Utils } from '../shared-module/utils/constants';
 import { AuthService } from '../shared-module/shared-services/auth.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-boxeh-plans',
@@ -14,7 +15,13 @@ export class BoxehPlansPage implements OnInit {
   data: BoxehPlans = null;
   subscription : Subscription;
   loading = false;
-  constructor(private service : BoxehPlansServiceService,private alertService: AlertService, public authService: AuthService) { }
+  routeToId: string;
+  constructor(private service : BoxehPlansServiceService,
+    private alertService: AlertService, 
+    public authService: AuthService,
+    private nav: NavController) { 
+      this.routeToId = '';
+    }
 
 
   ionViewWillEnter() {
@@ -59,4 +66,12 @@ export class BoxehPlansPage implements OnInit {
     this.initData(event);
   }
 
+  setRouteToId(event) {
+    // this.nav.navigateForward(['/boxeh-plans/product-details'], {queryParams: { id: event.target.value }})
+      this.routeToId = event.target.value;
+  }
+
+  routeToPath() {
+    this.nav.navigateForward(['/boxeh-plans/product-details'], {queryParams: { id: this.routeToId }})
+  }
 }

@@ -57,22 +57,24 @@
           <ion-card-content [innerHtml] = 'product.description'>
           </ion-card-content>
         </ion-card> -->
-
-        <div class="single-item align-content-stretch" style="display: flex" *ngFor='let product of data?.data.products' routerLink='/boxeh-plans/product-details' [queryParams]='{id: product.id}'>
-          <div class="card">
-            <a href="#">
+        <!-- routerLink='/boxeh-plans/product-details' [queryParams]='{id: product.id}' -->
+        <div class="single-item align-content-stretch checkRadioContainer" style="display: flex" *ngFor='let product of data?.data.products'>
+          <label>
+            <input (change)="setRouteToId($event)" [value]="product.id" type="radio" name="radioGroup" id="customRadio"/>
+            <div class="card">            
               <img class="card-img-top" src="assets/Boxeh-Plans-1.jpg">
-            </a>
             <div class="card-body my-p-fs p-2">
               <h5 class="card-title text-center text-primary mt-2 fw-600 fs-18">{{product.name}}</h5>
               <p class="card-text font-light fs-18 fw-600 mb-0" [innerHtml] = 'product.description'></p>
             </div>
           </div>
+          </label>
+         
         </div>
       </ion-col>
     </ion-row>
   </ion-grid>
   <div class="text-center mb-4">
-    <button routerLink='/boxeh-plans/product-details' class="btn btn-primay btn-lg" style="color: #fff; border-radius: 15px; background-color: #a0c643; border-color: #a0c643; font-weight: 900; font-size: 1.25rem; line-height: 1.5;">Pick This Boxeh</button>
+    <button (click)="routeToPath()" class="btn btn-primay btn-lg" style="color: #fff; border-radius: 15px; background-color: #a0c643; border-color: #a0c643; font-weight: 900; font-size: 1.25rem; line-height: 1.5;">Pick This Boxeh</button>
   </div>
 </ion-content>

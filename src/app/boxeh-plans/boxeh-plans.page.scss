@@ -251,3 +251,35 @@ ion-checkbox{
 }
 
 
+
+   /* radio buttons */
+
+.single-item > label > input {
+    visibility: hidden;
+}
+
+// .single-item > label {
+//   display: inline-block;
+//   border: 1px solid #dfe1e2;
+//   margin-bottom: -2px;
+//   cursor: pointer;
+//   width: 30%;
+//   height: 140px;
+//   margin: 6px;
+//   vertical-align: top;
+//   border-radius: 5px;
+//   box-shadow: 2px 2px 5px 0px lightgrey;
+// }
+
+.single-item > label > input + .card {
+  // visibility: hidden;
+  opacity: 0.6;
+  transition: all 0.2s ease-in;
+  transform: scale(0.95);
+}
+
+.single-item > label > input:checked + .card {
+  // visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+}
