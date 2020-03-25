@@ -1,0 +1,65 @@
+.stepper {
+    background-color: #e8f3d8;
+    padding: 20px;
+}
+.order-info {
+    background: #ffffff !important;
+    border: 0;
+    margin: 20px;
+}
+.btn-outline-primary {
+    color: #91c11e !important;
+    border-color: #91c11e !important;
+    margin: 5px;
+    
+}
+.icon-astrick {
+    color: red;
+    font-size: 7px;
+    position: relative;
+    top: -4px;
+}
+
+div.payment_box::before {
+    content: "";
+    display: block;
+    border: 1em solid #dfdcde;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    position: absolute;
+    top: -.75em;
+    left: 0;
+    margin: -1em 0 0 2em;
+}
+
+.payment_box{
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: .92em;
+    border-radius: 2px;
+    background-color: #dfdcde;
+    color: #515151;
+}
+
+
+.btn-primary {
+    color: #fff;
+    border-radius: 15px;
+}
+.btn-primary {
+    color: #212529;
+    background-color: #a0c643;
+    border-color: #a0c643;
+}
+.btn-lg{
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+}
+.text-white{
+    color: #fff;
+}
