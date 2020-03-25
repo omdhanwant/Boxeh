@@ -44,10 +44,7 @@ ion-checkbox{
     width: auto;
     word-wrap: break-word;
 }
-.btn-outline-primary {
-    color: #91c11e;
-    border-color: #91c11e;
-}
+
 .btn {
     display: inline-block;
     font-weight: 400;
@@ -77,4 +74,57 @@ ion-checkbox{
 }
 .icon-inner{
     color: #91c11e;
+}
+.shoping-btn{
+    font-size: 100%;
+    margin: 0;
+    line-height: 1;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+    overflow: visible;
+    padding: 1em 1em;
+    font-weight: 700;
+    border-radius: 3px;
+    left: auto;
+    color: #515151;
+    background-color: #ebe9eb;
+    border: 0;
+    display: inline-block;
+    background-image: none;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.remove{
+    display: block;
+    text-align: center;
+    line-height: 1.4;
+    color: red !important;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 16px;
+}
+
+.cart-text{
+    color: #5f6062;
+}
+
+.btn-primary {
+    color: #fff;
+    border-radius: 15px;
+}
+.btn-primary {
+    color: #212529;
+    background-color: #a0c643;
+    border-color: #a0c643;
+}
+.btn-lg{
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+}
+.text-white{
+    color: #fff;
 }
