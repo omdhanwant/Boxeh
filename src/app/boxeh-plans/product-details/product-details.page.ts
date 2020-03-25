@@ -7,6 +7,8 @@ import { AlertService } from 'src/app/shared-module/shared-services/alert-servic
 import { AuthService } from 'src/app/shared-module/shared-services/auth.service';
 import { Utils } from 'src/app/shared-module/utils/constants';
 import { BoxehPlansServiceService } from '../service/boxeh-plans-service.service';
+import { NavController } from '@ionic/angular';
+import { Cart } from '../model/cart';
 declare var $: any;
 
 @Component({
@@ -21,29 +23,35 @@ export class ProductDetailsPage{
   langSubscription: Subscription;
   param: Params;
   loading = false;
+  optionsMap: Map<number, string>;
+  selectedRecipes: any[];
   constructor(private service: BoxehPlansServiceService, private alertService: AlertService
-    , public authService: AuthService, private activatedRoute: ActivatedRoute) {
-
+    , public authService: AuthService, private activatedRoute: ActivatedRoute,
+    private nav: NavController) {
+      this.optionsMap = new Map<number, string>();
+      this.selectedRecipes = [];
       this.param = this.activatedRoute.snapshot.queryParams;
   }
 
   loadAfterDomLoad(){
-    $(document).ready(function() {
-      console.log("test");
-      $(".single-item").on("click",function(event) {
-        console.log("click");
-          var target = $(event.target);
-          if (target.is('input:checkbox')) return;
+    // $(document).ready(function() {
+    //   console.log("test");
+    //   $(".single-item").on("click",function(event) {
+    //     console.log("click");
+    //       var target = $(event.target);
+    //       if (target.is('input:checkbox')) return;
           
-          var checkbox = $(this).find("input[type='checkbox']");
+    //       var checkbox = $(this).find("input[type='checkbox']");
           
-          if( !checkbox.prop("checked") ){
-              checkbox.prop("checked",true);
-          } else {
-              checkbox.prop("checked",false);
-          }
-      });
-    });
+    //       if( !checkbox.prop("checked") ){
+    //           checkbox.prop("checked",true);
+    //       } else {
+    //           checkbox.prop("checked",false);
+    //       }
+
+    //       this.selectedRecipes(event)
+    //   });
+    // });
   }
  
    ionViewWillEnter() {
@@ -67,12 +75,14 @@ export class ProductDetailsPage{
               event.target.complete();
             }
             this.productData = product;
-            this.loadAfterDomLoad();
+            // this.loadAfterDomLoad();
             this.dismissLoader();
           } else {
             this.alertService.presentAlert(Utils.ERROR, product.message, [Utils.OK]);
             this.dismissLoader();
           }
+        } ,(error) => {
+          this.alertService.presentAlert(Utils.ERROR, error.message, [Utils.OK]);
         });
       
     })
@@ -85,12 +95,65 @@ export class ProductDetailsPage{
   this.loading = false;
   }
 
- 
+  addToCart() {
+    let storeObject: Cart = {
+      productName: this.productData.data.name,
+      recipesPerWeek: this.optionsMap.get(0),
+      servingsPerRecipe: this.optionsMap.get(1),
+      selectedRecipes: this.selectedRecipes.toString(),
+      price: this.getPrice(),
+      quantity: 1,
+      totalPrice: 1 * this.getPrice()
+    }
+    if(localStorage.getItem('cart')) {
+      let data:any[] = JSON.parse(localStorage.getItem('cart'));
+      data.push(storeObject);
+      localStorage.setItem('cart' , JSON.stringify(data));
+    } else {
+      localStorage.setItem('cart' , JSON.stringify([storeObject]));
+    }
+    
+
+    this.nav.navigateForward(['/cart']);
+  }
 
 
   refresh(event) {
     this.loading = true;
     this.initData(event);
+  }
+
+
+
+  addSelectedRecipes(event) {
+    if (!this.selectedRecipes.includes(event.target.value)) {
+      this.selectedRecipes.push(event.target.value);
+    } else {
+      let index = this.selectedRecipes.findIndex(s => s == event.target.value)
+       this.selectedRecipes.splice(index,1);
+    }
+  }
+
+
+  calculateTotalPrice(event, i) {
+      this.optionsMap.set(i, event.target.value);
+  }
+
+  getPrice(){
+    let variation = null;
+    if (this.productData) {
+      this.productData.data.variations.forEach(v => {
+         if(v.attributes.filter((a, index) => a.option === this.optionsMap.get(index)).length == 2) {
+           variation = v;
+         }
+      });
+  
+     if (variation) {
+        return  variation.regular_price
+     }
+    }
+
+   return 0
   }
 
 

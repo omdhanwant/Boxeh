@@ -76,13 +76,13 @@
 
               <table class="variations" cellspacing="0">
                 <tbody>
-                  <tr *ngFor="let recipe of productData?.data.attributes">
-                    <td class="label"><label for="pa_recipes-per-week">{{recipe.name}}</label></td>
-                    <td class="value">
-                      <select id="pa_recipes-per-week" class="" name="attribute_pa_recipes-per-week"
+                  <tr *ngFor="let recipe of productData?.data.attributes; let i=index;">
+                    <td *ngIf="recipe.name !== 'Choose recipes'" class="label"><label for="pa_recipes-per-week">{{recipe.name}}</label></td>
+                    <td *ngIf="recipe.name !== 'Choose recipes'"  class="value">
+                      <select (change)="calculateTotalPrice($event, i)" id="pa_recipes-per-week" class="" name="attribute_pa_recipes-per-week"
                         data-attribute_name="attribute_pa_recipes-per-week" data-show_option_none="yes">
                         <option value="">Choose an option</option>
-                        <option value="3" *ngFor="let item of recipe.options" class="attached enabled">{{item}}</option>
+                        <option value={{item}} *ngFor="let item of recipe.options" class="attached enabled">{{item}}</option>
                       </select> </td>
                   </tr>
                 </tbody>
@@ -91,7 +91,7 @@
               <div class="single_variation_wrap">
                 <span style="color: #77a464; font-size: 1.25em; font-weight: 900;">
                   <span>
-                    <span>JOD</span>6.00</span> total price</span>
+                    <span>JOD</span> {{getPrice()}}</span> total price</span>
               </div>
 
             </form>
@@ -102,8 +102,8 @@
               Recipes</h4>
             <div class="single-item  align-content-stretch"
               style="display: flex" tabindex="0" *ngFor="let item of productData?.data.recipes">
-              <input type="checkbox" name="product-recipe" id="product-recipe" class="d1-none">
               <label>
+              <input (change)="addSelectedRecipes($event)" [value]="item.title" type="checkbox" name="product-recipe" id="product-recipe" class="d1-none">
                 <div class="card">
                   <div class="overlay">
                       <i class="fas fa-check-circle"></i>
@@ -122,6 +122,7 @@
                 </div>
               </label>
             </div>
+          
           </section>
 
         </div>
@@ -129,7 +130,7 @@
     </ion-row>
   </ion-grid>
   <div class="text text-center text-secondary joinUsButton" style="margin-bottom: 24px;">
-    <a routerLink='/boxeh-plans' class="stickybtn  btn-primary btn-lg font-light text-decoration-0">
-      Add to cart</a>
+    <button (click)="addToCart()" [disabled]="optionsMap.size == 0  && selectedRecipes.length <= 1" class="stickybtn  btn-primary btn-lg font-light text-decoration-0">
+      Add to cart</button>
   </div>
 </ion-content>

@@ -136,20 +136,26 @@ div.product form.cart {
     font-size: 1.25em !important; 
 }
 
+
+// check boxes
 .single-item {
     padding: 25px;
     outline: none;
     position: relative;
 }
 
+.single-item > label > input {
+    visibility: hidden;
+}
+
 .d1-none{
     display: none !important;
 }
-.single-item .overlay {
+.single-item > label > input[type=checkbox] + .card .overlay {
     display: none;
 }
 
-.single-item input[type=checkbox]:checked + label .overlay {
+.single-item > label > input[type=checkbox]:checked + .card .overlay {
     background-color: rgba(145, 193, 30, 0.6);
     position: absolute;
     top: -5px;
@@ -161,7 +167,7 @@ div.product form.cart {
     border-radius: 5px;
 }
 
-.single-item input[type=checkbox] + label .overlay i {
+.single-item > label > input[type=checkbox] +  .card .overlay i {
     color: #fff;
     font-size: 60px;
     top: 50%;

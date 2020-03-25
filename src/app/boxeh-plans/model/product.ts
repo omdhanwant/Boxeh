@@ -26,7 +26,7 @@ export interface Product
                 options: number[];
             }[]
         ,
-        variations: [
+        variations: 
             {
                 id: number;
                 sku: string;
@@ -34,15 +34,15 @@ export interface Product
                 sale_price: string;
                 stock_status: string;
                 image: string;
-                attributes: [
+                attributes: 
                     {
                         id: number;
                         name: string;
-                        option: number;
+                        option: string;
                     }[]
-                ]
+                
             }[]
-        ],
+        ,
         recipes: 
             {
                 id: number;
