@@ -100,22 +100,27 @@
           <section>
             <h4 style="color: #91c11e !important; font-size: 26px; font-weight: 900; text-align: center;">Choose Your
               Recipes</h4>
-
-            <div class="single-item  align-content-stretch" 
+            <div class="single-item  align-content-stretch"
               style="display: flex" tabindex="0" *ngFor="let item of productData?.data.recipes">
-              <div class="card">
-                <div><img class="card-img-top"
-                    [src]="item.thumbnail_url"></div>
-                <div class="card-body p-2">
-                  <!-- <span>
-                  <span class="badge badge-primary font-light small">
-                      Chicken </span></span> -->
-                  <h5 class="card-title mt-2" style="font-size: 16px; color: #91c11e; font-weight: 900;">{{item.title}}></h5>
-                  <p class="card-text font-light font-14" [innerHTML]="item.content"></p>
+              <input type="checkbox" name="product-recipe" id="product-recipe" class="d1-none">
+              <label>
+                <div class="card">
+                  <div class="overlay">
+                      <i class="fas fa-check-circle"></i>
+                  </div>
+                  <div><img class="card-img-top"
+                      [src]="item.thumbnail_url"></div>
+                  <div class="card-body p-2">
+                    <!-- <span>
+                    <span class="badge badge-primary font-light small">
+                        Chicken </span></span> -->
+                    <h5 class="card-title mt-2" style="font-size: 16px; color: #91c11e; font-weight: 900;">{{item.title}}></h5>
+                    <p class="card-text font-light font-14" [innerHTML]="item.content"></p>
+                  </div>
+                  <div class="card-footer"><span class="cook-time text-secondary font-weight-bold">{{item.cooking_time}}</span><span
+                      class="extra font-14 font-light"></span></div>
                 </div>
-                <div class="card-footer"><span class="cook-time text-secondary font-weight-bold">{{item.cooking_time}}</span><span
-                    class="extra font-14 font-light"></span></div>
-              </div>
+              </label>
             </div>
           </section>
 
@@ -125,6 +130,6 @@
   </ion-grid>
   <div class="text text-center text-secondary joinUsButton" style="margin-bottom: 24px;">
     <a routerLink='/boxeh-plans' class="stickybtn  btn-primary btn-lg font-light text-decoration-0">
-      Order Now</a>
+      Add to cart</a>
   </div>
 </ion-content>

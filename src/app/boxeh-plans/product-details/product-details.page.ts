@@ -7,6 +7,7 @@ import { AlertService } from 'src/app/shared-module/shared-services/alert-servic
 import { AuthService } from 'src/app/shared-module/shared-services/auth.service';
 import { Utils } from 'src/app/shared-module/utils/constants';
 import { BoxehPlansServiceService } from '../service/boxeh-plans-service.service';
+declare var $: any;
 
 @Component({
   selector: 'app-product-details',
@@ -14,7 +15,6 @@ import { BoxehPlansServiceService } from '../service/boxeh-plans-service.service
   styleUrls: ['./product-details.page.scss'],
 })
 export class ProductDetailsPage{
-
 
   productData: Product = null;
   subscription: Subscription;
@@ -25,6 +25,25 @@ export class ProductDetailsPage{
     , public authService: AuthService, private activatedRoute: ActivatedRoute) {
 
       this.param = this.activatedRoute.snapshot.queryParams;
+  }
+
+  loadAfterDomLoad(){
+    $(document).ready(function() {
+      console.log("test");
+      $(".single-item").on("click",function(event) {
+        console.log("click");
+          var target = $(event.target);
+          if (target.is('input:checkbox')) return;
+          
+          var checkbox = $(this).find("input[type='checkbox']");
+          
+          if( !checkbox.prop("checked") ){
+              checkbox.prop("checked",true);
+          } else {
+              checkbox.prop("checked",false);
+          }
+      });
+    });
   }
  
    ionViewWillEnter() {
@@ -48,6 +67,7 @@ export class ProductDetailsPage{
               event.target.complete();
             }
             this.productData = product;
+            this.loadAfterDomLoad();
             this.dismissLoader();
           } else {
             this.alertService.presentAlert(Utils.ERROR, product.message, [Utils.OK]);

@@ -139,6 +139,35 @@ div.product form.cart {
 .single-item {
     padding: 25px;
     outline: none;
+    position: relative;
+}
+
+.d1-none{
+    display: none !important;
+}
+.single-item .overlay {
+    display: none;
+}
+
+.single-item input[type=checkbox]:checked + label .overlay {
+    background-color: rgba(145, 193, 30, 0.6);
+    position: absolute;
+    top: -5px;
+    bottom: -5px;
+    right: -5px;
+    left: -5px;
+    z-index: 2;
+    display: block;
+    border-radius: 5px;
+}
+
+.single-item input[type=checkbox] + label .overlay i {
+    color: #fff;
+    font-size: 60px;
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .recipes .card{
@@ -207,7 +236,7 @@ div.product form.cart {
     overflow: hidden;
     display: -webkit-box;
     display: flex;
-    margin-bottom: -15px;
+    margin-bottom: -5px;
     border: none;
     border-radius: 0px;
     border-bottom: none;
