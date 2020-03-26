@@ -79,13 +79,13 @@
                         <div *ngFor="let item of recipes.recipes">
                           <img class="card-img-top" [src]="item.thumbnail">
                           </div>
-                        <div class="card-body p-2">
+                        <div class="card-body p-2" style="text-align: left;">
                           <span *ngFor="let item of recipes.category">
                             <span class="badge badge-primary font-light small">
                               {{item.name}}
                             </span>
                           </span>
-                          <h5 class="card-title mt-2"></h5>
+                          <h5 class="card-title mt-2" style="font-size: 16px; color: #91c11e; font-weight: 900;">{{recipes.title}}</h5>
                           <p class="card-text font-light font-14">
                             {{recipes.content}}
                           </p>
