@@ -17,188 +17,206 @@
           <p class="cart-empty mt-0" style="color: #515151;font-size: 16px;">
             <i class="fa fa-check-circle" aria-hidden="true"
               style="color: #91c11e;font-size: 20px;vertical-align: middle;"></i>
-              Click here to enter your code</p>
+            Click here to enter your code</p>
         </ion-col>
       </ion-row>
 
     </div>
   </div>
+  <form #form="ngForm" (ngSubmit)="placeOrder(form)" class="form-positon">
     <div class="order-info">
       <ion-row>
         <ion-col size="6">
           <p class="mb-0 form-label"> First Name <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" class="input-text"   placeholder=""  autocomplete="off">
+          <input type="text" class="input-text" name="first_name" ngModel required placeholder="" autocomplete="off">
         </ion-col>
-        <ion-col  size="6">
+        <ion-col size="6">
           <p class="mb-0 form-label"> Last Name <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" class="input-text"   placeholder=""  autocomplete="off">
+          <input type="text" class="input-text" name="last_name" ngModel required placeholder="" autocomplete="off">
         </ion-col>
-        <ion-col  size="12">
+        <ion-col size="12">
           <p class="mb-0 form-label"> Company Name (Optional)</p>
-          <input type="text" class="input-text"   placeholder=""  autocomplete="off">
+          <input type="text" name="company" ngModel required class="input-text" placeholder="" autocomplete="off">
         </ion-col>
-        <ion-col  size="12">
+        <ion-col size="12">
           <p class="mb-0 form-label">Country <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" class="input-text"   placeholder="Country"  autocomplete="off">
+          <input type="text" name="country" ngModel required class="input-text" placeholder="Country" autocomplete="off">
         </ion-col>
-        <ion-col  size="12">
+        <ion-col size="12">
           <p class="mb-0 form-label"> Street address <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" class="input-text mb-2"   placeholder="House number and street name"  autocomplete="off" >
+          <input type="text" name="address_1" ngModel required class="input-text mb-2" placeholder="House number and street name" autocomplete="off">
         </ion-col>
-        <ion-col  size="12">
+        <ion-col size="12">
           <p class="mb-0 form-label"> Apartment, suite, unit etc. (Optional) </p>
-          <input type="text" class="input-text"   placeholder="Apartment, suite, unit etc. (optional)"  autocomplete="off">
+          <input type="text" name="address_2" ngModel required class="input-text" placeholder="Apartment, suite, unit etc. (optional)" autocomplete="off">
         </ion-col>
-        <ion-col  size="12">
+        <ion-col size="12">
           <p class="mb-0 form-label">Town / City <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" class="input-text"   placeholder="Country"  autocomplete="off">
+          <input type="text" name="city" ngModel required class="input-text" placeholder="Country" autocomplete="off">
         </ion-col>
-        <ion-col  size="12">
+        <ion-col size="12">
           <p class="mb-0 form-label">State / County <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" class="input-text"   placeholder=""  autocomplete="off">
+          <input type="text" name="state" ngModel required class="input-text" placeholder="" autocomplete="off">
         </ion-col>
-        <ion-col  size="12">
+        <ion-col size="12">
+          <p class="mb-0 form-label">Pin code <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+          <input type="text" name="postcode" ngModel required class="input-text" placeholder="" autocomplete="off">
+        </ion-col>
+        <ion-col size="12">
           <p class="mb-0 form-label">Phone <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" class="input-text"   placeholder=""  autocomplete="off">
+          <input type="text" name="phone" ngModel required class="input-text" placeholder="" autocomplete="off">
         </ion-col>
-        <ion-col  size="12" >
+        <ion-col size="12">
           <p class="mb-0 form-label"> Email Address <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" class="input-text"   placeholder=""  autocomplete="off">
+          <input type="text" name="email" ngModel required class="input-text" placeholder="" autocomplete="off">
         </ion-col>
         <ion-col size="12" class="">
           <h4 class="fw-600" style="font-size: 25px;">Delivery Date &amp; Time</h4>
         </ion-col>
-        <ion-col  size="12">
-          <p class="mb-0 form-label">Delivery Day  <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="date" class="input-text"   placeholder=""  autocomplete="off">
+        <ion-col size="12">
+          <p class="mb-0 form-label">Delivery Day <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+          <input type="date" name="delivery-date" ngModel required class="input-text" placeholder="" autocomplete="off">
         </ion-col>
-        <ion-col  size="12">
-          <p class="mb-0 form-label">Delivery options  <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="date" class="input-text"   placeholder=""  autocomplete="off">
+        <ion-col size="12">
+          <p class="mb-0 form-label">Delivery options <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+          <select name="daypart" ngModel required class="input-text">
+            <option value="08:00 AM - 11:00AM">08:00 AM - 11:00AM</option>
+            <option value="02:00 PM - 05:00PM">02:00 PM - 05:00PM</option>
+            <option value="06:00 PM - 09:00PM">06:00 PM - 09:00PM</option>
+          </select>
         </ion-col>
         <ion-col size="12" class="">
           <h4 class="fw-600 pb-2" style="font-size: 25px;">Additional information</h4>
           <p class="mb-0 form-label">Order Notes (optional) </p>
-          <textarea  class="input-text"  placeholder="Notes about your order, e.g. special notes for delivery." rows="2" cols="5"></textarea>
+          <textarea class="input-text" name="customer_note" ngModel required placeholder="Notes about your order, e.g. special notes for delivery." rows="2"
+            cols="5"></textarea>
         </ion-col>
         <ion-col size="12" class="">
           <h4 class="fw-600 pb-2" style="font-size: 25px;">Your Order</h4>
-          </ion-col>
+        </ion-col>
       </ion-row>
       <div class=" pb-4">
         <div style="background: #d7d7d7 !important;border: 1px solid #91c11e;word-wrap: break-word;border-radius: 4px;">
-         <ion-row>
-          <ion-col size="12" class="pl-0 pr-0">
-            <ion-row style="border-bottom: 1px solid #91c11e;">
-              <ion-col size="6" class="text-left" style="padding: 0.5em 1em 0.5em 1em;">
-                <p class="cart-text mt-0 mb-0">
-                  Product
-                </p>
-              </ion-col>
-              <ion-col size="6" class="text-right" style="padding: 0.5em 1em 0.5em 1em;">
-                <p class="cart-text  mt-0 mb-0">
-                  Sub title
-                </p>
-              </ion-col>
-            </ion-row>
-            <ion-row style="border-bottom: 1px solid #91c11e;">
-              <ion-col size="8" class="text-left" style="padding: 0.5em 1em 0.5em 1em;">
-                <p class="cart-text mt-0 mb-0 pb-0">
-                  Deluxe Boxeh </p>
-                  <p class="cart-text mt-0 mb-0 pb-0">   Recipes per week : 3</p>
-                  <p class="cart-text mt-0 mb-0 pb-0">   Servings per recipe : 3</p>
-                  <p class="cart-text mt-0 mb-0 pb-0">Choosen Recipes: Creamy Mash Tomato Soup (ID:2183) ,Halloumi Curry with Basmati Rice (ID:2182) ,Spicy Thai Shrimp Soup (ID:2177) </p>
-                
-              </ion-col>
-              <ion-col size="4" class="text-right" style="padding: 0.5em 1em 0.5em 1em;">
-                <p class="cart-text d-block  mt-0 mb-0">
-                  JOD453.00
-                </p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-    
-          <ion-col size="12" class="pl-0 pr-0" style="border-bottom: 1px solid #91c11e;">
-            <ion-row>
-              <ion-col size="6" class="text-left " style="border-bottom: 1px solid #91c11e;padding: 0.5em 1em 0.5em 1em;">
-                <p class="cart-text mt-0 mb-0">
-                  Subtotal
-                </p>
-              </ion-col>
-              <ion-col size="6" class="text-right cart-text" style="border-bottom: 1px solid #91c11e;padding: 0.5em 1em 0.5em 1em;">
-                <p class="  mt-0 mb-0">
-                  JOD453.00
-                </p>
-              </ion-col>
-              <ion-col size="6" class="text-left" style="border-bottom: 1px solid #91c11e;padding: 0.5em 1em 0.5em 1em;">
-                <p class="cart-text mt-0 mb-0">
-                  Shipping
-                </p>
-              </ion-col>
-              <ion-col size="6" class="text-right" style="border-bottom: 1px solid #91c11e;padding: 0.5em 1em 0.5em 1em;">
-                <p class="cart-text  mt-0 mb-0">
-                 Flat Rate
-                </p>
-                <p class="cart-text  mt-0 mb-0">
-                  JOD453.00
-                </p>
-              </ion-col>
-              <ion-col size="6" class="text-left" style="padding: 1em 1em 0.5em 1em;">
-                <p class="cart-text mt-0 mb-0">
-                  Total
-                </p>
-              </ion-col>
-              <ion-col size="6" class="text-right" style="padding: 1em 1em 0.5em 1em;">
-                <p class="cart-text  mt-0 mb-0">
-                  JOD453.00
-                </p>
-              </ion-col>
-            </ion-row>
-          </ion-col>
-        
-        </ion-row>
-    
-      </div>
+          <ion-row>
+            <ion-col size="12" class="pl-0 pr-0">
+              <ion-row style="border-bottom: 1px solid #91c11e;">
+                <ion-col size="6" class="text-left" style="padding: 0.5em 1em 0.5em 1em;">
+                  <p class="cart-text mt-0 mb-0">
+                    Product
+                  </p>
+                </ion-col>
+                <ion-col size="6" class="text-right" style="padding: 0.5em 1em 0.5em 1em;">
+                  <p class="cart-text  mt-0 mb-0">
+                    Sub title
+                  </p>
+                </ion-col>
+              </ion-row>
+              <ion-row style="border-bottom: 1px solid #91c11e;">
+                <ion-col size="8" class="text-left" style="padding: 0.5em 1em 0.5em 1em;">
+                  <p class="cart-text mt-0 mb-0 pb-0">
+                    Deluxe Boxeh </p>
+                  <p class="cart-text mt-0 mb-0 pb-0"> Recipes per week : 3</p>
+                  <p class="cart-text mt-0 mb-0 pb-0"> Servings per recipe : 3</p>
+                  <p class="cart-text mt-0 mb-0 pb-0">Choosen Recipes: Creamy Mash Tomato Soup (ID:2183) ,Halloumi Curry
+                    with Basmati Rice (ID:2182) ,Spicy Thai Shrimp Soup (ID:2177) </p>
+
+                </ion-col>
+                <ion-col size="4" class="text-right" style="padding: 0.5em 1em 0.5em 1em;">
+                  <p class="cart-text d-block  mt-0 mb-0">
+                    JOD453.00
+                  </p>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+
+            <ion-col size="12" class="pl-0 pr-0" style="border-bottom: 1px solid #91c11e;">
+              <ion-row>
+                <ion-col size="6" class="text-left "
+                  style="border-bottom: 1px solid #91c11e;padding: 0.5em 1em 0.5em 1em;">
+                  <p class="cart-text mt-0 mb-0">
+                    Subtotal
+                  </p>
+                </ion-col>
+                <ion-col size="6" class="text-right cart-text"
+                  style="border-bottom: 1px solid #91c11e;padding: 0.5em 1em 0.5em 1em;">
+                  <p class="  mt-0 mb-0">
+                    JOD453.00
+                  </p>
+                </ion-col>
+                <ion-col size="6" class="text-left"
+                  style="border-bottom: 1px solid #91c11e;padding: 0.5em 1em 0.5em 1em;">
+                  <p class="cart-text mt-0 mb-0">
+                    Shipping
+                  </p>
+                </ion-col>
+                <ion-col size="6" class="text-right"
+                  style="border-bottom: 1px solid #91c11e;padding: 0.5em 1em 0.5em 1em;">
+                  <p class="cart-text  mt-0 mb-0">
+                    Flat Rate
+                  </p>
+                  <p class="cart-text  mt-0 mb-0">
+                    JOD453.00
+                  </p>
+                </ion-col>
+                <ion-col size="6" class="text-left" style="padding: 1em 1em 0.5em 1em;">
+                  <p class="cart-text mt-0 mb-0">
+                    Total
+                  </p>
+                </ion-col>
+                <ion-col size="6" class="text-right" style="padding: 1em 1em 0.5em 1em;">
+                  <p class="cart-text  mt-0 mb-0">
+                    JOD453.00
+                  </p>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+
+          </ion-row>
+
+        </div>
       </div>
       <div class="pb-3">
-        <div style="background: #d7d7d7 !important;border: 1px solid #91c11e;; word-wrap: break-word;border-radius: 4px;">
-            <ion-row class="pt-3 pb-3">
-              <ion-col size="12" class="text-left" style="padding: 0.5em 1em 0.5em 1em;">
-                <p class="cart-text mt-0 mb-0">
-                  <input type="radio" id="cod" name="cod" value="cod"> 
-                  Cash on delivery 	
-                </p>
-              </ion-col>
-              <ion-col>
-                <div class="payment_box payment_method_cod" style="position: relative; box-sizing: border-box; width: 100%;padding: 1em;margin: 1em 0;font-size: .92em;
+        <div
+          style="background: #d7d7d7 !important;border: 1px solid #91c11e;; word-wrap: break-word;border-radius: 4px;">
+          <ion-row class="pt-3 pb-3">
+            <ion-col size="12" class="text-left" style="padding: 0.5em 1em 0.5em 1em;">
+              <p class="cart-text mt-0 mb-0">
+                <input type="radio" name="payment_method" required ngModel value="cod">
+                Cash on delivery
+              </p>
+            </ion-col>
+            <ion-col>
+              <div class="payment_box payment_method_cod" style="position: relative; box-sizing: border-box; width: 100%;padding: 1em;margin: 1em 0;font-size: .92em;
                 border-radius: 2px;line-height: 1.5;background-color: #dfdcde;color: #515151;">
                 <p class="mb-0 mt-2">Pay with cash upon delivery.</p>
-                </div>
-              </ion-col>
+              </div>
+            </ion-col>
 
-              <ion-col size="12" class="text-left" style="padding: 0.5em 1em 0.5em 1em;">
-                <p class="cart-text mt-0 mb-0">
-                  <input type="radio" id="cc" name="cc" value="cc"> 
-                  Credit Cards 	
-                </p>
-              </ion-col>
-              <hr>
-              <ion-col size="12" class="text-left" style="padding: 0.5em 1em 0.5em 1em;">
-                <p class="cart-text">
-                  Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.
-                </p>
-              </ion-col>
+            <ion-col size="12" class="text-left" style="padding: 0.5em 1em 0.5em 1em;">
+              <p class="cart-text mt-0 mb-0">
+                <input type="radio" name="payment_method" required ngModel value="cc" name="payment_method">
+                Credit Cards
+              </p>
+            </ion-col>
+            <hr>
+            <ion-col size="12" class="text-left" style="padding: 0.5em 1em 0.5em 1em;">
+              <p class="cart-text">
+                Your personal data will be used to process your order, support your experience throughout this website,
+                and for other purposes described in our privacy policy.
+              </p>
+            </ion-col>
 
-              <ion-col size="12" class="">
-                <a href="http://boxeh.net/boxeh/checkout/" class="btn btn-primary btn-lg btn-block w-100 text-white fw-600" style="text-decoration: unset;">
-                  Place order</a>
-              </ion-col>
-        
-        </ion-row>
-      
+            <ion-col size="12" class="">
+              <button type="button" class="btn btn-primary btn-lg btn-block w-100 text-white fw-600"
+                style="text-decoration: unset;">
+                Place order</button>
+            </ion-col>
+
+          </ion-row>
+
+        </div>
       </div>
-        </div>
-        </div>
+    </div>
+  </form>
 
-  
 </ion-content>
