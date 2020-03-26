@@ -110,7 +110,7 @@ export class JoinUsPage implements OnInit {
   }
 
    joinUsForm(form: NgForm) {
-     console.log(form);
+     console.log(form.value);
     if (form.valid) {
       this.loading = true;
       const fistname = form.control.get('first-name').value;
