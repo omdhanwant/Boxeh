@@ -34,11 +34,10 @@ export class RegisterPage implements OnInit {
           this.alertService.presentAlert(Utils.ERROR, response.message, [Utils.OK]);
         }
 
+      } ,(error) => {
+        this.loading = false;
+        this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
       }
-      // , (error: Error) => {
-      //     this.alertService.presentAlert(Utils.ERROR , error.message, [Utils.OK]);
-      //     throw error.message;
-      // }
       );
     } else {
       this.loading = false;

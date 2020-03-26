@@ -64,6 +64,9 @@ export class OurSuppliersPage implements OnInit {
             // this.alertService.dismissLoading();
             this.dismissLoader();
           }
+        } ,(error) => {
+          this.dismissLoader();
+          this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
         });
       }
     })

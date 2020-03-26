@@ -2,6 +2,7 @@ export class Utils {
     static  OK = 'OK';
     static SUCCESS = 'Success';
     static ERROR = 'Error';
+    static ERROR_MESSAGE = 'Something went wrong'
     static ALPHANUMERIC = '^[a-zA-Z0-9_]+$';
     static EMAIL = '^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$';
     static NEW_EMAIL = '^\w+@\w+\..{2,3}(.{2,3})?$';

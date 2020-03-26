@@ -52,6 +52,9 @@ export class BoxehPlansPage implements OnInit {
           this.alertService.presentAlert(Utils.ERROR, boxehPlans.message, [Utils.OK]);
           this.loading = false;
         }
+      } ,(error) => {
+        this.loading = false;
+        this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
       });
     }
   }

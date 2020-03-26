@@ -56,6 +56,9 @@ export class RecipeLibraryPage implements OnInit {
             this.alertService.presentAlert(Utils.ERROR, responseData.message, [Utils.OK]);
             this.dismissLoader();
           }
+        } ,(error) => {
+          this.dismissLoader();
+          this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
         });
       }
 

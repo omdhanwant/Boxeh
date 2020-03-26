@@ -66,8 +66,10 @@ export class ContactUsPage implements OnInit {
           this.loading = false;
           this.alertService.presentAlert(Utils.ERROR, response.message, [Utils.OK]);
         }
-      }
-      );
+      } ,(error) => {
+        this.loading = false;
+        this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
+      });
 
     } else {
       this.alertService.dismissLoading();

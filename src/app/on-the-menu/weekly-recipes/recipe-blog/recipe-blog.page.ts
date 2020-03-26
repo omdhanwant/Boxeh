@@ -57,6 +57,9 @@ export class RecipeBlogPage {
           }
         });
       
+    } ,(error) => {
+      this.dismissLoader();
+      this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
     })
   }
 

@@ -82,7 +82,8 @@ export class ProductDetailsPage{
             this.dismissLoader();
           }
         } ,(error) => {
-          this.alertService.presentAlert(Utils.ERROR, error.message, [Utils.OK]);
+          this.dismissLoader();
+          this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
         });
       
     })

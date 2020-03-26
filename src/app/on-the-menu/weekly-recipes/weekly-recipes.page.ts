@@ -49,6 +49,9 @@ export class WeeklyRecipesPage implements OnInit {
             this.alertService.presentAlert(Utils.ERROR, home.message, [Utils.OK]);
             this.dismissLoader();
           }
+        } ,(error) => {
+          this.dismissLoader();
+          this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
         });
       }
     })

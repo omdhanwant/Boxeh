@@ -48,12 +48,10 @@ export class LoginPage {
         //   throw error;
         // });
 
+      },(error) => {
+        this.loading = false;
+        this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
       }
-      // , (error: Error) => {
-      //   this.alertService.dismissLoading();
-      //   this.alertService.presentAlert(Utils.ERROR, error.message, [Utils.OK]);
-      //   throw error;
-      // }
       );
 
     } else {

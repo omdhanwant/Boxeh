@@ -75,6 +75,9 @@ export class JoinUsPage implements OnInit {
         });
       }
 
+    } ,(error) => {
+      this.dismissLoader();
+      this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
     })
   }
 
