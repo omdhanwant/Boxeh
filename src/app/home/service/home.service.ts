@@ -3,14 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
-import { User } from 'src/app/shared-module/models/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
   private homeDataState: BehaviorSubject<Home> = new BehaviorSubject(null);
-  private weeklyReceipeDataState: BehaviorSubject<Weekly> = new BehaviorSubject(null);
   public currentPageLanguage: string = ''
   constructor(private http: HttpClient) { }
 
@@ -18,12 +16,7 @@ export class HomeService {
     return this.homeDataState.value;
   }
 
-  get WeeklyReceipeDataState() {
-    return this.weeklyReceipeDataState.value;
-  }
-
   refreshState() {
-    this.weeklyReceipeDataState.next(null);
     this.homeDataState.next(null);
   }
 
@@ -45,18 +38,6 @@ export class HomeService {
       .pipe(
         map((response: Home) => {
           this.homeDataState.next(response);
-          return response;
-        }));
-  }
-
-
-  getWeeklyReceipe(language) {
-    const data = {lang: language};
-    const time = new Date();
-    return this.http.post(`${environment.hostUrl}/boxeh/apis/page-weekly_recipes.php?type=` + time.getTime(), data)
-      .pipe(
-        map((response: Weekly) => {
-          this.weeklyReceipeDataState.next(response);
           return response;
         }));
   }

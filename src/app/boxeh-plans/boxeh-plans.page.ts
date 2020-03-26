@@ -70,11 +70,14 @@ export class BoxehPlansPage implements OnInit {
   }
 
   setRouteToId(event) {
-    // this.nav.navigateForward(['/boxeh-plans/product-details'], {queryParams: { id: event.target.value }})
       this.routeToId = event.target.value;
   }
 
   routeToPath() {
-    this.nav.navigateForward(['/boxeh-plans/product-details'], {queryParams: { id: this.routeToId }})
+    if (this.routeToId) {
+      this.nav.navigateForward(['/boxeh-plans/product-details'], {queryParams: { id: this.routeToId }})
+    } else {
+      this.alertService.presentAlert(Utils.ERROR, 'Please choose your boxeh!', [Utils.OK]);
+    }
   }
 }
