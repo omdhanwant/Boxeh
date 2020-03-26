@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { HomeService } from 'src/app/home/service/home.service';
 import { AlertService } from 'src/app/shared-module/shared-services/alert-service';
 import { AuthService } from 'src/app/shared-module/shared-services/auth.service';
 import { Utils } from 'src/app/shared-module/utils/constants';
+import { RecipesService } from '../service/recipes.service';
 
 @Component({
   selector: 'app-weekly-recipes',
@@ -18,7 +18,7 @@ export class WeeklyRecipesPage implements OnInit {
   recipeSegment
   loading = false;
 
-  constructor(private service: HomeService, private alertService: AlertService, public authService: AuthService) {}
+  constructor(private service: RecipesService, private alertService: AlertService, public authService: AuthService) {}
   ngOnInit() {
   }
 
@@ -49,7 +49,7 @@ export class WeeklyRecipesPage implements OnInit {
             this.alertService.presentAlert(Utils.ERROR, home.message, [Utils.OK]);
             this.dismissLoader();
           }
-        } ,(error) => {
+        } ,() => {
           this.dismissLoader();
           this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
         });

@@ -143,8 +143,10 @@ export class JoinUsPage implements OnInit {
           this.alertService.dismissLoading();
           this.alertService.presentAlert(Utils.ERROR, response.message, [Utils.OK]);
         }
-      }
-      );
+      } ,(error) => {
+        this.dismissLoader();
+        this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
+      });
 
     } else {
       this.alertService.dismissLoading();
