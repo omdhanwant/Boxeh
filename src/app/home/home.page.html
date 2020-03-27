@@ -92,41 +92,29 @@
               </ion-segment>
               <div [ngSwitch]="recipeSegment">
                 <ng-container *ngFor='let recipeContent of content.tab_content'>
-                  <ng-container *ngFor='let recipes of recipeContent.recipes'>
-                  <!-- <ion-card *ngSwitchCase="recipeContent.id">
-                    <ion-card-header class="text-left">
-                      {{recipes.title}}
-                    </ion-card-header>
-                    <span *ngFor="let item of recipes.recipes"><img [src]="item.thumbnail"></span>
-                    <ion-chip *ngFor="let item of recipes.category" outline>
-                      <ion-label color="success">{{item.name}}</ion-label>
-                    </ion-chip>
-                    <ion-card-content class="text-left">
-                      {{recipes.content}}
-                    </ion-card-content>
-                    <hr style="height: 1px; border-top: 2px dashed #91c11e; padding: 0; margin: 0;">
-                    <p style="display: block; width: 100px; border-right: 1px dashed #91c11e; padding: 12px; margin: 0;">{{recipes.recipe_cooking_time}}</p>
-                  </ion-card> -->
-
-                  <div class="single-item  align-content-stretch" *ngSwitchCase="recipeContent.id"
-                    style="display: flex" tabindex="0">
-                    <div class="card">
-                      <div *ngFor="let item of recipes.recipes"><img class="card-img-top"
-                        [src]="item.thumbnail"></div>
-                      <div class="card-body p-2">
-                        <span  *ngFor="let item1 of recipes.category">
-                          <span class="badge badge-primary font-light small">
-                              {{item1.name}} </span>
-                        </span>
-                        <h5 class="card-title mt-2" style="font-size: 16px; color: #91c11e; font-weight: 900;">{{recipes.title}}</h5>
-                        <p class="card-text font-light font-14" [innerHTML]="recipes.content"></p>
+                  
+                  <ion-slides [options]="slideOpts" pager=true>
+                    <ion-slide *ngFor='let recipes of recipeContent.recipes'>
+                      <div class="single-item  align-content-stretch" *ngSwitchCase="recipeContent.id"
+                      style="display: flex" tabindex="0">
+                      <div class="card">
+                        <div *ngFor="let item of recipes.recipes"><img class="card-img-top"
+                          [src]="item.thumbnail"></div>
+                        <div class="card-body p-2">
+                          <span  *ngFor="let item1 of recipes.category">
+                            <span class="badge badge-primary font-light small">
+                                {{item1.name}} </span>
+                          </span>
+                          <h5 class="card-title mt-2" style="font-size: 16px; color: #91c11e; font-weight: 900;">{{recipes.title}}</h5>
+                          <p class="card-text font-light font-14" [innerHTML]="recipes.content"></p>
+                        </div>
+                        <div class="card-footer"><span class="cook-time text-secondary font-weight-bold">{{recipes.recipe_cooking_time}}</span><span
+                            class="extra font-14 font-light"></span></div>
                       </div>
-                      <div class="card-footer"><span class="cook-time text-secondary font-weight-bold">{{recipes.recipe_cooking_time}}</span><span
-                          class="extra font-14 font-light"></span></div>
                     </div>
-                  </div>
-
-                </ng-container>
+                    </ion-slide>
+                  </ion-slides>
+                 
                 
                 </ng-container>   
                 <div class="mt-3">

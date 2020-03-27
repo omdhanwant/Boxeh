@@ -17,6 +17,20 @@ export class HomePage {
   segment;
   recipeSegment;
   loading = false;
+  slideOpts = {
+    initialSlide: 1,
+    // speed: 400,
+    // spaceBetween: 100,
+    slidesPerView:1,
+    grabCursor: true,
+    // pagination: {
+    //   type: 'bullets',
+    //   bulletElement: 'span',
+    //   dynamicBullets: true,
+    //   clickable: true
+    // }    
+    
+  };
 
   constructor(private service: HomeService, private alertService: AlertService, public authService: AuthService) {
   }
