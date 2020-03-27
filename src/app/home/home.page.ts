@@ -47,6 +47,8 @@ export class HomePage {
       if (this.service.HomeDataState) {
         
         this.homeData = this.service.HomeDataState;
+        this.segment = this.homeData.data.section_week_recipes.single_recipe_content[0 + 1].tab_pane
+        this.recipeSegment = this.homeData.data.section_week_recipes.single_recipe_content[0].tablist[0][0].id
   
       } else  {
 
