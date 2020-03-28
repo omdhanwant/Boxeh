@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 
 interface createOrderResponse {
   into: string,
-  status: string,
+  status: any,
   message: string
 }
 

@@ -1,3 +1,4 @@
+<ngx-loading [show]="loading"></ngx-loading>
 <ion-header>
   <ion-toolbar>
     <ion-menu-button color='primary' slot="start"></ion-menu-button>
@@ -69,6 +70,14 @@
         <ion-col size="12">
           <p class="mb-0 form-label"> Email Address <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
           <input type="text" name="email" ngModel required class="input-text" placeholder="" autocomplete="off">
+        </ion-col>
+        <ion-col size="12">
+          <p class="mb-0 form-label"> Username <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+          <input type="text" name="username" ngModel required class="input-text" placeholder="" autocomplete="off">
+        </ion-col>
+        <ion-col size="12">
+          <p class="mb-0 form-label"> Password <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+          <input type="text" name="password" ngModel required class="input-text" placeholder="" autocomplete="off">
         </ion-col>
         <ion-col size="12" class="">
           <h4 class="fw-600" style="font-size: 25px;">Delivery Date &amp; Time</h4>
@@ -207,9 +216,10 @@
             </ion-col>
 
             <ion-col size="12" class="">
-              <button type="button" class="btn btn-primary btn-lg btn-block w-100 text-white fw-600"
+              <button type="submit" class="btn btn-primary btn-lg btn-block w-100 text-white fw-600"
                 style="text-decoration: unset;">
                 Place order</button>
+              <!-- <ion-button expand="block" type="submit" class="btn btn-primary btn-lg btn-block w-100 text-white fw-600">Place order</ion-button> -->
             </ion-col>
 
           </ion-row>

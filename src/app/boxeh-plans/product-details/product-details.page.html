@@ -103,7 +103,7 @@
             <div class="single-item  align-content-stretch"
               style="display: flex" tabindex="0" *ngFor="let item of productData?.data.recipes">
               <label>
-              <input (change)="addSelectedRecipes($event)" [value]="item.title" type="checkbox" name="product-recipe" id="product-recipe" class="d1-none">
+              <input (change)="addSelectedRecipes($event)" [value]="item.title + '(ID:'+ item.id +')'" type="checkbox" name="product-recipe" id="product-recipe" class="d1-none">
                 <div class="card">
                   <div class="overlay">
                       <i class="fas fa-check-circle"></i>

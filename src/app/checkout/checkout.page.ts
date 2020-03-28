@@ -7,10 +7,11 @@ import { Error } from '../shared-module/models/Error';
 import { LoginResponse } from '../shared-module/models/LoginResponse';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Service } from './service.service';
+import { Cart } from '../boxeh-plans/model/cart';
 
 interface createOrderResponse {
   into: string,
-  status: string,
+  status: any,
   message: string
 }
 
@@ -21,6 +22,10 @@ interface createOrderResponse {
 })
 export class CheckoutPage implements OnInit {
   loading = false;
+  cartData: Cart[];
+  totalPrice: number = 0;
+  totalQuantity: number = 0;
+
   constructor(
     private nav: NavController,
     private route: ActivatedRoute,
@@ -31,14 +36,24 @@ export class CheckoutPage implements OnInit {
 
   ngOnInit() {
   }
+  ionViewDidEnter() {
+    if(localStorage.getItem('cart')) {
+     this.cartData = JSON.parse(localStorage.getItem('cart'));
+     this.calculateTotalCartValues();
+    }
+  }
+
+   // cart total calculations
+   calculateTotalCartValues() { 
+    this.totalPrice =  this.cartData.reduce((a, b) => a + (+b.price || 0), 0);
+    this.totalQuantity = this.cartData.reduce((a, b) => a + (+b.quantity || 0), 0);
+   }
 
   placeOrder(form: NgForm) {
     if (form.valid) {
-      this.alertService.presentLoading('Please Wait...');
-      const fistname = form.control.get('first-name').value;
-
+      // this.alertService.presentLoading('Please Wait...');
       const payment_method = form.control.get('payment_method').value;
-      const payment_method_title = form.control.get('Cash on delivery').value;
+      const payment_method_title = 'Cash on delivery';
       const currency = 'JOD';
       const customer_id = '0';
       const first_name = form.control.get('first_name').value;
@@ -50,20 +65,22 @@ export class CheckoutPage implements OnInit {
       const postcode = form.control.get('postcode').value;
       const country = form.control.get('country').value;
       const email = form.control.get('email').value;
+      const username = form.control.get('username').value;
+      const password = form.control.get('password').value;
       const phone = form.control.get('phone').value;
       const method_id = 'flat_rate';
       const method_title = 'Flat rate';
-      const total = 10;
-      const product_id = 1027;
-      const variation_id = 1018;
-      const quantity = 1;
-      const choosen_recipes = 'test4 (ID:1102) ,Chef Noah test one (ID:1399)';
+      const total = this.totalPrice;
+      const product_id = this.cartData[0].product_id;
+      const variation_id = this.cartData[0].variation_id;
+      const quantity = this.totalQuantity;
+      const choosen_recipes = this.cartData[0].selectedRecipes;
       const delivery_date = form.control.get('delivery-date').value;
       const daypart = form.control.get('daypart').value;
       const customer_note = form.control.get('customer_note').value;
 
       const fd = new FormData();
-      fd.append('payment_method', fistname);
+      fd.append('payment_method', payment_method);
       fd.append('payment_method_title', payment_method_title);
       fd.append('currency', currency);
       fd.append('customer_id', customer_id);
@@ -76,6 +93,8 @@ export class CheckoutPage implements OnInit {
       fd.append('postcode', postcode);
       fd.append('country', country);
       fd.append('email', email);
+      fd.append('username', username);
+      fd.append('password', password);
       fd.append('phone', phone);
       fd.append('method_id', method_id);
       fd.append('method_title', method_title);
@@ -85,12 +104,12 @@ export class CheckoutPage implements OnInit {
       fd.append('quantity', quantity.toString());
       fd.append('choosen_recipes', choosen_recipes);
       fd.append('delivery-date', delivery_date);
-      fd.append('daypart', fistname);
+      fd.append('daypart', daypart);
       fd.append('customer_note', customer_note);
 
       this.loading = true;
       this.service.createOrder(fd).subscribe((response: createOrderResponse) => {
-        if (response.status === 'mail_sent') {
+        if (response.status == true) {
           form.reset();
           // this.alertService.dismissLoading();
           this.loading = false;
@@ -108,7 +127,8 @@ export class CheckoutPage implements OnInit {
       });
 
     } else {
-      this.alertService.dismissLoading();
+      // this.alertService.dismissLoading();
+      this.loading = false;
       this.alertService.presentAlert(Utils.ERROR, 'Enter valid information!', [Utils.OK]);
     }
   }
