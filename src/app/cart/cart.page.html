@@ -64,7 +64,7 @@
             </p>
           </ion-col>
           <ion-col size="8" class="text-right">
-            <p class="cart-text  mt-0 mb-0">
+            <p class="cart-text cart-text-product mt-0 mb-0" routerLink="/boxeh-plans/product-details" [queryParams]="{id: data.productId, recipesPerWeek: data.recipesPerWeek, servingPerRecipe: data.servingsPerRecipe}">
              {{data.productName}}
             </p>
           </ion-col>

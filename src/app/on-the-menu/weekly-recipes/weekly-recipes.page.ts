@@ -34,6 +34,8 @@ export class WeeklyRecipesPage implements OnInit {
       } 
       if (this.service.WeeklyReceipeDataState) {
         this.weeklyReceipeData = this.service.WeeklyReceipeDataState;
+        this.segment = this.weeklyReceipeData.data.section_week_recipes.single_recipe_content[0 + 1].tab_pane
+        this.recipeSegment = this.weeklyReceipeData.data.section_week_recipes.single_recipe_content[0].tablist[0][0].id
       } else  {
         this.subscription = this.service.getWeeklyReceipe(languageState).subscribe(home => {
           if (home.code === 200) {

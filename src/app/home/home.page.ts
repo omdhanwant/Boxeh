@@ -17,6 +17,20 @@ export class HomePage {
   segment;
   recipeSegment;
   loading = false;
+  slideOpts = {
+    initialSlide: 1,
+    // speed: 400,
+    // spaceBetween: 100,
+    slidesPerView:1,
+    grabCursor: true,
+    // pagination: {
+    //   type: 'bullets',
+    //   bulletElement: 'span',
+    //   dynamicBullets: true,
+    //   clickable: true
+    // }    
+    
+  };
 
   constructor(private service: HomeService, private alertService: AlertService, public authService: AuthService) {
   }
@@ -47,6 +61,8 @@ export class HomePage {
       if (this.service.HomeDataState) {
         
         this.homeData = this.service.HomeDataState;
+        this.segment = this.homeData.data.section_week_recipes.single_recipe_content[0 + 1].tab_pane
+        this.recipeSegment = this.homeData.data.section_week_recipes.single_recipe_content[0].tablist[0][0].id
   
       } else  {
 

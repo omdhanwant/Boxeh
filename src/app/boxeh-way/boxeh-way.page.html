@@ -14,7 +14,7 @@
       <ion-col text-center>
         <div class="d-block text-center banner-text-bottom">
           <h4 class="fw-700 mt-4 text-primary" text-center="">{{boxehWhy?.data.page_head[0].title}}</h4>
-          <p>{{boxehWhy?.data.page_head[0].sub_title}}</p>
+          <p >{{boxehWhy?.data.page_head[0].sub_title}}</p>
         </div>
       </ion-col>
     </ion-row>
@@ -26,7 +26,7 @@
           <h2 class="text-primary fw-600">{{boxehWhy?.data.section_how_it_works[0].title}}</h2>
           
           <div class="page-content text-secondary fs-14">
-            <p class="intro-content ">
+            <p class="intro-content " style="font-weight: 600;">
               {{boxehWhy?.data.section_how_it_works[0].sub_title}} </p>
             
             <i class="fas fa-plus" style="color: #91c11e; float: left; font-size: 30px; margin-top: -5px; margin-right: 5px; transition: all 0.3s ease-in-out;  font-size: 20px; border: 3px solid; width: 35px; height: 35px; border-radius: 50%; line-height: 29px; text-align: center;" (click)="toggleSection1()"></i><h6 class="text-primary fw-400" (click)="toggleSection1()">{{boxehWhy?.data.section_how_it_works[0].toggle_button_text}}</h6>
@@ -36,7 +36,7 @@
       <ion-col *ngIf="toggle1 == true" style="background-color: #e8f3d8; color: #212529;" text-center padding>
         <span style="padding:0; text-align: center; color: #212529;" *ngFor="let data of boxehWhy?.data.section_how_it_works[0].toggle_repeater">
           <p><img [src]="data.icon" width="100"></p>
-          <p class="fs-16">{{data.title}}</p>  
+          <p class="fs-16" >{{data.title}}</p>  
           <p class="fs-16 fw-600" style="padding: 0 30px;">{{data.subtitle}}</p>
           <br><br>
         </span>
@@ -49,7 +49,7 @@
           <h2 class="text-primary fw-600">{{boxehWhy?.data.section_how_it_works[1].title}}</h2>
           
           <div class="page-content">
-            <p class="intro-content">
+            <p class="intro-content" style="font-weight: 600;">
               {{boxehWhy?.data.section_how_it_works[1].sub_title}} </p>
             
             <i class="fas fa-plus" style="color: #91c11e; float: left; font-size: 30px; margin-top: -5px; margin-right: 5px; transition: all 0.3s ease-in-out;  font-size: 20px; border: 3px solid; width: 35px; height: 35px; border-radius: 50%; line-height: 29px; text-align: center;" (click)="toggleSection2()"></i><h6 class="text-primary fw-400" (click)="toggleSection2()">{{boxehWhy?.data.section_how_it_works[1].toggle_button_text}}</h6>
@@ -72,7 +72,7 @@
           <h2 class="text-primary fw-600">{{boxehWhy?.data.section_how_it_works[2].title}}</h2>
           
           <div class="page-content">
-            <p class="intro-content ">
+            <p class="intro-content " style="font-weight: 600;">
               {{boxehWhy?.data.section_how_it_works[2].sub_title}} </p>
             
             <i class="fas fa-plus" style="color: #91c11e; float: left; font-size: 30px; margin-top: -5px; margin-right: 5px; transition: all 0.3s ease-in-out;  font-size: 20px; border: 3px solid; width: 35px; height: 35px; border-radius: 50%; line-height: 29px; text-align: center;" (click)="toggleSection3()"></i><h6 (click)="toggleSection3()" class="text-primary fw-400">{{boxehWhy?.data.section_how_it_works[2].toggle_button_text}}</h6>
