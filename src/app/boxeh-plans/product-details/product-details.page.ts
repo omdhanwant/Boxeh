@@ -25,6 +25,7 @@ export class ProductDetailsPage{
   loading = false;
   optionsMap: Map<number, string>;
   selectedRecipes: any[];
+  isExists: boolean = false;
   constructor(private service: BoxehPlansServiceService, private alertService: AlertService
     , public authService: AuthService, private activatedRoute: ActivatedRoute,
     private nav: NavController) {
@@ -32,33 +33,19 @@ export class ProductDetailsPage{
       this.selectedRecipes = [];
       this.param = this.activatedRoute.snapshot.queryParams;
   }
-
-  loadAfterDomLoad(){
-    // $(document).ready(function() {
-    //   console.log("test");
-    //   $(".single-item").on("click",function(event) {
-    //     console.log("click");
-    //       var target = $(event.target);
-    //       if (target.is('input:checkbox')) return;
-          
-    //       var checkbox = $(this).find("input[type='checkbox']");
-          
-    //       if( !checkbox.prop("checked") ){
-    //           checkbox.prop("checked",true);
-    //       } else {
-    //           checkbox.prop("checked",false);
-    //       }
-
-    //       this.selectedRecipes(event)
-    //   });
-    // });
-  }
  
    ionViewWillEnter() {
       this.loading = true;
   }
 
   ionViewDidEnter() {
+    if (this.param.recipesPerWeek && this.param.recipesPerWeek) {
+      this.optionsMap.set(0, this.param.recipesPerWeek)
+      this.optionsMap.set(1, this.param.servingPerRecipe)
+      console.log(this.optionsMap.get(0));
+      console.log(this.optionsMap.get(1));
+    }
+    this.isExists = false;
     this.initData();
   }
 
@@ -98,6 +85,7 @@ export class ProductDetailsPage{
 
   addToCart() {
     let storeObject: Cart = {
+      productId: this.productData.data.id,
       productName: this.productData.data.name,
       recipesPerWeek: this.optionsMap.get(0),
       servingsPerRecipe: this.optionsMap.get(1),
@@ -107,15 +95,22 @@ export class ProductDetailsPage{
       totalPrice: 1 * this.getPrice()
     }
     if(localStorage.getItem('cart')) {
-      let data:any[] = JSON.parse(localStorage.getItem('cart'));
-      data.push(storeObject);
+      let data:Cart[] = JSON.parse(localStorage.getItem('cart'));
+      
+      data.forEach(d => {
+        if ((storeObject.recipesPerWeek === d.recipesPerWeek) && (storeObject.servingsPerRecipe === d.servingsPerRecipe)) {
+            this.isExists = true;
+        }
+      });
+      if (!this.isExists ) {
+        data.push(storeObject);
+        this.nav.navigateForward(['/cart']);
+      }
       localStorage.setItem('cart' , JSON.stringify(data));
     } else {
       localStorage.setItem('cart' , JSON.stringify([storeObject]));
+      this.nav.navigateForward(['/cart']);
     }
-    
-
-    this.nav.navigateForward(['/cart']);
   }
 
 

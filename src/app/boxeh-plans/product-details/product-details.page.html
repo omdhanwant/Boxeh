@@ -19,11 +19,18 @@
         </div>
       </ion-col>
     </ion-row> -->
+    <ion-row *ngIf="isExists">
+      <div class="woocommerce-notices-wrapper"><ul class="woocommerce-error" role="alert">
+        <li>
+        <a routerLink="/cart" class="button wc-forward">View Cart</a> You cannot add another {{productData?.data.name}} to your cart.		</li>
+    </ul>
+  </div>
+    </ion-row>
     <ion-row>
       <ion-col>
         <div class="recipes">
           <nav class="stepper">
-            <ul class="stepper__list">
+            <ul class="stepper__list m-0">
               <li class="stepper__list__item stepper__list__item--done">
                 <svg class="stepper__list__icon" viewBox="0 0 24 24">
                   <path class="st0"
