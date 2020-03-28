@@ -17,7 +17,7 @@ declare var $: any;
   styleUrls: ['./product-details.page.scss'],
 })
 export class ProductDetailsPage{
-
+  variation: any;
   productData: Product = null;
   subscription: Subscription;
   langSubscription: Subscription;
@@ -86,6 +86,8 @@ export class ProductDetailsPage{
   addToCart() {
     let storeObject: Cart = {
       productId: this.productData.data.id,
+      product_id: this.productData.data.id,
+      variation_id: this.variation.id,
       productName: this.productData.data.name,
       recipesPerWeek: this.optionsMap.get(0),
       servingsPerRecipe: this.optionsMap.get(1),
@@ -136,16 +138,16 @@ export class ProductDetailsPage{
   }
 
   getPrice(){
-    let variation = null;
+    this.variation = null;
     if (this.productData) {
       this.productData.data.variations.forEach(v => {
          if(v.attributes.filter((a, index) => a.option === this.optionsMap.get(index)).length == 2) {
-           variation = v;
+           this.variation = v;
          }
       });
   
-     if (variation) {
-        return  variation.regular_price
+      if (this.variation) {
+        return  this.variation.regular_price
      }
     }
 
