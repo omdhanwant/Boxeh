@@ -97,9 +97,10 @@
                     <ion-slide *ngFor='let recipes of recipeContent.recipes'>
                       <div class="single-item  align-content-stretch" *ngSwitchCase="recipeContent.id"
                       style="display: flex" tabindex="0">
-                      <div class="card">
-                        <div *ngFor="let item of recipes.recipes"><img class="card-img-top"
-                          [src]="item.thumbnail"></div>
+                      <div class="card" routerLink='/weekly-recipes/recipe-blog' [queryParams]="{id: recipes.id}">
+                        <div *ngFor="let item of recipes.recipes">
+                          <img class="card-img-top" [src]="item.thumbnail">
+                        </div>
                         <div class="card-body p-2">
                           <span  *ngFor="let item1 of recipes.category">
                             <span class="badge badge-primary font-light small">

@@ -45,7 +45,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size="12">
-        <h4 class="text-center mb-2 sectionweek-recipes">Menu for 08 Mar - 14 Mar</h4>
+        <h4 class="text-center mb-2 sectionweek-recipes">Menu for 29 Mar - 04 Apr</h4>
       </ion-col>
 
       <ion-col size="12" >
@@ -62,7 +62,9 @@
           <label>
             <input (change)="setRouteToId($event)" [value]="product.id" type="radio" name="radioGroup" id="customRadio"/>
             <div class="card">            
-              <img class="card-img-top" src="assets/Boxeh-Plans-1.jpg">
+              <!-- <img class="card-img-top" src="assets/Boxeh-Plans-1.jpg"> -->
+              <img *ngIf="product.thumbnail" class="card-img-top" [src]="product.thumbnail">
+              <img *ngIf="!product.thumbnail" class="card-img-top" src="assets/Boxeh-Plans-1.jpg">
             <div class="card-body my-p-fs p-2">
               <h5 class="card-title text-center text-primary mt-2 fw-600 fs-18">{{product.name}}</h5>
               <p class="card-text font-light fs-18 fw-600 mb-0" [innerHtml] = 'product.description'></p>

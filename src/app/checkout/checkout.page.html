@@ -104,7 +104,7 @@
           <h4 class="fw-600 pb-2" style="font-size: 25px;">Your Order</h4>
         </ion-col>
       </ion-row>
-      <div class=" pb-4">
+      <div class=" pb-4" *ngFor="let item of cartData">
         <div style="background: #d7d7d7 !important;border: 1px solid #91c11e;word-wrap: break-word;border-radius: 4px;">
           <ion-row>
             <ion-col size="12" class="pl-0 pr-0">
@@ -123,16 +123,15 @@
               <ion-row style="border-bottom: 1px solid #91c11e;">
                 <ion-col size="8" class="text-left" style="padding: 0.5em 1em 0.5em 1em;">
                   <p class="cart-text mt-0 mb-0 pb-0">
-                    Deluxe Boxeh </p>
-                  <p class="cart-text mt-0 mb-0 pb-0"> Recipes per week : 3</p>
-                  <p class="cart-text mt-0 mb-0 pb-0"> Servings per recipe : 3</p>
-                  <p class="cart-text mt-0 mb-0 pb-0">Choosen Recipes: Creamy Mash Tomato Soup (ID:2183) ,Halloumi Curry
-                    with Basmati Rice (ID:2182) ,Spicy Thai Shrimp Soup (ID:2177) </p>
+                    {{item.productName}}</p>
+                  <p class="cart-text mt-0 mb-0 pb-0"> Recipes per week : {{item.recipesPerWeek}}</p>
+                  <p class="cart-text mt-0 mb-0 pb-0"> Servings per recipe : {{item.servingsPerRecipe}}</p>
+                  <p class="cart-text mt-0 mb-0 pb-0">{{item.selectedRecipes}}</p>
 
                 </ion-col>
                 <ion-col size="4" class="text-right" style="padding: 0.5em 1em 0.5em 1em;">
                   <p class="cart-text d-block  mt-0 mb-0">
-                    JOD453.00
+                    JOD{{item.totalPrice}}
                   </p>
                 </ion-col>
               </ion-row>
@@ -149,7 +148,7 @@
                 <ion-col size="6" class="text-right cart-text"
                   style="border-bottom: 1px solid #91c11e;padding: 0.5em 1em 0.5em 1em;">
                   <p class="  mt-0 mb-0">
-                    JOD453.00
+                    JOD {{item.totalPrice}}
                   </p>
                 </ion-col>
                 <ion-col size="6" class="text-left"
@@ -164,7 +163,7 @@
                     Flat Rate
                   </p>
                   <p class="cart-text  mt-0 mb-0">
-                    JOD453.00
+                    JOD 0.00
                   </p>
                 </ion-col>
                 <ion-col size="6" class="text-left" style="padding: 1em 1em 0.5em 1em;">
@@ -174,7 +173,7 @@
                 </ion-col>
                 <ion-col size="6" class="text-right" style="padding: 1em 1em 0.5em 1em;">
                   <p class="cart-text  mt-0 mb-0">
-                    JOD453.00
+                    JOD {{item.totalPrice}}
                   </p>
                 </ion-col>
               </ion-row>
@@ -203,7 +202,7 @@
 
             <ion-col size="12" class="text-left" style="padding: 0.5em 1em 0.5em 1em;">
               <p class="cart-text mt-0 mb-0">
-                <input type="radio" name="payment_method" required ngModel value="cc" name="payment_method">
+                <input type="radio" name="payment_method" required ngModel value="cod" name="payment_method">
                 Credit Cards
               </p>
             </ion-col>

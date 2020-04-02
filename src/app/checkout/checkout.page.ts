@@ -112,6 +112,7 @@ export class CheckoutPage implements OnInit {
         if (response.status == true) {
           form.reset();
           // this.alertService.dismissLoading();
+          localStorage.clear();
           this.loading = false;
           this.alertService.presentAlert(Utils.SUCCESS, response.message, [Utils.OK]);
           const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/'
