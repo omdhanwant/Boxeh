@@ -49,20 +49,30 @@
       </ion-col>
 
       <ion-col size="12" >
-        <!-- <ion-card class="mb-4">
-          <img src="assets/Boxeh-Plans-1.jpg" />
-          <ion-card-header text-primary>
-            <ion-card-title >{{product.name}}</ion-card-title>
-          </ion-card-header>
-          <ion-card-content [innerHtml] = 'product.description'>
-          </ion-card-content>
-        </ion-card> -->
-        <!-- routerLink='/boxeh-plans/product-details' [queryParams]='{id: product.id}' -->
-        <div class="single-item align-content-stretch checkRadioContainer" style="display: flex" *ngFor='let product of data?.data.products'>
+
+        <ion-slides [options]="slideOpts" pager=true>
+          <ion-slide *ngFor='let product of data?.data.products'>
+            <div class="single-item align-content-stretch checkRadioContainer" style="display: flex">
+              <label>
+                <input (change)="setRouteToId($event)" [value]="product.id" type="radio" name="radioGroup" id="customRadio"/>
+                <div class="card">                          
+                  <img *ngIf="product.thumbnail" class="card-img-top" [src]="product.thumbnail">
+                  <img *ngIf="!product.thumbnail" class="card-img-top" src="assets/Boxeh-Plans-1.jpg">
+                <div class="card-body my-p-fs p-2">
+                  <h5 class="card-title text-center text-primary mt-2 fw-600 fs-18">{{product.name}}</h5>
+                  <p class="card-text font-light fs-18 fw-600 mb-0" [innerHtml] = 'product.description'></p>
+                </div>
+              </div>
+              </label>
+             
+            </div>
+          </ion-slide>
+        </ion-slides>
+        
+        <!-- <div class="single-item align-content-stretch checkRadioContainer" style="display: flex" *ngFor='let product of data?.data.products'>
           <label>
             <input (change)="setRouteToId($event)" [value]="product.id" type="radio" name="radioGroup" id="customRadio"/>
-            <div class="card">            
-              <!-- <img class="card-img-top" src="assets/Boxeh-Plans-1.jpg"> -->
+            <div class="card">                          
               <img *ngIf="product.thumbnail" class="card-img-top" [src]="product.thumbnail">
               <img *ngIf="!product.thumbnail" class="card-img-top" src="assets/Boxeh-Plans-1.jpg">
             <div class="card-body my-p-fs p-2">
@@ -72,7 +82,7 @@
           </div>
           </label>
          
-        </div>
+        </div> -->
       </ion-col>
     </ion-row>
   </ion-grid>

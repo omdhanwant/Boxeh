@@ -16,6 +16,11 @@ export class BoxehPlansPage implements OnInit {
   subscription : Subscription;
   loading = false;
   routeToId: string;
+  slideOpts = {
+    initialSlide: 1,
+    slidesPerView:1,
+    grabCursor: true,    
+  };
   constructor(private service : BoxehPlansServiceService,
     private alertService: AlertService, 
     public authService: AuthService,
