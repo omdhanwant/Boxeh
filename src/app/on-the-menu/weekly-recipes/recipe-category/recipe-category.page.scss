@@ -1,0 +1,252 @@
+
+.home-banner{
+    height: 16rem;
+    width: 100%;
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.banner-info h2{
+    font-family: "Dax Regular", "Helvetica", sans-serif;
+}
+.section-bg-3 h1{
+    font-family: "Dax Regular", "Helvetica", sans-serif; 
+    font-size: 32px; 
+}
+.pd-lr-15{
+    padding: 0 15px;
+}
+
+.h3-mgn{
+    margin-top: 0px;
+    vertical-align: middle;
+}
+
+.h-3{
+    font-family: "Dax Bold", "Helvetica", sans-serif;
+}
+.section-bg-1{
+    background: #fff;
+}
+.section-bg-1 h4{
+    font-size: 32px;
+}
+.height-img{
+    max-height: 45px !important;
+    width: 45px;
+}
+.div-ptb{
+    padding: 15px 10px;
+    text-align: center;
+}
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none;
+}
+.li-font-color{
+    font-size: 16px;
+    font-weight: 400;
+    color: #5b5e5f;
+}
+
+
+.section-bg-3{
+    width: 100%;
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.section-bg-4{
+    width: 100%;
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.segment-button-checked {
+    color: #fff !important;
+    background: grey !important;
+    border: 0px solid grey;
+}
+
+ion-segment-button{
+    color: #808080 !important;
+}
+.box-plus-icon{
+    font-size: 25px;
+    font-weight: 600;
+    color: #91c11e;
+}
+
+.h1-title{
+    text-align: center;
+    color: #57585b !important;
+    position: relative;
+    font-weight: 800;
+    font-size: 22px !important;
+    padding: 0;
+    margin: 5px 0;
+}
+.sub-title{
+    padding-bottom: 0;
+    text-align: center;
+    color: #68686a;
+    text-shadow: 1px 1px #232323;
+    position: relative;
+    font-size: 16px;
+    font-weight: 300 !important;
+    padding: 0 42px;
+    margin: 0;
+}
+
+.joinUsButton {
+    position: sticky;
+    bottom: 0;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.page-all-recipes .recipes-container .recipes {
+    border: none;
+    padding: 20px;
+    background: none;
+    margin: 20px auto;
+}
+.page-all-recipes .recipes-container .recipes .text-primary {
+    color: #91c11e !important;
+    font-size: 35px;
+}
+.page-all-recipes .recipes-container .recipes #searchFilter {
+    background: #ebebeb;
+    color: #000;
+    font-size: 19px;
+    border: 2px solid #91c11e;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ebebeb;
+    background-clip: border-box;
+    border: 1px solid #7a7a7a;
+    border-radius: 12px;
+    padding: 15px 10px;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: 0.5rem !important;
+}
+.card-img-top {
+    width: 100%;
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+    border-radius: 23px !important;
+}
+.single-item {
+    padding: 25px;
+    outline: none;
+}
+.badge-primary {
+    color: #fff!important;
+}
+.single-item .card-footer {
+    background-color: #ebebeb;
+    padding: 0px 15px;
+    overflow: hidden;
+    display: flex;
+    margin-bottom: -15px;
+    border: none;
+    border-radius: 0px;
+    border-bottom: none;
+    width: 100%;
+    position: relative;
+    left: 0%;
+    height: 34px;
+    top: -2.5%;
+    vertical-align: middle;
+    border-top: 1px solid #7a7a7a;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+.card .badge-primary {
+    padding: 4px;
+    padding-right: 12px;
+    padding-left: 13px;
+    font-size: 12px;
+    border-radius: 9px;
+    margin: 2px;
+    padding-top: 5px;
+}
+.single-item .badge {
+    font-weight: 600;
+}
+.single-item .card-title a {
+    font-size: 16px;
+    color: #91c11e;
+    text-decoration: unset;
+}
+.single-item .card-text {
+    font-size: 14px;
+}
+.card-text:last-child {
+    margin-bottom: 0;
+}
+.card-text{
+    text-align: justify;
+}
+
+.badge-primary {
+    color: #212529;
+    background-color: #91c11e;
+}
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.small {
+    font-size: 80%;
+    font-weight: 400;
+}
+
+.single-item .card-footer .extra {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 10px;
+    border-left: 1px solid #7a7a7a;
+}
+.single-item .card-footer .cook-time {
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
+    display: inline-block;
+    padding-right: 7px;
+    font-size: 14px;
+    text-align: center;
+    position: relative;
+    top: 6px;
+}
+
+.search-border{
+    border: 4px solid #91c11e;
+    width: 80%;
+    padding: 0.575rem 0.75rem;
+    outline: unset;
+    border-radius: 4px;
+    line-height: 1.5;
+    background-color: #ebebeb;
+}
+
