@@ -17,6 +17,11 @@ export class WeeklyRecipesPage implements OnInit {
   segment
   recipeSegment
   loading = false;
+  slideOpts = {
+    initialSlide: 1,
+    slidesPerView:1,
+    grabCursor: true,    
+  };
 
   constructor(private service: RecipesService, private alertService: AlertService, public authService: AuthService) {}
   ngOnInit() {

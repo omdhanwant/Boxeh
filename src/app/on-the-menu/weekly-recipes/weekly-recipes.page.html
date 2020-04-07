@@ -29,8 +29,8 @@
   </ion-slides>
 
   <ion-grid class="section-bg-4 div-ptb">
-    <ion-row style="margin-bottom: 8rem;">
-      <!-- parent segements -->
+    <!-- <ion-row> -->
+      <ion-row style="margin-bottom: 8rem;">
       <ion-col size="12" text-center class="pt-1 pb-2">
         <ion-segment  [(ngModel)]="segment" (ionChange)="segmentChanged($event)" >
           <ion-segment-button [value]="work.id" *ngFor='let work of weeklyReceipeData?.data.section_week_recipes.weeks_to_show'>
@@ -38,15 +38,13 @@
           </ion-segment-button>
         </ion-segment>
       </ion-col>
-
-      <!-- child segements -->
       <ion-col size="12" text-center class="pt-1 pb-2" style="margin-left: -5px;">
         <div [ngSwitch]="segment">
           <ng-container *ngFor='let content of weeklyReceipeData?.data.section_week_recipes.single_recipe_content'>
-            <ng-container *ngSwitchCase="content.tab_pane">
-              <ion-segment [(ngModel)]="recipeSegment" (ionChange)="recipeSegmentChanged($event)">
+            <ng-container *ngSwitchCase="content.tab_pane" >
+              <ion-segment  [(ngModel)]="recipeSegment" (ionChange)="recipeSegmentChanged($event)">
                 <ion-row class="child-segement">
-                  <ion-col size="3" text-center class="pt-1 pb-2" *ngFor='let recipeSegment of content.tablist'>
+                  <ion-col size="3" text-center class="pt-1 pb-2"  *ngFor='let recipeSegment of content.tablist'>
                     <ion-segment-button [value]="recipeSegment[0].id">
                       <ion-label class="segement-label" style="font-size: 10px;">{{recipeSegment[0].title}}</ion-label>
                     </ion-segment-button>
@@ -55,49 +53,35 @@
               </ion-segment>
               <div [ngSwitch]="recipeSegment">
                 <ng-container *ngFor='let recipeContent of content.tab_content'>
-                  <ng-container *ngFor='let recipes of recipeContent.recipes'>
-                    <!-- <ion-card *ngSwitchCase="recipeContent.id">
-                      <ion-card-header class="text-left">
-                        {{recipes.title}}
-                      </ion-card-header>
-                      <span *ngFor="let item of recipes.recipes"><img [src]="item.thumbnail"></span>
-                      <ion-chip *ngFor="let item of recipes.category" outline>
-                        <ion-label color="success">{{item.name}}</ion-label>
-                      </ion-chip>
-                      <ion-card-content class="text-left">
-                        {{recipes.content}}
-                      </ion-card-content>
-                      <hr style="height: 1px; border-top: 2px dashed #91c11e; padding: 0; margin: 0;">
-                      <p
-                        style="display: block; width: 100px; border-right: 1px dashed #91c11e; padding: 12px; margin: 0;">
-                        {{recipes.recipe_cooking_time}}</p>
-                    </ion-card> -->
-
-
-                    <div class="single-item  align-content-stretch" style="display: flex" routerLink='/weekly-recipes/recipe-blog' [queryParams]="{id: recipes.id}">
-                      <div class="card">
+                  
+                  <ion-slides [options]="slideOpts" pager=true>
+                    <ion-slide *ngFor='let recipes of recipeContent.recipes'>
+                      <div class="single-item  align-content-stretch" *ngSwitchCase="recipeContent.id"
+                      style="display: flex" tabindex="0">
+                      <div class="card" routerLink='/weekly-recipes/recipe-blog' [queryParams]="{id: recipes.id}">
                         <div *ngFor="let item of recipes.recipes">
                           <img class="card-img-top" [src]="item.thumbnail">
-                          </div>
-                        <div class="card-body p-2" style="text-align: left;">
-                          <span *ngFor="let item of recipes.category">
+                        </div>
+                        <div class="card-body p-2">
+                          <span  *ngFor="let item1 of recipes.category">
                             <span class="badge badge-primary font-light small">
-                              {{item.name}}
-                            </span>
+                                {{item1.name}} </span>
                           </span>
                           <h5 class="card-title mt-2" style="font-size: 16px; color: #91c11e; font-weight: 900;">{{recipes.title}}</h5>
-                          <p class="card-text font-light font-14">
-                            {{recipes.content}}
-                          </p>
+                          <p class="card-text font-light font-14" [innerHTML]="recipes.content"></p>
                         </div>
-                        <div class="card-footer">
-                          <span class="cook-time text-secondary font-weight-bold">{{recipes.recipe_cooking_time}}</span>
-                          <span class="extra font-14 font-light"></span>
-                        </div>
+                        <div class="card-footer"><span class="cook-time text-secondary font-weight-bold">{{recipes.recipe_cooking_time}}</span><span
+                            class="extra font-14 font-light"></span></div>
                       </div>
                     </div>
-                  </ng-container>
-                </ng-container>
+                    </ion-slide>
+                  </ion-slides>
+                 
+                
+                </ng-container>   
+                <div class="mt-3">
+                  <button class="btn btn-primay btn-lg" routerLink="/weekly-recipes">Browse Our Menu</button>
+                </div>   
               </div>
             </ng-container>
           </ng-container>
