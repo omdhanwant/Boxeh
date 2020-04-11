@@ -7,7 +7,7 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content *ngIf="!loading">
+<ion-content *ngIf="!loading && homeData?.data">
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>

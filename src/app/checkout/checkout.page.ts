@@ -130,7 +130,7 @@ export class CheckoutPage implements OnInit {
     } else {
       // this.alertService.dismissLoading();
       this.loading = false;
-      this.alertService.presentAlert(Utils.ERROR, 'Enter valid information!', [Utils.OK]);
+      // this.alertService.presentAlert(Utils.ERROR, 'Enter valid information!', [Utils.OK]);
     }
   }
 }
