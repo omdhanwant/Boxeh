@@ -30,80 +30,82 @@
         <ion-col size="6">
           <p class="mb-0 form-label"> First Name <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
           <input type="text" class="input-text" name="first_name" ngModel #first_name="ngModel" required placeholder="" autocomplete="off" required>
-          <p class="alert alert-danger" role="alert" *ngIf="form.submitted || first_name.touched && first_name.invalid">
+          <p class="alert alert-danger" role="alert" *ngIf="form.submitted && first_name.invalid || first_name.touched && first_name.invalid">
             First Name is required!
           </p>
         </ion-col>
         <ion-col size="6">
           <p class="mb-0 form-label"> Last Name <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
           <input type="text" class="input-text" name="last_name" ngModel #last_name="ngModel" required placeholder="" autocomplete="off">
-          <p class="alert alert-danger" role="alert" *ngIf="form.submitted || last_name.touched && last_name.invalid">
+          <p class="alert alert-danger" role="alert" *ngIf="form.submitted && last_name.invalid || last_name.touched && last_name.invalid">
             Last name is required! </p>
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label"> Company Name</p>
           <input type="text" name="company" ngModel #company="ngModel" required class="input-text" placeholder="" autocomplete="off">
-          <p class="alert alert-danger" role="alert" *ngIf="form.submitted || company.touched && company.invalid">
+          <p class="alert alert-danger" role="alert" *ngIf="form.submitted && company.invalid || company.touched && company.invalid">
             Company is required! </p>
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label">Country <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
           <input type="text" name="country" ngModel #country="ngModel" required class="input-text" placeholder="Country" autocomplete="off">
-          <p class="alert alert-danger" role="alert" *ngIf="form.submitted || country.touched && country.invalid">
+          <p class="alert alert-danger" role="alert" *ngIf="form.submitted && country.invalid || country.touched && country.invalid">
             Country is required!</p>
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label"> Street address <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
           <input type="text" name="address_1" ngModel #address_1="ngModel" required class="input-text mb-2" placeholder="House number and street name" autocomplete="off">
-          <p class="alert alert-danger" role="alert" *ngIf="form.submitted || address_1.touched && address_1.invalid">
+          <p class="alert alert-danger" role="alert" *ngIf="form.submitted && address_1.invalid || address_1.touched && address_1.invalid">
             Street Address is required!</p>
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label"> Apartment, suite, unit etc.</p>
           <input type="text" name="address_2" ngModel #address_2="ngModel" required class="input-text" placeholder="Apartment, suite, unit etc. (optional)" autocomplete="off">
-          <p class="alert alert-danger" role="alert" *ngIf="form.submitted || address_2.touched && address_2.invalid">
+          <p class="alert alert-danger" role="alert" *ngIf="form.submitted && address_2.invalid || address_2.touched && address_2.invalid">
             Apartment, suite, unit etc. are required!</p>
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label">Town / City <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
           <input type="text" name="city" ngModel #city="ngModel" required class="input-text" placeholder="Country" autocomplete="off">
-          <p class="alert alert-danger" role="alert" *ngIf="form.submitted || city.touched && city.invalid">
+          <p class="alert alert-danger" role="alert" *ngIf="form.submitted && city.invalid || city.touched && city.invalid">
             City is required!</p>
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label">State / County <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
           <input type="text" name="state" ngModel #state="ngModel" required class="input-text" placeholder="" autocomplete="off">
-          <p class="alert alert-danger" role="alert" *ngIf="form.submitted || state.touched && state.invalid">
+          <p class="alert alert-danger" role="alert" *ngIf="form.submitted && state.invalid || state.touched && state.invalid">
             Country is required!</p>
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label">Pin code <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
           <input type="text" name="postcode" ngModel #postcode="ngModel" required class="input-text" placeholder="" autocomplete="off">
-          <p class="alert alert-danger" role="alert" *ngIf="form.submitted || postcode.touched && postcode.invalid">
+          <p class="alert alert-danger" role="alert" *ngIf="form.submitted && state.invalid || postcode.touched && postcode.invalid">
             Pin code is required!</p>
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label">Phone <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
           <input type="text" name="phone" ngModel #phone="ngModel" required class="input-text" placeholder="" autocomplete="off">
-          <p class="alert alert-danger" role="alert" *ngIf="form.submitted || phone.touched && phone.invalid">
+          <p class="alert alert-danger" role="alert" *ngIf="form.submitted && phone.invalid || phone.touched && phone.invalid">
             Phone is required!</p>
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label"> Email Address <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" name="email" ngModel #email="ngModel" required class="input-text" placeholder="" autocomplete="off">
-          <p class="alert alert-danger" role="alert" *ngIf="form.submitted || email.touched && email.invalid">
-            Email is required!</p>
+          <input type="text" name="email" ngModel #email="ngModel" class="input-text" placeholder=""  pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required email>
+          <p class="alert alert-danger" role="alert" *ngIf="form.submitted && email.invalid || email.touched && email.invalid ">
+           <ng-container *ngIf="email.errors.required">Email is required!</ng-container> 
+           <ng-container *ngIf="email.errors.email">Enter a valid email address!</ng-container> 
+          </p>
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label"> Username <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
           <input type="text" name="username" ngModel #username="ngModel" required class="input-text" placeholder="" autocomplete="off">
-          <p class="alert alert-danger" role="alert" *ngIf="form.submitted || username.touched && username.invalid">
+          <p class="alert alert-danger" role="alert" *ngIf="form.submitted && username.invalid || username.touched && username.invalid">
             Username is required!</p>
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label"> Password <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
           <input type="text" name="password" ngModel #password="ngModel" required class="input-text" placeholder="" autocomplete="off">
-          <p class="alert alert-danger" role="alert" *ngIf="form.submitted || password.touched && password.invalid">
+          <p class="alert alert-danger" role="alert" *ngIf="form.submitted && password.invalid || password.touched && password.invalid">
             Password is required!</p>
         </ion-col>
         <ion-col size="12" class="">
@@ -112,7 +114,7 @@
         <ion-col size="12">
           <p class="mb-0 form-label">Delivery Day <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
           <input type="date" name="delivery-date" ngModel #delivery_date="ngModel" required class="input-text" placeholder="" autocomplete="off">
-          <p class="alert alert-danger" role="alert" *ngIf="form.submitted || delivery_date.touched && delivery_date.invalid">
+          <p class="alert alert-danger" role="alert" *ngIf="form.submitted && delivery_date.invalid || delivery_date.touched && delivery_date.invalid">
             Delivery is required!</p>
         </ion-col>
         <ion-col size="12">
@@ -122,7 +124,7 @@
             <option value="02:00 PM - 05:00PM">02:00 PM - 05:00PM</option>
             <option value="06:00 PM - 09:00PM">06:00 PM - 09:00PM</option>
           </select>
-          <p class="alert alert-danger" role="alert" *ngIf="form.submitted || daypart.touched && daypart.invalid">
+          <p class="alert alert-danger" role="alert" *ngIf="form.submitted && daypart.invalid || daypart.touched && daypart.invalid">
             Delivery option is required!</p>
         </ion-col>
         <ion-col size="12" class="">
@@ -130,7 +132,7 @@
           <p class="mb-0 form-label">Order Notes (optional) </p>
           <textarea class="input-text" name="customer_note" ngModel #customer_note="ngModel" required placeholder="Notes about your order, e.g. special notes for delivery." rows="2"
             cols="5"></textarea>
-            <p class="alert alert-danger" role="alert" *ngIf="form.submitted || customer_note.touched && first_name.invalid">
+            <p class="alert alert-danger" role="alert" *ngIf="form.submitted && customer_note.invalid || customer_note.touched && first_name.invalid">
               Order Notes is required!</p>
         </ion-col>
         <ion-col size="12" class="">
@@ -239,7 +241,7 @@
                 Credit Cards
               </p>
             </ion-col>
-            <p class="alert alert-danger" role="alert" *ngIf="form.submitted || customer_note.touched && first_name.invalid">
+            <p class="alert alert-danger" role="alert" *ngIf="form.submitted && payment_method.invalid || payment_method.touched && payment_method.invalid">
               Select Valid Payment Methods!</p>
             <hr>
             <ion-col size="12" class="text-left" style="padding: 0.5em 1em 0.5em 1em;">
