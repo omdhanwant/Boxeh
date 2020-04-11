@@ -8,12 +8,13 @@ import { LoginResponse } from '../shared-module/models/LoginResponse';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Service } from './service.service';
 import { Cart } from '../boxeh-plans/model/cart';
+import { orderResponse } from './model/orderResponse';
 
-interface createOrderResponse {
-  into: string,
-  status: any,
-  message: string
-}
+// interface createOrderResponse {
+//   into: string,
+//   status: any,
+//   message: string
+// }
 
 @Component({
   selector: 'app-checkout',
@@ -25,6 +26,7 @@ export class CheckoutPage implements OnInit {
   cartData: Cart[];
   totalPrice: number = 0;
   totalQuantity: number = 0;
+  orderResponse: orderResponse;
 
   constructor(
     private nav: NavController,
@@ -108,15 +110,19 @@ export class CheckoutPage implements OnInit {
       fd.append('customer_note', customer_note);
 
       this.loading = true;
-      this.service.createOrder(fd).subscribe((response: createOrderResponse) => {
+      this.service.createOrder(fd).subscribe((response:orderResponse) => {
+        this.orderResponse = response;
+        localStorage.setItem('orderReceived', JSON.stringify(this.orderResponse))
         if (response.status == true) {
           form.reset();
           // this.alertService.dismissLoading();
-          localStorage.clear();
+          // localStorage.clear();
+          localStorage.removeItem("cart");
           this.loading = false;
           this.alertService.presentAlert(Utils.SUCCESS, response.message, [Utils.OK]);
-          const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/'
-          this.nav.navigateRoot([returnUrl]);
+          this.nav.navigateForward(['/order-received'])
+          // const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/'
+          // this.nav.navigateRoot([returnUrl]);
         } else {
           // this.alertService.dismissLoading();
           this.loading = false;

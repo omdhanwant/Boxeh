@@ -8,12 +8,14 @@ import { OrderReceivedPageRoutingModule } from './order-received-routing.module'
 
 import { OrderReceivedPage } from './order-received.page';
 
+import { NgxLoadingModule } from 'ngx-loading';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    OrderReceivedPageRoutingModule
+    OrderReceivedPageRoutingModule,
+    NgxLoadingModule
   ],
   declarations: [OrderReceivedPage]
 })

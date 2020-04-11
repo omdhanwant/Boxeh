@@ -1,9 +1,13 @@
+<ngx-loading [show]="loading"></ngx-loading>
 <ion-header>
   <ion-toolbar>
-    <ion-title>Order Received</ion-title>
+    <ion-menu-button color='primary' slot="start"></ion-menu-button>
+    <ion-title class="logo home-logo">
+      <span style="float: left; margin-top: 10px;">Order Received</span>
+      <img alt="logo" routerLink="/" height="40" src="../../assets/icon/favicon.png">
+    </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <div class="stepper">
     <img src="../../../assets/home/order_recieve.png" style="width: 100%;">
@@ -18,14 +22,14 @@
             ORDER NUMBER:
           </p>
           <p class="m-0 ptab-details">
-            2588
+            {{this.orderReceived?.data.order_id}}
           </p>
         </ion-col>
         <ion-col size="2" style="border-left: 1px dashed #c3c3c3;"></ion-col>
         <ion-col size="5">
           <p class="m-0 pb-0">DATE:</p>
           <p class="m-0 pb-0 ptab-details">
-            March 26, 2020
+            {{this.orderReceived?.data.date_created | date:'dd/MM/yyyy'}}
           </p>
         </ion-col>
       </ion-row>
@@ -35,15 +39,16 @@
             TOTAL:
           </p>
           <p class="m-0 pb-0 ptab-details">
-            JOD67.00
+            JOD{{this.orderReceived?.data.items[0].total}}
           </p>
         </ion-col>
         <ion-col size="2" style="border-left: 1px dashed #c3c3c3;"></ion-col>
         <ion-col size="5">
           <p class="m-0 pb-0">PAYMENT METHOD:</p>
-          <p class="m-0 pb-0 ptab-details">
+          <!-- <p class="m-0 pb-0 ptab-details">
             Cash on delivery
-          </p>
+          </p> -->
+          Accepted
         </ion-col>
       </ion-row>
       <ion-row>
@@ -71,16 +76,15 @@
                   <ion-row style="border-bottom: 1px solid #91c11e;">
                     <ion-col size="8" class="text-left" style="padding: 0.5em 1em 0.5em 1em;">
                       <p class="cart-text mt-0 mb-0 pb-0">
-                        Deluxe Boxeh </p>
-                      <p class="cart-text mt-0 mb-0 pb-0"> Recipes per week : 3</p>
-                      <p class="cart-text mt-0 mb-0 pb-0"> Servings per recipe : 3</p>
-                      <p class="cart-text mt-0 mb-0 pb-0">Choosen Recipes: Creamy Mash Tomato Soup (ID:2183) ,Halloumi Curry
-                        with Basmati Rice (ID:2182) ,Spicy Thai Shrimp Soup (ID:2177) </p>
+                        {{this.orderReceived?.data.items[0].name}}</p>
+                      <p class="cart-text mt-0 mb-0 pb-0"> Recipes per week : {{this.orderReceived?.data.items[0].meta_data[0].value}}</p>
+                      <p class="cart-text mt-0 mb-0 pb-0"> Servings per recipe : {{this.orderReceived?.data.items[0].meta_data[1].value}}</p>
+                      <p class="cart-text mt-0 mb-0 pb-0">{{this.orderReceived?.data.items[0].meta_data[2].value}}</p>
     
                     </ion-col>
                     <ion-col size="4" class="text-right" style="padding: 0.5em 1em 0.5em 1em;">
                       <p class="cart-text d-block  mt-0 mb-0">
-                        JOD453.00
+                        JOD{{this.orderReceived?.data.items[0].total}}
                       </p>
                     </ion-col>
                   </ion-row>
@@ -97,7 +101,7 @@
                     <ion-col size="6" class="text-right cart-text"
                       style="border-bottom: 1px solid #91c11e;padding: 0.5em 1em 0.5em 1em;">
                       <p class="  mt-0 mb-0">
-                        JOD453.00
+                        JOD{{this.orderReceived?.data.items[0].total}}
                       </p>
                     </ion-col>
                     <ion-col size="6" class="text-left"
@@ -112,7 +116,7 @@
                         Flat Rate
                       </p>
                       <p class="cart-text  mt-0 mb-0">
-                        JOD453.00
+                        JOD0.00
                       </p>
                     </ion-col>
                     <ion-col size="6" class="text-left" style="border-bottom: 1px solid #91c11e;padding: 1em 1em 0.5em 1em;">
@@ -122,7 +126,17 @@
                     </ion-col>
                     <ion-col size="6" class="text-right" style="border-bottom: 1px solid #91c11e;padding: 1em 1em 0.5em 1em;">
                       <p class="cart-text  mt-0 mb-0">
-                        Cash on delivery
+                        Accepted
+                      </p>
+                    </ion-col>
+                    <ion-col size="6" class="text-left" style="border-bottom: 1px solid #91c11e;padding: 1em 1em 0.5em 1em;">
+                      <p class="cart-text mt-0 mb-0">
+                        Quantity
+                      </p>
+                    </ion-col>
+                    <ion-col size="6" class="text-right" style="border-bottom: 1px solid #91c11e;padding: 1em 1em 0.5em 1em;">
+                      <p class="cart-text  mt-0 mb-0">
+                        {{this.orderReceived?.data.items[0].quantity}}
                       </p>
                     </ion-col>
                     <ion-col size="6" class="text-left" style="border-bottom: 1px solid #91c11e;padding: 1em 1em 0.5em 1em;">
@@ -132,10 +146,10 @@
                     </ion-col>
                     <ion-col size="6" class="text-right" style="border-bottom: 1px solid #91c11e;padding: 1em 1em 0.5em 1em;">
                       <p class="cart-text  mt-0 mb-0">
-                        JOD453.00
+                        JOD{{this.orderReceived?.data.items[0].total}}
                       </p>
                     </ion-col>
-                    <ion-col size="6" class="text-left" style="padding: 1em 1em 0.5em 1em;">
+                    <!-- <ion-col size="6" class="text-left" style="padding: 1em 1em 0.5em 1em;">
                       <p class="cart-text mt-0 mb-0">
                         Note:
                       </p>
@@ -144,7 +158,7 @@
                       <p class="cart-text  mt-0 mb-0">
                         additional information
                       </p>
-                    </ion-col>
+                    </ion-col> -->
                   </ion-row>
                 </ion-col>
 
@@ -154,7 +168,7 @@
           </div>
         </ion-col>
 
-        <ion-col class="pl-0 pr-0 mb-5" style="border-bottom: 1px solid #91c11e;background: #d7d7d7 !important;border: 1px solid #91c11e;word-wrap: break-word;border-radius: 4px;">
+        <!-- <ion-col class="pl-0 pr-0 mb-5" style="border-bottom: 1px solid #91c11e;background: #d7d7d7 !important;border: 1px solid #91c11e;word-wrap: break-word;border-radius: 4px;">
           <ion-row class="">
             <ion-col size="6" class="text-left" style="padding: 1em 1em 0.5em 1em;">
               <p class="cart-text mt-0 mb-0">
@@ -167,7 +181,7 @@
               </p>
             </ion-col>
           </ion-row>
-        </ion-col>
+        </ion-col> -->
 
       </ion-row>
     </ion-grid>

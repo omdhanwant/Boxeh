@@ -3,12 +3,13 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
+import { orderResponse } from './model/orderResponse';
 
-interface createOrderResponse {
-  into: string,
-  status: any,
-  message: string
-}
+// interface createOrderResponse {
+//   into: string,
+//   status: any,
+//   message: string
+// }
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class Service {
     const time = new Date();
     return this.http.post(`${environment.hostUrl}/boxeh/apis/create_order.php?type=` + time.getTime(), data)
       .pipe(
-        map((response: createOrderResponse) => {
+        map((response: orderResponse) => {
           return response;
         }));
   }
