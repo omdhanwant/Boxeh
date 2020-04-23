@@ -28,10 +28,10 @@ export class RecipeBlogPage {
       this.param = this.activatedRoute.snapshot.queryParams;
   }
  
-   ionViewWillEnter() {
-      // this.alertService.presentLoading('Please wait...');
-      this.loading = true;
-  }
+  //  ionViewWillEnter() {
+  //     // this.alertService.presentLoading('Please wait...');
+  //     this.loading = true;
+  // }
 
   ionViewDidEnter() {
     this.initData();

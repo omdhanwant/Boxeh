@@ -18,82 +18,46 @@
     <ion-row>
       <ion-col size="12" class="pl-4 pr-4 ">
         <div class="bg-white  pt-2 ">
-          <h1 class="text-primary text-center boxchef-text bplan-heading" >Boxeh Chefs</h1>
-       
+          <h1 class="text-primary text-center boxchef-text bplan-heading">Boxeh Chefs</h1>
+
           <div class="page-content">
-            <p class="boxeh-text-primary text-center pl-3 pr-3" style="font-weight: 500;font-size:16px;">Get to know the masterminds behind your favorite Boxeh recipes.</p>
-        </div>
-        <div class="page-content text-center">
-          <input class="search-border" id="searchFilter" placeholder="Search" type="text"  style="border: 4px solid #91c11e;">
-        </div>
+            <p class="boxeh-text-primary text-center pl-3 pr-3" style="font-weight: 500;font-size:16px;">Get to know the
+              masterminds behind your favorite Boxeh recipes.</p>
+          </div>
+          <div class="page-content text-center">
+            <input class="search-border" id="searchFilter" [(ngModel)]="searchFilter" placeholder="Search" type="text"
+              style="border: 4px solid #91c11e;">
+          </div>
         </div>
       </ion-col>
     </ion-row>
-    <!-- <ion-row class="pt-1">
-      <ion-col size="12" class="pl-4 pr-4 ">
-        <div class="bg-white pl-3 pr-3 border-1 pt-2 pb-2 mb-2">
-          <div class="card">
-            <div class="card-horizontal">
-                <div class="img-square-wrapper my-auto">
-                    <img class="" src="../../../assets/icon/cheff.png" alt="user" class="rounded-circle shadow" style="width: 75px;">
-                </div>
-                <div class="card-body pl-3">
-                  <h4 class="card-title text-primary">
-                      Chefs  Aryan
-                  </h4>
-                  <h4 class="card-text"> Recipes : 1   </h4>
-              </div>
-            </div>
-        </div>
-        </div>
-        <div class="bg-white pl-3 pr-3 border-1 pt-2 pb-2 mb-2">
-          <div class="card">
-            <div class="card-horizontal">
-                <div class="img-square-wrapper my-auto">
-                    <img class="" src="../../../assets/icon/chef.png" alt="user" class="rounded-circle shadow" style="width: 75px;">
-                </div>
-                <div class="card-body pl-3">
-                  <h4 class="card-title text-primary">
-                      Chefs  Aryan
-                  </h4>
-                  <h4 class="card-text"> Recipes : 1   </h4>
-              </div>
-            </div>
-        </div>
-        </div>
-      </ion-col>
-    </ion-row> -->
     <ion-row>
       <ion-col text-center class="pl-3 pr-3">
-        <div class="box-bg-border">
+        <div class="box-bg-border" *ngFor="let item of chefs | appFilterSearch :'display_name': searchFilter;">
           <div class="pt-2 pb-2 text-center">
             <a href="#" title="boxehteam">
-              <img src="../../../assets/home/icon.png" class="rounded-circle shadow icon-w" alt="boxehteam" title="boxehteam"></a>
+              <img [src]="item.avatar_url" class="rounded-circle shadow icon-w" alt="boxehteam"
+                title="boxehteam"></a>
             <h3 class="h5 my-3 chefName">
-                    boxehteam                                    
+              {{item.display_name}}
             </h3>
             <p class="text-secondary chefRecipe">
-              Recipes : 32
+              Recipes : {{item.recipe_count}}
             </p>
-           
-
-        </div>
-          <!-- <p class="ourkitchen" style="text-align: center;"> Our Kitchen Doors Are Open </p>
-
-        <button class="btn btn-primay btn-lg">Join Us</button> -->
+          </div>
         </div>
 
         <div class="pt-2 pb-5">
           <p class="OurKitchen pt-0 pb-0 text-center"> Our Kitchen Doors Are Open </p>
-<div class="text text-center text-secondary joinUsButton">
-  <a routerLink="/join-us" class="btn btn-primay joinus">Join Us</a>
-        </div>
+          <div class="text text-center text-secondary joinUsButton">
+            <a routerLink="/join-us" class="btn btn-primay joinus">Join Us</a>
+          </div>
 
         </div>
-        
-        
+
+
       </ion-col>
-      
+
     </ion-row>
 
   </ion-grid>

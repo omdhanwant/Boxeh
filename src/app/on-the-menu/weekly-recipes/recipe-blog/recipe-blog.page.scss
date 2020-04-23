@@ -53,11 +53,6 @@
     display: flex !important;
 }
 
-.small {
-    font-size: 80%;
-    font-weight: 400;
-}
-
 .img-thumbnail {
     padding: 0.25rem;
     background-color: #fff;
@@ -110,4 +105,76 @@
   }
   .fa{
       font-size: 16px;
+  }
+
+  .nutirition{
+    color: #212529;
+    margin-top: 40px;
+    .text-primary {
+        color: #91c11e !important;
+    }
+    .single-recipe .simple-card {
+        border: 1px solid #dddddd !important;
+        background-color: #fff;
+    }
+    .simple-card {
+        background: none;
+        padding: 10px;
+    }
+    .nutritional-values {
+        text-align: left !important;
+    }
+    .serving {
+        padding-bottom: 4%;
+        border-bottom: 3px solid #dadada;
+    }
+
+    .serving-size, .servings-recipe, .Amount-Per-Serving, .calories, .Daily-Value {
+        font-size: 15px;
+        color: #000;
+    }
+
+    .Daily {
+        padding: 1% 0;
+        border-bottom: 1px solid #dadada;
+        border-top: 1px solid #dadada;
+        margin: 2% 0;
+    }
+
+    .float-right {
+        float: right !important;
+    }
+    .nutritional1 {
+        padding-bottom: 0%;
+        border-bottom: 3px solid #dadada;
+    }
+    .nutritional1 ul {
+        margin-bottom: 2%;
+    }
+    .list-unstyled {
+        padding-left: 0;
+        list-style: none;
+    }
+    .nutritional1 li {
+        border-bottom: 1px dashed #dadada;
+    }
+    .font-weight-bold {
+        font-weight: 700 !important;
+    }
+    .text-secondary {
+        color: #5f6062 !important;
+    }
+    .nutritional2 {
+        padding-bottom: 0%;
+    }
+    .nutritional2 ul {
+        margin: 2% 0;
+    }
+    .nutritional2 li {
+        border-bottom: 1px dashed #dadada;
+    }
+    small, .small {
+        font-weight: 400;
+    }
+
   }

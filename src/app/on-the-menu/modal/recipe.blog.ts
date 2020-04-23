@@ -21,12 +21,21 @@ export interface RecipeBlog {
                     ingredient_Image: string;
                 }[]
         },
+        nutritional_value_note:string;
+        recipe_nutritional_facts:{
+            amount_per_serving:string;
+            calories_text:string;
+            calories_value:string;
+            daily_value:string;
+            serving_size:string;
+            servings:string;
+            title:string;
+        }
         customer_favorite: string;
         recipe_cooking_time: string;
         recipe_extra_info: string;
         recipe_nutritional_values: [],
         recipe_nutritional_values_2: [],
-        recipe_nutritional_facts: [],
         recipe_utensils: []
     }
 }

@@ -8,6 +8,7 @@ import { BoxehChefsPageRoutingModule } from './boxeh-chefs-routing.module';
 
 import { BoxehChefsPage } from './boxeh-chefs.page';
 import { NgxLoadingModule } from 'ngx-loading'
+import { FilterPipeSearch } from 'src/app/directives/filterPipeSearch';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { NgxLoadingModule } from 'ngx-loading'
     BoxehChefsPageRoutingModule,
     NgxLoadingModule
   ],
-  declarations: [BoxehChefsPage]
+  declarations: [BoxehChefsPage, FilterPipeSearch]
 })
 export class BoxehChefsPageModule {}

@@ -31,17 +31,17 @@
           </ion-row>
           <div>
             <br>
-            <div class="single-item mb-4 align-content-stretch" style="display: flex" *ngFor="let item of RecipeLibrary?.data.secion_recipes.recipes_list | appFilterSearch :'title': searchString;" routerLink='/weekly-recipes/recipe-blog' [queryParams]="{id: item.id}">
+            <div class="single-item mb-4 align-content-stretch" style="display: flex" *ngFor="let item of RecipeLibrary?.data.secion_recipes.recipes_list | appFilterSearch2 :'title': searchString;" >
               <div class="card">
-                <a href="#"><img
+                <a routerLink='/weekly-recipes/recipe-blog' [queryParams]="{id: item.id}"><img
                     class="card-img-top" [src]="item.thumbnail_url"
-                    alt="{{item.title}}"></a>
+                    alt="{{item.title}}" routerLink='/weekly-recipes/recipe-blog' [queryParams]="{id: item.id}"></a>
                 <div class="card-body p-2">
-                  <a href="#" *ngFor="let data of item.categories"><span
+                  <a *ngFor="let data of item.categories"><span routerLink='/weekly-recipes/recipe-category' [queryParams]="{id: data.id, name:data.name}"
                       class="badge badge-primary font-light small">{{data.name}}</span></a>
                   <h5 class="card-title mt-2"><a
-                      href="#">{{item.title}}</a></h5>
-                  <p class="card-text font-light font-14" [innerHTML]='item.content'></p>
+                    routerLink='/weekly-recipes/recipe-blog' [queryParams]="{id: item.id}">{{item.title}}</a></h5>
+                  <p class="card-text font-light font-14" [innerHTML]='item.content' routerLink='/weekly-recipes/recipe-blog' [queryParams]="{id: item.id}"></p>
                 </div>
                 <div class="card-footer">
                   <span class="cook-time text-secondary font-weight-bold">{{item.recipe_cooking_time}}</span>

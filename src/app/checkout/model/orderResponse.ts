@@ -33,3 +33,54 @@ export interface orderResponse{
       ]
     }
   }
+
+  export interface paymentMethods
+  {
+    code: number,
+    status: boolean,
+    message: string,
+    data: {
+            id:string,
+            title:string,
+            description:string,
+            order:string,
+            enabled:string,
+            method_title:string,
+            method_description:string,
+            method_supports: [],
+            settings: {
+                title: {
+                    id: string,
+                    label: string,
+                    description: string,
+                    type: string,
+                    value: string,
+                    default: string,
+                    tip: string,
+                    placeholder: string,
+                },
+                instructions: {
+                    id: string,
+                    label: string,
+                    description: string,
+                    type: string,
+                    value: string,
+                    default: string,
+                    tip: string,
+                    placeholder:string, 
+                },
+                enable_for_methods: {
+                    id: string,
+                    label: string,
+                    description: string,
+                    type: string,
+                    value: string,
+                    default: string,
+                    tip: string,
+                    placeholder: string,
+                    options: {}
+                },
+                enable_for_virtual: {}
+            },
+        }[]
+}

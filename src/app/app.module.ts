@@ -14,6 +14,7 @@ import { AuthService } from './shared-module/shared-services/auth.service';
 import { AuthGuard } from './shared-module/shared-services/auth-gaurd';
 
 import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
+// import { FilterPipeSearch } from './directives/filterPipeSearch';
 
 @NgModule({
   declarations: [

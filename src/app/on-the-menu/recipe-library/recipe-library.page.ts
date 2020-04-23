@@ -43,6 +43,7 @@ export class RecipeLibraryPage implements OnInit {
 
       if (this.service.RecipeLibraryDataState) {
         this.RecipeLibrary = this.service.RecipeLibraryDataState;
+        localStorage.setItem('categoryProducts', JSON.stringify(this.RecipeLibrary.data.secion_recipes.recipes_list));
       } else  {
         this.subscription = this.service.getRecipeLibrary(languageState).subscribe(responseData => {
           if (responseData.code === 200) {
@@ -51,6 +52,7 @@ export class RecipeLibraryPage implements OnInit {
               event.target.complete();
             }
             this.RecipeLibrary = responseData;
+            localStorage.setItem('categoryProducts', JSON.stringify(this.RecipeLibrary.data.secion_recipes.recipes_list));
             this.dismissLoader();
           } else {
             this.alertService.presentAlert(Utils.ERROR, responseData.message, [Utils.OK]);
@@ -61,7 +63,7 @@ export class RecipeLibraryPage implements OnInit {
           this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
         });
       }
-
+     
     })
   }
 

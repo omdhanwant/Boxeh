@@ -4,6 +4,7 @@ import { AlertService } from 'src/app/shared-module/shared-services/alert-servic
 import { AuthService } from 'src/app/shared-module/shared-services/auth.service';
 import { Utils } from 'src/app/shared-module/utils/constants';
 import { RecipesService } from '../service/recipes.service';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-weekly-recipes',
@@ -23,10 +24,19 @@ export class WeeklyRecipesPage implements OnInit {
     grabCursor: true,    
   };
 
-  constructor(private service: RecipesService, private alertService: AlertService, public authService: AuthService) {}
+  constructor( private route: Router,private service: RecipesService, private alertService: AlertService, public authService: AuthService) {}
   ngOnInit() {
   }
+  next(data){
+    localStorage.setItem("categoryName", JSON.stringify(data));
+  }
 
+  // next(id, name){
+  //   const navigationExtras: NavigationExtras = {
+  //     queryParams: { id: id , name: name}
+  //   };
+  //   this.route.navigate(['/weekly-recipes/recipe-category'], navigationExtras);
+  // }
   initData(event?) {
     this.langSubscription =  this.authService.$currentLanguage.subscribe(languageState => {
       

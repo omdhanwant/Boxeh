@@ -57,37 +57,87 @@
         </ion-row>
       </ion-grid>
     </div>
-
+   
     <div class="ingredients border-light">
       <ion-grid>
         <ion-row>
           <ion-col>
-              <h4 class="text-primary text-center">Ingredients</h4>
+            <h4 class="text-primary text-center">Ingredients</h4>
 
-              <div class="ingredients">
-                <ion-grid>
-                  <ion-row>
-                    <ion-col [size]="6" *ngFor="let ingrediant of recipeData?.data.ingredients_data.recipe_ingredients">
-                      <div class="single-ingredient">
-                        <img [src]="ingrediant.ingredient_Image" class="ingredient-img rounded-circle img-thumbnail text-center" alt="ingrediant"
-                          title="Shrimp">
-                        <p class="mb-0">{{ingrediant.ingredient_Title}}</p>
-                      </div>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-                
-              </div>
+            <div class="ingredients">
+              <ion-grid>
+                <ion-row>
+                  <ion-col [size]="6" *ngFor="let ingrediant of recipeData?.data.ingredients_data.recipe_ingredients">
+                    <div class="single-ingredient">
+                      <img [src]="ingrediant.ingredient_Image"
+                        class="ingredient-img rounded-circle img-thumbnail text-center" alt="ingrediant" title="Shrimp">
+                      <p class="mb-0">{{ingrediant.ingredient_Title}}</p>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+    
+    </div>
+
+     
+    <div class="ingredients border-light nutirition">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
             
+            <div class="simple-card pb-0 nutritional-values">
+              <h5 class="text-primary" style="font-size: 20px;font-weight: 800;">
+                {{recipeData?.data.recipe_nutritional_facts.title}}</h5>
+              <div class="serving">
+                <span class=" small font-light serving-size "></span><br>
+                <span class=" small font-light servings-recipe " style="font-size: 15px; color: #000; font-weight: 900;"> {{recipeData?.data.recipe_nutritional_facts.servings}}</span>
+              </div>
+              <span class=" small font-light Amount-Per-Serving" style="font-size: 15px; color: #000; font-weight: 900;">{{recipeData?.data.recipe_nutritional_facts.amount_per_serving}}</span><br>
+              <span class=" small  font-light calories " style="font-size: 15px; color: #000; font-weight: 900;">{{recipeData?.data.recipe_nutritional_facts.calories_text}} <span
+                  class="float-right small font-light calories"></span></span><br>
+
+              <div class="Daily">
+                <span class="float-right small  font-light Daily-Value" style="font-size: 15px; color: #000; font-weight: 900;">{{recipeData?.data.recipe_nutritional_facts.daily_value}}</span><br>
+              </div>
+
+              <div class="nutritional1">
+                <ul class="list-unstyled">
+                  <li *ngFor="let item of recipeData?.data.recipe_nutritional_values">
+                    <span class="font-weight-bold mb-2 nutritional_title" style="font-size: 15px; color: #000; font-weight: 900;">{{item.single_recipe_nutritional_title}}
+                      <span class="float-right small text-secondary font-light">{{item.single_recipe_nutritional_quantity}}{{item.single_recipe_nutritional_measurement}}</span>
+                    </span><br>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="nutritional2">
+                <ul class="list-unstyled">
+                  <li *ngFor="let item of recipeData?.data.recipe_nutritional_values_2">
+                    <span class="font-weight-bold mb-2 nutritional_title" style="font-size: 15px; color: #000; font-weight: 900;">{{item.single_recipe_nutritional_title}}
+                      <span class="float-right small text-secondary font-light">{{item.single_recipe_nutritional_quantity}}{{item.single_recipe_nutritional_measurement}}</span>
+                    </span><br>
+                  </li>
+                </ul>
+              </div>
+              <p class=" small text-secondary font-light">{{recipeData?.data.nutritional_value_note}}</p>
+            </div>
+
           </ion-col>
         </ion-row>
       </ion-grid>
     </div>
   </div>
-  <div style="position: fixed;bottom: 0;left: 0;right: 0;">
+  <!-- <div style="position: fixed;bottom: 0;left: 0;right: 0;"> -->
+  <div>
     <div class="text text-center text-secondary joinUsButton">
-          <button routerLink='/boxeh-plans'
-          class="btn btn-primay btn-lg stickybtn" style="padding: 0.5rem 1rem; font-size: 1.25rem; line-height: 1.5;">Order Now</button>
-  </div>
+      <button routerLink='/boxeh-plans' class="btn btn-primay btn-lg stickybtn"
+        style="padding: 0.5rem 1rem; font-size: 1.25rem; line-height: 1.5;">Order Now</button>
+    </div>
   </div>
 </ion-content>

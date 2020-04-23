@@ -58,6 +58,7 @@ interface Weekly {
                                 {
                                     category: [
                                         {
+                                            id:number;
                                             url: string;
                                             name: string;
                                         }

@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { RecipeCategoryPageRoutingModule } from './recipe-category-routing.module';
-
+import { NgxLoadingModule } from 'ngx-loading';
 import { RecipeCategoryPage } from './recipe-category.page';
 
 @NgModule({
@@ -13,6 +13,7 @@ import { RecipeCategoryPage } from './recipe-category.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    NgxLoadingModule,
     RecipeCategoryPageRoutingModule
   ],
   declarations: [RecipeCategoryPage]

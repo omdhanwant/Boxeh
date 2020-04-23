@@ -15,16 +15,11 @@ interface RecipeLibrary {
                     title:string;
                     thumbnail_url:string;
                     content:string;
-                    categories: [
-                        {
-                            id:number;
-                            name: string;
-                        },
-                        {
-                            id:number;
-                            name: string;
-                        }
-                    ],
+                    categories:
+                    {
+                        id:number;
+                        name: string;
+                    }[],
                     weeks:string;
                     recipe_cooking_time: string;
                     recipe_extra_info: string;

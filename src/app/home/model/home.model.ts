@@ -57,6 +57,7 @@ interface Home {
                                 {
                                     category: [
                                         {
+                                            id:number;
                                             url: string;
                                             name: string;
                                         }

@@ -198,7 +198,7 @@
                     Flat Rate
                   </p>
                   <p class="cart-text  mt-0 mb-0">
-                    JOD 0.00
+                    JOD 10.00
                   </p>
                 </ion-col>
                 <ion-col size="6" class="text-left" style="padding: 1em 1em 0.5em 1em;">
@@ -208,7 +208,7 @@
                 </ion-col>
                 <ion-col size="6" class="text-right" style="padding: 1em 1em 0.5em 1em;">
                   <p class="cart-text  mt-0 mb-0">
-                    JOD {{item.totalPrice}}
+                    JOD {{item.totalPrice + 10}}
                   </p>
                 </ion-col>
               </ion-row>
@@ -222,27 +222,54 @@
         <div
           style="background: #d7d7d7 !important;border: 1px solid #91c11e;; word-wrap: break-word;border-radius: 4px;">
           <ion-row class="pt-3 pb-3">
-            <ion-col size="12" class="text-left" style="padding: 0.5em 1em 0.5em 1em;">
-              <p class="cart-text mt-0 mb-0">
-                <input type="radio" name="payment_method" ngModel #payment_method="ngModel" required ngModel value="cod">
-                Cash on delivery
-              </p>
-            </ion-col>
-            <ion-col>
-              <div class="payment_box payment_method_cod" style="position: relative; box-sizing: border-box; width: 100%;padding: 1em;margin: 1em 0;font-size: .92em;
-                border-radius: 2px;line-height: 1.5;background-color: #dfdcde;color: #515151;">
-                <p class="mb-0 mt-2">Pay with cash upon delivery.</p>
-              </div>
-            </ion-col>
+            <ng-container *ngFor="let method of paymentMethods?.data; let i=index">
+              <ion-col size="12" class="text-left" style="padding: 0.5em 1em 0.5em 1em;">
+                <p class="cart-text mt-0 mb-0">
+                  <input type="radio" name="payment_method"  [value]="method" required ngModel #payment_method="ngModel" (click)="checkpaymentMethod(method)">
+                  {{method.title}}
+                </p>
+              </ion-col>
+              <ion-col>
+                <div class="payment_box payment_method_cod" style="position: relative; box-sizing: border-box; width: 100%;padding: 1em;margin: 1em 0;font-size: .92em;
+                  border-radius: 2px;line-height: 1.5;background-color: #dfdcde;color: #515151;">
+                  <p class="mb-0 mt-2">{{method.description}}</p>
+                </div>
+              </ion-col>
 
-            <ion-col size="12" class="text-left" style="padding: 0.5em 1em 0.5em 1em;">
-              <p class="cart-text mt-0 mb-0">
-                <input type="radio" name="payment_method" required ngModel #payment_method="ngModel"  value="cc" name="payment_method">
-                Credit Cards
-              </p>
-            </ion-col>
             <p class="alert alert-danger" role="alert" *ngIf="form.submitted && payment_method.invalid || payment_method.touched && payment_method.invalid">
               Select Valid Payment Methods!</p>
+            </ng-container> 
+
+            <!-- credit card payment UI -->
+            <ng-container *ngIf="creditCard">
+              <ion-col size="12">
+                <p class="mb-0 form-label">Card Holder Name<i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+                <input type="text" name="cardNumber" ngModel required class="input-text" placeholder="Enter Name" autocomplete="off">
+              </ion-col>
+              <ion-col size="12">
+                <p class="mb-0 form-label">Card Number<i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+                <input type="number" name="cardNumber" #cardNumber ngModel required class="input-text" placeholder="Valid Card Number" (keyup)="GetCardType(cardNumber.value)">
+                <i *ngIf="cardType === 'discover'" class="fa fa-cc-discover" aria-hidden="true" style="position: absolute; top: 32px; right: 10px; font-size: 21px;"></i>
+                <i *ngIf="cardType === 'diners'" class="fa fa-cc-diners-club" aria-hidden="true" style="position: absolute; top: 32px; right: 10px; font-size: 21px;"></i>
+                <i *ngIf="cardType === 'jcb'" class="fa fa-cc-jcb" aria-hidden="true" style="position: absolute; top: 32px; right: 10px; font-size: 21px;"></i>
+                <i *ngIf="cardType === 'amex'" class="fa fa-cc-amex" aria-hidden="true" style="position: absolute; top: 32px; right: 10px; font-size: 21px;"></i>
+                <i *ngIf="cardType === 'visa'" class="fa fa-cc-visa" aria-hidden="true" style="position: absolute; top: 32px; right: 10px; font-size: 21px;"></i>
+                <i *ngIf="cardType === 'mastercard'" class="fa fa-cc-mastercard" aria-hidden="true" style="position: absolute; top: 32px; right: 10px; font-size: 21px;"></i>
+              </ion-col>
+              <ion-col size="4">
+                <p class="mb-0 form-label">Expiry Date<i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+                <input type="number" name="month" ngModel required class="input-text" placeholder="MM">
+              </ion-col>
+              <ion-col size="4">
+                <p class="mb-0 form-label">&nbsp;</p>
+                <input type="number" name="year" ngModel required class="input-text" placeholder="YY">
+              </ion-col>
+              <ion-col size="4">
+                <p class="mb-0 form-label">CVV Code<i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+                <input type="number" name="year" ngModel required class="input-text" placeholder="YY">
+              </ion-col>
+            </ng-container>
+
             <hr>
             <ion-col size="12" class="text-left" style="padding: 0.5em 1em 0.5em 1em;">
               <p class="cart-text">

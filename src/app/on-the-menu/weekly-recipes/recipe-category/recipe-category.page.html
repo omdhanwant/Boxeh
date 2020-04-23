@@ -1,3 +1,4 @@
+<ngx-loading [show]="loading"></ngx-loading>
 <ion-header>
   <ion-toolbar>
     <ion-menu-button color="primary" slot="start"></ion-menu-button>
@@ -13,17 +14,24 @@
  <ion-grid class="pl-4 pr-4">
    <ion-row>
      <ion-col size="12">
-      <div class="single-item  align-content-stretch">
+      <p class="text-center titelCategory" style="font-weight: 200; color: #68686a; font-size: 32px; margin-bottom: 0;">
+        Category
+      </p>
+      <h3 class="supTitelCategory" style="text-align: center; color: #a0c643; font-size: 44px;">{{categoryName}}</h3>
+     </ion-col>
+     <ion-col size="12">
+      <div class="single-item  align-content-stretch" *ngFor="let recipe of recipeCategoryData?.data.recipes" 
+            routerLink='/weekly-recipes/recipe-blog' [queryParams]="{id: recipe.id}">
         <div class="card" routerlink="/weekly-recipes/recipe-blog">
         <div>
-            <img class="card-img-top" src="http://boxeh.net/boxeh/wp-content/uploads/2020/01/2019_12_26_1763.jpg">
+            <img class="card-img-top" [src]="recipe.post_thumbnail_url">
           </div>
           <div class="card-body p-2">
-            <h5 class="card-title mt-2" style="font-size: 16px; color: #91c11e; font-weight: 900;text-align: justify;">Musakhan Rolls with Pasta Salad</h5>
-            <p class="card-text font-light font-14">A dish of Syrian origin, full of incredible flavours, Horaa Osbao is definitely a crowd-pleaser made of humble yet nutritious</p>
+            <h5 class="card-title mt-2" style="font-size: 16px; color: #91c11e; font-weight: 900;text-align: justify;">{{recipe.title}}</h5>
+            <p class="card-text font-light font-14" [innerHTML]="recipe.content"></p>
         </div>
         <div class="card-footer">
-          <span class="cook-time text-secondary font-weight-bold">36 Min</span>
+          <span class="cook-time text-secondary font-weight-bold">{{recipe.recipe_cooking_time}}</span>
           <span class="extra font-14 font-light"></span>
         </div>
     </div>

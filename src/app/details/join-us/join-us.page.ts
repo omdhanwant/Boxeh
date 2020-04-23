@@ -113,7 +113,7 @@ export class JoinUsPage implements OnInit {
   }
 
    joinUsForm(form: NgForm) {
-     console.log(form.value);
+    //  console.log(form.value);
     if (form.valid) {
       this.loading = true;
       const fistname = form.control.get('first-name').value;
@@ -135,21 +135,24 @@ export class JoinUsPage implements OnInit {
       this.service.submitForm(fd).subscribe((response: JoinUsResponse) => {
         if (response.status === 'mail_sent') {
           form.reset();
-          this.alertService.dismissLoading();
+          this.loading = false
+          // this.alertService.dismissLoading();
           this.alertService.presentAlert(Utils.SUCCESS, response.message, [Utils.OK]);
           const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/'
           this.nav.navigateRoot([returnUrl]);
         } else {
-          this.alertService.dismissLoading();
+          this.loading = false
+          // this.alertService.dismissLoading();
           this.alertService.presentAlert(Utils.ERROR, response.message, [Utils.OK]);
         }
       } ,(error) => {
-        this.dismissLoader();
+        // this.dismissLoader();
+        this.loading = false
         this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
       });
 
     } else {
-      this.alertService.dismissLoading();
+      // this.alertService.dismissLoading();
       this.alertService.presentAlert(Utils.ERROR, 'Enter valid information!', [Utils.OK]);
     }
   }
