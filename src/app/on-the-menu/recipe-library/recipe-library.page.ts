@@ -5,6 +5,8 @@ import { Utils } from 'src/app/shared-module/utils/constants';
 import { Subscription } from 'rxjs';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { AuthService } from '../../shared-module/shared-services/auth.service';
+import { RecipesService } from '../service/recipes.service';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-library',
@@ -17,7 +19,18 @@ export class RecipeLibraryPage implements OnInit {
   langSubscription: Subscription;
   searchString: string
   loading = false;
-  constructor(private service: Service, public authService: AuthService, private alertService: AlertService, private _sanitizer: DomSanitizer) { }
+  slideOpts = {
+    initialSlide: 1,
+    slidesPerView:1,
+    grabCursor: true,    
+  };
+  constructor(
+      private route: Router, 
+      private recipeService: RecipesService,
+      private service: Service, 
+      public authService: AuthService, 
+      private alertService: AlertService, 
+      private _sanitizer: DomSanitizer) { }
 
   ngOnInit() {
   }
@@ -29,10 +42,6 @@ export class RecipeLibraryPage implements OnInit {
   initData(event?) {
     this.langSubscription =  this.authService.$currentLanguage.subscribe(languageState => {
 
-      // if (this.authService.LANGUAGE !== languageState) {
-      //   this.alertService.presentLoading('Please wait...');
-      //   this.service.refreshState();
-      // } 
       if (this.service.currentPageLanguage !== languageState) {
         this.service.currentPageLanguage = languageState
         // this.alertService.presentLoading('Please wait...');

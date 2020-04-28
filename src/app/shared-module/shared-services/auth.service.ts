@@ -91,6 +91,7 @@ registerUser(userCredentials) {
       this.currentUserSubject.next(null);
       this.storage.set(TOKEN, '');
       this.storage.set(USER , '');
+      localStorage.clear();
   }
 
   getLoggedInUser() {

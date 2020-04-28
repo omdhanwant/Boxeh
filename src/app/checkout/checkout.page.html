@@ -42,9 +42,9 @@
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label"> Company Name</p>
-          <input type="text" name="company" ngModel #company="ngModel" required class="input-text" placeholder="" autocomplete="off">
-          <p class="alert alert-danger" role="alert" *ngIf="form.submitted && company.invalid || company.touched && company.invalid">
-            Company is required! </p>
+          <input type="text" name="company" ngModel #company="ngModel" class="input-text" placeholder="" autocomplete="off">
+          <!-- <p class="alert alert-danger" role="alert" *ngIf="form.submitted && company.invalid || company.touched && company.invalid">
+            Company is required! </p> -->
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label">Country <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>

@@ -23,6 +23,23 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./checkout.page.scss'],
 })
 export class CheckoutPage implements OnInit {
+  // form:{
+  //   first_name:null,
+  //   last_name:null,
+  //   address_1:null,
+  //   address_2:null,
+  //   city:null,
+  //   state:null,
+  //   postcode:null,
+  //   country:null,
+  //   email:null,
+  //   username:null,
+  //   password:null,
+  //   phone:null,
+  //   delivery_date:null,
+  //   daypart:null,
+  //   customer_note:null,
+  // }
   loading = false;
   creditCard = false;
   cardType = '';
@@ -32,15 +49,19 @@ export class CheckoutPage implements OnInit {
   orderResponse: orderResponse;
   subscription: Subscription;
   paymentMethods: paymentMethods;
+  userDetails: any;
   constructor(
     private nav: NavController,
     private route: ActivatedRoute,
     public alertService: AlertService,
     private service: Service, ) {
-
+      this.userDetails = [];
   }
 
   ngOnInit() {
+    if(localStorage.getItem('userDetails')){
+      this.userDetails = JSON.parse(localStorage.getItem('userDetails'));
+    }
   }
   initData(event?) {
     this.loading = true;

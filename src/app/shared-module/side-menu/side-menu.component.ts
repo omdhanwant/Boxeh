@@ -185,6 +185,7 @@ closeMenu() {
     this.auth.logout();
     this.alertService.presentAlert(Utils.SUCCESS , 'Successfully logged out!' , [Utils.OK]);
     this.nav.navigateBack('/home');
+    localStorage.clear();
   }
 
 }

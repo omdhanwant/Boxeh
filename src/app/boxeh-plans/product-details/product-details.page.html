@@ -4,6 +4,10 @@
     <ion-menu-button color='primary' slot="start"></ion-menu-button>
     <ion-buttons slot="end">
       <ion-back-button color="primary" text="Back"></ion-back-button>
+      <ion-icon name='cart-outline' slot="start" style="font-size: 25px;" routerLink="/cart" routerLinkActive="router-link-active" ></ion-icon>
+      <ion-badge *ngIf="cartLength.length > 0" color="primary" class="ion-color ion-color-primary md hydrated" style="position: absolute; top: -13px; left: 15px; font-size: 10px;">
+        {{cartLength}}
+      </ion-badge>
     </ion-buttons>
     <ion-title>{{productData?.data.name}}</ion-title>
   </ion-toolbar>
@@ -20,11 +24,13 @@
       </ion-col>
     </ion-row> -->
     <ion-row *ngIf="isExists">
-      <div class="woocommerce-notices-wrapper"><ul class="woocommerce-error" role="alert">
-        <li>
-        <a routerLink="/cart" class="button wc-forward">View Cart</a> You cannot add another {{productData?.data.name}} to your cart.		</li>
-    </ul>
-  </div>
+      <div class="woocommerce-notices-wrapper">
+        <ul class="woocommerce-error" role="alert">
+          <li>
+            <a routerLink="/cart" class="button wc-forward">View Cart</a> You cannot add another
+            {{productData?.data.name}} to your cart. </li>
+        </ul>
+      </div>
     </ion-row>
     <ion-row>
       <ion-col>
@@ -69,13 +75,13 @@
             </ul>
           </nav>
           <p>
-            <img alt="" [src]="productData?.data.images[0]?.src"
-              style="width: 340px;height: 340px;">
+            <img alt="" [src]="productData?.data.images[0]?.src" style="width: 340px;height: 340px;">
           </p>
 
           <div class="summary entry-summary">
             <h1 class="product_title entry-title">{{productData?.data.name}}</h1>
-            <div class="woocommerce-product-details__short-description" style="font-weight: 900; font-size:16px;" [innerHTML]="productData?.data.description">
+            <div class="woocommerce-product-details__short-description" style="font-weight: 900; font-size:16px;"
+              [innerHTML]="productData?.data.description">
             </div>
 
             <form class="variations_form cart" action="http://boxeh.net/boxeh/product/signature-boxeh/" method="post"
@@ -83,14 +89,18 @@
 
               <table class="variations" cellspacing="0">
                 <tbody>
-                  <tr *ngFor="let recipe of productData?.data.attributes; let i=index;">
-                    <td *ngIf="recipe.name !== 'Choose recipes'" class="label"><label for="pa_recipes-per-week">{{recipe.name}}</label></td>
-                    <td *ngIf="recipe.name !== 'Choose recipes'"  class="value">
-                      <select (change)="calculateTotalPrice($event, i)" id="pa_recipes-per-week" class="" name="attribute_pa_recipes-per-week"
-                        data-attribute_name="attribute_pa_recipes-per-week" data-show_option_none="yes">
+                  <tr *ngFor="let recipe of productData?.data.attributes; let i=index;" style="margin-bottom: 10px;">
+                    <td *ngIf="recipe.name !== 'Choose recipes'" class="label" style="color: #212529;"><label
+                        for="pa_recipes-per-week">{{recipe.name}}</label></td>
+                    <td *ngIf="recipe.name !== 'Choose recipes'" class="value">
+                      <select (change)="calculateTotalPrice($event, i)" id="pa_recipes-per-week" class=""
+                        name="attribute_pa_recipes-per-week" data-attribute_name="attribute_pa_recipes-per-week"
+                        data-show_option_none="yes">
                         <option value="">Choose an option</option>
-                        <option value={{item}} *ngFor="let item of recipe.options" class="attached enabled">{{item}}</option>
-                      </select> </td>
+                        <option value={{item}} *ngFor="let item of recipe.options" class="attached enabled">{{item}}
+                        </option>
+                      </select>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -105,31 +115,34 @@
           </div>
 
           <section>
-            <h4 style="color: #91c11e !important; font-size: 26px; font-weight: 900; text-align: center;">Choose Your
-              Recipes</h4>
-            <div class="single-item  align-content-stretch"
-              style="display: flex" tabindex="0" *ngFor="let item of productData?.data.recipes">
+            <h4 style="color: #91c11e !important; font-size: 26px; font-weight: 900; text-align: center;">
+              Choose Your Recipes
+            </h4>
+            <div class="single-item  align-content-stretch" style="display: flex" tabindex="0"
+              *ngFor="let item of productData?.data.recipes">
               <label>
-              <input (change)="addSelectedRecipes($event)" [value]="item.title + '(ID:'+ item.id +')'" type="checkbox" name="product-recipe" id="product-recipe" class="d1-none">
+                <input (change)="addSelectedRecipes($event)" [value]="item.title + '(ID:'+ item.id +')'" type="checkbox"
+                  name="product-recipe" id="product-recipe" class="d1-none">
                 <div class="card">
                   <div class="overlay">
-                      <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-check-circle"></i>
                   </div>
-                  <div><img class="card-img-top"
-                      [src]="item.thumbnail_url"></div>
+                  <div><img class="card-img-top" [src]="item.thumbnail_url"></div>
                   <div class="card-body p-2">
                     <!-- <span>
                     <span class="badge badge-primary font-light small">
                         Chicken </span></span> -->
-                    <h5 class="card-title mt-2" style="font-size: 16px; color: #91c11e; font-weight: 900;">{{item.title}}></h5>
+                    <h5 class="card-title mt-2" style="font-size: 16px; color: #91c11e; font-weight: 900;">
+                      {{item.title}}></h5>
                     <p class="card-text font-light font-14" [innerHTML]="item.content"></p>
                   </div>
-                  <div class="card-footer"><span class="cook-time text-secondary font-weight-bold">{{item.cooking_time}}</span><span
+                  <div class="card-footer"><span
+                      class="cook-time text-secondary font-weight-bold">{{item.cooking_time}}</span><span
                       class="extra font-14 font-light"></span></div>
                 </div>
               </label>
             </div>
-          
+
           </section>
 
         </div>
@@ -137,7 +150,18 @@
     </ion-row>
   </ion-grid>
   <div class="text text-center text-secondary joinUsButton" style="margin-bottom: 24px;">
-    <button (click)="addToCart()" [disabled]="optionsMap.size == 0  && selectedRecipes.length <= 1" class="stickybtn  btn-primary btn-lg font-light text-decoration-0">
+    <button (click)="addToCart()" [disabled]="+getWeeklyRecipeSize !== +selectedRecipes.length"
+      class="stickybtn  btn-primary btn-lg font-light text-decoration-0">
       Add to cart</button>
   </div>
+
+  <ion-row *ngIf="isExists">
+    <div class="woocommerce-notices-wrapper">
+      <ul class="woocommerce-error" role="alert">
+        <li>
+          <a routerLink="/cart" class="button wc-forward">View Cart</a> You cannot add another
+          {{productData?.data.name}} to your cart. </li>
+      </ul>
+    </div>
+  </ion-row>
 </ion-content>

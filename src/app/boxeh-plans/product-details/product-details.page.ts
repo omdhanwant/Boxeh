@@ -16,7 +16,7 @@ declare var $: any;
   templateUrl: './product-details.page.html',
   styleUrls: ['./product-details.page.scss'],
 })
-export class ProductDetailsPage{
+export class ProductDetailsPage implements OnInit{
   variation: any;
   productData: Product = null;
   subscription: Subscription;
@@ -26,12 +26,22 @@ export class ProductDetailsPage{
   optionsMap: Map<number, string>;
   selectedRecipes: any[];
   isExists: boolean = false;
-  constructor(private service: BoxehPlansServiceService, private alertService: AlertService
-    , public authService: AuthService, private activatedRoute: ActivatedRoute,
-    private nav: NavController) {
+  getWeeklyRecipeSize:number;
+  cartLength: number;
+  constructor(private service: BoxehPlansServiceService, 
+              private alertService: AlertService, 
+              public authService: AuthService, private activatedRoute: ActivatedRoute,
+              private nav: NavController) {
       this.optionsMap = new Map<number, string>();
       this.selectedRecipes = [];
+      this.cartLength = 0;
       this.param = this.activatedRoute.snapshot.queryParams;
+  }
+  ngOnInit() {
+    if(localStorage.getItem('cart')){
+      const cart = localStorage.getItem('cart');
+      this.cartLength = JSON.parse(cart).length;
+    }
   }
  
    ionViewWillEnter() {
@@ -102,6 +112,8 @@ export class ProductDetailsPage{
       data.forEach(d => {
         if ((storeObject.recipesPerWeek === d.recipesPerWeek) && (storeObject.servingsPerRecipe === d.servingsPerRecipe)) {
             this.isExists = true;
+            window.scrollTo(0, 0);
+            this.alertService.presentAlert("Warning", 'Recipe Already added to the Cart', [Utils.OK]);
         }
       });
       if (!this.isExists ) {
@@ -115,26 +127,28 @@ export class ProductDetailsPage{
     }
   }
 
-
   refresh(event) {
     this.loading = true;
     this.initData(event);
   }
 
-
-
   addSelectedRecipes(event) {
-    if (!this.selectedRecipes.includes(event.target.value)) {
+  //  console.log(event.target.checked);
+   if (!this.selectedRecipes.includes(event.target.value) && event.target.checked) {
       this.selectedRecipes.push(event.target.value);
+      if(+this.selectedRecipes.length > +this.optionsMap.get(0)){
+        this.alertService.presentAlert("Error", 'Maximum number of Recipes for your plan is: '+this.optionsMap.get(0), [Utils.OK]);
+      }
     } else {
       let index = this.selectedRecipes.findIndex(s => s == event.target.value)
-       this.selectedRecipes.splice(index,1);
+      this.selectedRecipes.splice(index,1);
     }
+      
   }
-
 
   calculateTotalPrice(event, i) {
       this.optionsMap.set(i, event.target.value);
+      this.getWeeklyRecipeSize = +this.optionsMap.get(0);
   }
 
   getPrice(){

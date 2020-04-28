@@ -3,6 +3,10 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">localhost</domain>
         <domain includeSubdomains="true">boxeh.net</domain>
+        <domain includeSubdomains="true">http://boxeh.net</domain>
         <domain includeSubdomains="true">cors-anywhere.herokuapp.com</domain>
+        <domain includeSubdomains="true">test.oppwa.com</domain>
+        <domain includeSubdomains="true">oppwa.com</domain>
+        <domain includeSubdomains="true">https://test.oppwa.com</domain>
     </domain-config>
 </network-security-config>

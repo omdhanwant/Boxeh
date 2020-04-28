@@ -13,7 +13,15 @@ interface BoxehPlans {
                 id: number;
                 name: string;
                 description: string;
-                recipes: any[];
+                recipes:{
+                    content: string;
+                    cooking_time: string;
+                    extra_info:string;
+                    id: number
+                    thumbnail_url: string;
+                    title: string;
+                }[];
+                thumbnail:string;
             }
         ]
     }

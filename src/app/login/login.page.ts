@@ -24,7 +24,7 @@ export class LoginPage {
 
       this.auth.login(form.value).subscribe((response: LoginResponse) => {
       if (response.code === 200) {
-
+        localStorage.setItem('userDetails', JSON.stringify(response.data));
         form.reset();
         // this.alertService.dismissLoading();
         this.loading = false;
