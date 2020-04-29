@@ -34,9 +34,9 @@ export class Service {
         }));
   }
 
-  createCCOrder() {
+  createCCOrder(entityId,amount,currency,testMode,paymentType,paymentBrand,cardNo,cardHolder,expiryMonth,expiryYear,cvv) {
     const time = new Date();
-    return this.http.post(`https://test.oppwa.com/v1/payments?entityId=8ac7a4c970f852940171071cb0f51482&amount=12.00&currency=JOD&testMode=EXTERNAL&paymentType=PA&paymentBrand=VISA&card.number=4111111111111111&card.holder=tester&card.expiryMonth=12&card.expiryYear=2021&card.cvv=129&shopperResultUrl=http://boxeh.net/boxeh/checkout/`,{})
+    return this.http.post(`https://test.oppwa.com/v1/payments?entityId=${entityId}&amount=${amount}&currency=${currency}&testMode=${testMode}&paymentType=${paymentType}&paymentBrand=${paymentBrand}&card.number=${cardNo}&card.holder=${cardHolder}&card.expiryMonth=${expiryMonth}&card.expiryYear=${expiryYear}&card.cvv=${cvv}&shopperResultUrl=http://boxeh.net/boxeh/checkout/`,{})
       .pipe(
         map((response: any) => {
           return response;

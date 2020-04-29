@@ -151,9 +151,9 @@ export class CheckoutPage implements OnInit {
   placeOrder(form: NgForm) {
     console.log(form.control.get('payment_method').value)
     if (form.valid) {
-      // this.alertService.presentLoading('Please Wait...');
+
       const payment_method = form.control.get('payment_method').value;
-      const payment_method_title = 'Cash on delivery';
+      const payment_method_title = (payment_method.id === 'cod') ?  'Cash on delivery' : 'Credit Card';
       const currency = 'JOD';
       const customer_id = '0';
       const first_name = form.control.get('first_name').value;
@@ -171,7 +171,7 @@ export class CheckoutPage implements OnInit {
       const method_id = 'flat_rate';
       const method_title = 'Flat rate';
       const total = this.totalPrice + 10;
-      const product_id = this.cartData[0].product_id;
+      const product_id = this.cartData[0].productId;
       const variation_id = this.cartData[0].variation_id;
       const quantity = this.totalQuantity;
       const choosen_recipes = this.cartData[0].selectedRecipes;
@@ -207,34 +207,41 @@ export class CheckoutPage implements OnInit {
       fd.append('daypart', daypart);
       fd.append('customer_note', customer_note);
       this.loading = true;
+
       if (payment_method.id === 'cod') {
-        this.service.createOrder(fd).subscribe((response: orderResponse) => {
-          this.orderResponse = response;
-          localStorage.setItem('orderReceived', JSON.stringify(this.orderResponse))
-          if (response.status == true) {
-            form.reset();
-            // this.alertService.dismissLoading();
-            // localStorage.clear();
-            localStorage.removeItem("cart");
-            this.loading = false;
-            this.alertService.presentAlert(Utils.SUCCESS, response.message, [Utils.OK]);
-            this.nav.navigateForward(['/order-received'])
-            // const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/'
-            // this.nav.navigateRoot([returnUrl]);
-          } else {
-            // this.alertService.dismissLoading();
-            this.loading = false;
-            this.alertService.presentAlert(Utils.ERROR, response.message, [Utils.OK]);
-          }
-        }, (error) => {
-          this.loading = false;
-          this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
-        });
-      } else {
-        this.service.createCCOrder().subscribe((response: orderResponse) => {
+        this.createOrder(fd, form);
+      } else if(payment_method.id == 'cc') {
+
+        const entityId = payment_method.id
+        const amount = total
+        const currency = 'JOD'
+        const testMode = 'EXTERNAL'
+        const paymentType = 'PA'
+        const paymentBrand = this.cardType
+        const cardNo ='4111111111111111' //form.control.get('cardNumber').value
+        const cardHolder = form.control.get('cardHolder').value
+        const expiryMonth = form.control.get('cardMonth').value
+        const expiryYear = form.control.get('cardYear').value
+        const cvv = form.control.get('cvv').value
+
+        this.service.createCCOrder(
+          entityId, 
+          amount,
+          currency,
+          testMode,
+          paymentType,
+          paymentBrand, 
+          cardNo, 
+          cardHolder, 
+          expiryMonth, 
+          expiryYear,
+          cvv
+        ).subscribe((response: orderResponse) => {
           console.log(response);
           this.loading = false;
-        }, (error) => {
+          this.createOrder(fd, form);
+        },
+         (error) => {
           this.loading = false;
           this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
         });
@@ -245,6 +252,32 @@ export class CheckoutPage implements OnInit {
       this.loading = false;
       // this.alertService.presentAlert(Utils.ERROR, 'Enter valid information!', [Utils.OK]);
     }
+  }
+
+
+  createOrder(fd: FormData, form: NgForm) {
+    this.service.createOrder(fd).subscribe((response: orderResponse) => {
+      this.orderResponse = response;
+      localStorage.setItem('orderReceived', JSON.stringify(this.orderResponse))
+      if (response.status == true) {
+        form.reset();
+        // this.alertService.dismissLoading();
+        // localStorage.clear();
+        localStorage.removeItem("cart");
+        this.loading = false;
+        this.alertService.presentAlert(Utils.SUCCESS, response.message, [Utils.OK]);
+        this.nav.navigateForward(['/order-received'])
+        // const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/'
+        // this.nav.navigateRoot([returnUrl]);
+      } else {
+        // this.alertService.dismissLoading();
+        this.loading = false;
+        this.alertService.presentAlert(Utils.ERROR, response.message, [Utils.OK]);
+      }
+    }, (error) => {
+      this.loading = false;
+      this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
+    });
   }
 
   ionViewDidLeave() {

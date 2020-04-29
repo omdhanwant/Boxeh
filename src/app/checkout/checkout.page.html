@@ -244,7 +244,7 @@
             <ng-container *ngIf="creditCard">
               <ion-col size="12">
                 <p class="mb-0 form-label">Card Holder Name<i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-                <input type="text" name="cardNumber" ngModel required class="input-text" placeholder="Enter Name" autocomplete="off">
+                <input type="text" name="cardHolder" ngModel required class="input-text" placeholder="Enter Name" autocomplete="off">
               </ion-col>
               <ion-col size="12">
                 <p class="mb-0 form-label">Card Number<i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
@@ -258,15 +258,15 @@
               </ion-col>
               <ion-col size="4">
                 <p class="mb-0 form-label">Expiry Date<i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-                <input type="number" name="month" ngModel required class="input-text" placeholder="MM">
+                <input type="number" name="cardMonth" ngModel required class="input-text" placeholder="MM">
               </ion-col>
               <ion-col size="4">
                 <p class="mb-0 form-label">&nbsp;</p>
-                <input type="number" name="year" ngModel required class="input-text" placeholder="YY">
+                <input type="number" name="cardYear" ngModel required class="input-text" placeholder="YY">
               </ion-col>
               <ion-col size="4">
                 <p class="mb-0 form-label">CVV Code<i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-                <input type="number" name="year" ngModel required class="input-text" placeholder="YY">
+                <input type="number" name="cvv" ngModel required class="input-text" placeholder="YY">
               </ion-col>
             </ng-container>
 
