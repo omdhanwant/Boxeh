@@ -8,7 +8,7 @@ import { LoginResponse } from '../shared-module/models/LoginResponse';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Service } from './service.service';
 import { Cart } from '../boxeh-plans/model/cart';
-import { orderResponse, paymentMethods } from './model/orderResponse';
+import { orderResponse, paymentMethods, shippingMethods } from './model/orderResponse';
 import { Subscription } from 'rxjs';
 import { paymentResponse } from './model/paymentResponse';
 
@@ -51,6 +51,7 @@ export class CheckoutPage implements OnInit {
   subscription: Subscription;
   paymentMethods: paymentMethods;
   userDetails: any;
+  shippingMethods: shippingMethods;
   constructor(
     private nav: NavController,
     private route: ActivatedRoute,
@@ -79,9 +80,25 @@ export class CheckoutPage implements OnInit {
       this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
     });
   }
+  getShippingMethods(event?) {
+    this.loading = true;
+    this.subscription = this.service.getShippingMethods().subscribe(methods => {
+      if (methods.code === 200) {
+        this.shippingMethods = methods;
+        this.loading = false;
+      } else {
+        this.alertService.presentAlert(Utils.ERROR, methods.message, [Utils.OK]);
+        this.loading = false;
+      }
+    }, (error) => {
+      this.loading = false;
+      this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
+    });
+  }
 
   ionViewDidEnter() {
     this.initData();
+    this.getShippingMethods();
     if (localStorage.getItem('cart')) {
       this.cartData = JSON.parse(localStorage.getItem('cart'));
       this.calculateTotalCartValues();
@@ -169,9 +186,9 @@ export class CheckoutPage implements OnInit {
       const username = form.control.get('username').value;
       const password = form.control.get('password').value;
       const phone = form.control.get('phone').value;
-      const method_id = 'flat_rate';
-      const method_title = 'Flat rate';
-      const total = this.totalPrice + 10;
+      const method_id = (this.shippingMethods.data[0].method_id) ? this.shippingMethods.data[0].method_id : 0;
+      const method_title = (this.shippingMethods.data[0].method_title) ? this.shippingMethods.data[0].method_title : 'Flat Rate';
+      const total = this.totalPrice + (this.shippingMethods.data[0].settings.cost.value) ? this.shippingMethods.data[0].settings.cost.value : 0;
       const product_id = this.cartData[0].productId;
       const variation_id = this.cartData[0].variation_id;
       const quantity = this.totalQuantity;
@@ -197,8 +214,8 @@ export class CheckoutPage implements OnInit {
       fd1.append('username', username);
       fd1.append('password', password);
       fd1.append('phone', phone);
-      fd1.append('method_id', method_id);
-      fd1.append('method_title', method_title);
+      fd1.append('method_id', method_id.toString());
+      fd1.append('method_title', method_title.toString());
       fd1.append('total', total.toString());
       fd1.append('product_id', product_id.toString());
       fd1.append('variation_id', variation_id.toString());

@@ -4,9 +4,11 @@ interface BoxehPlans {
     status: boolean;
     message: string;
     data: {
+        page_footer: {btn_text:string}
         page_head: {
             bg_cover: string;
-            content: string;
+            sub_title: string;
+            title:string;
         },
         products: [
             {

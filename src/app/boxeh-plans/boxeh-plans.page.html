@@ -16,11 +16,10 @@
         <div class="banner-info">
           <div class="page-hero pd-lr-15">
             <h4 style="font-weight: 600;">
-              A Boxeh Plan for Every Appetite &amp; Fam
+              {{data?.data.page_head.title}}
             </h4>
             <div class="pd-lr-15">
-              <p class="font-light" style="font-size: 12px;padding-bottom: 10px;color:#fff;font-weight: 500;">
-                Fresh Ingredients &amp; Foolproof Recipes Designed by Chefs. Delivered to Your Door. Cooked by You</p>
+              <p class="font-light" style="font-size: 12px;padding-bottom: 10px;color:#fff;font-weight: 500;" [innerHTML]="data?.data.page_head.sub_title"></p>
             </div>
         </div>
         </div>
@@ -57,7 +56,7 @@
                 <input (change)="setRouteToId($event)" [value]="product.id" type="radio" name="radioGroup" id="customRadio"/>
                 <div class="card">                          
                   <img *ngIf="product.thumbnail" class="card-img-top" [src]="product.thumbnail">
-                  <img *ngIf="!product.thumbnail" class="card-img-top" src="assets/Boxeh-Plans-1.jpg">
+                  <!-- <img *ngIf="!product.thumbnail" class="card-img-top" src="assets/Boxeh-Plans-1.jpg"> -->
                 <div class="card-body my-p-fs p-2">
                   <h5 class="card-title text-center text-primary mt-2 fw-600 fs-18">{{product.name}}</h5>
                   <p class="card-text font-light fs-18 fw-600 mb-0" [innerHtml] = 'product.description'></p>
@@ -87,6 +86,8 @@
     </ion-row>
   </ion-grid>
   <div class="text-center mb-4">
-    <button  (click)="routeToPath()" class="btn btn-primay btn-lg" style="color: #fff; border-radius: 15px; background-color: #a0c643; border-color: #a0c643; font-weight: 900; font-size: 1.25rem; line-height: 1.5;">Pick This Boxeh</button>
+    <button  (click)="routeToPath()" class="btn btn-primay btn-lg" style="color: #fff; border-radius: 15px; background-color: #a0c643; border-color: #a0c643; font-weight: 900; font-size: 1.25rem; line-height: 1.5;">
+      {{data?.data.page_footer.btn_text}}
+    </button>
   </div>
 </ion-content>
