@@ -7,18 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: MyAccountPage,
-  },
-  {
-    path: 'profile',
-    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
-  },
-  {
-    path: 'previous-orders',
-    loadChildren: () => import('./previous-orders/previous-orders.module').then( m => m.PreviousOrdersPageModule)
-  },
-  {
-    path: 'change-password',
-    loadChildren: () => import('./change-password/change-password.module').then( m => m.ChangePasswordPageModule)
   }
 ];
 

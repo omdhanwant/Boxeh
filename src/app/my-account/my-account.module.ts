@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { MyAccountPageRoutingModule } from './my-account-routing.module';
 
 import { MyAccountPage } from './my-account.page';
+import { NgxLoadingModule } from 'ngx-loading';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MyAccountPageRoutingModule
+    MyAccountPageRoutingModule,
+    NgxLoadingModule
   ],
   declarations: [MyAccountPage]
 })

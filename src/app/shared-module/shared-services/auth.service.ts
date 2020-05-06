@@ -9,7 +9,6 @@ import { LoginResponse } from '../models/LoginResponse';
 import { DomSanitizer } from '@angular/platform-browser';
 
 const USER = 'User';
-const TOKEN = 'Token';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +17,7 @@ export class AuthService {
   public LANGUAGE = 'un';
   private currentUserSubject: BehaviorSubject<User> = new BehaviorSubject(null);
   private languageState: BehaviorSubject<string> = new BehaviorSubject('un');
-  // private token: BehaviorSubject<string> = new BehaviorSubject(null);
+  
   public currentUser: Observable<User> = this.currentUserSubject.asObservable();
   public $currentLanguage: Observable<string> = this.languageState.asObservable();
 
@@ -63,24 +62,26 @@ registerUser(userCredentials) {
   login(credentials) {
       return this.http.post(`${environment.hostUrl}/boxeh/apis/login.php`, credentials)
           .pipe(map((response: LoginResponse) => {
-              // sessionStorage.setItem(TOKEN, loginResponse.success.token);
-              // this.storage.set(TOKEN, response.data);
-              // this.token.next(JSON.stringify(response.data));
-                  this.storage.set(USER, JSON.stringify(response.data));
+                  this.user = response.data;
                   this.currentUserSubject.next(response.data);
                   return response;
           }));
   }
 
-  // getUser() {
-  //   return this.http.get(`${environment.hostUrl}/boxeh/api/${environment.version}/getUser`).pipe(
-  //     map((response: {success: User}) => {
-  //       // sessionStorage.setItem(USER, JSON.stringify(response.success));
-  //       this.storage.set(USER, JSON.stringify(response.success));
-  //       this.currentUserSubject.next(response.success);
-  //     })
-  //   );
-  // }
+
+  set user(data) {
+    this.storage.set(USER, JSON.stringify(data));
+  }
+
+  // get use info
+  getUser(userId) {
+    return this.http.post(`${environment.hostUrl}/boxeh/apis/get_user_data.php`,{id: userId});
+  }
+
+  // set new password
+  updatePassword(cred) {
+    return this.http.post(`${environment.hostUrl}/boxeh/apis/change_password.php`,cred);
+  }
 
   isAuthenticated(): boolean {
     return this.currentUserSubject.value ? true : false;
@@ -89,7 +90,6 @@ registerUser(userCredentials) {
   logout() {
       // this.token.next(null);
       this.currentUserSubject.next(null);
-      this.storage.set(TOKEN, '');
       this.storage.set(USER , '');
       localStorage.clear();
   }
