@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Service } from '../service.service';
 import { Cart } from '../../boxeh-plans/model/cart';
 import { orderResponse } from '../model/orderResponse';
+import { paymentResponse } from '../model/paymentResponse';
 
 @Component({
   selector: 'app-order-received',
@@ -18,6 +19,7 @@ import { orderResponse } from '../model/orderResponse';
 export class OrderReceivedPage implements OnInit {
   loading = false;
   orderReceived: orderResponse;
+  paymentResponse: paymentResponse;
   // cartData: Cart[];
   // totalPrice: number = 0;
   // totalQuantity: number = 0;
@@ -30,8 +32,9 @@ export class OrderReceivedPage implements OnInit {
 
   }
   ionViewDidEnter() {
-    if(localStorage.getItem('orderReceived')) {
+    if(localStorage.getItem('orderReceived') || localStorage.getItem('paymentResponse')) {
      this.orderReceived = JSON.parse(localStorage.getItem('orderReceived'));
+     this.paymentResponse = JSON.parse(localStorage.getItem('paymentResponse'));
     }
   }
 

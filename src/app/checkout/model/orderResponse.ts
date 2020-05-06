@@ -80,7 +80,17 @@ export interface orderResponse{
                     placeholder: string,
                     options: {}
                 },
-                enable_for_virtual: {}
+                enable_for_virtual: {},
+                entityId: {
+                  default: string;
+                  description: string;
+                  id:string;
+                  label:string;
+                  placeholder:string;
+                  tip:string;
+                  type:string;
+                  value:string;
+                }
             },
         }[]
 }

@@ -10,6 +10,7 @@ import { Service } from './service.service';
 import { Cart } from '../boxeh-plans/model/cart';
 import { orderResponse, paymentMethods } from './model/orderResponse';
 import { Subscription } from 'rxjs';
+import { paymentResponse } from './model/paymentResponse';
 
 // interface createOrderResponse {
 //   into: string,
@@ -179,51 +180,66 @@ export class CheckoutPage implements OnInit {
       const daypart = form.control.get('daypart').value;
       const customer_note = form.control.get('customer_note').value;
 
-      const fd = new FormData();
-      fd.append('payment_method', payment_method.id);
-      fd.append('payment_method_title', payment_method_title);
-      fd.append('currency', currency);
-      fd.append('customer_id', customer_id);
-      fd.append('first_name', first_name);
-      fd.append('last_name', last_name);
-      fd.append('address_1', address_1);
-      fd.append('address_2', address_2);
-      fd.append('city', city);
-      fd.append('state', state);
-      fd.append('postcode', postcode);
-      fd.append('country', country);
-      fd.append('email', email);
-      fd.append('username', username);
-      fd.append('password', password);
-      fd.append('phone', phone);
-      fd.append('method_id', method_id);
-      fd.append('method_title', method_title);
-      fd.append('total', total.toString());
-      fd.append('product_id', product_id.toString());
-      fd.append('variation_id', variation_id.toString());
-      fd.append('quantity', quantity.toString());
-      fd.append('choosen_recipes', choosen_recipes);
-      fd.append('delivery-date', delivery_date);
-      fd.append('daypart', daypart);
-      fd.append('customer_note', customer_note);
+      const fd1 = new FormData();
+      fd1.append('payment_method', payment_method.id);
+      fd1.append('payment_method_title', payment_method_title);
+      fd1.append('currency', currency);
+      fd1.append('customer_id', customer_id);
+      fd1.append('first_name', first_name);
+      fd1.append('last_name', last_name);
+      fd1.append('address_1', address_1);
+      fd1.append('address_2', address_2);
+      fd1.append('city', city);
+      fd1.append('state', state);
+      fd1.append('postcode', postcode);
+      fd1.append('country', country);
+      fd1.append('email', email);
+      fd1.append('username', username);
+      fd1.append('password', password);
+      fd1.append('phone', phone);
+      fd1.append('method_id', method_id);
+      fd1.append('method_title', method_title);
+      fd1.append('total', total.toString());
+      fd1.append('product_id', product_id.toString());
+      fd1.append('variation_id', variation_id.toString());
+      fd1.append('quantity', quantity.toString());
+      fd1.append('choosen_recipes', choosen_recipes);
+      fd1.append('delivery-date', delivery_date);
+      fd1.append('daypart', daypart);
+      fd1.append('customer_note', customer_note);
       this.loading = true;
 
       if (payment_method.id === 'cod') {
-        this.createOrder(fd, form);
-      } else if(payment_method.id == 'cc') {
+        this.createOrder(fd1, form);
+      } else if(payment_method.id == 'hyperpay_applepay' || payment_method.id == 'hyperpay_applepay') {
 
-        const entityId = payment_method.id
+        const entityId = this.paymentMethods.data[1].settings.entityId.value;
         const amount = total
-        const currency = 'JOD'
-        const testMode = 'EXTERNAL'
-        const paymentType = 'PA'
-        const paymentBrand = this.cardType
-        const cardNo ='4111111111111111' //form.control.get('cardNumber').value
-        const cardHolder = form.control.get('cardHolder').value
-        const expiryMonth = form.control.get('cardMonth').value
-        const expiryYear = form.control.get('cardYear').value
-        const cvv = form.control.get('cvv').value
+        const currency = 'JOD';
+        const testMode = 'EXTERNAL';
+        const paymentType = 'PA';
+        const paymentBrand = (this.cardType === 'visa') ? 'VISA':'VISA';
+        const cardNo = form.control.get('cardNumber').value;
+        const cardHolder = form.control.get('cardHolder').value;
+        const expiryMonth = form.control.get('cardMonth').value;
+        const expiryYear = form.control.get('cardYear').value;
+        const cvv = form.control.get('cvv').value;
+        const shopperResultUrl = 'http://boxeh.net/boxeh/checkout/' //form.control.get('cvv').value
 
+        const fd = new FormData();
+        fd.append('payment_method', payment_method.id);
+        fd.append('entityId',entityId);
+        fd.append('amount', amount.toString());
+        fd.append('currency',currency);
+        fd.append('testMode',testMode);
+        fd.append('paymentType',paymentType);
+        fd.append('paymentBrand',paymentBrand);
+        fd.append('card.number',cardNo);
+        fd.append('card.holder',cardHolder);
+        fd.append('card.expiryMonth',expiryMonth);
+        fd.append('card.expiryYear',expiryYear);
+        fd.append('card.cvv', cvv);
+        fd.append('shopperResultUrl', 'http://boxeh.net/boxeh/checkout/');
         this.service.createCCOrder(
           entityId, 
           amount,
@@ -235,11 +251,14 @@ export class CheckoutPage implements OnInit {
           cardHolder, 
           expiryMonth, 
           expiryYear,
-          cvv
-        ).subscribe((response: orderResponse) => {
+          cvv, 
+          fd,
+          shopperResultUrl
+        ).subscribe((response: paymentResponse) => {
+          localStorage.setItem('paymentResponse', JSON.stringify(response));
           console.log(response);
           this.loading = false;
-          this.createOrder(fd, form);
+          this.createOrder(fd1, form);
         },
          (error) => {
           this.loading = false;
@@ -256,6 +275,7 @@ export class CheckoutPage implements OnInit {
 
 
   createOrder(fd: FormData, form: NgForm) {
+    this.loading = true;
     this.service.createOrder(fd).subscribe((response: orderResponse) => {
       this.orderResponse = response;
       localStorage.setItem('orderReceived', JSON.stringify(this.orderResponse))

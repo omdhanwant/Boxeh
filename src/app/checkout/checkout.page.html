@@ -130,10 +130,10 @@
         <ion-col size="12" class="">
           <h4 class="fw-600 pb-2" style="font-size: 25px;">Additional information</h4>
           <p class="mb-0 form-label">Order Notes (optional) </p>
-          <textarea class="input-text" name="customer_note" ngModel #customer_note="ngModel" required placeholder="Notes about your order, e.g. special notes for delivery." rows="2"
+          <textarea class="input-text" name="customer_note" ngModel #customer_note="ngModel"  placeholder="Notes about your order, e.g. special notes for delivery." rows="2"
             cols="5"></textarea>
-            <p class="alert alert-danger" role="alert" *ngIf="form.submitted && customer_note.invalid || customer_note.touched && first_name.invalid">
-              Order Notes is required!</p>
+            <!-- <p class="alert alert-danger" role="alert" *ngIf="form.submitted && customer_note.invalid || customer_note.touched && first_name.invalid">
+              Order Notes is required!</p> -->
         </ion-col>
         <ion-col size="12" class="">
           <h4 class="fw-600 pb-2" style="font-size: 25px;">Your Order</h4>

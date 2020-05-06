@@ -45,14 +45,31 @@
         <ion-col size="2" style="border-left: 1px dashed #c3c3c3;"></ion-col>
         <ion-col size="5">
           <p class="m-0 pb-0">PAYMENT METHOD:</p>
-          <!-- <p class="m-0 pb-0 ptab-details">
-            Cash on delivery
-          </p> -->
-          Accepted
+          <p class="m-0 pb-0 ptab-details" *ngIf="paymentResponse; then payment1 else payment2"></p>
+          <ng-template #payment1>
+          <p class="m-0 pb-0 ptab-details">Credit Card</p>
+        </ng-template>
+        <ng-template #payment2>
+          <p class="m-0 pb-0 ptab-details">Cash on Delivery</p>
+        </ng-template>
+        </ion-col>
+      </ion-row>
+      <ion-row class="mt-3">
+        <ion-col size="5">
+          <p class="m-0 pb-0">
+            TRANSACTION:
+          </p>
+          <p class="m-0 pb-0 ptab-details">
+            {{paymentResponse?.result.description}}
+          </p>
+        </ion-col>
+        <ion-col size="2" style="border-left: 1px dashed #c3c3c3;"></ion-col>
+        <ion-col size="5">
+          &nbsp;
         </ion-col>
       </ion-row>
       <ion-row>
-        <p class="p-sub text-center pb-0 mb-0">Pay with cash upon delivery.</p>
+        <!-- <p class="p-sub text-center pb-0 mb-0">Pay with cash upon delivery.</p> -->
         <h1 class="entry-title mb-2 mt-2">Order Details</h1>
       </ion-row>
       <ion-row>
@@ -116,7 +133,7 @@
                         Flat Rate
                       </p>
                       <p class="cart-text  mt-0 mb-0">
-                        JOD0.00
+                        JOD 10.00
                       </p>
                     </ion-col>
                     <ion-col size="6" class="text-left" style="border-bottom: 1px solid #91c11e;padding: 1em 1em 0.5em 1em;">
@@ -146,7 +163,7 @@
                     </ion-col>
                     <ion-col size="6" class="text-right" style="border-bottom: 1px solid #91c11e;padding: 1em 1em 0.5em 1em;">
                       <p class="cart-text  mt-0 mb-0">
-                        JOD{{this.orderReceived?.data.items[0].total}}
+                        JOD{{+this.orderReceived?.data.items[0].total + 10}}
                       </p>
                     </ion-col>
                     <!-- <ion-col size="6" class="text-left" style="padding: 1em 1em 0.5em 1em;">

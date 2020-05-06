@@ -27,7 +27,7 @@ interface JoinUsResponse {
 })
 export class JoinUsPage implements OnInit {
   JoinUs: JoinUs = null;
-  countryCode:any;
+  countryCode:any = '962';
   subscription: Subscription;
   langSubscription: Subscription;
   file: any;

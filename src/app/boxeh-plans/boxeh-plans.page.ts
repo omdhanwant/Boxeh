@@ -66,6 +66,10 @@ export class BoxehPlansPage implements OnInit {
 
   ionViewDidEnter() {
     this.initData();
+    localStorage.removeItem('orderReceived');
+    localStorage.removeItem('categoryProducts');
+    localStorage.removeItem('paymentResponse');
+    localStorage.removeItem('cart');
   }
 
   refresh(event) {

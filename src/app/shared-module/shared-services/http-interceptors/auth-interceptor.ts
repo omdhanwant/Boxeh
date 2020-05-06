@@ -13,6 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
       setHeaders: {
         // Authorization: `Bearer ${this.auth.credential}`,
+        // Authorization: `Bearer OGFjN2E0Yzk3MGY4NTI5NDAxNzEwNzFjMzAwZDE0N2V8cm5hUmNRUTVNWg`,
         Accept: 'application/json'
       }
     });

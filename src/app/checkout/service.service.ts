@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { orderResponse, paymentMethods } from './model/orderResponse';
+
 
 // interface createOrderResponse {
 //   into: string,
@@ -34,9 +35,10 @@ export class Service {
         }));
   }
 
-  createCCOrder(entityId,amount,currency,testMode,paymentType,paymentBrand,cardNo,cardHolder,expiryMonth,expiryYear,cvv) {
+  createCCOrder(entityId,amount,currency,testMode,paymentType,paymentBrand,cardNo,cardHolder,expiryMonth,expiryYear,cvv,shopperResultUrl, fd) {
     const time = new Date();
-    return this.http.post(`https://test.oppwa.com/v1/payments?entityId=${entityId}&amount=${amount}&currency=${currency}&testMode=${testMode}&paymentType=${paymentType}&paymentBrand=${paymentBrand}&card.number=${cardNo}&card.holder=${cardHolder}&card.expiryMonth=${expiryMonth}&card.expiryYear=${expiryYear}&card.cvv=${cvv}&shopperResultUrl=http://boxeh.net/boxeh/checkout/`,{})
+    const  headers = new  HttpHeaders().set("Authorization", "Bearer OGFjN2E0Yzk3MGY4NTI5NDAxNzEwNzFjMzAwZDE0N2V8cm5hUmNRUTVNWg");
+    return this.http.post(`https://cors-anywhere.herokuapp.com/https://test.oppwa.com/v1/payments?entityId=${entityId}&amount=${amount}&currency=${currency}&testMode=${testMode}&paymentType=${paymentType}&paymentBrand=${paymentBrand}&card.number=${cardNo}&card.holder=${cardHolder}&card.expiryMonth=${expiryMonth}&card.expiryYear=${expiryYear}&card.cvv=${cvv}&shopperResultUrl=http://boxeh.net/boxeh/checkout/`,{},{headers})
       .pipe(
         map((response: any) => {
           return response;
