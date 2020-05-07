@@ -22,7 +22,7 @@
           <ion-row>
             <ion-col size="12" class="pl-4 pr-4 ">
               <div class="bg-white  pt-2 ">
-                <h1 class="text-primary text-center fw-600 mb-4 fs-2rem mb-4"> Browse our recipes</h1>
+                <h1 class="text-primary text-center fw-600 mb-4 fs-2rem mb-4"> {{RecipeLibrary?.data.page_head.search_title}}</h1>
               <div class="page-content text-center">
                 <input class="search-border" [(ngModel)]="searchString" id="searchFilter" placeholder="Search" type="text" >
               </div>

@@ -7,6 +7,7 @@ interface RecipeLibrary {
             bg_cover:string;
             title: string;
             sub_title:string;
+            search_title:string;
         },
         secion_recipes: {
             recipes_list: [

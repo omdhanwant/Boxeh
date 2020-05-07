@@ -11,6 +11,7 @@ import { Cart } from '../boxeh-plans/model/cart';
 import { orderResponse, paymentMethods, shippingMethods } from './model/orderResponse';
 import { Subscription } from 'rxjs';
 import { paymentResponse } from './model/paymentResponse';
+import { userResponse } from './model/userResponse';
 
 // interface createOrderResponse {
 //   into: string,
@@ -24,23 +25,23 @@ import { paymentResponse } from './model/paymentResponse';
   styleUrls: ['./checkout.page.scss'],
 })
 export class CheckoutPage implements OnInit {
-  // form:{
-  //   first_name:null,
-  //   last_name:null,
-  //   address_1:null,
-  //   address_2:null,
-  //   city:null,
-  //   state:null,
-  //   postcode:null,
-  //   country:null,
-  //   email:null,
-  //   username:null,
-  //   password:null,
-  //   phone:null,
-  //   delivery_date:null,
-  //   daypart:null,
-  //   customer_note:null,
-  // }
+  user: any = {
+    first_name:null,
+    last_name:null,
+    address_1:null,
+    address_2:null,
+    city:null,
+    state:null,
+    postcode:null,
+    country:null,
+    email:null,
+    username:null,
+    password:null,
+    phone:null,
+    delivery_date:null,
+    daypart:null,
+    customer_note:null,
+  };
   loading = false;
   creditCard = false;
   cardType = '';
@@ -52,18 +53,55 @@ export class CheckoutPage implements OnInit {
   paymentMethods: paymentMethods;
   userDetails: any;
   shippingMethods: shippingMethods;
+  userResponse: userResponse;
   constructor(
     private nav: NavController,
     private route: ActivatedRoute,
     public alertService: AlertService,
     private service: Service, ) {
       this.userDetails = [];
+      this.userResponse = null;
   }
 
   ngOnInit() {
     if(localStorage.getItem('userDetails')){
       this.userDetails = JSON.parse(localStorage.getItem('userDetails'));
+      this.user.first_name = this.userDetails.first_name;
+      this.user.last_name = this.userDetails.last_name;
+      this.user.email = this.userDetails.email;
+      this.getUserData(this.userDetails.id);
+      if(this.userResponse || this.userResponse !== null){
+        this.user = {
+          first_name:this.userResponse.data.first_name,
+          last_name:this.userResponse.data.last_name,
+          address_1:this.userResponse.data.billing_address_1,
+          address_2:this.userResponse.data.billing_address_2,
+          city:this.userResponse.data.billing_city,
+          state:this.userResponse.data.billing_state,
+          postcode:this.userResponse.data.billing_postcode,
+          country:this.userResponse.data.billing_country,
+          username:this.userResponse.data.username,
+          phone:this.userResponse.data.billing_phone
+        };
+      }
     }
+  }
+  getUserData(userID) {
+    const form = new FormData();
+    form.append('id', userID.id);
+    this.loading = true;
+    this.subscription = this.service.getUserData(form).subscribe(userRes => {
+      if (userRes.code === 200) {
+        this.userResponse = userRes;
+        this.loading = false;
+      } else {
+        this.alertService.presentAlert(Utils.ERROR, userRes.message, [Utils.OK]);
+        this.loading = false;
+      }
+    }, (error) => {
+      this.loading = false;
+      this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
+    });
   }
   initData(event?) {
     this.loading = true;
@@ -173,7 +211,7 @@ export class CheckoutPage implements OnInit {
       const payment_method = form.control.get('payment_method').value;
       const payment_method_title = (payment_method.id === 'cod') ?  'Cash on delivery' : 'Credit Card';
       const currency = 'JOD';
-      const customer_id = '0';
+      const customer_id = (this.userDetails.length > 0) ? this.userDetails.id : 0;
       const first_name = form.control.get('first_name').value;
       const last_name = form.control.get('last_name').value;
       const address_1 = form.control.get('address_1').value;
@@ -183,8 +221,6 @@ export class CheckoutPage implements OnInit {
       const postcode = form.control.get('postcode').value;
       const country = form.control.get('country').value;
       const email = form.control.get('email').value;
-      const username = form.control.get('username').value;
-      const password = form.control.get('password').value;
       const phone = form.control.get('phone').value;
       const method_id = (this.shippingMethods.data[0].method_id) ? this.shippingMethods.data[0].method_id : 0;
       const method_title = (this.shippingMethods.data[0].method_title) ? this.shippingMethods.data[0].method_title : 'Flat Rate';
@@ -196,7 +232,9 @@ export class CheckoutPage implements OnInit {
       const delivery_date = form.control.get('delivery-date').value;
       const daypart = form.control.get('daypart').value;
       const customer_note = form.control.get('customer_note').value;
-
+      const company = form.control.get('company').value;
+      const set_paid = true;
+      const status = 'processing';
       const fd1 = new FormData();
       fd1.append('payment_method', payment_method.id);
       fd1.append('payment_method_title', payment_method_title);
@@ -210,9 +248,13 @@ export class CheckoutPage implements OnInit {
       fd1.append('state', state);
       fd1.append('postcode', postcode);
       fd1.append('country', country);
-      fd1.append('email', email);
-      fd1.append('username', username);
-      fd1.append('password', password);
+      if(this.userDetails.length > 0){
+        fd1.append('email', email);
+      }else{
+        fd1.append('email', email);
+        fd1.append('username', form.control.get('username').value);
+        fd1.append('password', form.control.get('password').value);
+      }
       fd1.append('phone', phone);
       fd1.append('method_id', method_id.toString());
       fd1.append('method_title', method_title.toString());
@@ -224,6 +266,9 @@ export class CheckoutPage implements OnInit {
       fd1.append('delivery-date', delivery_date);
       fd1.append('daypart', daypart);
       fd1.append('customer_note', customer_note);
+      fd1.append('company', company);
+      fd1.append('status', status);
+      fd1.append('set_paid', set_paid.toString());
       this.loading = true;
 
       if (payment_method.id === 'cod') {

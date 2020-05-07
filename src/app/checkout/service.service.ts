@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { orderResponse, paymentMethods, shippingMethods } from './model/orderResponse';
+import { userResponse } from './model/userResponse';
 
 
 // interface createOrderResponse {
@@ -25,6 +26,14 @@ export class Service {
         map((response: shippingMethods) => {
           return response;
         }));
+  }
+  getUserData(data){
+    const time = new Date();
+    return this.http.post(`${environment.hostUrl}/boxeh/apis/get_user_data.php?type=` + time.getTime(), data)
+    .pipe(
+      map((response: userResponse) => {
+        return response;
+      }));
   }
 
   getPaymentMethods(){

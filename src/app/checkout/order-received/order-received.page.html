@@ -133,7 +133,7 @@
                         Flat Rate
                       </p>
                       <p class="cart-text  mt-0 mb-0">
-                        JOD 10.00
+                        JOD {{shippingMethods?.data[0].settings.cost.value}}
                       </p>
                     </ion-col>
                     <ion-col size="6" class="text-left" style="border-bottom: 1px solid #91c11e;padding: 1em 1em 0.5em 1em;">
@@ -163,7 +163,7 @@
                     </ion-col>
                     <ion-col size="6" class="text-right" style="border-bottom: 1px solid #91c11e;padding: 1em 1em 0.5em 1em;">
                       <p class="cart-text  mt-0 mb-0">
-                        JOD{{+this.orderReceived?.data.items[0].total + 10}}
+                        JOD {{+this.orderReceived?.data.items[0].total + +shippingMethods?.data[0].settings.cost.value}}
                       </p>
                     </ion-col>
                     <!-- <ion-col size="6" class="text-left" style="padding: 1em 1em 0.5em 1em;">

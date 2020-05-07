@@ -29,14 +29,14 @@
       <ion-row>
         <ion-col size="6">
           <p class="mb-0 form-label"> First Name <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" class="input-text" name="first_name" ngModel #first_name="ngModel" required placeholder="" autocomplete="off" required>
+          <input type="text" class="input-text" name="first_name" [(ngModel)]='user.first_name' #first_name="ngModel" required placeholder="" autocomplete="off" required>
           <p class="alert alert-danger" role="alert" *ngIf="form.submitted && first_name.invalid || first_name.touched && first_name.invalid">
             First Name is required!
           </p>
         </ion-col>
         <ion-col size="6">
           <p class="mb-0 form-label"> Last Name <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" class="input-text" name="last_name" ngModel #last_name="ngModel" required placeholder="" autocomplete="off">
+          <input type="text" class="input-text" name="last_name" [(ngModel)]='user.last_name' #last_name="ngModel" required placeholder="" autocomplete="off">
           <p class="alert alert-danger" role="alert" *ngIf="form.submitted && last_name.invalid || last_name.touched && last_name.invalid">
             Last name is required! </p>
         </ion-col>
@@ -90,24 +90,26 @@
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label"> Email Address <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" name="email" ngModel #email="ngModel" class="input-text" placeholder=""  pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required email>
+          <input type="text" name="email"  [(ngModel)]='user.email' #email="ngModel" class="input-text" placeholder=""  pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required email>
           <p class="alert alert-danger" role="alert" *ngIf="form.submitted && email.invalid || email.touched && email.invalid ">
            <ng-container *ngIf="email.errors.required">Email is required!</ng-container> 
            <ng-container *ngIf="email.errors.email">Enter a valid email address!</ng-container> 
           </p>
         </ion-col>
-        <ion-col size="12">
-          <p class="mb-0 form-label"> Username <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" name="username" ngModel #username="ngModel" required class="input-text" placeholder="" autocomplete="off">
-          <p class="alert alert-danger" role="alert" *ngIf="form.submitted && username.invalid || username.touched && username.invalid">
-            Username is required!</p>
-        </ion-col>
-        <ion-col size="12">
-          <p class="mb-0 form-label"> Password <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" name="password" ngModel #password="ngModel" required class="input-text" placeholder="" autocomplete="off">
-          <p class="alert alert-danger" role="alert" *ngIf="form.submitted && password.invalid || password.touched && password.invalid">
-            Password is required!</p>
-        </ion-col>
+        <ng-container *ngIf="!userResponse">
+          <ion-col size="12">
+            <p class="mb-0 form-label"> Username <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+            <input type="text" name="username" ngModel #username="ngModel"  class="input-text" placeholder="" autocomplete="off">
+            <p class="alert alert-danger" role="alert" *ngIf="form.submitted && username.invalid || username.touched && username.invalid">
+              Username is required!</p>
+          </ion-col>
+          <ion-col size="12">
+            <p class="mb-0 form-label"> Password <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
+            <input type="text" name="password" ngModel #password="ngModel"  class="input-text" placeholder="" autocomplete="off">
+            <p class="alert alert-danger" role="alert" *ngIf="form.submitted && password.invalid || password.touched && password.invalid">
+              Password is required!</p>
+          </ion-col>
+        </ng-container>
         <ion-col size="12" class="">
           <h4 class="fw-600" style="font-size: 25px;">Delivery Date &amp; Time</h4>
         </ion-col>
@@ -198,7 +200,7 @@
                     Flat Rate
                   </p>
                   <p class="cart-text  mt-0 mb-0">
-                    JOD 10.00
+                    JOD {{shippingMethods?.data[0].settings.cost.value}}
                   </p>
                 </ion-col>
                 <ion-col size="6" class="text-left" style="padding: 1em 1em 0.5em 1em;">
@@ -208,7 +210,7 @@
                 </ion-col>
                 <ion-col size="6" class="text-right" style="padding: 1em 1em 0.5em 1em;">
                   <p class="cart-text  mt-0 mb-0">
-                    JOD {{item.totalPrice + 10}}
+                    JOD {{item.totalPrice + +shippingMethods?.data[0].settings.cost.value}}
                   </p>
                 </ion-col>
               </ion-row>

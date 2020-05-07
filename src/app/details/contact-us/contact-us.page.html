@@ -7,54 +7,15 @@
 </ion-header>
 
 <ion-content fullscreen *ngIf="!loading">
-  <!-- <div class="bg-contact">
-  <form #form="ngForm" (ngSubmit)="contactForm(form)" class="form-positon">
-    <ion-list lines="full" class="ion-no-margin ion-no-padding">
-      <ion-item>
-        <ion-label position="floating">First Name <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text" name='first-name' ngModel></ion-input>
-      </ion-item>
 
-      <ion-item>
-        <ion-label position="floating">Last Name <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text" name='last-name' ngModel></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Telephone Number<ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text" name='phone-no' ngModel ></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Email <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text" name='email' ngModel></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Address </ion-label>
-        <ion-input required type="text" name='address-1' ngModel></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">City </ion-label>
-        <ion-input required type="text" name='city' ngModel></ion-input>
-      </ion-item>
-      
-      <ion-item>
-        <ion-label position="floating">Comments</ion-label>
-        <ion-textarea rows="2" type="text" name='comment' ngModel></ion-textarea>
-      </ion-item>
-    </ion-list>
-
-    <div class="ion-padding">
-      <ion-button expand="block" type="submit" class="ion-no-margin">submit</ion-button>
-    </div>
-
-
-  </form>
-</div> -->
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <form #form="ngForm" (ngSubmit)="contactForm(form)" class="form-positon">
     <ion-grid class="pt-0 pb-3 pl-0 pr-0">
-      <ion-row class="img-hero-banner">
+      <ion-row class="img-hero-banner" [style.background-image]="authService.getBackground(contactUs?.data.page_head.bg_cover)">
         <ion-col text-center>
-
+          {{contactUs?.data.page_head.content}}
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -521,19 +482,19 @@
                 <i class="fa fa-map-marker" aria-hidden="true"></i>
                 <!-- <i class="fa fa-envelope-open" aria-hidden="true"></i> -->
                 <h5 class="text-primary">Address</h5>
-                <p class="font-light"> Amman - Jordan.</p>
+                <p class="font-light">{{contactUs?.data.contact.address}}</p>
               </div>
               <div class="single">
                 <i class="fa fa-envelope-open" aria-hidden="true"></i>
                 <h5 class="text-primary">Email Address</h5>
-                <p class="font-light"><a href="mailto:info@boxeh.com">info@boxeh.com</a></p>
+                <p class="font-light"><a href="mailto:info@boxeh.com">{{contactUs?.data.contact.email}}</a></p>
               </div>
               <div class="single">
                 <!-- <i class="fas fa-phone fa-2x"></i> -->
                 <i class="fa fa-phone" aria-hidden="true"></i>
                 <h5 class="text-primary">Phone Number</h5>
-                <p class="font-light mb-0"><a href="tel:+123456789">+123456789</a></p>
-                <p class="font-light mt-0 mb-0"><a href="tel:+0987654321">+0987654321</a></p>
+                <p class="font-light mb-0"><a href="tel:{{contactUs?.data.contact.phone_no_1}}">{{contactUs?.data.contact.phone_no_1}}</a></p>
+                <p class="font-light mt-0 mb-0"><a href="tel:{{contactUs?.data.contact.phone_no_1}}">{{contactUs?.data.contact.phone_no_2}}</a></p>
               </div>
             </div>
           </ion-col>

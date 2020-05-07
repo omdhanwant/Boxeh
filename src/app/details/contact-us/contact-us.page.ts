@@ -7,12 +7,37 @@ import { Utils } from '../../shared-module/utils/constants';
 import { Error } from '../../shared-module/models/Error';
 import { LoginResponse } from '../../shared-module/models/LoginResponse';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { AuthService } from 'src/app/shared-module/shared-services/auth.service';
+import { Subscription } from 'rxjs';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 interface ContactResponse {
   into: string,
   status: string,
   message: string
 }
+interface ContactRes{
+  code: number,
+  status: boolean,
+  message: string,
+  data: {
+      page_head: {
+          bg_cover: string,
+          content: string,
+      },
+      contact: {
+          address: string,
+          email: string,
+          phone_no_1: string,
+          phone_no_2: string,
+          map_location: {
+              address: string,
+              lat: string,
+              lng: string,
+          }
+      }
+  }
+}
+
 
 @Component({
   selector: 'app-contact-us',
@@ -20,12 +45,16 @@ interface ContactResponse {
   styleUrls: ['./contact-us.page.scss'],
 })
 export class ContactUsPage implements OnInit {
+  contactUs: ContactRes = null;
+  subscription: Subscription;
+  langSubscription: Subscription;
   loading = false;
   constructor(
     private contact: Contact,
     private nav: NavController,
     private route: ActivatedRoute,
-    public alertService: AlertService) {
+    public alertService: AlertService,
+    public authService: AuthService) {
 
   }
 
@@ -76,6 +105,41 @@ export class ContactUsPage implements OnInit {
       this.alertService.presentAlert(Utils.ERROR, 'Enter valid information!', [Utils.OK]);
     }
   }
+
+  dismissLoader() { 
+    this.loading = false;
+  }
+  getContactData() {
+    this.subscription = this.contact.getContactusData().subscribe(contact => {
+      if (contact.code === 200) {
+
+        this.contactUs = contact;
+        this.dismissLoader();
+      } else {
+        this.alertService.presentAlert(Utils.ERROR, contact.message, [Utils.OK]);
+        this.dismissLoader();
+      }
+    } ,(error) => {
+      this.dismissLoader();
+      this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
+    });  
+  }
+
+
+  ionViewDidEnter() {
+    this.getContactData();
+  }
+
+
+  refresh(event) {
+    this.loading = true;
+    this.getContactData();
+  }
+
+  ionViewDidLeave(){
+    if (this.langSubscription) this.langSubscription.unsubscribe();
+    if (this.subscription) this.subscription.unsubscribe();
+   }
 
 
 }

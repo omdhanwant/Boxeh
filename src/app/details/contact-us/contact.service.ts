@@ -9,6 +9,28 @@ interface ContactResponse {
   status: string,
   message: string
 }
+interface ContactRes{
+    code: number,
+    status: boolean,
+    message: string,
+    data: {
+        page_head: {
+            bg_cover: string,
+            content: string,
+        },
+        contact: {
+            address: string,
+            email: string,
+            phone_no_1: string,
+            phone_no_2: string,
+            map_location: {
+                address: string,
+                lat: string,
+                lng: string,
+            }
+        }
+    }
+}
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +45,15 @@ export class Contact {
       .pipe(map((response: ContactResponse) => {
         return response;
       }));
+  }
+
+  getContactusData(){
+    const time = new Date();
+    return this.http.get(`${environment.hostUrl}/boxeh/apis/page-contact.php?type=` + time.getTime())
+      .pipe(
+        map((response: ContactRes) => {
+          return response;
+        }));
   }
 
 }
