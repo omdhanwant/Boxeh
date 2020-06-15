@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PreviousOrdersPageRoutingModule } from './previous-orders-routing.module';
+import { DownloadsPageRoutingModule } from './downloads-routing.module';
 
-import { PreviousOrdersPage } from './previous-orders.page';
+import { DownloadsPage } from './downloads.page';
 import { NgxLoadingModule } from 'ngx-loading';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { NgxLoadingModule } from 'ngx-loading';
     CommonModule,
     FormsModule,
     IonicModule,
-    PreviousOrdersPageRoutingModule,
+    DownloadsPageRoutingModule,
     NgxLoadingModule
   ],
-  declarations: [PreviousOrdersPage]
+  declarations: [DownloadsPage]
 })
-export class PreviousOrdersPageModule {}
+export class DownloadsPageModule {}

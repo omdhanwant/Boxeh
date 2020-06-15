@@ -42,49 +42,49 @@
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label"> Company Name</p>
-          <input type="text" name="company" ngModel #company="ngModel" class="input-text" placeholder="" autocomplete="off">
+          <input type="text" name="company" [(ngModel)]='user.company' #company="ngModel" class="input-text" placeholder="" autocomplete="off">
           <!-- <p class="alert alert-danger" role="alert" *ngIf="form.submitted && company.invalid || company.touched && company.invalid">
             Company is required! </p> -->
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label">Country <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" name="country" ngModel #country="ngModel" required class="input-text" placeholder="Country" autocomplete="off">
+          <input type="text" name="country" [(ngModel)]='user.country' #country="ngModel" required class="input-text" placeholder="Country" autocomplete="off">
           <p class="alert alert-danger" role="alert" *ngIf="form.submitted && country.invalid || country.touched && country.invalid">
             Country is required!</p>
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label"> Street address <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" name="address_1" ngModel #address_1="ngModel" required class="input-text mb-2" placeholder="House number and street name" autocomplete="off">
+          <input type="text" name="address_1" [(ngModel)]='user.address_1' #address_1="ngModel" required class="input-text mb-2" placeholder="House number and street name" autocomplete="off">
           <p class="alert alert-danger" role="alert" *ngIf="form.submitted && address_1.invalid || address_1.touched && address_1.invalid">
             Street Address is required!</p>
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label"> Apartment, suite, unit etc.</p>
-          <input type="text" name="address_2" ngModel #address_2="ngModel" required class="input-text" placeholder="Apartment, suite, unit etc. (optional)" autocomplete="off">
+          <input type="text" name="address_2" [(ngModel)]='user.address_2' #address_2="ngModel" required class="input-text" placeholder="Apartment, suite, unit etc. (optional)" autocomplete="off">
           <p class="alert alert-danger" role="alert" *ngIf="form.submitted && address_2.invalid || address_2.touched && address_2.invalid">
             Apartment, suite, unit etc. are required!</p>
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label">Town / City <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" name="city" ngModel #city="ngModel" required class="input-text" placeholder="Country" autocomplete="off">
+          <input type="text" name="city" [(ngModel)]='user.city' #city="ngModel" required class="input-text" placeholder="Country" autocomplete="off">
           <p class="alert alert-danger" role="alert" *ngIf="form.submitted && city.invalid || city.touched && city.invalid">
             City is required!</p>
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label">State / County <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" name="state" ngModel #state="ngModel" required class="input-text" placeholder="" autocomplete="off">
+          <input type="text" name="state" [(ngModel)]='user.state' #state="ngModel" required class="input-text" placeholder="" autocomplete="off">
           <p class="alert alert-danger" role="alert" *ngIf="form.submitted && state.invalid || state.touched && state.invalid">
             Country is required!</p>
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label">Pin code <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" name="postcode" ngModel #postcode="ngModel" required class="input-text" placeholder="" autocomplete="off">
+          <input type="text" name="postcode" [(ngModel)]='user.postcode' #postcode="ngModel" required class="input-text" placeholder="" autocomplete="off">
           <p class="alert alert-danger" role="alert" *ngIf="form.submitted && state.invalid || postcode.touched && postcode.invalid">
             Pin code is required!</p>
         </ion-col>
         <ion-col size="12">
           <p class="mb-0 form-label">Phone <i class="fa fa-asterisk icon-astrick" aria-hidden="true"></i></p>
-          <input type="text" name="phone" ngModel #phone="ngModel" required class="input-text" placeholder="" autocomplete="off">
+          <input type="text" name="phone" [(ngModel)]='user.phone' #phone="ngModel" required class="input-text" placeholder="" autocomplete="off">
           <p class="alert alert-danger" role="alert" *ngIf="form.submitted && phone.invalid || phone.touched && phone.invalid">
             Phone is required!</p>
         </ion-col>

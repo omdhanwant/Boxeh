@@ -2,7 +2,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-menu-button color='primary' slot="start"></ion-menu-button>
-    <ion-title>My Account</ion-title>
+    <ion-title>My Downloads</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +11,7 @@
     <ion-row>
       <ion-col size="12">
         <div class="entry-header">
-          <h1 class="entry-title">My account</h1>
+          <h1 class="entry-title">My Downloads</h1>
         </div>
       </ion-col>
       <ion-col size="12">
@@ -24,16 +24,16 @@
             <li class="li-font-size list-group-item list-group-item-action" routerLink='/edit-account'>Account details</li>
             <li class="li-font-size list-group-item list-group-item-action" (click)="logout()">Logout</li>
             <li class="li-font-size list-group-item list-group-item-action">
-              
-              <div class="woocommerce-MyAccount-content">
-                <div class="woocommerce-notices-wrapper"></div>
-              <p>
-                Hello <strong *ngIf="userDetails">{{userDetails.username}}</strong> (not <strong *ngIf="userDetails">{{userDetails.username}}</strong>? <a (click)="logout()">Log out</a>)</p>
-              <p>
-                From your account dashboard you can view your <a >recent orders</a>, manage your <a>shipping and billing addresses</a>, and <a>edit your password and account details</a>.</p>
-              </div>
-            </li>
           </div>
+
+          <div class="woocommerce-MyAccount-content" *ngFor="let order of Orders?.data">
+            <div class="woocommerce-notices-wrapper"></div>
+            <div class="woocommerce-Message woocommerce-Message--info woocommerce-info">
+              <span>Order Id = {{order.order_id}} </span><br>
+              Please wait to confirm the status of your order <br>
+            </div>
+          </div>
+
         </div>
       </ion-col>
     </ion-row>

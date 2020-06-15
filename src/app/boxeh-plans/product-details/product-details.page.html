@@ -5,7 +5,7 @@
     <ion-buttons slot="end">
       <ion-back-button color="primary" text="Back"></ion-back-button>
       <ion-icon name='cart-outline' slot="start" style="font-size: 25px;" routerLink="/cart" routerLinkActive="router-link-active" ></ion-icon>
-      <ion-badge *ngIf="cartLength.length > 0" color="primary" class="ion-color ion-color-primary md hydrated" style="position: absolute; top: -13px; left: 15px; font-size: 10px;">
+      <ion-badge *ngIf="cartLength !== 0" color="primary" class="ion-color ion-color-primary md hydrated" style="position: absolute; top: -9px; right: 4px; font-size: 10px;">
         {{cartLength}}
       </ion-badge>
     </ion-buttons>
@@ -150,7 +150,11 @@
     </ion-row>
   </ion-grid>
   <div class="text text-center text-secondary joinUsButton" style="margin-bottom: 24px;">
-    <button (click)="addToCart()" [disabled]="+getWeeklyRecipeSize !== +selectedRecipes.length"
+    <button (click)="addToCart()" *ngIf="+getWeeklyRecipeSize === +selectedRecipes.length"
+      class="stickybtn  btn-primary btn-lg font-light text-decoration-0">
+      Add to cart</button>
+      <!-- [disabled]="+getWeeklyRecipeSize !== +selectedRecipes.length" -->
+      <button *ngIf="+getWeeklyRecipeSize !== +selectedRecipes.length" (click)="cartWarning()"
       class="stickybtn  btn-primary btn-lg font-light text-decoration-0">
       Add to cart</button>
   </div>

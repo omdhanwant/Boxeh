@@ -2,7 +2,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-menu-button color='primary' slot="start"></ion-menu-button>
-    <ion-title>My Account</ion-title>
+    <ion-title>Addresses</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +11,7 @@
     <ion-row>
       <ion-col size="12">
         <div class="entry-header">
-          <h1 class="entry-title">My account</h1>
+          <h1 class="entry-title">Addresses</h1>
         </div>
       </ion-col>
       <ion-col size="12">
@@ -24,14 +24,24 @@
             <li class="li-font-size list-group-item list-group-item-action" routerLink='/edit-account'>Account details</li>
             <li class="li-font-size list-group-item list-group-item-action" (click)="logout()">Logout</li>
             <li class="li-font-size list-group-item list-group-item-action">
-              
+
               <div class="woocommerce-MyAccount-content">
-                <div class="woocommerce-notices-wrapper"></div>
-              <p>
-                Hello <strong *ngIf="userDetails">{{userDetails.username}}</strong> (not <strong *ngIf="userDetails">{{userDetails.username}}</strong>? <a (click)="logout()">Log out</a>)</p>
-              <p>
-                From your account dashboard you can view your <a >recent orders</a>, manage your <a>shipping and billing addresses</a>, and <a>edit your password and account details</a>.</p>
+                <p>
+                  The following addresses will be used on the checkout page by default.</p>
+                  <h3>Shipping &amp; Billing Details</h3>
+                  <a class="edit" routerLink="/edit-account">Edit</a>
+                  <address>{{userResponse?.data.billing_first_name}} {{userResponse?.data.billing_last_name}}<br>
+                    {{userResponse?.data.billing_company}}<br>
+                    {{userResponse?.data.billing_address_1}}<br>
+                    {{userResponse?.data.billing_address_2}}<br>
+                    {{userResponse?.data.billing_city}}<br>
+                    {{userResponse?.data.billing_state}}<br>
+                    {{userResponse?.data.billing_postcode}}
+                    <br>
+                    {{userResponse?.data.billing_country}}
+                  </address>
               </div>
+
             </li>
           </div>
         </div>

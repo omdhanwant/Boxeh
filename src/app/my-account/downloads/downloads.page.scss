@@ -180,3 +180,47 @@
     left: auto;
     color: #515151;
 }
+
+.woocommerce-MyAccount-content{
+    float: right;
+    width: 100%;
+    margin-top: 2%;
+}
+
+.woocommerce-account .woocommerce {
+    background: #ebebeb;
+    font-size: 15px;
+    border: 1px solid #91c11e;
+    border-radius: 13px;
+}
+.woocommerce-info {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: 3px solid #91c11e;
+    background: #ebebeb !important;
+    padding: 1em 2em 1em 3.5em;
+    margin: 0 0 2em;
+    position: relative;
+    color: #515151;
+    list-style: none outside;
+    width: auto;
+}
+.woocommerce-info:before {
+    color: #91c11e;
+}
+
+.woocommerce-info::before, .woocommerce-message::before {
+    font-family: WooCommerce;
+    content: "\e028";
+    display: inline-block;
+    position: absolute;
+    top: 1em;
+    left: 1.5em;
+}
+.woocommerce-info::after, .woocommerce-message::after {
+    clear: both;
+}
+.woocommerce-info::after{
+    content: ' ';
+    display: table;
+}

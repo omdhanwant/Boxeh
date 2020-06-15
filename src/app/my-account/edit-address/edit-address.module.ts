@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PreviousOrdersPageRoutingModule } from './previous-orders-routing.module';
+import { EditAddressPageRoutingModule } from './edit-address-routing.module';
 
-import { PreviousOrdersPage } from './previous-orders.page';
+import { EditAddressPage } from './edit-address.page';
 import { NgxLoadingModule } from 'ngx-loading';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { NgxLoadingModule } from 'ngx-loading';
     CommonModule,
     FormsModule,
     IonicModule,
-    PreviousOrdersPageRoutingModule,
+    EditAddressPageRoutingModule,
     NgxLoadingModule
   ],
-  declarations: [PreviousOrdersPage]
+  declarations: [EditAddressPage]
 })
-export class PreviousOrdersPageModule {}
+export class EditAddressPageModule {}

@@ -27,6 +27,7 @@ export class CartPage {
   subscription: Subscription;
   paymentMethods: paymentMethods;
   shippingMethods: shippingMethods;
+  noShow: boolean;
 
   constructor(
     private nav: NavController,
@@ -35,12 +36,14 @@ export class CartPage {
     private service: Service,
   ) { 
     this.cartData = null;
+    this.noShow = false;
   }
 
 
   ionViewDidEnter() {
     this.getShippingMethods();
     if(localStorage.getItem('cart')) {
+      this.noShow = true;
      this.cartData = JSON.parse(localStorage.getItem('cart'));
      this.calculateTotalCartValues();
     }

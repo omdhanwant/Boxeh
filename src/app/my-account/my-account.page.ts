@@ -14,92 +14,25 @@ import { NavController } from '@ionic/angular';
 })
 export class MyAccountPage {
   loading = false;
-  user: User = {
-    first_name: '',
-    last_name: '',
-    email: '',
-    username: '',
-    id: ''
-  };
-  // first_name: string;
-  // last_name: string;
-  // username: string;
-  // email: string;
-  constructor(private auth: AuthService, private alertService: AlertService, private nav: NavController) { }
+  userDetails: any;
+ 
+  constructor(private auth: AuthService, private alertService: AlertService, private nav: NavController) {
+    this.userDetails = null;
+   }
 
   ionViewDidEnter() {
-    this.auth.currentUser.subscribe(user => {
-      this.user = user;
-    });
-  }
-  
-  saveUser(form: NgForm) {
-    this.loading = true;
-    if (form.valid && this.user) {
-
-
-      const updatedUser: User  = {
-        first_name: form.control.get('first_name').value,
-        last_name: form.control.get('last_name').value,
-        username: form.control.get('username').value,
-        email: form.control.get('email').value,
-        id: this.user.id,
-      }
-    
-        this.auth.getUser(updatedUser).subscribe((response: any) => {
-          if (response.code === 200) {
-            this.loading = false;
-            this.alertService.presentAlert(Utils.SUCCESS, response.message, [Utils.OK]);
-          } else {
-            this.loading = false;
-            this.alertService.presentAlert(Utils.ERROR, response.message, [Utils.OK]);
-          }
-  
-        } ,(error) => {
-          this.loading = false;
-          this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
-        }
-        );
-
-        // this.auth.token == form.value.old_password &&
-        if( (form.value.conf_password == form.value.new_password)) {
-          const updatedPassword  = {
-            old_password: form.value.old_password,
-            new_password: form.value.new_password,
-            user_id: this.user.id
-          }
-
-          this.updatePassword(form , updatedPassword);
-        } else {
-          this.loading = false;
-          this.alertService.presentAlert(Utils.ERROR , 'Confirmed password is not matching!', ['OK']);
-        }
-        
-
-    } else {
-      this.loading = false;
-      this.alertService.presentAlert(Utils.ERROR , 'Enter valid details!', ['OK']);
+    if(localStorage.getItem('userDetails')){
+      this.userDetails = JSON.parse(localStorage.getItem('userDetails'));
+    }else{
+      this.userDetails = null;
     }
   }
-
   
-
-  updatePassword(form: NgForm, updatedPassword) {
-
-      this.auth.updatePassword(updatedPassword).subscribe((response: any) => {
-        if (response.code === 200) {
-          this.loading = false;
-          this.alertService.presentAlert(Utils.SUCCESS, response.message, [Utils.OK]);
-        } else {
-          this.loading = false;
-          this.alertService.presentAlert(Utils.ERROR, response.message, [Utils.OK]);
-        }
-
-      } ,(error) => {
-        this.loading = false;
-        this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
-      });
-    } 
+  logout() {
+    this.auth.logout();
+    this.alertService.presentAlert(Utils.SUCCESS , 'Successfully logged out!' , [Utils.OK]);
+    this.nav.navigateBack('/home');
+    localStorage.clear();
+  }
   
-
 }

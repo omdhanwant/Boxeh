@@ -45,6 +45,15 @@ interface ContactRes{
   styleUrls: ['./contact-us.page.scss'],
 })
 export class ContactUsPage implements OnInit {
+  user: any = {
+    first_name:null,
+    last_name:null,
+    address_1:null,
+    phone_no:null,
+    city:null,
+    email:null,
+    comment:null
+  };
   contactUs: ContactRes = null;
   subscription: Subscription;
   langSubscription: Subscription;
@@ -64,11 +73,11 @@ export class ContactUsPage implements OnInit {
   contactForm(form: NgForm) {
     if (form.valid) {
       // this.alertService.presentLoading('Please Wait...');
-      const fistname = form.control.get('first-name').value;
-      const lastname = form.control.get('last-name').value;
-      const phone = form.control.get('phone-no').value;
+      const fistname = form.control.get('first_name').value;
+      const lastname = form.control.get('last_name').value;
+      const phone = form.control.get('phone_no').value;
       const email = form.control.get('email').value;
-      const address = form.control.get('address-1').value;
+      const address = form.control.get('address_1').value;
       const city = form.control.get('city').value;
       const comment = form.control.get('comment').value;
 
@@ -110,6 +119,7 @@ export class ContactUsPage implements OnInit {
     this.loading = false;
   }
   getContactData() {
+    this.loading = true;
     this.subscription = this.contact.getContactusData().subscribe(contact => {
       if (contact.code === 200) {
 

@@ -16,7 +16,7 @@ declare var $: any;
   templateUrl: './product-details.page.html',
   styleUrls: ['./product-details.page.scss'],
 })
-export class ProductDetailsPage implements OnInit{
+export class ProductDetailsPage implements OnInit {
   variation: any;
   productData: Product = null;
   subscription: Subscription;
@@ -26,26 +26,32 @@ export class ProductDetailsPage implements OnInit{
   optionsMap: Map<number, string>;
   selectedRecipes: any[];
   isExists: boolean = false;
-  getWeeklyRecipeSize:number;
+  getWeeklyRecipeSize: number;
   cartLength: number;
-  constructor(private service: BoxehPlansServiceService, 
-              private alertService: AlertService, 
-              public authService: AuthService, private activatedRoute: ActivatedRoute,
-              private nav: NavController) {
-      this.optionsMap = new Map<number, string>();
-      this.selectedRecipes = [];
-      this.cartLength = 0;
-      this.param = this.activatedRoute.snapshot.queryParams;
+  constructor(private service: BoxehPlansServiceService,
+    private alertService: AlertService,
+    public authService: AuthService, private activatedRoute: ActivatedRoute,
+    private nav: NavController) {
+    this.optionsMap = new Map<number, string>();
+    this.selectedRecipes = [];
+    this.cartLength = 0;
+    this.param = this.activatedRoute.snapshot.queryParams;
   }
   ngOnInit() {
-    if(localStorage.getItem('cart')){
+    if (localStorage.getItem('cart')) {
       const cart = localStorage.getItem('cart');
-      this.cartLength = JSON.parse(cart).length;
+      const data = JSON.parse(cart);
+      this.cartLength = 0;
+      data.map(p => {
+        if (p) {
+          this.cartLength++
+        }
+      });
     }
   }
- 
-   ionViewWillEnter() {
-      this.loading = true;
+
+  ionViewWillEnter() {
+    this.loading = true;
   }
 
   ionViewDidEnter() {
@@ -59,38 +65,36 @@ export class ProductDetailsPage implements OnInit{
     this.initData();
   }
 
- 
+
   initData(event?) {
+    this.langSubscription = this.authService.$currentLanguage.subscribe(languageState => {
 
-    console.log(this.param.id);    
-    this.langSubscription =  this.authService.$currentLanguage.subscribe(languageState => {
+      this.subscription = this.service.getProductDetails(languageState, this.param.id).subscribe(product => {
+        if (product.code === 200) {
 
-        this.subscription = this.service.getProductDetails(languageState, this.param.id).subscribe(product => {
-          if (product.code === 200) {
-    
-            if(event) {
-              event.target.complete();
-            }
-            this.productData = product;
-            // this.loadAfterDomLoad();
-            this.dismissLoader();
-          } else {
-            this.alertService.presentAlert(Utils.ERROR, product.message, [Utils.OK]);
-            this.dismissLoader();
+          if (event) {
+            event.target.complete();
           }
-        } ,(error) => {
+          this.productData = product;
+          // this.loadAfterDomLoad();
           this.dismissLoader();
-          this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
-        });
-      
+        } else {
+          this.alertService.presentAlert(Utils.ERROR, product.message, [Utils.OK]);
+          this.dismissLoader();
+        }
+      }, (error) => {
+        this.dismissLoader();
+        this.alertService.presentAlert(Utils.ERROR, Utils.ERROR_MESSAGE, [Utils.OK]);
+      });
+
     })
   }
 
   dismissLoader() {
-  //  setTimeout(() => {
-  //     this.alertService.dismissLoading();
-  //   }, 100); 
-  this.loading = false;
+    //  setTimeout(() => {
+    //     this.alertService.dismissLoading();
+    //   }, 100); 
+    this.loading = false;
   }
 
   addToCart() {
@@ -106,25 +110,29 @@ export class ProductDetailsPage implements OnInit{
       quantity: 1,
       totalPrice: 1 * this.getPrice()
     }
-    if(localStorage.getItem('cart')) {
-      let data:Cart[] = JSON.parse(localStorage.getItem('cart'));
-      
+    if (localStorage.getItem('cart')) {
+      let data: Cart[] = JSON.parse(localStorage.getItem('cart'));
+
       data.forEach(d => {
         if ((storeObject.recipesPerWeek === d.recipesPerWeek) && (storeObject.servingsPerRecipe === d.servingsPerRecipe)) {
-            this.isExists = true;
-            window.scrollTo(0, 0);
-            this.alertService.presentAlert("Warning", 'Recipe Already added to the Cart', [Utils.OK]);
+          this.isExists = true;
+          window.scrollTo(0, 0);
+          this.alertService.presentAlert("Warning", 'Recipe Already added to the Cart', [Utils.OK]);
         }
       });
-      if (!this.isExists ) {
+      if (!this.isExists) {
         data.push(storeObject);
         this.nav.navigateForward(['/cart']);
       }
-      localStorage.setItem('cart' , JSON.stringify(data));
+      localStorage.setItem('cart', JSON.stringify(data));
     } else {
-      localStorage.setItem('cart' , JSON.stringify([storeObject]));
+      localStorage.setItem('cart', JSON.stringify([storeObject]));
       this.nav.navigateForward(['/cart']);
     }
+  }
+
+  cartWarning() {
+    this.alertService.presentAlert("Warning", 'Number of Recipes per week not greater than selected Recipes', [Utils.OK]);
   }
 
   refresh(event) {
@@ -133,45 +141,45 @@ export class ProductDetailsPage implements OnInit{
   }
 
   addSelectedRecipes(event) {
-  //  console.log(event.target.checked);
-   if (!this.selectedRecipes.includes(event.target.value) && event.target.checked) {
+    //  console.log(event.target.checked);
+    if (!this.selectedRecipes.includes(event.target.value) && event.target.checked) {
       this.selectedRecipes.push(event.target.value);
-      if(+this.selectedRecipes.length > +this.optionsMap.get(0)){
-        this.alertService.presentAlert("Error", 'Maximum number of Recipes for your plan is: '+this.optionsMap.get(0), [Utils.OK]);
+      if (+this.selectedRecipes.length > +this.optionsMap.get(0)) {
+        this.alertService.presentAlert("Error", 'Maximum number of Recipes for your plan is: ' + this.optionsMap.get(0), [Utils.OK]);
       }
     } else {
       let index = this.selectedRecipes.findIndex(s => s == event.target.value)
-      this.selectedRecipes.splice(index,1);
+      this.selectedRecipes.splice(index, 1);
     }
-      
+
   }
 
   calculateTotalPrice(event, i) {
-      this.optionsMap.set(i, event.target.value);
-      this.getWeeklyRecipeSize = +this.optionsMap.get(0);
+    this.optionsMap.set(i, event.target.value);
+    this.getWeeklyRecipeSize = +this.optionsMap.get(0);
   }
 
-  getPrice(){
+  getPrice() {
     this.variation = null;
     if (this.productData) {
       this.productData.data.variations.forEach(v => {
-         if(v.attributes.filter((a, index) => a.option === this.optionsMap.get(index)).length == 2) {
-           this.variation = v;
-         }
+        if (v.attributes.filter((a, index) => a.option === this.optionsMap.get(index)).length == 2) {
+          this.variation = v;
+        }
       });
-  
+
       if (this.variation) {
-        return  this.variation.regular_price
-     }
+        return this.variation.regular_price
+      }
     }
 
-   return 0
+    return 0
   }
 
 
-  ionViewDidLeave(){
-   if (this.langSubscription) this.langSubscription.unsubscribe();
-   if (this.subscription) this.subscription.unsubscribe();
+  ionViewDidLeave() {
+    if (this.langSubscription) this.langSubscription.unsubscribe();
+    if (this.subscription) this.subscription.unsubscribe();
   }
 
 }

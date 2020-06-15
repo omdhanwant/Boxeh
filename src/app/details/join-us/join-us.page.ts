@@ -26,6 +26,15 @@ interface JoinUsResponse {
   styleUrls: ['./join-us.page.scss'],
 })
 export class JoinUsPage implements OnInit {
+  user: any = {
+    first_name:null,
+    last_name:null,
+    address_1:null,
+    phone_no:null,
+    city:null,
+    email:null
+  };
+
   JoinUs: JoinUs = null;
   countryCode:any = '962';
   subscription: Subscription;
@@ -116,14 +125,13 @@ export class JoinUsPage implements OnInit {
     //  console.log(form.value);
     if (form.valid) {
       this.loading = true;
-      const fistname = form.control.get('first-name').value;
-      const lastname = form.control.get('last-name').value;
-      const phone = form.control.get('phone-no').value;
+      const fistname = form.control.get('first_name').value;
+      const lastname = form.control.get('last_name').value;
+      const phone = form.control.get('phone_no').value;
       const email = form.control.get('email').value;
-      const address = form.control.get('address-1').value;
+      const address = form.control.get('address_1').value;
       const city = form.control.get('city').value;
-      
-
+     
       const fd = new FormData();
       fd.append('first-name', fistname);
       fd.append('last-name', lastname);

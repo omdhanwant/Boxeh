@@ -64,35 +64,31 @@ export class CheckoutPage implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem('userDetails')){
-      this.userDetails = JSON.parse(localStorage.getItem('userDetails'));
-      this.user.first_name = this.userDetails.first_name;
-      this.user.last_name = this.userDetails.last_name;
-      this.user.email = this.userDetails.email;
-      this.getUserData(this.userDetails.id);
-      if(this.userResponse || this.userResponse !== null){
-        this.user = {
-          first_name:this.userResponse.data.first_name,
-          last_name:this.userResponse.data.last_name,
-          address_1:this.userResponse.data.billing_address_1,
-          address_2:this.userResponse.data.billing_address_2,
-          city:this.userResponse.data.billing_city,
-          state:this.userResponse.data.billing_state,
-          postcode:this.userResponse.data.billing_postcode,
-          country:this.userResponse.data.billing_country,
-          username:this.userResponse.data.username,
-          phone:this.userResponse.data.billing_phone
-        };
-      }
-    }
   }
   getUserData(userID) {
     const form = new FormData();
-    form.append('id', userID.id);
+    form.append('id', userID);
     this.loading = true;
     this.subscription = this.service.getUserData(form).subscribe(userRes => {
       if (userRes.code === 200) {
         this.userResponse = userRes;
+
+        if(this.userResponse || this.userResponse !== null){
+          console.log(this.userResponse);
+          this.user = {
+            first_name:this.userResponse.data.first_name,
+            last_name:this.userResponse.data.last_name,
+            company:this.userResponse.data.billing_company,
+            address_1:this.userResponse.data.billing_address_1,
+            address_2:this.userResponse.data.billing_address_2,
+            city:this.userResponse.data.billing_city,
+            state:this.userResponse.data.billing_state,
+            postcode:this.userResponse.data.billing_postcode,
+            country:this.userResponse.data.billing_country,
+            email:this.userResponse.data.user_email,
+            phone:this.userResponse.data.billing_phone
+          };
+        }
         this.loading = false;
       } else {
         this.alertService.presentAlert(Utils.ERROR, userRes.message, [Utils.OK]);
@@ -140,6 +136,18 @@ export class CheckoutPage implements OnInit {
     if (localStorage.getItem('cart')) {
       this.cartData = JSON.parse(localStorage.getItem('cart'));
       this.calculateTotalCartValues();
+    }
+
+    if(localStorage.getItem('userDetails')){
+      this.userDetails = JSON.parse(localStorage.getItem('userDetails'));
+      console.log(this.userDetails);
+      this.user.first_name = this.userDetails.first_name;
+      this.user.last_name = this.userDetails.last_name;
+      this.user.email = this.userDetails.email;
+      this.getUserData(this.userDetails.id);
+    }else{
+      this.userDetails = null;
+      this.userResponse = null;
     }
   }
 
@@ -211,7 +219,7 @@ export class CheckoutPage implements OnInit {
       const payment_method = form.control.get('payment_method').value;
       const payment_method_title = (payment_method.id === 'cod') ?  'Cash on delivery' : 'Credit Card';
       const currency = 'JOD';
-      const customer_id = (this.userDetails.length > 0) ? this.userDetails.id : 0;
+      const customer_id = this.userDetails ? this.userDetails.id : 0;
       const first_name = form.control.get('first_name').value;
       const last_name = form.control.get('last_name').value;
       const address_1 = form.control.get('address_1').value;
@@ -248,7 +256,7 @@ export class CheckoutPage implements OnInit {
       fd1.append('state', state);
       fd1.append('postcode', postcode);
       fd1.append('country', country);
-      if(this.userDetails.length > 0){
+      if(this.userDetails){
         fd1.append('email', email);
       }else{
         fd1.append('email', email);

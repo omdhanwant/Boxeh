@@ -1,0 +1,90 @@
+<ngx-loading [show]="loading"></ngx-loading>
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button color='primary' slot="start"></ion-menu-button>
+    <ion-title>Edit Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="pl-2 pr-2">
+    <ion-row>
+      <ion-col size="12">
+        <div class="entry-header">
+          <h1 class="entry-title">Edit Account</h1>
+        </div>
+      </ion-col>
+      <ion-col size="12">
+        <div class="w-100">
+          <div class="list-group">
+            <li class="li-font-size list-group-item list-group-item-action" routerLink='/my-account'>Dashboard</li>
+            <li class="li-font-size list-group-item list-group-item-action" routerLink='/my-orders'>Orders</li>
+            <li class="li-font-size list-group-item list-group-item-action" routerLink='/downloads'>Downloads</li>
+            <li class="li-font-size list-group-item list-group-item-action" routerLink='/edit-address'>Addresses</li>
+            <li class="li-font-size list-group-item list-group-item-action" routerLink='/edit-account'>Account details</li>
+            <li class="li-font-size list-group-item list-group-item-action" (click)="logout()">Logout</li>
+            <li class="li-font-size list-group-item list-group-item-action">
+
+              <!-- Account Details -->
+              <div class="order-info">
+                <form #form="ngForm" (ngSubmit)="saveUser(form)" class="bg-login">
+                  <ion-row>
+                    <ion-col size="6">
+                      <p class="mb-0 form-label"> First Name <i class="fa fa-asterisk icon-astrick"
+                          aria-hidden="true"></i></p>
+                      <input type="text" class="input-text" name="first_name" [(ngModel)]="user.first_name"
+                        placeholder="" autocomplete="off">
+                    </ion-col>
+                    <ion-col size="6">
+                      <p class="mb-0 form-label"> Last Name <i class="fa fa-asterisk icon-astrick"
+                          aria-hidden="true"></i></p>
+                      <input type="text" class="input-text" name="last_name" [(ngModel)]="user.last_name" placeholder=""
+                        autocomplete="off">
+                    </ion-col>
+                    <ion-col size="12">
+                      <p class="mb-0 form-label"> User Name <i class="fa fa-asterisk icon-astrick"
+                          aria-hidden="true"></i></p>
+                      <input type="text" class="input-text" name="username" [(ngModel)]="user.username" placeholder=""
+                        autocomplete="off">
+                      <p class="mt-0 mb-0">This will be how your name will be displayed in the account section and in
+                        reviews</p>
+                    </ion-col>
+                    <ion-col size="12">
+                      <p class="mb-0 form-label">Email Address <i class="fa fa-asterisk icon-astrick"
+                          aria-hidden="true"></i></p>
+                      <input type="text" class="input-text" name="email" [(ngModel)]="user.email" placeholder=""
+                        autocomplete="off">
+                    </ion-col>
+
+                    <p class="fs-16 mb-0 ml-1 pb-0">Password change</p>
+
+                    <ion-col size="12">
+                      <p class="mb-0 form-label">Current password (leave blank to leave unchanged) </p>
+                      <input type="password" class="input-text" name="old_password" ngModel placeholder=""
+                        autocomplete="off">
+                    </ion-col>
+                    <ion-col size="12">
+                      <p class="mb-0 form-label">New password (leave blank to leave unchanged) </p>
+                      <input type="password" class="input-text" name="new_password" ngModel placeholder=""
+                        autocomplete="off">
+                    </ion-col>
+                    <ion-col size="12">
+                      <p class="mb-0 form-label">Confirm new password </p>
+                      <input type="password" class="input-text" name="conf_password" ngModel placeholder=""
+                        autocomplete="off">
+                    </ion-col>
+                    <ion-col size="12" class="text-center mt-3 mb-3">
+                      <button type="submit"
+                        class="stickybtn btn-border btn-primary btn-lg font-light text-decoration-0">
+                        Save Changes</button>
+                    </ion-col>
+                  </ion-row>
+                </form>
+              </div>
+            </li>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

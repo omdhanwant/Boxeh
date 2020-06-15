@@ -57,6 +57,31 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'profile',
+    loadChildren: () => import('./my-account/profile/profile.module').then( m => m.ProfilePageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'my-orders',
+    loadChildren: () => import('./my-account/previous-orders/previous-orders.module').then( m => m.PreviousOrdersPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'downloads',
+    loadChildren: () => import('./my-account/downloads/downloads.module').then( m => m.DownloadsPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'edit-address',
+    loadChildren: () => import('./my-account/edit-address/edit-address.module').then( m => m.EditAddressPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'edit-account',
+    loadChildren: () => import('./my-account/edit-account/edit-account.module').then( m => m.EditAccountPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
     path: 'boxeh-plans',
     loadChildren: () => import('./boxeh-plans/boxeh-plans.module').then( m => m.BoxehPlansPageModule),
     // canActivate: [AuthGuard]

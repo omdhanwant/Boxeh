@@ -1,4 +1,4 @@
-import { Orders } from './orders.service';
+import { Downloads } from './downloads.service';
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { NgForm } from '@angular/forms';
@@ -30,16 +30,16 @@ interface OrdersResponse{
 }
 
 @Component({
-  selector: 'app-previous-orders',
-  templateUrl: './previous-orders.page.html',
-  styleUrls: ['./previous-orders.page.scss'],
+  selector: 'app-downloads',
+  templateUrl: './downloads.page.html',
+  styleUrls: ['./downloads.page.scss'],
 })
-export class PreviousOrdersPage implements OnInit {
+export class DownloadsPage implements OnInit {
   Orders: OrdersResponse = null;
   subscription: Subscription;
   loading = false;
   constructor(
-    private orders: Orders,
+    private downloads: Downloads,
     private nav: NavController,
     private route: ActivatedRoute,
     public alertService: AlertService,
@@ -57,7 +57,7 @@ export class PreviousOrdersPage implements OnInit {
     this.loading = true;
     let formData = new FormData();
     formData.append('user_id', id)
-    this.subscription = this.orders.getOrdersData(formData).subscribe(order => {
+    this.subscription = this.downloads.getOrdersData(formData).subscribe(order => {
       if (order.code === 200) {
 
         this.Orders = order;
@@ -93,11 +93,11 @@ export class PreviousOrdersPage implements OnInit {
   ionViewDidLeave() {
     if (this.subscription) this.subscription.unsubscribe();
   }
+
   logout() {
     this.authService.logout();
     this.alertService.presentAlert(Utils.SUCCESS , 'Successfully logged out!' , [Utils.OK]);
     this.nav.navigateBack('/home');
     localStorage.clear();
   }
-
 }
